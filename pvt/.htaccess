@@ -1,0 +1,4 @@
+AuthName "Page à accès protégé"
+AuthType Basic
+AuthUserFile "C:\wamp\www\ExtrHAL\ExtrHAL\pvt\.htpasswd"
+Require valid-user 

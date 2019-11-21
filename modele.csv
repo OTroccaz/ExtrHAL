@@ -1,0 +1,6 @@
+Nom;Prenom;Secteur;Titre;Unite;UMR;Grade;Numeq;Eqrec;Collection HAL;Collection equipe HAL;Arrivee;Depart
+Melanchon;Benoit;facultatif;facultatif;facultatif;facultatif;facultatif;facultatif;facultatif;Code collection en MAJ;Code collection en MAJ;obligatoire;obligatoire
+Hamon;Jean-Luc;facultatif;facultatif;facultatif;facultatif;facultatif;facultatif;facultatif;Code collection en MAJ;Code collection en MAJ;obligatoire;obligatoire
+Fillon;Marine;facultatif;facultatif;facultatif;facultatif;facultatif;facultatif;facultatif;Code collection en MAJ;Code collection en MAJ;obligatoire;obligatoire
+;;;;;;;;;;;;
+NOTE : champs Arrivee / Departs obligatoires, format YYYY ou x si aucune date;;;;;;;;;;;;
