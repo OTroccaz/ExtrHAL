@@ -5508,12 +5508,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$auteurs = "";
 					while ($iTA < count($entry->authLastName_s)){
 						$auteurs .= $entry->authLastName_s[$iTA].", ".prenomCompInit($entry->authFirstName_s[$iTA]).", ";
+						$authorsBT = str_replace($entry->authLastName_s[$iTA]." ".prenomCompInit($entry->authFirstName_s[$iTA]), $entry->authLastName_s[$iTA].", ".prenomCompInit($entry->authFirstName_s[$iTA]), $authorsBT);
 						$iTA++;
 					}
 					$auteurs = substr($auteurs, 0, (strlen($auteurs) - 2));
 					$auteurs = str_replace(".,", ". and ", $auteurs);
 					if ($typbib == "oui") {
-						$auteursBT = str_replace(".,", ". and ", $authorsBT);
+						$auteursBT = str_replace(array(".,", ".},"), array(". and ", ".} and "), $authorsBT);
 						$bibLab .= ",".chr(13).chr(10)."	author = {".$auteursBT."}";
 					}else{
 						$bibLab .= ",".chr(13).chr(10)."	author = {".$auteurs."}";
