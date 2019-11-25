@@ -5496,6 +5496,16 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				if (isset($entry->subTitle_s[0])) {$bibLab .= " : ".$entry->subTitle_s[0];}
 				if (isset($entry->title_s[0])) {$bibLab .= "}";}
 				if (isset($entry->volume_s)) {$bibLab .= ",".chr(13).chr(10)."	volume = {".$entry->volume_s."}";}
+				if (isset($entry->bookTitle_s)) {$bibLab .= ",".chr(13).chr(10)."	booktitle= {".$entry->bookTitle_s."}";}
+				if (isset($entry->scientificEditor_s)) {
+					$sciedi = "";
+					for($se=0; $se<count($entry->scientificEditor_s); $se++) {
+						$sciedi .= $entry->scientificEditor_s[$se].", ";
+					}
+					$sciedi = substr($sciedi, 0, (strlen($sciedi) - 2));
+					$bibLab .= ",".chr(13).chr(10)."	editor= {".$sciedi."}";
+				}
+				if (isset($entry->serie_s[0])) {$bibLab .= ",".chr(13).chr(10)."	series = {".$entry->serie_s[0]."}";}
 				if (isset($entry->conferenceTitle_s)) {$bibLab .= ",".chr(13).chr(10)."	booktitle = {".$entry->conferenceTitle_s."}";}
 				if (isset($entry->journalIssn_s)) {$bibLab .= ",".chr(13).chr(10)."	issn = {".$entry->journalIssn_s."}";}
 				if (isset($entry->publisherLink_s[0])) {$bibLab .= ",".chr(13).chr(10)."	url = {".$entry->publisherLink_s[0]."}";}
