@@ -1243,17 +1243,6 @@ Philippe Gambette</a>, repris et modifié par <a target="_blank" href="https://e
 <a target="_blank" href="https://wiki.ccsd.cnrs.fr/wikis/hal/index.php/Outils_et_services_d%C3%A9velopp%C3%A9s_localement_pour_am%C3%A9liorer_ou_faciliter_l%27utilisation_de_HAL#Extraction_et_mise_en_forme_des_publications">le wiki du CCSD</a>.</p>
 
 <form method="POST" accept-charset="utf-8" name="extrhal" action="ExtractionHAL.php#sommaire">
-<?php
-$uniq = "";
-if (isset($_GET['extur1']) && $_GET['extur1'] != '') {$uniq = $_GET['extur1'];}
-if (isset($_POST['extur1']) && $_POST['extur1'] != '') {$uniq = $_POST['extur1'];}
-if ($uniq != '') {
-  echo('Vous utilisez votre propre fichier de liste d\'auteurs à mettre en évidence');
-  echo('<input type="hidden" value="'.$uniq.'" name="extur1">');
-}else{
-  echo('Extérieurs à Rennes 1, vous avez la possibilité de mettre en évidence les auteurs de votre collection ou de votre référence interne en <a href="ExtractionHAL-liste-auteurs-extur1.php">prétéléchargeant un fichier CSV ou TXT</a> réalisé selon <a href="https://halur1.univ-rennes1.fr/modele.csv">ce modèle</a>.<br><br>');
-}
-?>
 <p class="form-inline"><b><label for="team">Code collection HAL</label></b> <a class=info onclick='return false' href="#">(qu’est-ce que c’est ?)<span>Code visible dans l’URL d’une collection.
 Exemple : IPR-MOL est le code de la collection http://hal.archives-ouvertes.fr/<b>IPR-PMOL</b> de l’équipe Physique moléculaire
 de l’unité IPR UMR CNRS 6251</span></a> :
@@ -1275,10 +1264,22 @@ if (isset($idhal) && $idhal != "") {$team1 = ""; $listaut = "";}
 ?>
 <input type="text" id ="team" name="team" class="form-control" style="height: 25px; width:300px" value="<?php echo $team1;?>" onClick="this.value='<?php echo $team2;?>';"  onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = '';"><br>
 et/ou<br>
-<b><label for="refint">Référence interne</label></b><a class=info onclick='return false' href="#">(qu’est-ce que c’est ?)<span>Champ référence interne des dépôts HAL</span></a> :
+<b><label for="refint">Référence interne</label></b> <a class=info onclick='return false' href="#">(qu’est-ce que c’est ?)<span>Champ référence interne des dépôts HAL</span></a> :
 <input type="text" id ="refint" name="refint" class="form-control" style="height: 25px; width:300px" value="<?php echo $refint;?>" onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = '';">
 <p class="form-inline"><label for="listaut">Code collection HAL pour la liste des auteurs à mettre en évidence</label> <a class=info onclick='return false' href="#">(exemple)<span>Indiquez ici le code collection de votre labo ou de votre équipe, selon que vous souhaitez mettre en évidence le nom des auteurs du labo ou de l'équipe.</span></a> :
 <input type="text" id="listaut" name="listaut" class="form-control" style="height: 25px; width:300px" value="<?php echo $listaut;?>">
+<br>
+<?php
+$uniq = "";
+if (isset($_GET['extur1']) && $_GET['extur1'] != '') {$uniq = $_GET['extur1'];}
+if (isset($_POST['extur1']) && $_POST['extur1'] != '') {$uniq = $_POST['extur1'];}
+if ($uniq != '') {
+  echo('Vous utilisez votre propre fichier de liste d\'auteurs à mettre en évidence');
+  echo('<input type="hidden" value="'.$uniq.'" name="extur1">');
+}else{
+  echo('<p style="margin-left:20px;"<b><u>Attention ! Ce champ ne fonctionne que pour les unités affiliées à Rennes 1</u></b>. Extérieurs à Rennes 1, vous avez la possibilité de mettre en évidence les auteurs de votre collection ou de votre référence interne en <a href="ExtractionHAL-liste-auteurs-extur1.php">prétéléchargeant un fichier CSV ou TXT</a> réalisé selon <a href="https://halur1.univ-rennes1.fr/modele.csv">ce modèle</a>.</p>');
+}
+?>
 <h2><b><u>ou</u></b></h2>
 <p class="form-inline"><b><label for="idhal">Identifiant alphabétique auteur HAL</label></b> <i>(IdHAL > olivier-troccaz, par exemple)</i> <a class=info onclick='return false' href="#">(Pour une requête sur plusieurs IdHAL)<span>Mettre entre parenthèses, et remplacer les guillemets par %22 et les espaces par %20. Exemple : <b>(%22laurent-jonchere%22%20OR%20%22olivier-troccaz%22)</b>.</span></a> :
 <input type="text" id="idhal" name="idhal" class="form-control" style="height: 25px; width:300px" value="<?php echo $idhal;?>" onkeydown="document.getElementById('team').value = ''; document.getElementById('listaut').value = ''; document.getElementById('refint').value = '';">
