@@ -5458,10 +5458,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				if (isset($entry->scientificEditor_s)) {
 					$sciedi = "";
 					for($se=0; $se<count($entry->scientificEditor_s); $se++) {
-						$sciedi .= $entry->scientificEditor_s[$se].", ";
+						$sciedi .= $entry->scientificEditor_s[$se]." and ";
 					}
-					$sciedi = substr($sciedi, 0, (strlen($sciedi) - 2));
-					$bibLab .= ",".chr(13).chr(10)."	editor= {".$sciedi."}";
+					$sciedi = substr($sciedi, 0, (strlen($sciedi) - 4));
+					$bibLab .= ",".chr(13).chr(10)."	editor= {".trim($sciedi)."}";
 				}
 				if (isset($entry->serie_s[0])) {$bibLab .= ",".chr(13).chr(10)."	series = {".$entry->serie_s[0]."}";}
 				if (isset($entry->conferenceTitle_s)) {$bibLab .= ",".chr(13).chr(10)."	booktitle = {".$entry->conferenceTitle_s."}";}
