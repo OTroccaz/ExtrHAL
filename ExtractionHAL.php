@@ -3431,88 +3431,45 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 $numFound = 0;
 	 if (isset($results->response->numFound)) {$numFound=$results->response->numFound;}
 
-   //Extracted fields depend on type of reference:
-   $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,title_s,files_s,label_s,seeAlso_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,comment_s,localReference_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-   if ($docType_s=="ART"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,journalTitle_s,journalIssn_s,serie_s,volume_s,issue_s,page_s,producedDateY_i,proceedings_s,files_s,label_s,doiId_s,publisherLink_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,comment_s,localReference_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-   }
-   if ($docType_s=="COMM"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,localReference_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,collCode_s,source_s,bookTitle_s,journalTitle_s,serie_s,volume_s,issue_s,page_s,doiId_s,publisherLink_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-   }
-   if ($docType_s=="POSTER"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,conferenceEndDateY_i,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,comment_s,localReference_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s,source_s,journalTitle_s,serie_s,volume_s,page_s";
-   }
-   if ($docType_s=="VIDEO"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,localReference_s,files_s,label_s,description_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-   }
-   if ($docType_s=="OTHER" or $docType_s=="OTHERREPORT"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,localReference_s,files_s,label_s,description_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-   }
-   if ($docType_s=="REPORT"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,localReference_s,files_s,label_s,description_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,reportType_s,number_s,authorityInstitution_s,page_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-   }
-   if ($docType_s=="THESE"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,producedDateY_i,director_s,authorityInstitution_s,defenseDateY_i,nntId_id,nntId_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,reportType_s,number_s,authorityInstitution_s,page_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,comment_s,localReference_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-   }
-   if ($docType_s=="HDR"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,producedDateY_i,director_s,authorityInstitution_s,defenseDateY_i,nntId_id,nntId_s,seeAlso_s,halId_s,pubmedId_s,arxivId_s,reportType_s,number_s,authorityInstitution_s,page_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,comment_s,localReference_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-   }
-   if ($docType_s=="OUV" or $docType_s=="DOUV"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,journalTitle_s,bookCollection_s,isbn_s,page_s,doiId_s,publisherLink_s,seeAlso_s,scientificEditor_s,publisher_s,publicationLocation_s,producedDateY_i,proceedings_s,comment_s,localReference_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-   }
-   if ($docType_s=="COUV" or $docType_s=="DOUV"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,publisherLink_s,seeAlso_s,bookTitle_s,scientificEditor_s,publisher_s,publicationLocation_s,producedDateY_i,proceedings_s,comment_s,localReference_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-   }
-   if ($docType_s=="PATENT"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,number_s,producedDateY_i,producedDateY_i,seeAlso_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,comment_s,localReference_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-   }
    //Cas particulierS pour combinaisons
    if ($docType_s=="COMM+POST"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,conferenceTitle_s,city_s,country_s,conferenceStartDate_s,producedDateY_i,proceedings_s,comment_s,localReference_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,collCode_s,source_s,bookTitle_s,journalTitle_s,serie_s,volume_s,issue_s,page_s,doiId_s,publisherLink_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"COMM\"%20OR%20docType_s:\"POSTER\")".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"COMM\"%20OR%20docType_s:\"POSTER\")".$specificRequestCode."&rows=".$numFound."&fl=*&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
    }
 	 if ($docType_s=="OUV+COUV"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,publisherLink_s,seeAlso_s,bookTitle_s,scientificEditor_s,publisher_s,publicationLocation_s,producedDateY_i,proceedings_s,comment_s,localReference_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"COUV\")".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"COUV\")".$specificRequestCode."&rows=".$numFound."&fl=*&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
    }
    if ($docType_s=="OUV+DOUV"){
-			$fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,publisherLink_s,seeAlso_s,bookTitle_s,scientificEditor_s,publisher_s,publicationLocation_s,producedDateY_i,proceedings_s,comment_s,localReference_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"DOUV\")".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"DOUV\")".$specificRequestCode."&rows=".$numFound."&fl=*&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
    }
    if ($docType_s=="OUV+COUV+DOUV"){
-			$fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,bookCollection_s,isbn_s,page_s,doiId_s,publisherLink_s,seeAlso_s,bookTitle_s,scientificEditor_s,publisher_s,publicationLocation_s,producedDateY_i,proceedings_s,comment_s,localReference_s,files_s,label_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"COUV\"%20OR%20docType_s:\"DOUV\")".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"COUV\"%20OR%20docType_s:\"DOUV\")".$specificRequestCode."&rows=".$numFound."&fl=*&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
    }
    if ($docType_s=="UNDEF"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,journalTitle_s,serie_s,volume_s,issue_s,page_s,producedDateY_i,proceedings_s,comment_s,localReference_s,files_s,label_s,doiId_s,publisherLink_s,halId_s,pubmedId_s,arxivId_s,seeAlso_s,localReference_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s";
-      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"UNDEFINED\"".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"UNDEFINED\"".$specificRequestCode."&rows=".$numFound."&fl=*&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
    }
 	 if ($docType_s=="CRO" || $docType_s=="BLO" || $docType_s=="NED" || $docType_s=="TRA"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,journalTitle_s,journalIssn_s,serie_s,volume_s,issue_s,page_s,producedDateY_i,proceedings_s,files_s,label_s,doiId_s,publisherLink_s,publisher_s,scientificEditor_s,description_s,bookTitle_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,comment_s,localReference_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s,description_s";
-			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt.$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt.$specificRequestCode."&rows=".$numFound."&fl=*&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
 	 }
 	 if ($docType_s=="SOFTWARE"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,journalTitle_s,serie_s,volume_s,issue_s,page_s,producedDateY_i,proceedings_s,comment_s,localReference_s,files_s,label_s,doiId_s,publisherLink_s,halId_s,pubmedId_s,arxivId_s,seeAlso_s,localReference_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s,swhId_s";
-      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"UNDEFINED\"".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"UNDEFINED\"".$specificRequestCode."&rows=".$numFound."&fl=*&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
    }
 	 if ($docType_s=="CNR"){
-      $fields="docid,authFirstName_s,authLastName_s,authFullName_s,authMiddleName_s,authIdHalFullName_fs,authAlphaLastNameFirstNameId_fs,title_s,subTitle_s,version_i,journalTitle_s,journalIssn_s,serie_s,volume_s,issue_s,page_s,producedDateY_i,proceedings_s,files_s,label_s,doiId_s,publisherLink_s,publisher_s,bookTitle_s,halId_s,pubmedId_s,arxivId_s,collCode_s,popularLevel_s,peerReviewing_s,invitedCommunication_s,proceedings_s,comment_s,localReference_s,audience_s,language_s,label_bibtex,anrProjectReference_s,europeanProjectCallId_s,related_s,docType_s,description_s";
-			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"DOUV\"".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"DOUV\"".$specificRequestCode."&rows=".$numFound."&fl=*&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
 	 }
    if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST"  && $docType_s!="CRO" && $docType_s!="BLO" && $docType_s!="NED" && $docType_s!="TRA" && $docType_s!="CNR"){
-      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=".$numFound."&fl=*&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
       //$contents = utf8_encode($contents);
     }
-   //echo "http://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+   //echo "http://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=".$numFound."&fl=*&sort=auth_sort%20asc";
 	 
 	 //suite avec URL requête API
 	 echo("<a target='_blank' href='".$reqAPI."'>URL requête API HAL</a>");
@@ -5511,7 +5468,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				if (isset($entry->journalIssn_s)) {$bibLab .= ",".chr(13).chr(10)."	issn = {".$entry->journalIssn_s."}";}
 				if (isset($entry->publisherLink_s[0])) {$bibLab .= ",".chr(13).chr(10)."	url = {".$entry->publisherLink_s[0]."}";}
 				if (isset($entry->doiId_s)) {$bibLab .= ",".chr(13).chr(10)."	doi = {".$entry->doiId_s."}";}
-				if (isset($entry->abstract_s)) {$bibLab .= ",".chr(13).chr(10)."	abstract = {".str_replace(array("{", "}"), "_", $entry->abstract_s)."}";}
+				if (isset($entry->abstract_s[0])) {$bibLab .= ",".chr(13).chr(10)."	abstract = {".str_replace(array("{", "}"), "_", $entry->abstract_s[0])."}";}
 				if (isset($entry->journalTitle_s)) {$bibLab .= ",".chr(13).chr(10)."	journal = {".$entry->journalTitle_s."}";}
 				if (isset($authors)) {
 					//add a comma after the name
@@ -5533,12 +5490,26 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 				if (isset($entry->uri_s)) {$bibLab .= ",".chr(13).chr(10)."	url = {".$entry->uri_s."}";}
 				if (isset($entry->page_s)) {$bibLab .= ",".chr(13).chr(10)."	pages = {".$entry->page_s."}";}
-				if (isset($entry->funding_s)) {$bibLab .= ",".chr(13).chr(10)."	x-funding = {".$entry->funding_s."}";}
+				if (isset($entry->funding_s)) {
+					$funding = "";
+					for($fu=0; $fu<count($entry->funding_s); $fu++) {
+						$funding .= $entry->funding_s[$fu].", ";
+					}
+					$funding = substr($funding, 0, (strlen($funding) - 2));
+					$bibLab .= ",".chr(13).chr(10)."	x-funding= {".$funding."}";
+				}
 				if (isset($entry->pubmedId_s)) {$bibLab .= ",".chr(13).chr(10)."	pmid = {".$entry->pubmedId_s."}";}
 				if (isset($entry->publisher_s)) {$bibLab .= ",".chr(13).chr(10)."	publisher = {".$entry->publisher_s[0]."}";}
 				if (isset($entry->producedDateY_i)) {$bibLab .= ",".chr(13).chr(10)."	year = {".$entry->producedDateY_i."}";}
 				if ($entry->docType_s == "HDR") {$bibLab .= ",".chr(13).chr(10)."	type = {HDR}";}
-				if (isset($entry->keyword_s)) {$bibLab .= ",".chr(13).chr(10)."	keywords = {".$entry->keyword_s."}";}
+				if (isset($entry->keyword_s)) {
+					$keyword = "";
+					for($ke=0; $ke<count($entry->keyword_s); $ke++) {
+						$keyword .= $entry->keyword_s[$ke].", ";
+					}
+					$keyword = substr($keyword, 0, (strlen($keyword) - 2));
+					$bibLab .= ",".chr(13).chr(10)."	keywords= {".$keyword."}";
+				}
 				if (isset($entry->halId_s)) {$bibLab .= ",".chr(13).chr(10)."	HAL_id = {".$entry->halId_s."}";}
 				if (isset($entry->peerReviewing_s)) {$bibLab .= ",".chr(13).chr(10)."	peer_reviewing = {".$entry->peerReviewing_s."}";}
 				if (isset($entry->audience_s)) {$bibLab .= ",".chr(13).chr(10)."	audience = {".$entry->audience_s."}";}
