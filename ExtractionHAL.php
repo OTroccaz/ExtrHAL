@@ -534,6 +534,12 @@ if (isset($_POST["soumis"])) {
 	$urlsauv .= "&typidh=".$typidh;
 	$racine = $_POST["racine"];
 	$urlsauv .= "&racine=".$racine;
+	//Suppression temporaire des Rang revues HCERES/CNRS (Economie-Gestion)
+	$typreva = "";
+	$typrevh = "";
+	$typrevc = "";
+	$dscp = "";
+	/*
 	$typreva = $_POST["typreva"];
 	$urlsauv .= "&typreva=".$typreva;
   $typrevh = $_POST["typrevh"];
@@ -542,6 +548,7 @@ if (isset($_POST["soumis"])) {
 	$urlsauv .= "&dscp=".$dscp;
 	$typrevc = $_POST["typrevc"];
 	$urlsauv .= "&typrevc=".$typrevc;
+	*/
 	$typcomm = $_POST["typcomm"];
 	$urlsauv .= "&typcomm=".$typcomm;
 	$typisbn = $_POST["typisbn"];
@@ -1011,7 +1018,13 @@ if (isset($_GET["team"])) {
 	$urlsauv .= "&typidh=".$typidh;
 	$racine = $_GET["racine"];
 	$urlsauv .= "&racine=".$racine;
-  $typreva = $_GET["typreva"];
+	//Suppression temporaire des Rang revues HCERES/CNRS (Economie-Gestion)
+	$typreva = "";
+	$typrevh = "";
+	$typrevc = "";
+	$dscp = "";
+  /*
+	$typreva = $_GET["typreva"];
 	$urlsauv .= "&typreva=".$typreva;
   $typrevh = $_GET["typrevh"];
 	$urlsauv .= "&typrevh=".$typrevh;
@@ -1019,6 +1032,7 @@ if (isset($_GET["team"])) {
 	$urlsauv .= "&dscp=".$dscp;
   $typrevc = $_GET["typrevc"];
 	$urlsauv .= "&typrevc=".$typrevc;
+	*/
 	$typcomm = $_GET["typcomm"];
 	$urlsauv .= "&typcomm=".$typcomm;
 	$typisbn = $_GET["typisbn"];
@@ -2153,6 +2167,8 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 		<br>
 	</div>
 	<div class="panel-body" style="padding: 3px; border:1px solid #dddddd; border-radius: 3px; margin-bottom: 10px;">
+		<!--Suppression temporaire des Rang revues HCERES/CNRS (Economie-Gestion)-->
+		<!--
 		<?php
 		if (isset($typreva) && $typreva == "vis") {$vis = "checked=\"\"";}else{$vis = "";}
 		if (isset($typreva) && $typreva == "inv" || !isset($team)) {$inv = "checked=\"\"";}else{$inv = "";}
@@ -2249,6 +2265,7 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 		</div>
 		<br>
 		<br>
+		-->
 		<?php
 		//if (strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false || strpos($_SERVER['HTTP_HOST'], 'ecobio') !== false) {
 		if (isset($typif) && $typif == "vis") {$vis = "checked=\"\"";}else{$vis = "";}
