@@ -1256,6 +1256,12 @@ Philippe Gambette</a>, repris et modifié par <a target="_blank" href="https://e
 <br>Si vous souhaitez utiliser et adapter ExtrHAL pour une autre institution, consultez
 <a target="_blank" href="https://wiki.ccsd.cnrs.fr/wikis/hal/index.php/Outils_et_services_d%C3%A9velopp%C3%A9s_localement_pour_am%C3%A9liorer_ou_faciliter_l%27utilisation_de_HAL#Extraction_et_mise_en_forme_des_publications">le wiki du CCSD</a>.</p>
 
+<h2>Mode d'emploi</h2>
+<a target="_blank" href="ExtrHAL-manuel-v2.pdf">Télécharger le manuel</a>
+<br>
+
+<h2>Paramétrage</h2>
+
 <form method="POST" accept-charset="utf-8" name="extrhal" action="ExtractionHAL.php#sommaire">
 <p class="form-inline"><b><label for="team">Code collection HAL</label></b> <a class=info onclick='return false' href="#">(qu’est-ce que c’est ?)<span>Code visible dans l’URL d’une collection.
 Exemple : IPR-MOL est le code de la collection http://hal.archives-ouvertes.fr/<b>IPR-PMOL</b> de l’équipe Physique moléculaire
