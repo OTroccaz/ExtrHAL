@@ -3232,6 +3232,13 @@ La suite sera constituée des éléments habituels s'ils ont été demandés : D
 <input type="submit" class="btn btn-md btn-primary" value="Valider" name="soumis">
 </form>
 
+<?php
+//Si aucun type de publications choisi > arrêt du script avec message d'information
+if ((isset($_POST["soumis"]) || isset($_GET["team"])) && (!isset($choix_publis) && !isset($choix_comm) && !isset($choix_ouvr) && !isset($choix_autr))) {
+	die('<br><br><font color=red><b>Veuillez renseigner le(les) type(s) de publications dans le menu !</b></font><br><br>');
+}
+?>
+
 <br>
 <?php
 //Quelques liens pour les utilitaires
