@@ -3836,8 +3836,39 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					}
 					$i++;
 				}
-				if (isset($typcol) && $typcol == "soul") {$authorsBT = str_replace(array("<u>", "</u>"), array("\labo{", "}"), $authors);}
-				if (isset($typcol) && $typcol == "gras") {$authorsBT = str_replace(array("<b>", "</b>"), array("\labo{", "}"), $authors);}
+				if (isset($typcol) && $typcol == "soul") {
+					$authorsBT = $authors;
+					while (strpos($authorsBT, "<u>") !== false) {
+						$posi = strpos($authorsBT, "<u>");
+						$posf = strpos($authorsBT, "</u>", $posi);
+						$autcol = substr($authorsBT, $posi, ($posf - $posi));
+						$autfin = str_replace(array("<u>", "</u>"), "", $autcol);
+						$tabAF = explode(" ", $autfin);
+						$autfin = "";
+						for ($af=0; $af<count($tabAF); $af++) {
+							$autfin .= "\labo{".$tabAF[$af]."}, ";
+						}
+						$autfin = substr($autfin, 0, (strlen($autfin) - 2));
+						$authorsBT = str_replace($autcol, $autfin, $authorsBT);
+					}
+				}
+				if (isset($typcol) && $typcol == "gras") {
+					$authorsBT = $authors;
+					while (strpos($authorsBT, "<b>") !== false) {
+						$posi = strpos($authorsBT, "<b>");
+						$posf = strpos($authorsBT, "</b>", $posi);
+						$autcol = substr($authorsBT, $posi, ($posf - $posi));
+						$autfin = str_replace(array("<b>", "</b>"), "", $autcol);
+						$tabAF = explode(" ", $autfin);
+						$autfin = "";
+						for ($af=0; $af<count($tabAF); $af++) {
+							$autfin .= "\labo{".$tabAF[$af]."}, ";
+						}
+						$autfin = substr($autfin, 0, (strlen($autfin) - 2));
+						$authorsBT = str_replace($autcol, $autfin, $authorsBT);
+					}
+				}
+				//echo $authorsBT."<br>";
 
 				//echo str_replace(" ", "_", $listenomcomp2)."<br>";
 				//echo "toto : ".stripos(wd_remove_accents(str_replace(" ", " ", $listenomcomp2)), wd_remove_accents("Abdelhak El Amrani"))."<br>";
@@ -5434,7 +5465,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							$typebib = "inproceedings";
 							break;
 						case "COUV":
-							$typebib = "inbook";
+							//$typebib = "inbook";
+							$typebib = "incollection";
 							break;
 						case "THESE":
 							$typebib = "phdthesis";
@@ -5521,13 +5553,14 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$auteurs = "";
 					while ($iTA < count($entry->authLastName_s)){
 						$auteurs .= $entry->authLastName_s[$iTA].", ".prenomCompInit($entry->authFirstName_s[$iTA]).", ";
-						$authorsBT = str_replace($entry->authLastName_s[$iTA]." ".prenomCompInit($entry->authFirstName_s[$iTA]), $entry->authLastName_s[$iTA].", ".prenomCompInit($entry->authFirstName_s[$iTA]), $authorsBT);
+						$authorsBT = str_replace(ucfirst($entry->authLastName_s[$iTA])." ".prenomCompInit($entry->authFirstName_s[$iTA]), ucfirst($entry->authLastName_s[$iTA]).", ".prenomCompInit($entry->authFirstName_s[$iTA]), $authorsBT);
 						$iTA++;
 					}
 					$auteurs = substr($auteurs, 0, (strlen($auteurs) - 2));
 					$auteurs = str_replace(".,", ". and ", $auteurs);
 					if ($typbib == "oui") {
-						$auteursBT = str_replace(array(".,", ".},"), array(". and ", ".} and "), $authorsBT);
+						$auteursBT = str_replace(array(".,", ".}</u>", ".}</b>"), array(". and ", ".} and ", ".} and "), $authorsBT);
+						if (substr($auteursBT, -5) == " and ") {$auteursBT = substr($auteursBT, 0, (strlen($auteursBT) - 5));}
 						$bibLab .= ",".chr(13).chr(10)."	author = {".$auteursBT."}";
 					}else{
 						$bibLab .= ",".chr(13).chr(10)."	author = {".$auteurs."}";
