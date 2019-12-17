@@ -3576,14 +3576,14 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$resArray[$iRA]["GR"] = $entryInfo0;
 				}
 
-				//Le champ 'producedDateY_i' n'est pas obligatoire pour les communications et posters > on testera alors avec conferenceEndDateY_i
+				//Le champ 'producedDateY_i' n'est pas obligatoire pour les communications et posters > on testera alors avec conferenceStartDateY_i
 				if ($docType_s != "COMM" || $docType_s != "POSTER" || $docType_s != "COMM+POST") {
 					$dateprod = $entry->producedDateY_i;
 				}else{
 					if (isset($entry->producedDateY_i)) {
 						$dateprod = $entry->producedDateY_i;
 					}else{
-						$dateprod = $entry->conferenceEndDateY_i;
+						$dateprod = $entry->conferenceStartDateY_i;
 					}
 				}
 
@@ -3836,6 +3836,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					}
 					$i++;
 				}
+				
+				$iTA = 0;
+				$aLN = array();
+				while ($iTA < count($entry->authLastName_s)){
+					array_push($aLN, ucwords(strtolower($entry->authLastName_s[$iTA]), "-"));
+					$iTA++;
+				}
 				if (isset($typcol) && $typcol == "soul") {
 					$authorsBT = $authors;
 					while (strpos($authorsBT, "<u>") !== false) {
@@ -3845,8 +3852,12 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						$autfin = str_replace(array("<u>", "</u>"), "", $autcol);
 						$tabAF = explode(" ", $autfin);
 						$autfin = "";
-						for ($af=0; $af<count($tabAF); $af++) {
-							$autfin .= "\labo{".$tabAF[$af]."}, ";
+						if (in_array($tabAF[0], $aLN)) {//Nom simple
+							$autfin .= "\labo{".$tabAF[0]."}, ";
+							$autfin .= "\labo{".$tabAF[1]."}, ";
+						}else{//Nom composé
+							$autfin .= "\labo{".$tabAF[0]." ".$tabAF[1]."}, ";
+							$autfin .= "\labo{".$tabAF[2]."}, ";
 						}
 						$autfin = substr($autfin, 0, (strlen($autfin) - 2));
 						$authorsBT = str_replace($autcol, $autfin, $authorsBT);
@@ -3861,8 +3872,12 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						$autfin = str_replace(array("<b>", "</b>"), "", $autcol);
 						$tabAF = explode(" ", $autfin);
 						$autfin = "";
-						for ($af=0; $af<count($tabAF); $af++) {
-							$autfin .= "\labo{".$tabAF[$af]."}, ";
+						if (in_array($tabAF[0], $aLN)) {//Nom simple
+							$autfin .= "\labo{".$tabAF[0]."}, ";
+							$autfin .= "\labo{".$tabAF[1]."}, ";
+						}else{//Nom composé
+							$autfin .= "\labo{".$tabAF[0]." ".$tabAF[1]."}, ";
+							$autfin .= "\labo{".$tabAF[2]."}, ";
 						}
 						$autfin = substr($autfin, 0, (strlen($autfin) - 2));
 						$authorsBT = str_replace($autcol, $autfin, $authorsBT);
@@ -4157,7 +4172,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$entryInfo0 .= ", n° ".$entry->issue_s[0];
 				}
 				
-				//Adding $dateprod (=producedDateY_i ou conferenceEndDateY_i)
+				//Adding $dateprod (=producedDateY_i ou conferenceStartDateY_i)
 				if ($typann == "avant") {//Année avant le numéro de volume
 					$chaine1 .= $delim."Année";
 					if ($docType_s == "ART" || $docType_s == "UNDEF"){
@@ -4707,7 +4722,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$chaine2 .= $delim;
 				}
 
-				//Adding $dateprod (=producedDateY_i ou conferenceEndDateY_i) :
+				//Adding $dateprod (=producedDateY_i ou conferenceStartDateY_i) :
 				$chaine1 .= $delim."Date de publication";
 				if ($docType_s=="PATENT"){
 					$entryInfo .= " (".$dateprod.")";
@@ -4768,7 +4783,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$chaine2 .= $delim;
 				}
 
-				//Adding $dateprod (=producedDateY_i ou conferenceEndDateY_i) :
+				//Adding $dateprod (=producedDateY_i ou conferenceStartDateY_i) :
 				$chaine1 .= $delim."Date de publication";
 				if ($docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" or $docType_s=="OUV+COUV" or $docType_s=="OUV+DOUV" or $docType_s=="OUV+COUV+DOUV" or $docType_s=="OTHER" or $docType_s=="OTHERREPORT" or $docType_s=="REPORT" or $docType_s=="VIDEO"){
 					 if ($typann == "avant") {
@@ -5552,15 +5567,16 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$iTA = 0;
 					$auteurs = "";
 					while ($iTA < count($entry->authLastName_s)){
-						$auteurs .= $entry->authLastName_s[$iTA].", ".prenomCompInit($entry->authFirstName_s[$iTA]).", ";
-						$authorsBT = str_replace(ucfirst($entry->authLastName_s[$iTA])." ".prenomCompInit($entry->authFirstName_s[$iTA]), ucfirst($entry->authLastName_s[$iTA]).", ".prenomCompInit($entry->authFirstName_s[$iTA]), $authorsBT);
+						$auteurs .= ucwords(strtolower($entry->authLastName_s[$iTA]), "-").", ".prenomCompInit($entry->authFirstName_s[$iTA]).", ";
+						$authorsBT = str_replace(ucwords(strtolower($entry->authLastName_s[$iTA]), "-")." ".prenomCompInit($entry->authFirstName_s[$iTA]), ucwords(strtolower($entry->authLastName_s[$iTA]), "-").", ".prenomCompInit($entry->authFirstName_s[$iTA]), $authorsBT);
 						$iTA++;
 					}
 					$auteurs = substr($auteurs, 0, (strlen($auteurs) - 2));
 					$auteurs = str_replace(".,", ". and ", $auteurs);
 					if ($typbib == "oui") {
-						$auteursBT = str_replace(array(".,", ".}</u>", ".}</b>"), array(". and ", ".} and ", ".} and "), $authorsBT);
+						$auteursBT = str_replace(array(".,", ".}</u>,", ".}</b>,",".},"), array(". and ", ".} and ", ".} and ", ".} and "), $authorsBT);
 						if (substr($auteursBT, -5) == " and ") {$auteursBT = substr($auteursBT, 0, (strlen($auteursBT) - 5));}
+						$auteursBT = str_replace(array("<u>", "<b>", "</u>", "</b>"), "", $auteursBT);
 						$bibLab .= ",".chr(13).chr(10)."	author = {".$auteursBT."}";
 					}else{
 						$bibLab .= ",".chr(13).chr(10)."	author = {".$auteurs."}";
