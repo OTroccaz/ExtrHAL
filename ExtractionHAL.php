@@ -3837,53 +3837,55 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$i++;
 				}
 				
-				$iTA = 0;
-				$aLN = array();
-				while ($iTA < count($entry->authLastName_s)){
-					array_push($aLN, ucwords(strtolower($entry->authLastName_s[$iTA]), "-"));
-					$iTA++;
-				}
-				if (isset($typcol) && $typcol == "soul") {
-					$authorsBT = $authors;
-					while (strpos($authorsBT, "<u>") !== false) {
-						$posi = strpos($authorsBT, "<u>");
-						$posf = strpos($authorsBT, "</u>", $posi);
-						$autcol = substr($authorsBT, $posi, ($posf - $posi));
-						$autfin = str_replace(array("<u>", "</u>"), "", $autcol);
-						$tabAF = explode(" ", $autfin);
-						$autfin = "";
-						if (in_array($tabAF[0], $aLN)) {//Nom simple
-							$autfin .= "\labo{".$tabAF[0]."}, ";
-							$autfin .= "\labo{".$tabAF[1]."}, ";
-						}else{//Nom composé
-							$autfin .= "\labo{".$tabAF[0]." ".$tabAF[1]."}, ";
-							$autfin .= "\labo{".$tabAF[2]."}, ";
-						}
-						$autfin = substr($autfin, 0, (strlen($autfin) - 2));
-						$authorsBT = str_replace($autcol, $autfin, $authorsBT);
+				$authorsBT = $authors;
+				if (isset($typbib) && $typbib == "oui") {		
+					$iTA = 0;
+					$aLN = array();
+					while ($iTA < count($entry->authLastName_s)){
+						array_push($aLN, ucwords(strtolower($entry->authLastName_s[$iTA]), "-"));
+						$iTA++;
 					}
-				}
-				if (isset($typcol) && $typcol == "gras") {
-					$authorsBT = $authors;
-					while (strpos($authorsBT, "<b>") !== false) {
-						$posi = strpos($authorsBT, "<b>");
-						$posf = strpos($authorsBT, "</b>", $posi);
-						$autcol = substr($authorsBT, $posi, ($posf - $posi));
-						$autfin = str_replace(array("<b>", "</b>"), "", $autcol);
-						$tabAF = explode(" ", $autfin);
-						$autfin = "";
-						if (in_array($tabAF[0], $aLN)) {//Nom simple
-							$autfin .= "\labo{".$tabAF[0]."}, ";
-							$autfin .= "\labo{".$tabAF[1]."}, ";
-						}else{//Nom composé
-							$autfin .= "\labo{".$tabAF[0]." ".$tabAF[1]."}, ";
-							$autfin .= "\labo{".$tabAF[2]."}, ";
+					if (isset($typcol) && $typcol == "soul") {
+						while (strpos($authorsBT, "<u>") !== false) {
+							$posi = strpos($authorsBT, "<u>");
+							$posf = strpos($authorsBT, "</u>", $posi);
+							$autcol = substr($authorsBT, $posi, ($posf - $posi));
+							$autfin = str_replace(array("<u>", "</u>"), "", $autcol);
+							$tabAF = explode(" ", $autfin);
+							$autfin = "";
+							if (in_array($tabAF[0], $aLN)) {//Nom simple
+								$autfin .= "\labo{".$tabAF[0]."}, ";
+								$autfin .= "\labo{".$tabAF[1]."}, ";
+							}else{//Nom composé
+								$autfin .= "\labo{".$tabAF[0]." ".$tabAF[1]."}, ";
+								$autfin .= "\labo{".$tabAF[2]."}, ";
+							}
+							$autfin = substr($autfin, 0, (strlen($autfin) - 2));
+							$authorsBT = str_replace($autcol, $autfin, $authorsBT);
 						}
-						$autfin = substr($autfin, 0, (strlen($autfin) - 2));
-						$authorsBT = str_replace($autcol, $autfin, $authorsBT);
 					}
+					if (isset($typcol) && $typcol == "gras") {
+						$authorsBT = $authors;
+						while (strpos($authorsBT, "<b>") !== false) {
+							$posi = strpos($authorsBT, "<b>");
+							$posf = strpos($authorsBT, "</b>", $posi);
+							$autcol = substr($authorsBT, $posi, ($posf - $posi));
+							$autfin = str_replace(array("<b>", "</b>"), "", $autcol);
+							$tabAF = explode(" ", $autfin);
+							$autfin = "";
+							if (in_array($tabAF[0], $aLN)) {//Nom simple
+								$autfin .= "\labo{".$tabAF[0]."}, ";
+								$autfin .= "\labo{".$tabAF[1]."}, ";
+							}else{//Nom composé
+								$autfin .= "\labo{".$tabAF[0]." ".$tabAF[1]."}, ";
+								$autfin .= "\labo{".$tabAF[2]."}, ";
+							}
+							$autfin = substr($autfin, 0, (strlen($autfin) - 2));
+							$authorsBT = str_replace($autcol, $autfin, $authorsBT);
+						}
+					}
+					//echo $authorsBT."<br>";
 				}
-				//echo $authorsBT."<br>";
 
 				//echo str_replace(" ", "_", $listenomcomp2)."<br>";
 				//echo "toto : ".stripos(wd_remove_accents(str_replace(" ", " ", $listenomcomp2)), wd_remove_accents("Abdelhak El Amrani"))."<br>";
@@ -4225,14 +4227,20 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 											$toAppear=1;
 									 } else {
 											$resArray[$iRA]["volume"] = $entry->volume_s;
-											if ($typfor == "typ2") {
-												$entryInfo0 .= " ".$entry->volume_s;
+											if ($typfor == "typ2" || $typfor == "typ1") {
+												$entryInfo0 .= "vol ".$entry->volume_s;
 												$chaine2 .= $delim.$entry->volume_s;
 												$hasVolumeOrNumber=1;
 											}else{
-												$vol = $entry->volume_s;
-												$hasVolumeOrNumber=1;
-												$chaine2 .= $delim;
+												if ($typfor == "typ3") {
+													$entryInfo0 .= $entry->volume_s;
+													$chaine2 .= $delim.$entry->volume_s;
+													$hasVolumeOrNumber=1;
+												}else{
+													$vol = $entry->volume_s;
+													$hasVolumeOrNumber=1;
+													$chaine2 .= $delim;
+												}
 											}
 									 }
 								}else{
@@ -4256,14 +4264,21 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 											$toAppear=1;
 									 }else{
 											$resArray[$iRA]["issue"] = $entry->issue_s[0];
-											if ($typfor == "typ2") {
-												$entryInfo0 .= "(".$entry->issue_s[0].")";
+											if ($typfor == "typ2" || $typfor == "typ1") {
+												//$entryInfo0 .= "(".$entry->issue_s[0].")";
+												$entryInfo0 .= ", n°".$entry->issue_s[0];
 												$chaine2 .= $delim.$entry->issue_s[0];
 												$hasVolumeOrNumber=1;
 											}else{
-												$iss = $entry->issue_s[0];
-												$hasVolumeOrNumber=1;
-												$chaine2 .= $delim;
+												if ($typfor == "typ3") {
+													$entryInfo0 .= "(".$entry->issue_s[0].")";
+													$chaine2 .= $delim.$entry->issue_s[0];
+													$hasVolumeOrNumber=1;
+												}else{
+													$iss = $entry->issue_s[0];
+													$hasVolumeOrNumber=1;
+													$chaine2 .= $delim;
+												}
 											}
 									 }
 								}else{
@@ -4404,7 +4419,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				
 				if ($typfor != "typ4") {
 					//Adding page_s:
-					$chaine1 .= $delim."Volume, Issue, Pages";
+					//$chaine1 .= $delim."Volume, Issue, Pages";
+					$chaine1 .= $delim."Pages";
 					if ($docType_s=="ART" OR $docType_s=="OUV" OR $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s == "NED"){
 						 if ($docType_s=="ART") {$eI = $entryInfo0;}else{$eI = $entryInfo;}
 						 if (isset($entry->page_s)) {
@@ -4435,7 +4451,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 										$resArray[$iRA]["page"] = $page;
 										if ($typfor == "typ2") {
 										 if($hasVolumeOrNumber==1){
-												$eI .= ":".$page;
+												$eI .= ", ".$page." p.";
 												//$resArray[$iRA]["page"] = ":".$page;
 												$chaine2 .= $delim.$page;
 										 }else{
@@ -4451,7 +4467,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 													if (is_numeric(substr($page,0,1))) {
 														$eI .= ", pp. ".$page;
 														//$resArray[$iRA]["page"] = ", pp. ".$page;
-														$chaine2 .= ", pp. ".$page;
+														$chaine2 .= $page;
 													}else{
 														$eI .= $page;
 														//$resArray[$iRA]["page"] = $page;
@@ -4459,9 +4475,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 													}
 												}else{
 													if (is_numeric(substr($page,0,1))) {
-														$eI .= ", ".$page." p.";
+														//$eI .= ", ".$page." p.";
+														$eI .= ":".$page;
 														//$resArray[$iRA]["page"] = ", ".$page." p.";
-														$chaine2 .= ", ".$page." p.";
+														$chaine2 .= $page;
 													}else{
 														$eI .= $page;
 														//$resArray[$iRA]["page"] = $page;
