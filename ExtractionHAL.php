@@ -95,7 +95,7 @@ function cleanup_title($titre) {
 }
 
 function nettoy1($quoiAvt) {
-  $quoiApr = str_replace(array(". : ",",, ",", , ","..","?.","?,","<br>.","--"," p. p.",", .",",  ","(dir. ."," - .., "), array(" : ",", ",", ",".","?","?","<br>","-"," p.",",",", ","(dir.). ",", "), $quoiAvt);
+  $quoiApr = str_replace(array(". : ",",, ",", , ","..","?.","?,","<br>.","--"," p. p.",", .",",  ","(dir. ."," - .., ",", , ", ", . "), array(" : ",", ",", ",".","?","?","<br>","-"," p.",",",", ","(dir.). ",", ",", ",". "), $quoiAvt);
   return($quoiApr);
 }
 
@@ -4216,11 +4216,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$hasVolumeOrNumber=0;
 				$toAppear=0;
 
-				//Adding volume_s:
 				if ($typfor != "typ4") {
+					//Adding volume_s:
 					$vol = "";
-					$chaine1 .= $delim."Volume";
 					if ($docType_s=="ART"){
+						 $chaine1 .= $delim."Volume";
 						 if(isset($entry->volume_s) && !is_array($entry->volume_s)){
 								if($entry->volume_s!="" and $entry->volume_s!=" " and $entry->volume_s!="-" and $entry->volume_s!="()"){
 									 if(toAppear($entry->volume_s)){
@@ -4250,14 +4250,24 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							 $chaine2 .= $delim;
 						 }
 					}else{
-						$chaine2 .= $delim;
+						if ($docType_s=="OUV" OR $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s == "NED"){
+							if(isset($entry->volume_s) && !is_array($entry->volume_s)){
+								if($entry->volume_s!="" and $entry->volume_s!=" " and $entry->volume_s!="-" and $entry->volume_s!="()"){
+									$resArray[$iRA]["volume"] = $entry->volume_s;
+									$vol = $entry->volume_s;
+									$hasVolumeOrNumber=1;
+								}
+							}
+						}else{
+							$chaine2 .= $delim;
+						}
 					}
 
 					//Adding issue_s:
 					$iss = "";
-					$chaine1 .= $delim."Issue";
-					//if ($docType_s=="ART" OR $docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s=="COMM+POST"){
-					if ($docType_s=="ART" OR $docType_s=="OUV" or $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV"){
+					//if ($docType_s=="ART" OR $docType_s=="OUV" or $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV"){
+						if ($docType_s=="ART") {
+						 $chaine1 .= $delim."Issue";
 						 if(isset($entry->issue_s[0]) && !is_array($entry->issue_s[0])){
 								if($entry->issue_s[0]!="" and $entry->issue_s[0]!=" " and $entry->issue_s[0]!="-" and $entry->issue_s[0]!="()"){
 									 if(toAppear($entry->issue_s[0])){
@@ -4288,7 +4298,17 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							 $chaine2 .= $delim;
 						 }
 					}else{
-						$chaine2 .= $delim;
+						if ($docType_s=="OUV" OR $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s == "NED"){
+							if(isset($entry->issue_s[0]) && !is_array($entry->issue_s[0])){
+								if($entry->issue_s[0]!="" and $entry->issue_s[0]!=" " and $entry->issue_s[0]!="-" and $entry->issue_s[0]!="()"){
+									$resArray[$iRA]["issue"] = $entry->issue_s[0];
+									$iss = $entry->issue_s[0];
+									$hasVolumeOrNumber=1;
+								}
+							}
+						}else{
+							$chaine2 .= $delim;
+						}
 					}
 				}
 
@@ -4417,6 +4437,26 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$chaine2 .= $delim.$dateprod;
 				}
 				
+				//Vol et num pour xOUV+y
+				if ($typfor != "typ4") {
+					if ($docType_s=="OUV" OR $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s == "NED"){
+						$chaine1 .= $delim."Volume";
+						if ($vol != "") {
+							if ($typfor == "typ2" || $typfor == "typ1") {$entryInfo .= ", vol ".$vol;}else{$entryInfo .= ", ".$vol;}
+							$chaine2 .= $delim.$vol;
+						}else{
+							$chaine2 .= $delim;
+						}
+						$chaine1 .= $delim."Issue";
+						if ($iss != "") {
+							if ($typfor == "typ2" || $typfor == "typ1") {$entryInfo .= ", n°".$iss;}else{$entryInfo .= "(".$iss.")";}
+							$chaine2 .= $iss;
+						}else{
+							$chaine2 .= $delim;
+						}
+					}
+				}
+				
 				if ($typfor != "typ4") {
 					//Adding page_s:
 					//$chaine1 .= $delim."Volume, Issue, Pages";
@@ -4460,8 +4500,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 												$chaine2 .= $delim.$page;
 										 }
 										}else{
-											if ($vol != "") {$entryInfo0 .= " vol ".$vol;$chaine2 .= $delim." vol ".$vol;}else{$chaine2 .= $delim;}
-											if ($iss != "") {$entryInfo0 .= ", n°".$iss;$chaine2 .= " ,n° ".$iss;}
+											//if ($vol != "") {$entryInfo0 .= " vol ".$vol;$chaine2 .= $delim." vol ".$vol;}else{$chaine2 .= $delim;}
+											//if ($iss != "") {$entryInfo0 .= ", n°".$iss;$chaine2 .= " ,n° ".$iss;}
 											if ($page != "") {
 												if ($typfor == "typ1") {
 													if (is_numeric(substr($page,0,1))) {
@@ -5417,6 +5457,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$rtfInfo =str_replace(", .", ".", $rtfInfo);
 				$rtfInfo =str_replace("trolitrp", "...", $rtfInfo);
 				$rtfInfo =str_replace("~|~, ~|~~|~, ~|~", "~|~, ~|~", $rtfInfo);
+				$rtfInfo =str_replace(", , ", ", ", $rtfInfo);
+				$rtfInfo =str_replace(", . ", ". ", $rtfInfo);
 
 				if (!isset($entry->page_s)) {
 					$entryInfo = str_replace(array(",  in press", ", in press", " in press.", " in press", "; in press"), "", $entryInfo);
