@@ -62,7 +62,8 @@ if ($handle) {
 }else{
   die("<font color='red'><big><big>Votre fichier source est incorrect.</big></big></font>");
 }
-echo '<br><b>Le fichier nécessaire à l\'affichage des notices les plus significatives a été créé avec succès.<br><br>'
+echo ('<br><b>Le fichier nécessaire à l\'affichage des notices les plus significatives a été créé avec succès.<br><br>');
+echo ('Vous pouvez fermer cet onglet et relancer votre requête (cochez bien l\'option dans le menu !)<br><br>');
 ?>
 </body>
 </html>

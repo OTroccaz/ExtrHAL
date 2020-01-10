@@ -2301,7 +2301,7 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 		if (isset($typsign) && $typsign == "ts0" || !isset($team)) {$inv = "checked=\"\"";}else{$inv = "";}
 		?>
 		<div class="form-group" style="display:block;">
-			<label for="typsign" class="col-sm-3 control-label">Mise en évidence des notices les plus significatives <i style="font-weight:normal;">(<u>il est nécessaire</u> de lancer <a target="_blank" href="./ExtractionHAL-signif.php">la procédure d'extraction</a> à partir de votre liste CSV réalisée selon ce <a href="./modele-signif.csv">modèle</a>)</i> :</label>
+			<label for="typsign" class="col-sm-3 control-label">HCERES : distinguer les 20% / 80% : <font style="font-weight:normal;"><a target="_blank" href="./ExtractionHAL-signif.php">chargez votre liste CSV</a> en suivant ce <a href="./modele-signif.csv">modèle</a></font> :</label>
 			<div class="col-sm-2 radio">
 					<label>
 							<input type="radio" name="typsign" id="typsign1" value="ts100" <?php echo $vis100;?> style="position:absolute; margin-left:-20px;">visible (→)
