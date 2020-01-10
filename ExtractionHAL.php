@@ -3614,6 +3614,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					if ($typnom == "nominit") {
 						//$prenominit = $prenom;
 						//si prénom composé et initiales
+						$prenomentier = $prenom;
 						$prenom = prenomCompInit($prenom);
 						$prenominit = $prenom;
 						//si prénom décliné "à l'américaine"
@@ -3633,7 +3634,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						}else{
 							$authors .= ", ";
 						}
-						if (stripos(wd_remove_accents($listenominit), wd_remove_accents($nom." ".$prenom)) === false) {
+						//if (stripos(wd_remove_accents($listenominit), wd_remove_accents($nom." ".$prenom)) === false) {
+						//Pour éviter les faux homonymes avec les initiales > J. Crassous (pour Jérôme Crassous) et J. Crassous (Jeanne Crassous)
+						if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents($nom." ".$prenomentier)) === false) {
 							$deb = "";
 							$fin = "";
 						}else{
@@ -4302,7 +4305,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							if(isset($entry->issue_s[0]) && !is_array($entry->issue_s[0])){
 								if($entry->issue_s[0]!="" and $entry->issue_s[0]!=" " and $entry->issue_s[0]!="-" and $entry->issue_s[0]!="()"){
 									$resArray[$iRA]["issue"] = $entry->issue_s[0];
-									$iss = $entry->issue_s[0];
+									$iss =  $entry->issue_s[0];
 									$hasVolumeOrNumber=1;
 								}
 							}
@@ -4450,7 +4453,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						$chaine1 .= $delim."Issue";
 						if ($iss != "") {
 							if ($typfor == "typ2" || $typfor == "typ1") {$entryInfo .= ", n°".$iss;}else{$entryInfo .= "(".$iss.")";}
-							$chaine2 .= $iss;
+							$chaine2 .= $delim.$iss;
 						}else{
 							$chaine2 .= $delim;
 						}
