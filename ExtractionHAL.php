@@ -3707,7 +3707,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						}
 						//if (stripos(wd_remove_accents($listenominit), wd_remove_accents($nom." ".$prenom)) === false) {
 						//Pour éviter les faux homonymes avec les initiales > J. Crassous (pour Jérôme Crassous) et J. Crassous (Jeanne Crassous)
-						if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nom." ".$prenomentier."~")) === false) {
+						if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nom." ".str_replace(".", "", $prenomentier))) === false) {
 							$deb = "";
 							$fin = "";
 						}else{
@@ -3763,7 +3763,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							}
 							$prenom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $prenominit);
 							$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
-							if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nom." ".$prenom."~")) === false) {
+							if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nom." ".str_replace(".", "", $prenomentier))) === false) {
 								$deb = "";
 								$fin = "";
 							}else{
@@ -3820,7 +3820,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								}
 								$prenom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $prenominit);
 								$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
-								if (stripos(wd_remove_accents($listenomcomp2), wd_remove_accents("~".$prenom." ".$nom."~")) === false) {
+								if (stripos(wd_remove_accents($listenomcomp2), wd_remove_accents("~".$nom." ".str_replace(".", "", $prenomentier))) === false) {
 									$deb = "";
 									$fin = "";
 								}else{
@@ -3875,7 +3875,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 
 								$prenom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $prenominit);
 								$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
-								if (stripos(wd_remove_accents($listenomcomp3), wd_remove_accents("~".mb_strtoupper($nom, 'UTF-8')." (".$prenom.")"."~")) === false) {
+								if (stripos(wd_remove_accents($listenomcomp3), wd_remove_accents("~".mb_strtoupper($nom, 'UTF-8')." (".str_replace(".", "", $prenom).")")) === false) {
 									$deb = "";
 									$fin = "";
 								}else{
