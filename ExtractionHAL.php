@@ -8409,3 +8409,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 <?php
 if ($typidh == "vis") {echo('<script type="text/javascript" charset="UTF-8">document.getElementById("detrac").style.display = "block";</script>');}
 ?>
+<br>
+<?php
+include('./bas.php');
+?>
