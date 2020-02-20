@@ -3444,7 +3444,7 @@ if (isset($anneedeb) && $anneedeb != "" && isset($anneefin) && $anneefin != "") 
   $anneedebiso = $tabanneedeb[2].'-'.$tabanneedeb[1].'-'.$tabanneedeb[0].'T00:00:00Z';
   $tabanneefin = explode('/', $anneefin);
   $anneefiniso = $tabanneefin[2].'-'.$tabanneefin[1].'-'.$tabanneefin[0].'T00:00:00Z';
-  $specificRequestCode .= '%20AND%20producedDate_tdate:['.$anneedebiso.'%20TO%20'.$anneefiniso.']';
+  $specificRequestCode .= '%20AND%20(producedDate_tdate:['.$anneedebiso.'%20TO%20'.$anneefiniso.']%20OR%20publicationDate_tdate:['.$anneedebiso.'%20TO%20'.$anneefiniso.'])';
 }
 
 //Date de dépôt
@@ -3488,7 +3488,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 //echo $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=0";
    if ($docType_s=="COMM+POST"){
       $anneeConf = str_replace("%20AND%20NOT%20popularLevel_s:1%20AND%20producedDate_tdate:", "", $specificRequestCode);
-      $specificRequestCode .= '%20AND%20conferenceStartDate_tdate:'.$anneeConf;
+      $specificRequestCode .= '%20AND%20(publicationDate_tdate:'.$anneeConf.'%20OR%20conferenceStartDate_tdate:'.$anneeConf.')';
 			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"COMM\"%20OR%20docType_s:\"POSTER\")".$specificRequestCode."&rows=0";
       $contents = file_get_contents($reqAPI);
    }
@@ -3529,7 +3529,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 $numFound = 0;
 	 if (isset($results->response->numFound)) {$numFound=$results->response->numFound;}
 	 
-	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s";
+	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s";
 
    //Cas particulierS pour combinaisons
    if ($docType_s=="COMM+POST"){
@@ -3647,12 +3647,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$resArray[$iRA]["GR"] = $entryInfo0;
 				}
 
-				//Le champ 'producedDateY_i' n'est pas obligatoire pour les communications et posters > on testera alors avec conferenceStartDateY_i
+				//Le champ 'producedDateY_i' n'est pas obligatoire pour les communications et posters > on testera alors avec publicationDateY_i ou conferenceStartDateY_i
 				if ($docType_s != "COMM" || $docType_s != "POSTER" || $docType_s != "COMM+POST") {
 					$dateprod = $entry->producedDateY_i;
 				}else{
-					if (isset($entry->producedDateY_i)) {
-						$dateprod = $entry->producedDateY_i;
+					//if (isset($entry->producedDateY_i)) {
+						if (isset($entry->publicationDateY_i)) {
+						$dateprod = $entry->publicationDateY_i;
 					}else{
 						$dateprod = $entry->conferenceStartDateY_i;
 					}

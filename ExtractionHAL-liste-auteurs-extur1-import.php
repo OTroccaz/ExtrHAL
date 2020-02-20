@@ -5,7 +5,7 @@ function mb_ucwords($str) {
   return ($str);
 }
 //code collection
-$uniq = htmlspecialchars($_POST["team"]);
+if (isset($_POST["team"])) {$uniq = htmlspecialchars($_POST["team"]);}
 if ($uniq == "") {header("location:"."ExtractionHAL-liste-auteurs-extur1.php?erreur=nulteam"); exit;}
 //fichier CSV ou txt
 if ($_FILES['import']['name'] != "") {
