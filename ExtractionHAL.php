@@ -3648,7 +3648,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 
 				//Le champ 'producedDateY_i' n'est pas obligatoire pour les communications et posters > on testera alors avec publicationDateY_i ou conferenceStartDateY_i
-				if ($docType_s != "COMM" || $docType_s != "POSTER" || $docType_s != "COMM+POST") {
+				if ($docType_s != "COMM" && $docType_s != "POSTER" && $docType_s != "COMM+POST") {
 					$dateprod = $entry->producedDateY_i;
 				}else{
 					//if (isset($entry->producedDateY_i)) {
