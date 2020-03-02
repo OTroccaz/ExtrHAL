@@ -1269,7 +1269,9 @@ Philippe Gambette</a>, repris et modifié par <a target="_blank" href="https://e
 <a target="_blank" href="https://wiki.ccsd.cnrs.fr/wikis/hal/index.php/Outils_et_services_d%C3%A9velopp%C3%A9s_localement_pour_am%C3%A9liorer_ou_faciliter_l%27utilisation_de_HAL#Extraction_et_mise_en_forme_des_publications">le wiki du CCSD</a>.</p>
 
 <h2>Mode d'emploi</h2>
-<a target="_blank" href="ExtrHAL-manuel-v2.pdf">Télécharger le manuel</a>
+<a target="_blank" href="./ExtrHAL-manuel-v2.pdf">Télécharger le manuel</a>
+<br>
+<a target="_blank" href="./ExtrHAL-criteres-types-publis.pdf">Quels champs compléter dans HAL ?</a>
 <br>
 
 <h2>Paramétrage</h2>
@@ -1368,9 +1370,9 @@ if ($depotforce == "oui") {
 <br>
 <i>(sélection/désélection multiple en maintenant la touche 'Ctrl' (PC) ou 'Pomme' (Mac) enfoncée)</i>:
 <table>
-<tr><td valign="top"><label for="publis">Articles de revue :&nbsp;</label></td>
+<tr><td valign="top"><label for="publis">Articles de revue <a class=info target="_blank" href="./ExtrHAL-criteres-types-publis.pdf"><img src="./img/pdi.jpg"><span>Quels champs compléter dans HAL ?</span></a> :&nbsp;</label></td>
 <td><select id="publis" class="form-control" style="margin:0px; width:400px" size="10" name="publis[]" multiple>
-<option value="TA" <?php echo $ta;?>>Tous les articles (sauf vulgarisation)</option>
+<option value="TA" <?php echo $ta;?>>Tous les articles (sauf vulgarisation) </option>
 <option value="ACL" <?php echo $acl;?>>Articles de revues à comité de lecture</option>
 <option value="ASCL" <?php echo $ascl;?>>Articles de revues sans comité de lecture</option>
 <option value="ARI" <?php echo $ari;?>>Articles de revues internationales</option>
@@ -1409,7 +1411,7 @@ if (isset($choix_comm) && strpos($choix_comm, "-CPN-") !== false) {$cpn = "selec
 if (isset($choix_comm) && strpos($choix_comm, "-CGP-") !== false) {$cgp = "selected";}else{$cgp = "";}
 ?>
 <table>
-<tr><td valign="top"><label for="comm">Communications / conférences :&nbsp;</label></td>
+<tr><td valign="top"><label for="comm">Communications / conférences <a class=info target="_blank" href="./ExtrHAL-criteres-types-publis.pdf"><img src="./img/pdi.jpg"><span>Quels champs compléter dans HAL ?</span></a> :&nbsp;</label></td>
 <td><select size="24" id="comm" class="form-control" style="margin:0px; width:600px" name="comm[]" multiple>
 <option value="TC" <?php echo $tc;?>>Toutes les communications (sauf grand public)</option>
 <option value="CA" <?php echo $ca;?>>Communications avec actes</option>
@@ -1460,7 +1462,7 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCV-") !== false) {$ocv = "selec
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-CNR-") !== false) {$cnr = "selected";}else{$cnr = "";}
 ?>
 <table>
-<tr><td valign="top"><label for="ouvr">Ouvrages :</label>&nbsp;</td>
+<tr><td valign="top"><label for="ouvr">Ouvrages <a class=info target="_blank" href="./ExtrHAL-criteres-types-publis.pdf"><img src="./img/pdi.jpg"><span>Quels champs compléter dans HAL ?</span></a> :</label>&nbsp;</td>
 <td><select size="20" id="ouvr" class="form-control" style="margin:0px; width:500px" name="ouvr[]" multiple>
 <option value="OCDO" <?php echo $ocdo;?>>Ouvrages ou chapitres ou directions d’ouvrages</option>
 <option value="OCDOI" <?php echo $ocdoi;?>>Ouvrages ou chapitres ou directions d’ouvrages de portée internationale</option>
@@ -1499,7 +1501,7 @@ if (isset($choix_autr) && strpos($choix_autr, "-LOG-") !== false) {$log = "selec
 if (isset($choix_autr) && strpos($choix_autr, "-AP-") !== false) {$ap = "selected";}else{$ap = "";}
 ?>
 <table>
-<tr><td valign="top"><label for="autr">Autres productions scientifiques :</label>&nbsp;</td>
+<tr><td valign="top"><label for="autr">Autres productions scientifiques <a class=info target="_blank" href="./ExtrHAL-criteres-types-publis.pdf"><img src="./img/pdi.jpg"><span>Quels champs compléter dans HAL ?</span></a> :</label>&nbsp;</td>
 <td><select size="12" id="autr" class="form-control" style="margin:0px; width:400px" name="autr[]" multiple>
 <option value="BRE" <?php echo $bre;?>>Brevets</option>
 <option value="RAP" <?php echo $rap;?>>Rapports</option>
