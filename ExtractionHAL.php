@@ -3346,14 +3346,9 @@ if (isset($_POST["soumis"]) || isset($_GET["team"])) {
   //Si demandée, URL de sauvegarde raccourcie via Bitly
   $bitly = "aucun";
 	if ($UBitly == "oui") {
-		if (strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) {include_once('bitly_local.php');$bitly = "ok";}
-		if (strpos($_SERVER['HTTP_HOST'], 'ecobio') !== false) {include_once('bitly_ecobio.php');$bitly = "ok";}
-		if (strpos($_SERVER['HTTP_HOST'], 'halur1') !== false) {include_once('bitly_halur1.php');$bitly = "ok";}
-		if ($bitly == "aucun") {include_once('bitly_extrhal.php');$bitly = "ok";}
-
-		$results = bitly_v3_shorten($urlsauv, $access_token, 'bit.ly');
-		//var_dump($results);
-		isset($results["url"]) ? $urlbitly = $results["url"] : $urlbitly = "";
+		include_once('bitly_extrhal.php');
+		$urlbitly = bitly_v4_shorten($urlsauv);
+		$bitly = "ok";
 	}
 
   if (isset($idhal) && $idhal != "") {$team = $idhal;}
@@ -6710,7 +6705,9 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 	$critInt = "";
 
 	//Complément pour l'intitulé si langue des documents demandée
-	if ($typlng == "français") {$cpmlng = " en français";}else{$cpmlng = "";}
+	$cpmlng = "";
+	if (isset($typlng) && $typlng == "français") {$cpmlng = " en français";}
+	if (isset($typlng) && $typlng == "autres") {$cpmlng = " en anglais ou dans une autre langue étrangère";}
 	//$team sert aussi bien à une collection qu'à un idhal
 	if (isset($idhal) && $idhal != "") {$team = $idhal;}
 	if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {
