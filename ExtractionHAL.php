@@ -2475,8 +2475,8 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 		<br>
 		<?php
 		if (isset($typfor) && $typfor == "typ1") {$typ1 = "checked=\"\"";}else{$typ1 = "";}
-		if (isset($typfor) && $typfor == "typ2" || !isset($team )) {$typ2 = "checked=\"\"";}else{$typ2 = "";}
-		if (isset($typfor) && $typfor == "typ3") {$typ3 = "checked=\"\"";}else{$typ3 = "";}
+		if (isset($typfor) && $typfor == "typ2") {$typ2 = "checked=\"\"";}else{$typ2 = "";}
+		if (isset($typfor) && $typfor == "typ3" || !isset($team )) {$typ3 = "checked=\"\"";}else{$typ3 = "";}
 		if (isset($typfor) && $typfor == "typ4") {$typ4 = "checked=\"\"";}else{$typ4 = "";}
 		?>
 		<div class="form-group" style="display:block;">
@@ -3690,11 +3690,15 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				if ($docType_s != "COMM" && $docType_s != "POSTER" && $docType_s != "COMM+POST") {
 					$dateprod = $entry->producedDateY_i;
 				}else{
-					//if (isset($entry->producedDateY_i)) {
-						if (isset($entry->publicationDateY_i)) {
-						$dateprod = $entry->publicationDateY_i;
-					}else{
+					if ($entry->proceedings_s == 0) {//Publications SANS actes > année = date de congrès
 						$dateprod = $entry->conferenceStartDateY_i;
+					}else{
+						//if (isset($entry->producedDateY_i)) {
+							if (isset($entry->publicationDateY_i)) {
+							$dateprod = $entry->publicationDateY_i;
+						}else{
+							$dateprod = $entry->conferenceStartDateY_i;
+						}
 					}
 				}
 
