@@ -1300,7 +1300,7 @@ if (!isset($listaut)) {$listaut = "";}
 if (isset($idhal) && $idhal != "") {$team1 = ""; $listaut = "";}
 //if (isset($refint) && $refint != "") {$team1 = ""; $listaut = "";}
 ?>
-<input type="text" id ="team" name="team" class="form-control" style="height: 25px; width:300px" value="<?php echo $team1;?>" onClick="this.value='<?php echo $team2;?>';"  onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = '';"><br>
+<input type="text" id ="team" name="team" class="form-control" style="height: 25px; width:300px" value="<?php echo $team1;?>" onClick="this.value='<?php echo $team2;?>';"  onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = '';">&nbsp;<a target="_blank" href="https://hal-univ-rennes1.archives-ouvertes.fr/page/codes-collections">Trouver le code de mon équipe / labo</a><br>
 et/ou<br>
 <b><label for="refint">Référence interne</label></b> <a class=info onclick='return false' href="#">(qu’est-ce que c’est ?)<span>Champ référence interne des dépôts HAL</span></a> :
 <input type="text" id ="refint" name="refint" class="form-control" style="height: 25px; width:300px" value="<?php echo $refint;?>" onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = '';">
