@@ -53,17 +53,26 @@ if (isset($_GET['extur1']) && $_GET['extur1'] != '' && isset($_GET["import"]) &&
 //Institut général
 $institut = "";// -> univ-rennes1/ par exemple, mais est-ce vraiment nécessaire ?
 
-function suppression($dossier, $age) {
+function suppression($dossier, $age, $comp) {
   $repertoire = opendir($dossier);
     while(false !== ($fichier = readdir($repertoire)))
     {
       $chemin = $dossier."/".$fichier;
+			echo $fichier.'<br>';
       $age_fichier = time() - filemtime($chemin);
-      if($fichier != "." && $fichier != ".." && !is_dir($fichier) && $age_fichier > $age)
-      {
-      unlink($chemin);
-      //echo $chemin." - ".date ("F d Y H:i:s.", filemtime($chemin))."<br>";
-      }
+			if ($comp == "") {
+				if($fichier != "." && $fichier != ".." && !is_dir($fichier) && $age_fichier > $age)
+				{
+				unlink($chemin);
+				//echo $chemin." - ".date ("F d Y H:i:s.", filemtime($chemin))."<br>";
+				}
+			}else{
+				if($fichier != "." && $fichier != ".." && !is_dir($fichier) && ($age_fichier > $age) && (strpos($fichier, $comp) !== false))
+				{
+				unlink($chemin);
+				//echo $chemin." - ".date ("F d Y H:i:s.", filemtime($chemin))."<br>";
+				}
+			}
     }
   closedir($repertoire);
 }
@@ -7378,7 +7387,9 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 			copy ($Fnm1, "./HAL/extractionHAL_".$team.".csv");
 			copy ($Fnm2, "./HAL/extractionHAL_".$team.".bib");
 		}
-		suppression("./HAL", 3600);//Suppression des fichiers du dossier HAL créés il y a plus d'une heure 
+		
+		suppression("./HAL", 3600, "");//Suppression des fichiers du dossier HAL créés il y a plus d'une heure
+		suppression("./img", 2592000, "mypic");//Suppression des images du dossier img créées il y a plus d'un mois
 
 		if (isset($_POST["soumis"]) || isset($_GET["team"])) {
 			//Création de graphes
