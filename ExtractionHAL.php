@@ -58,7 +58,7 @@ function suppression($dossier, $age, $comp) {
     while(false !== ($fichier = readdir($repertoire)))
     {
       $chemin = $dossier."/".$fichier;
-			echo $fichier.'<br>';
+			//echo $fichier.'<br>';
       $age_fichier = time() - filemtime($chemin);
 			if ($comp == "") {
 				if($fichier != "." && $fichier != ".." && !is_dir($fichier) && $age_fichier > $age)
