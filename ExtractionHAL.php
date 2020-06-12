@@ -876,6 +876,8 @@ if (isset($_GET["team"])) {
   $listenomcomp1 = "~";
   $listenomcomp2 = "~";
 	$listenomcomp3 = "~";
+	$arriv = "~";
+	$depar = "~";
   foreach($AUTEURS_LISTE AS $i => $valeur) {
     $lat = 0;
     $chalTab = explode(",", $AUTEURS_LISTE[$i]['collhal']);
@@ -904,7 +906,18 @@ if (isset($_GET["team"])) {
       $lat++;
     }
   }
-
+	/*
+	$tabN = explode("~", $listenominit);
+	$tabA = explode("~", $arriv);
+	$tabD = explode("~", $depar);
+	var_dump($tabN);
+	var_dump($tabA);
+	var_dump($tabD);
+	for($t = 0; $t < count($tabA); $t++) {
+		echo($tabN[$t].' > '.$tabA[$t].' - '.$tabD[$t].'<br>');
+	}
+	*/
+	
   //Extraction sur un IdHAL > auteur à mettre en évidence
   if (isset($evhal) && $evhal != "") {
 		$listenominit = "~";
@@ -3781,7 +3794,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							$deb = "";
 							$fin = "";
 							$pos = stripos(wd_remove_accents($listenominit), wd_remove_accents($nom." ".$prenom));
-							$pos = substr_count(mb_substr($listenominit, 0, $pos, 'UTF-8'), '~');
+							$pos = substr_count(mb_substr($listenominit, 0, $pos, 'UTF-8'), '~') + 1;
 							$crit = 0;
 							for ($k = 1; $k <= $pos; $k++) {
 								$crit = strpos($arriv, '~', $crit+1);
@@ -3792,6 +3805,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							$datearriv = substr($arriv, $crit-4, 4);
 							$datedepar = substr($depar, $crit-4, 4);
 							//echo 'titi : '.$dateprod <= $datedepar;
+							//if ($nom == "Hulot") {echo('<script>console.log("'.$nom." ".$prenom." > ".$datearriv." - ".$datedepar." > ".$pos.'");</script>');}
 							if ($dateprod >= $datearriv && $dateprod <= $datedepar) {
 								$affil = "ok";
 								if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
@@ -3837,7 +3851,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								$deb = "";
 								$fin = "";
 								$pos = stripos(wd_remove_accents($listenomcomp1), wd_remove_accents($nom." ".$prenom));
-								$pos = substr_count(mb_substr($listenomcomp1, 0, $pos, 'UTF-8'), '~');
+								$pos = substr_count(mb_substr($listenomcomp1, 0, $pos, 'UTF-8'), '~') + 1;
 								$crit = 0;
 								for ($k = 1; $k <= $pos; $k++) {
 									$crit = strpos($arriv, '~', $crit+1);
@@ -3892,7 +3906,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								}else{
 									//On vérifie que l'auteur est bien dans la collection pour l'année de la publication
 									$pos = stripos(wd_remove_accents($listenomcomp2), wd_remove_accents($prenom." ".$nom));
-									$pos = substr_count(mb_substr($listenomcomp2, 0, $pos, 'UTF-8'), '~');
+									$pos = substr_count(mb_substr($listenomcomp2, 0, $pos, 'UTF-8'), '~') + 1;
 									$crit = 0;
 									for ($k = 1; $k <= $pos; $k++) {
 										$crit = strpos($arriv, '~', $crit+1);
@@ -3947,7 +3961,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								}else{
 									//On vérifie que l'auteur est bien dans la collection pour l'année de la publication
 									$pos = stripos(wd_remove_accents($listenomcomp3), wd_remove_accents(mb_strtoupper($nom, 'UTF-8')." (".$prenom.")"));
-									$pos = substr_count(mb_substr($listenomcomp3, 0, $pos, 'UTF-8'), '~');
+									$pos = substr_count(mb_substr($listenomcomp3, 0, $pos, 'UTF-8'), '~') + 1;
 									$crit = 0;
 									for ($k = 1; $k <= $pos; $k++) {
 										$crit = strpos($arriv, '~', $crit+1);
