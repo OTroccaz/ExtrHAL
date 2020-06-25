@@ -1848,6 +1848,8 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 		<option <?php echo $txt;?> value="http://hal.grenoble-em.com/">http://hal.grenoble-em.com</option>
 		<?php if ($racine == "http://hal.in2p3.fr/") {$txt = "selected";}else{$txt = "";}?>
 		<option <?php echo $txt;?> value="http://hal.in2p3.fr/">http://hal.in2p3.fr/</option>
+		<?php if ($racine == "https://hal.inrae.fr/") {$txt = "selected";}else{$txt = "";}?>
+		<option <?php echo $txt;?> value="https://hal.inrae.fr/">https://hal.inrae.fr/</option>
 		<?php if ($racine == "https://hal.inria.fr/") {$txt = "selected";}else{$txt = "";}?>
 		<option <?php echo $txt;?> value="https://hal.inria.fr/">https://hal.inria.fr/</option>
 		<?php if ($racine == "http://hal.ird.fr/") {$txt = "selected";}else{$txt = "";}?>
