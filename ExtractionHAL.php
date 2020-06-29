@@ -7677,23 +7677,34 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 				}
 				$contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:ART%20AND%20audience_s:2%20AND%20peerReviewing_s:1%20AND%20producedDateY_i:".$year);
 
+				$ACLRItot = 0;
+				$ACLRNtot = 0;
+				$ASCLRItot = 0;
+				$ASCLRNtot = 0;
+				$yearMS = array();
+				
 				foreach($availableYears as $year => $nb){
+					$yearMS[] = $year;
 					$contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:ART%20AND%20NOT%20popularLevel_s:1%20AND%20audience_s:2%20AND%20peerReviewing_s:1%20AND%20producedDateY_i:".$year);
 					//echo $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester."%20AND%20docType_s:ART%20AND%20audience_s:2%20AND%20peerReviewing_s:1%20AND%20producedDateY_i:".$year;
 					$results = json_decode($contents);
 					$ACLRI=$results->response->numFound;
+					$ACLRItot+=$results->response->numFound;
 
 					$contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:ART%20AND%20(audience_s:3%20OR%20audience_s:0%20OR%20audience_s:1)%20AND%20peerReviewing_s:1%20AND%20producedDateY_i:".$year);
 					$results = json_decode($contents);
 					$ACLRN=$results->response->numFound;
+					$ACLRNtot+=$results->response->numFound;
 
 					$contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:ART%20AND%20NOT%20popularLevel_s:1%20AND%20audience_s:2%20AND%20peerReviewing_s:0%20AND%20producedDateY_i:".$year);
 					$results = json_decode($contents);
 					$ASCLRI=$results->response->numFound;
+					$ASCLRItot+=$results->response->numFound;
 
 					$contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:ART%20AND%20(audience_s:3%20OR%20audience_s:0%20OR%20audience_s:1)%20AND%20peerReviewing_s:0%20AND%20producedDateY_i:".$year);
 					$results = json_decode($contents);
 					$ASCLRN=$results->response->numFound;
+					$ASCLRNtot+=$results->response->numFound;
 					
 					if ($ACLRI != 0 || $ACLRN != 0 || $ASCLRI != 0 || $ASCLRN != 0) {	
 						if (strpos(phpversion(), "7") !== false) {//PHP7 > pChart2
@@ -7815,6 +7826,258 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 						echo('<center><img alt="Détails" src="img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png"></center><br>');
 						$i++;
 					}
+				}
+				
+				//Graphes détail avec moyenne et somme des différentes années
+				if(count($availableYears) > 1) {
+					$ACLRImoy = $ACLRItot/count($availableYears);
+					$ACLRNmoy = $ACLRNtot/count($availableYears);
+					$ASCLRImoy = $ASCLRItot/count($availableYears);
+					$ASCLRNmoy = $ASCLRNtot/count($availableYears);
+					
+					//Moyenne
+					if (strpos(phpversion(), "7") !== false) {//PHP7 > pChart2
+						$myPicture = new pDraw(350,230);
+						
+						$arpTab= [$ACLRImoy,$ACLRNmoy,$ASCLRImoy,$ASCLRNmoy];
+						$arpTab = array_map(function($value) {
+									return intval($value);
+							}, $arpTab);
+
+						$myPicture->myData->addPoints($arpTab,"Detail");
+						$myPicture->myData->setSerieDescription("Detail","Application A");
+
+						/* Define the absissa serie */
+						$myPicture->myData->addPoints(["ACLRI","ACLRN","ASCLRI","ASCLRN"],"Labels");
+						$myPicture->myData->setAbscissa("Labels");
+
+						/* Draw a solid background */
+						$Settings = ["Color"=>new pColor(173,152,217), "Dash"=>TRUE, "DashColor"=>new pColor(193,172,237)];
+						$myPicture->drawFilledRectangle(0,0,350,230,$Settings);
+
+						/* Draw a gradient overlay */
+						$myPicture->drawGradientArea(0,0,350,280,DIRECTION_VERTICAL, ["StartColor"=>new pColor(240,240,240,100),"EndColor"=>new pColor(180,180,180,100)]);
+						$myPicture->drawGradientArea(0,0,350,280,DIRECTION_HORIZONTAL, ["StartColor"=>new pColor(240,240,240,20),"EndColor"=>new pColor(180,180,180,20)]);
+
+
+						/* Add a border to the picture */
+						$myPicture->drawRectangle(0,0,349,229,array("R"=>0,"G"=>0,"B"=>0));
+
+						/* Write the picture title */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
+						$anneeFin = count($yearMS) - 1;
+						$myPicture->drawText(175,40,"Moyenne détail TA".$yearMS[0].'-'.$yearMS[$anneeFin].$detail,array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+
+						/* Set the default font properties */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>80,"G"=>80,"B"=>80));
+
+						/* Create the pPie object */
+						$PieChart = new pPie($myPicture);
+						
+						/* Define the slice colors */
+						$myPicture->myData->savePalette([
+							0 => new pColor(143,197,0),
+							1 => new pColor(97,77,63),
+							2 => new pColor(97,113,63)
+						]);
+
+						/* Enable shadow computing */
+						$myPicture->setShadow(TRUE,array("X"=>3,"Y"=>3,"Color"=>new pColor(0,0,0,10)));
+
+						/* Draw a splitted pie chart */
+						$PieChart->draw3DPie(175,125,["WriteValues"=>TRUE,"ValuePosition"=>PIE_VALUE_OUTSIDE,"ValueColor"=>new pColor(0,0,0,100),"DataGapAngle"=>10,"DataGapRadius"=>6,"Border"=>TRUE]);
+
+						/* Write the legend */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
+						$myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"Color"=>new pColor(0,0,0,20)));
+
+						/* Write the legend box */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>0,"G"=>0,"B"=>0));
+						$PieChart->drawPieLegend(30,200,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
+					}else{//PHP 5 > pChart
+						$MyData = new pData();
+						
+						$arpTab= array($ACLRImoy,$ACLRNmoy,$ASCLRImoy,$ASCLRNmoy);
+						$arpTab = array_map(function($value) {
+									return intval($value);
+							}, $arpTab);
+						
+						$MyData->addPoints($arpTab,"Detail");
+						$MyData->setSerieDescription("ScoreA","Application A");
+						
+						/* Define the absissa serie */
+						$MyData->addPoints(array("ACLRI","ACLRN","ASCLRI","ASCLRN"),"Labels");
+						$MyData->setAbscissa("Labels");
+						
+						/* Create the pChart object */
+						$myPicture = new pImage(350,230,$MyData,TRUE);
+						
+						/* Draw a solid background */
+						$Settings = array("R"=>173, "G"=>152, "B"=>217, "Dash"=>1, "DashR"=>193, "DashG"=>172, "DashB"=>237);
+						$myPicture->drawFilledRectangle(0,0,350,230,$Settings);
+						
+						/* Draw a gradient overlay */
+						$myPicture->drawGradientArea(0,0,350,280,DIRECTION_VERTICAL,array("StartR"=>240,"StartG"=>240,"StartB"=>240,"EndR"=>180,"EndG"=>180,"EndB"=>180,"Alpha"=>100));
+						$myPicture->drawGradientArea(0,0,350,280,DIRECTION_HORIZONTAL,array("StartR"=>240,"StartG"=>240,"StartB"=>240,"EndR"=>180,"EndG"=>180,"EndB"=>180,"Alpha"=>20));
+						
+						/* Add a border to the picture */
+						$myPicture->drawRectangle(0,0,349,229,array("R"=>0,"G"=>0,"B"=>0));
+						
+						/* Write the picture title */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
+						$anneeFin = count($yearMS) - 1;
+						$myPicture->drawText(175,40,"Moyenne détail TA".$yearMS[0].'-'.$yearMS[$anneeFin].$detail,array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+						
+						/* Set the default font properties */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>80,"G"=>80,"B"=>80));
+						
+						/* Create the pPie object */
+						$PieChart = new pPie($myPicture,$MyData);
+						
+						/* Define the slice color */
+						$PieChart->setSliceColor(0,array("R"=>143,"G"=>197,"B"=>0));
+						$PieChart->setSliceColor(1,array("R"=>97,"G"=>77,"B"=>63));
+						$PieChart->setSliceColor(2,array("R"=>97,"G"=>113,"B"=>63));
+						
+						/* Enable shadow computing */
+						$myPicture->setShadow(TRUE,array("X"=>3,"Y"=>3,"R"=>0,"G"=>0,"B"=>0,"Alpha"=>10));
+						
+						/* Draw a splitted pie chart */
+						$PieChart->draw3DPie(175,125,array("WriteValues"=>TRUE,"ValuePosition"=>PIE_VALUE_OUTSIDE,"ValueR"=>0,"ValueG"=>0,"ValueB"=>0,"DataGapAngle"=>10,"DataGapRadius"=>6,"Border"=>TRUE));
+						
+						/* Write the legend */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
+						$myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"R"=>0,"G"=>0,"B"=>0,"Alpha"=>20));
+						
+						/* Write the legend box */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>0,"G"=>0,"B"=>0));
+						$PieChart->drawPieLegend(30,200,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
+					}
+					$myPicture->render('img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png');
+					echo('<center><img alt="Détails" src="img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png"></center><br>');
+					$i++;
+					
+					//Somme
+					if (strpos(phpversion(), "7") !== false) {//PHP7 > pChart2
+						$myPicture = new pDraw(350,230);
+						
+						$arpTab= [$ACLRItot,$ACLRNtot,$ASCLRItot,$ASCLRNtot];
+						$arpTab = array_map(function($value) {
+									return intval($value);
+							}, $arpTab);
+
+						$myPicture->myData->addPoints($arpTab,"Detail");
+						$myPicture->myData->setSerieDescription("Detail","Application A");
+
+						/* Define the absissa serie */
+						$myPicture->myData->addPoints(["ACLRI","ACLRN","ASCLRI","ASCLRN"],"Labels");
+						$myPicture->myData->setAbscissa("Labels");
+
+						/* Draw a solid background */
+						$Settings = ["Color"=>new pColor(173,152,217), "Dash"=>TRUE, "DashColor"=>new pColor(193,172,237)];
+						$myPicture->drawFilledRectangle(0,0,350,230,$Settings);
+
+						/* Draw a gradient overlay */
+						$myPicture->drawGradientArea(0,0,350,280,DIRECTION_VERTICAL, ["StartColor"=>new pColor(240,240,240,100),"EndColor"=>new pColor(180,180,180,100)]);
+						$myPicture->drawGradientArea(0,0,350,280,DIRECTION_HORIZONTAL, ["StartColor"=>new pColor(240,240,240,20),"EndColor"=>new pColor(180,180,180,20)]);
+
+
+						/* Add a border to the picture */
+						$myPicture->drawRectangle(0,0,349,229,array("R"=>0,"G"=>0,"B"=>0));
+
+						/* Write the picture title */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
+						$anneeFin = count($yearMS) - 1;
+						$myPicture->drawText(175,40,"Somme détail TA".$yearMS[0].'-'.$yearMS[$anneeFin].$detail,array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+
+						/* Set the default font properties */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>80,"G"=>80,"B"=>80));
+
+						/* Create the pPie object */
+						$PieChart = new pPie($myPicture);
+						
+						/* Define the slice colors */
+						$myPicture->myData->savePalette([
+							0 => new pColor(143,197,0),
+							1 => new pColor(97,77,63),
+							2 => new pColor(97,113,63)
+						]);
+
+						/* Enable shadow computing */
+						$myPicture->setShadow(TRUE,array("X"=>3,"Y"=>3,"Color"=>new pColor(0,0,0,10)));
+
+						/* Draw a splitted pie chart */
+						$PieChart->draw3DPie(175,125,["WriteValues"=>TRUE,"ValuePosition"=>PIE_VALUE_OUTSIDE,"ValueColor"=>new pColor(0,0,0,100),"DataGapAngle"=>10,"DataGapRadius"=>6,"Border"=>TRUE]);
+
+						/* Write the legend */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
+						$myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"Color"=>new pColor(0,0,0,20)));
+
+						/* Write the legend box */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>0,"G"=>0,"B"=>0));
+						$PieChart->drawPieLegend(30,200,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
+					}else{//PHP 5 > pChart
+						$MyData = new pData();
+						
+						$arpTab= array($ACLRItot,$ACLRNtot,$ASCLRItot,$ASCLRNtot);
+						$arpTab = array_map(function($value) {
+									return intval($value);
+							}, $arpTab);
+						
+						$MyData->addPoints($arpTab,"Detail");
+						$MyData->setSerieDescription("ScoreA","Application A");
+						
+						/* Define the absissa serie */
+						$MyData->addPoints(array("ACLRI","ACLRN","ASCLRI","ASCLRN"),"Labels");
+						$MyData->setAbscissa("Labels");
+						
+						/* Create the pChart object */
+						$myPicture = new pImage(350,230,$MyData,TRUE);
+						
+						/* Draw a solid background */
+						$Settings = array("R"=>173, "G"=>152, "B"=>217, "Dash"=>1, "DashR"=>193, "DashG"=>172, "DashB"=>237);
+						$myPicture->drawFilledRectangle(0,0,350,230,$Settings);
+						
+						/* Draw a gradient overlay */
+						$myPicture->drawGradientArea(0,0,350,280,DIRECTION_VERTICAL,array("StartR"=>240,"StartG"=>240,"StartB"=>240,"EndR"=>180,"EndG"=>180,"EndB"=>180,"Alpha"=>100));
+						$myPicture->drawGradientArea(0,0,350,280,DIRECTION_HORIZONTAL,array("StartR"=>240,"StartG"=>240,"StartB"=>240,"EndR"=>180,"EndG"=>180,"EndB"=>180,"Alpha"=>20));
+						
+						/* Add a border to the picture */
+						$myPicture->drawRectangle(0,0,349,229,array("R"=>0,"G"=>0,"B"=>0));
+						
+						/* Write the picture title */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
+						$anneeFin = count($yearMS) - 1;
+						$myPicture->drawText(175,40,"Somme détail TA".$yearMS[0].'-'.$yearMS[$anneeFin].$detail,array("FontSize"=>20,"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
+						
+						/* Set the default font properties */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>80,"G"=>80,"B"=>80));
+						
+						/* Create the pPie object */
+						$PieChart = new pPie($myPicture,$MyData);
+						
+						/* Define the slice color */
+						$PieChart->setSliceColor(0,array("R"=>143,"G"=>197,"B"=>0));
+						$PieChart->setSliceColor(1,array("R"=>97,"G"=>77,"B"=>63));
+						$PieChart->setSliceColor(2,array("R"=>97,"G"=>113,"B"=>63));
+						
+						/* Enable shadow computing */
+						$myPicture->setShadow(TRUE,array("X"=>3,"Y"=>3,"R"=>0,"G"=>0,"B"=>0,"Alpha"=>10));
+						
+						/* Draw a splitted pie chart */
+						$PieChart->draw3DPie(175,125,array("WriteValues"=>TRUE,"ValuePosition"=>PIE_VALUE_OUTSIDE,"ValueR"=>0,"ValueG"=>0,"ValueB"=>0,"DataGapAngle"=>10,"DataGapRadius"=>6,"Border"=>TRUE));
+						
+						/* Write the legend */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10));
+						$myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"R"=>0,"G"=>0,"B"=>0,"Alpha"=>20));
+						
+						/* Write the legend box */
+						$myPicture->setFontProperties(array("FontName"=>"./lib/pChart/fonts/corbel.ttf","FontSize"=>10,"R"=>0,"G"=>0,"B"=>0));
+						$PieChart->drawPieLegend(30,200,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
+					}
+					$myPicture->render('img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png');
+					echo('<center><img alt="Détails" src="img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png"></center><br>');
+					$i++;
 				}
 			}
 
