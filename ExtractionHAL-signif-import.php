@@ -1,6 +1,6 @@
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
             "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="fr">
 <head>
   <title>ExtrHAL : outil d’extraction des publications HAL d’une unité, d'une équipe de recherche ou d'un auteur</title>
   <meta name="Description" content="ExtrHAL : outil d’extraction des publications HAL d’une unité, d'une équipe de recherche ou d'un auteur">
@@ -9,7 +9,7 @@
   <link rel="icon" type="type/ico" href="HAL_favicon.ico">
   <link rel="stylesheet" href="./ExtractionHAL.css">
 </head>
-<body style="font-family:calibri,verdana">
+<body style="font-family:corbel, verdana, sans-serif">
 <?php
 function utf8_fopen_read($fileName) {
     $fc = file_get_contents($fileName);

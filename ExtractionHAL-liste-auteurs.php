@@ -1,6 +1,6 @@
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
             "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="fr">
 <head>
   <title>ExtrHAL : liste des auteurs</title>
   <meta name="Description" content="ExtrHAL : liste des auteurs">
@@ -8,8 +8,9 @@
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="icon" type="type/ico" href="HAL_favicon.ico" />
+	<link rel="stylesheet" href="./ExtractionHAL.css">
 </head>
-<body style="font-family:corbel;font-size:12px;">
+<body style="font-family:corbel, verdana, sans-serif;font-size:12px;">
 <h1>ExtrHAL : création des fichiers de liste d'auteurs à mettre en évidence</h1>
 <?php
 // récupération de l'adresse IP du client (on cherche d'abord à savoir s'il est derrière un proxy)
@@ -277,8 +278,8 @@ if (in_array($ip, $IP_aut)) {
     echo('<b>Eqrec</b> : <input type="text" name="eqrec"><br>');
     echo('<b>Collection HAL</b> : <input type="text" name="collhal"><br>');
     echo('<b>Collection équipe HAL</b> : <input type="text" name="colleqhal"><br>');
-    echo('<b>Arrivée <i>(aaaa)</i></b> : <input type="text" name="arriv"><br>');
-    echo('<b>Départ <i>(aaaa)</i></b> : <input type="text" name="depar"><br><br>');
+    echo('<b>Arrivée <em>(aaaa)</em></b> : <input type="text" name="arriv"><br>');
+    echo('<b>Départ <em>(aaaa)</em></b> : <input type="text" name="depar"><br><br>');
     echo('<input type="hidden" value="ajout" name="action">');
     if (isset($_GET["cehval"]) && $_GET["cehval"] != "") {
       echo('<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">');
@@ -301,8 +302,8 @@ if (in_array($ip, $IP_aut)) {
       echo('<b>Eqrec</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['eqrec'].'" name="eqrec"><br>');
       echo('<b>Collection HAL</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['collhal'].'" name="collhal"><br>');
       echo('<b>Collection équipe HAL</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['colleqhal'].'" name="colleqhal"><br>');
-      echo('<b>Arrivée <i>(aaaa)</i></b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['arriv'].'" name="arriv"><br>');
-      echo('<b>Départ <i>(aaaa)</i></b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['depar'].'" name="depar"><br><br>');
+      echo('<b>Arrivée <em>(aaaa)</em></b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['arriv'].'" name="arriv"><br>');
+      echo('<b>Départ <em>(aaaa)</em></b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['depar'].'" name="depar"><br><br>');
       echo('<input type="hidden" value="'.$modif.'" name="modif">');
       if (isset($_GET["cehval"]) && $_GET["cehval"] != "") {
         echo('<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">');
@@ -358,12 +359,12 @@ if (in_array($ip, $IP_aut)) {
       ?>
         <a href="ExtractionHAL-liste-auteurs.php?cehval=<?php echo($cehvalimp);?>&action=supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette liste ?');">Supprimer cette liste</a>
         - Importer une liste <a href="ExtractionHAL-liste-auteurs.php?cehval=<?php echo($cehvalimp);?>&action=importcomplet">entière</a> ou
-        compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?cehval=<?php echo($cehvalimp);?>&action=importpartiel">partielle</a> à partir d'un fichier csv ou txt (<i><a href="./modele.csv">cf. modèle</a></i>) -
+        compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?cehval=<?php echo($cehvalimp);?>&action=importpartiel">partielle</a> à partir d'un fichier csv ou txt (<em><a href="./modele.csv">cf. modèle</a></em>) -
       <?php
       }else{
       ?>
         Importer une liste <a href="ExtractionHAL-liste-auteurs.php?action=importcomplet">entière</a> ou
-        compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?action=importpartiel">partielle</a>	 à partir d'un fichier csv ou txt (<i><a href="./modele.csv">cf. modèle</a></i>) -
+        compléter avec une liste <a href="ExtractionHAL-liste-auteurs.php?action=importpartiel">partielle</a>	 à partir d'un fichier csv ou txt (<em><a href="./modele.csv">cf. modèle</a></em>) -
       <?php
       }
       ?>
@@ -434,7 +435,7 @@ if (in_array($ip, $IP_aut)) {
       ?>
         <form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-liste-auteurs-import.php" enctype="multipart/form-data">
         Sélectionnez le fichier à importer :
-        <input type="file" name="importcomplet" size="30" style="font-family: Corbel; font-size: 10pt;"><br>
+        <input type="file" name="importcomplet" size="30" style="font-family: corbel, verdana, sans-serif; font-size: 10pt;"><br>
         <?php if (isset($_GET["cehval"]) && $_GET["cehval"] != "") {
           echo('<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">');
         }?>
@@ -446,7 +447,7 @@ if (in_array($ip, $IP_aut)) {
       ?>
         <form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-liste-auteurs-import.php" enctype="multipart/form-data">
         Sélectionnez le fichier à importer :
-        <input type="file" name="importpartiel" size="30" style="font-family: Corbel; font-size: 10pt;"><br>
+        <input type="file" name="importpartiel" size="30" style="font-family: corbel, verdana, sans-serif; font-size: 10pt;"><br>
         <?php if (isset($_GET["cehval"]) && $_GET["cehval"] != "") {
           echo('<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">');
         }?>

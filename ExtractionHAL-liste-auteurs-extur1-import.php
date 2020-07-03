@@ -25,7 +25,7 @@ if ($_FILES['import']['name'] != "") {
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="fr">
 <head>
 <title>ExtrHAL : liste des auteurs</title>
 <meta name="Description" content="ExtrHAL : liste des auteurs">
@@ -33,12 +33,13 @@ if ($_FILES['import']['name'] != "") {
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="icon" type="type/ico" href="HAL_favicon.ico" />
+<link rel="stylesheet" href="./ExtractionHAL.css">
 </head>
-<body style="font-family:corbel;font-size:12px;">
-<table width="100%">
+<body style="font-family:calibri, verdana, sans-serif;font-size:12px;">
+<table class="table100" aria-describedby="Entêtes">
 <tr>
-<td style="text-align: left;"><img alt="ExtrHAL" title="ExtrHAL" width="250px" src="./img/logo_Extrhal.png"></td>
-<td style="text-align: right;"><img alt="Université de Rennes 1" title="Université de Rennes 1" width="150px" src="./img/logo_UR1_gris_petit.jpg"></td>
+<th scope="col" style="text-align: left;"><img alt="ExtrHAL" title="ExtrHAL" width="250px" src="./img/logo_Extrhal.png"></th>
+<th scope="col" style="text-align: right;"><img alt="Université de Rennes 1" title="Université de Rennes 1" width="150px" src="./img/logo_UR1_gris_petit.jpg"></th>
 </tr>
 </table>
 <hr style="color: #467666;">
@@ -164,7 +165,7 @@ $text .= '</table>';
 echo $text;
 ?>
 <br><br>
-<center>
+<span class="center">
 <a href="./ExtractionHAL.php?import=ok&amp;extur1=<?php echo $uniq;?>">Tout est correct : poursuivre avec ExtrHAL</a> - <a href="./ExtractionHAL-liste-auteurs-extur1.php">Il y a une/des erreur(s) : recommencer la procédure d'import</a> - <a href="./ExtractionHAL.php">Tout annuler et revenir à ExtrHAL</a>
-</center>
+</span>
 <br><br>

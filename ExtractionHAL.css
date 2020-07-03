@@ -69,3 +69,19 @@ div.panel {
 .currentDay{
     font-weight:bold;
 }
+
+.red {
+	color: #ff0000;
+}
+
+.aaa {
+	color: #aaaaaa;
+}
+
+.center {
+	text-align: center;
+}
+
+.table100{
+    width:100%;
+}

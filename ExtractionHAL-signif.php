@@ -1,6 +1,6 @@
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
             "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="fr">
 <head>
   <title>ExtrHAL : outil d’extraction des publications HAL d’une unité, d'une équipe de recherche ou d'un auteur</title>
   <meta name="Description" content="ExtrHAL : outil d’extraction des publications HAL d’une unité, d'une équipe de recherche ou d'un auteur">
@@ -16,12 +16,12 @@ if (isset($_GET["erreur"])) {
   if ($erreur == "nulfic") {echo('<script type="text/javascript">alert("Le fichier csv ou txt est vide !")</script>');}
 }
 ?>
-<body style="font-family:calibri,verdana">
-<br><b>Procédure d'extraction des notices les plus significatives :</b><br><br>
+<body style="font-family:corbel, verdana, sans-serif">
+<br><strong>Procédure d'extraction des notices les plus significatives :</strong><br><br>
 
 <form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-signif-import.php" enctype="multipart/form-data">
 Sélectionnez le fichier à importer :
-<input type="file" name="import" size="30" style="font-family: Corbel; font-size: 10pt;"><br>
+<input type="file" name="import" size="30" style="font-family: corbel, verdana, sans-serif; font-size: 10pt;"><br>
 <br>
 <input type="submit" value="Importer">
 </form>
