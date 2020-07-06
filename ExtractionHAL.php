@@ -1,4 +1,8 @@
 <?php
+//Constantes
+$cstSTRo = "<strong>";
+$cstSTRf = "</strong>";
+
 //Nettoyage URL
 $redir = "non";
 $root = 'http';
@@ -915,10 +919,10 @@ if (isset($_GET["team"])) {
 	var_dump($tabA);
 	var_dump($tabD);
 	for($t = 0; $t < count($tabA); $t++) {
-		echo($tabN[$t].' > '.$tabA[$t].' - '.$tabD[$t].'<br>');
+		echo($tabN[$t].' > '.$tabA[$t].' - '.$tabD[$t].'<br>';
 	}
 	for($t = 0; $t < count($tabN); $t++) {
-		echo('~'.$tabN[$t]);
+		echo '~'.$tabN[$t]);
 	}
 	*/
 	
@@ -1338,10 +1342,10 @@ $uniq = "";
 if (isset($_GET['extur1']) && $_GET['extur1'] != '') {$uniq = $_GET['extur1'];}
 if (isset($_POST['extur1']) && $_POST['extur1'] != '') {$uniq = $_POST['extur1'];}
 if ($uniq != '') {
-  echo('Vous utilisez votre propre fichier de liste d\'auteurs à mettre en évidence');
-  echo('<input type="hidden" value="'.$uniq.'" name="extur1">');
+  echo 'Vous utilisez votre propre fichier de liste d\'auteurs à mettre en évidence';
+  echo '<input type="hidden" value="'.$uniq.'" name="extur1">';
 }else{
-  echo('<p style="margin-left:20px;"<strong><u>Attention ! Ce champ ne fonctionne que pour les unités affiliées à Rennes 1</u></strong>. Extérieurs à Rennes 1, vous avez la possibilité de mettre en évidence les auteurs de votre collection ou de votre référence interne en <a href="ExtractionHAL-liste-auteurs-extur1.php">prétéléchargeant un fichier CSV ou TXT</a> réalisé selon <a href="https://halur1.univ-rennes1.fr/modele.csv">ce modèle</a>.</p>');
+  echo '<p style="margin-left:20px;"<strong><u>Attention ! Ce champ ne fonctionne que pour les unités affiliées à Rennes 1</u></strong>. Extérieurs à Rennes 1, vous avez la possibilité de mettre en évidence les auteurs de votre collection ou de votre référence interne en <a href="ExtractionHAL-liste-auteurs-extur1.php">prétéléchargeant un fichier CSV ou TXT</a> réalisé selon <a href="https://halur1.univ-rennes1.fr/modele.csv">ce modèle</a>.</p>';
 }
 ?>
 <h2><strong><u>ou</u></strong></h2>
@@ -1728,15 +1732,15 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 							<select id="limaff1" class="form-control" size="1" name="limaff" style="padding: 0px;">
 							<?php
 							if(isset($limaff) && $limaff == 1 || isset($stpdf) && $stpdf == "mla") {$txt = "selected";}else{$txt = "";}
-							echo('<option value=1 '.$txt.'>1</option>');
+							echo '<option value=1 '.$txt.'>1</option>';
 							if((isset($limaff) && $limaff == 5) || !isset($team)) {$txt = "selected";}else{$txt = "";}
-							echo('<option value=5 '.$txt.'>5</option>');
+							echo '<option value=5 '.$txt.'>5</option>';
 							if(isset($limaff) && $limaff == 10) {$txt = "selected";}else{$txt = "";}
-							echo('<option value=10 '.$txt.'>10</option>');
+							echo '<option value=10 '.$txt.'>10</option>';
 							if(isset($limaff) && $limaff == 15) {$txt = "selected";}else{$txt = "";}
-							echo('<option value=15 '.$txt.'>15</option>');
+							echo '<option value=15 '.$txt.'>15</option>';
 							if(isset($limaff) && $limaff == 20) {$txt = "selected";}else{$txt = "";}
-							echo('<option value=20 '.$txt.'>20</option>');
+							echo '<option value=20 '.$txt.'>20</option>';
 							?>
 							</select>
 					</label>
@@ -2647,25 +2651,25 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 		if (isset($typeqp) && $typeqp == "oui") {//Numérotation/codification par équipe
 			if (isset($_POST["soumis"])) {
 				for($i = 1; $i <= $nbeqp; $i++) {
-					echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. <label for="eqp">Nom HAL équipe '.$i.' :</label> <input type="text" class="form-control" id="eqp'.$i.'" style="width:300px; padding:0px; height:20px;" name="eqp'.$i.'" value = "'.strtoupper($_POST['eqp'.$i]).'"><br>');
+					echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. <label for="eqp">Nom HAL équipe '.$i.' :</label> <input type="text" class="form-control" id="eqp'.$i.'" style="width:300px; padding:0px; height:20px;" name="eqp'.$i.'" value = "'.strtoupper($_POST['eqp'.$i]).'"><br>';
 				}
-				echo('<br>');
-				echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. <label for="typcro">Limiter l\'affichage seulement aux publications croisées :</label>');
-				echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-				echo('<label><input type="radio" id="typcro1" name="typcro" value="non" '.$cron.'>&nbsp;&nbsp;&nbsp;non</label>');
-				echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-				echo('<label><input type="radio" id="typcro2" name="typcro" value="oui" '.$croo.'>&nbsp;&nbsp;&nbsp;oui</label>');
+				echo '<br>';
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. <label for="typcro">Limiter l\'affichage seulement aux publications croisées :</label>';
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+				echo '<label><input type="radio" id="typcro1" name="typcro" value="non" '.$cron.'>&nbsp;&nbsp;&nbsp;non</label>';
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+				echo '<label><input type="radio" id="typcro2" name="typcro" value="oui" '.$croo.'>&nbsp;&nbsp;&nbsp;oui</label>';
 			}
 			if (isset($_GET["team"])) {
 				for($i = 1; $i <= $nbeqp; $i++) {
-					echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. <label for="eqp">Nom HAL équipe '.$i.' :</label> <input type="text" class="form-control" id="eqp'.$i.'" style="width:300px; padding:0px; height:20px;" name="eqp'.$i.'" value = "'.$_GET['eqp'.$i].'"><br>');
+					echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. <label for="eqp">Nom HAL équipe '.$i.' :</label> <input type="text" class="form-control" id="eqp'.$i.'" style="width:300px; padding:0px; height:20px;" name="eqp'.$i.'" value = "'.$_GET['eqp'.$i].'"><br>';
 				}
-				echo('<br>');
-				echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. <label for="typcro">Limiter l\'affichage seulement aux publications croisées :</label>');
-				echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-				echo('<label><input type="radio" id="typcro1" name="typcro" value="non" '.$cron.'>&nbsp;&nbsp;&nbsp;non</label>');
-				echo('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-				echo('<label><input type="radio" id="typcro2" name="typcro" value="oui" '.$croo.'>&nbsp;&nbsp;&nbsp;oui</label>');
+				echo '<br>';
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. <label for="typcro">Limiter l\'affichage seulement aux publications croisées :</label>';
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+				echo '<label><input type="radio" id="typcro1" name="typcro" value="non" '.$cron.'>&nbsp;&nbsp;&nbsp;non</label>';
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+				echo '<label><input type="radio" id="typcro2" name="typcro" value="oui" '.$croo.'>&nbsp;&nbsp;&nbsp;oui</label>';
 			}
 		}
 		?>
@@ -2725,7 +2729,7 @@ if (isset($stpdf) && $stpdf == "zo1") {$st10 = "selected ";}else{$st10 = "";}
 <label for="cg6" style="color: white;">_</label>
 <label for="cg7" style="color: white;">_</label>
 <br>
-<table width="80%" style="font-size: 80%; margin: auto;" class="form-inline" aria-describedby="Styles personnalisés">
+<table style="font-size: 80%; margin: auto; width: 80%;" class="form-inline" aria-describedby="Styles personnalisés">
   <tr>
     <th scope="col" colspan="15">
       <label for="spa">Séparateur interne au groupe d'auteurs :</label>
@@ -3379,89 +3383,89 @@ if (isset($_POST["soumis"]) || isset($_GET["team"])) {
 	}
 
   if (isset($idhal) && $idhal != "") {$team = $idhal;}
-  echo("<center><strong><a target='_blank' href='./HAL/extractionHAL_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".rtf'>Exporter les données affichées en RTF</a></strong>, <strong><a target='_blank' href='./HAL/extractionHAL_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".csv'>en CSV</a>, <strong><a target='_blank' href='./HAL/extractionHAL_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".bib'>en Bibtex</a></strong> ou <strong><a target='_blank' href='./HAL/VOSviewerDOI_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".txt'>VOSviewerDOI</a></strong>");
-  echo("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-  echo("<a href='ExtractionHAL.php'>Réinitialiser tous les paramètres</a>");
-  echo("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+  echo "<center><strong><a target='_blank' href='./HAL/extractionHAL_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".rtf'>Exporter les données affichées en RTF</a></strong>, <strong><a target='_blank' href='./HAL/extractionHAL_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".csv'>en CSV</a>, <strong><a target='_blank' href='./HAL/extractionHAL_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".bib'>en Bibtex</a></strong> ou <strong><a target='_blank' href='./HAL/VOSviewerDOI_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".txt'>VOSviewerDOI</a></strong>";
+  echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+  echo "<a href='ExtractionHAL.php'>Réinitialiser tous les paramètres</a>";
+  echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	if ($UBitly == "oui") {
-		echo("URL raccourcie directe : <a href=".$urlbitly.">".$urlbitly."</a></strong></center>");
+		echo "URL raccourcie directe : <a href=".$urlbitly.">".$urlbitly."</a></strong></center>";
 	}else{
-		echo("Pas d'URL raccourcie directe demandée</strong></center>");
+		echo "Pas d'URL raccourcie directe demandée</strong></center>";
 	}
-	echo("<br><br>");
+	echo "<br><br>";
 }
 ?>
 
 <h2><a name="sommaire"></a>Sommaire</h2>
 <ul>
 <?php
-if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {echo('<li><a href="#TA">Tous les articles (sauf vulgarisation)</a></li>');}
-if (isset($choix_publis) && strpos($choix_publis, "-ACL-") !== false) {echo('<li><a href="#ACL">Articles de revues à comité de lecture</a></li>');}
-if (isset($choix_publis) && strpos($choix_publis, "-ASCL-") !== false) {echo('<li><a href="#ASCL">Articles de revues sans comité de lecture</a></li>');}
-if (isset($choix_publis) && strpos($choix_publis, "-ARI-") !== false) {echo('<li><a href="#ARI">Articles de revues internationales</a></li>');}
-if (isset($choix_publis) && strpos($choix_publis, "-ARN-") !== false) {echo('<li><a href="#ARN">Articles de revues nationales</a></li>');}
-if (isset($choix_publis) && strpos($choix_publis, "-ACLRI-") !== false) {echo('<li><a href="#ACLRI">Articles de revues internationales à comité de lecture</a></li>');}
-if (isset($choix_publis) && strpos($choix_publis, "-ACLRN-") !== false) {echo('<li><a href="#ACLRN">Articles de revues nationales à comité de lecture</a></li>');}
-if (isset($choix_publis) && strpos($choix_publis, "-ASCLRI-") !== false) {echo('<li><a href="#ASCLRI">Articles de revues internationales sans comité de lecture</a></li>');}
-if (isset($choix_publis) && strpos($choix_publis, "-ASCLRN-") !== false) {echo('<li><a href="#ASCLRN">Articles de revues nationales sans comité de lecture</a></li>');}
-if (isset($choix_publis) && strpos($choix_publis, "-AV-") !== false) {echo('<li><a href="#AV">Articles de vulgarisation</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-TC-") !== false) {echo('<li><a href="#TC">Toutes les communications (sauf grand public)</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CA-") !== false) {echo('<li><a href="#CA">Communications avec actes</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CSA-") !== false) {echo('<li><a href="#CSA">Communications sans actes</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CI-") !== false) {echo('<li><a href="#CI">Communications internationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CN-") !== false) {echo('<li><a href="#CN">Communications nationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CAI-") !== false) {echo('<li><a href="#CAI">Communications avec actes internationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CSAI-") !== false) {echo('<li><a href="#CAI">Communications sans actes internationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CAN-") !== false) {echo('<li><a href="#CSAN">Communications avec actes nationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CSAN-") !== false) {echo('<li><a href="#CSAN">Communications sans actes nationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CINVASANI-") !== false) {echo('<li><a href="#CINVASANI">Communications invitées avec ou sans actes, nationales ou internationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CINVA-") !== false) {echo('<li><a href="#CINVA">Communications invitées avec actes</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CINVSA-") !== false) {echo('<li><a href="#CINVSA">Communications invitées sans actes</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CNONINVA-") !== false) {echo('<li><a href="#CNONINVA">Communications non invitées avec actes</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CNONINVSA-") !== false) {echo('<li><a href="#CNONINVSA">Communications non invitées sans actes</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CINVI-") !== false) {echo('<li><a href="#CINVI">Communications invitées internationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CNONINVI-") !== false) {echo('<li><a href="#CNONINVI">Communications non invitées internationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CINVN-") !== false) {echo('<li><a href="#CINVN">Communications invitées nationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CNONINVN-") !== false) {echo('<li><a href="#CNONINVN">Communications non invitées nationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CPASANI-") !== false) {echo('<li><a href="#CPASANI">Communications par affiches (posters) avec ou sans actes, nationales ou internationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CPA-") !== false) {echo('<li><a href="#CPA">Communications par affiches (posters) avec actes</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CPSA-") !== false) {echo('<li><a href="#CPSA">Communications par affiches (posters) sans actes</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CPI-") !== false) {echo('<li><a href="#CPI">Communications par affiches internationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CPN-") !== false) {echo('<li><a href="#CPN">Communications par affiches nationales</a></li>');}
-if (isset($choix_comm) && strpos($choix_comm, "-CGP-") !== false) {echo('<li><a href="#CGP">Conférences grand public</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDO-") !== false) {echo('<li><a href="#OCDO">Ouvrages ou chapitres ou directions d’ouvrages</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDOI-") !== false) {echo('<li><a href="#OCDOI">Ouvrages ou chapitres ou directions d’ouvrages de portée internationale</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDON-") !== false) {echo('<li><a href="#OCDON">Ouvrages ou chapitres ou directions d’ouvrages de portée internationale</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-TO-") !== false) {echo('<li><a href="#TO">Tous les ouvrages (sauf vulgarisation)</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-OSPI-") !== false) {echo('<li><a href="#OSPI">Ouvrages scientifiques de portée internationale</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-OSPN-") !== false) {echo('<li><a href="#OSPN">Ouvrages scientifiques de portée nationale</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-COS-") !== false) {echo('<li><a href="#COS">Chapitres d’ouvrages scientifiques</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-COSI-") !== false) {echo('<li><a href="#COSI">Chapitres d’ouvrages scientifiques de portée internationale</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-COSN-") !== false) {echo('<li><a href="#COSN">Chapitres d’ouvrages scientifiques de portée nationale</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOS-") !== false) {echo('<li><a href="#DOS">Directions d’ouvrages scientifiques</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOSI-") !== false) {echo('<li><a href="#DOSI">Directions d’ouvrages scientifiques de portée internationale</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOSN-") !== false) {echo('<li><a href="#DOSN">Directions d’ouvrages scientifiques de portée nationale</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCO-") !== false) {echo('<li><a href="#OCO">Ouvrages ou chapitres d’ouvrages</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCOI-") !== false) {echo('<li><a href="#OCOI">Ouvrages ou chapitres d’ouvrages de portée internationale</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCON-") !== false) {echo('<li><a href="#OCON">Ouvrages ou chapitres d’ouvrages de portée nationale</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODO-") !== false) {echo('<li><a href="#ODO">Ouvrages ou directions d’ouvrages</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODOI-") !== false) {echo('<li><a href="#ODOI">Ouvrages ou directions d’ouvrages de portée internationale</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODON-") !== false) {echo('<li><a href="#ODON">Ouvrages ou directions d’ouvrages de portée nationale</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCV-") !== false) {echo('<li><a href="#OCV">Ouvrages ou chapitres de vulgarisation</a></li>');}
-if (isset($choix_ouvr) && strpos($choix_ouvr, "-CNR-") !== false) {echo('<li><a href="#CNR">Coordination de numéro de revue</a></li>');}
-if (isset($choix_autr) && strpos($choix_autr, "-BRE-") !== false) {echo('<li><a href="#BRE">Brevets</a></li>');}
-if (isset($choix_autr) && strpos($choix_autr, "-RAP-") !== false) {echo('<li><a href="#RAP">Rapports</a></li>');}
-if (isset($choix_autr) && strpos($choix_autr, "-THE-") !== false) {echo('<li><a href="#THE">Thèses</a></li>');}
-if (isset($choix_autr) && strpos($choix_autr, "-HDR-") !== false) {echo('<li><a href="#HDR">HDR</a></li>');}
-if (isset($choix_autr) && strpos($choix_autr, "-VID-") !== false) {echo('<li><a href="#VID">Vidéos</a></li>');}
-if (isset($choix_autr) && strpos($choix_autr, "-PWM-") !== false) {echo('<li><a href="#PWM">Preprints, working papers, manuscrits non publiés</a></li>');}
-if (isset($choix_autr) && strpos($choix_autr, "-CRO-") !== false) {echo('<li><a href="#CRO">Comptes rendus d\'ouvrage ou notes de lecture</a></li>');}
-if (isset($choix_autr) && strpos($choix_autr, "-BLO-") !== false) {echo('<li><a href="#BLO">Billets de blog</a></li>');}
-if (isset($choix_autr) && strpos($choix_autr, "-NED-") !== false) {echo('<li><a href="#NED">Notices d\'encyclopédie ou dictionnaire</a></li>');}
-if (isset($choix_autr) && strpos($choix_autr, "-TRA-") !== false) {echo('<li><a href="#TRA">Traductions</a></li>');}
-if (isset($choix_autr) && strpos($choix_autr, "-LOG-") !== false) {echo('<li><a href="#LOG">Logiciels</a></li>');}
-if (isset($choix_autr) && strpos($choix_autr, "-AP-") !== false) {echo('<li><a href="#AP">Autres publications</a></li>');}
-echo('<li><a href="#BILAN">Bilan quantitatif</a></li>');
+if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {echo '<li><a href="#TA">Tous les articles (sauf vulgarisation)</a></li>';}
+if (isset($choix_publis) && strpos($choix_publis, "-ACL-") !== false) {echo '<li><a href="#ACL">Articles de revues à comité de lecture</a></li>';}
+if (isset($choix_publis) && strpos($choix_publis, "-ASCL-") !== false) {echo '<li><a href="#ASCL">Articles de revues sans comité de lecture</a></li>';}
+if (isset($choix_publis) && strpos($choix_publis, "-ARI-") !== false) {echo '<li><a href="#ARI">Articles de revues internationales</a></li>';}
+if (isset($choix_publis) && strpos($choix_publis, "-ARN-") !== false) {echo '<li><a href="#ARN">Articles de revues nationales</a></li>';}
+if (isset($choix_publis) && strpos($choix_publis, "-ACLRI-") !== false) {echo '<li><a href="#ACLRI">Articles de revues internationales à comité de lecture</a></li>';}
+if (isset($choix_publis) && strpos($choix_publis, "-ACLRN-") !== false) {echo '<li><a href="#ACLRN">Articles de revues nationales à comité de lecture</a></li>';}
+if (isset($choix_publis) && strpos($choix_publis, "-ASCLRI-") !== false) {echo '<li><a href="#ASCLRI">Articles de revues internationales sans comité de lecture</a></li>';}
+if (isset($choix_publis) && strpos($choix_publis, "-ASCLRN-") !== false) {echo '<li><a href="#ASCLRN">Articles de revues nationales sans comité de lecture</a></li>';}
+if (isset($choix_publis) && strpos($choix_publis, "-AV-") !== false) {echo '<li><a href="#AV">Articles de vulgarisation</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-TC-") !== false) {echo '<li><a href="#TC">Toutes les communications (sauf grand public)</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CA-") !== false) {echo '<li><a href="#CA">Communications avec actes</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CSA-") !== false) {echo '<li><a href="#CSA">Communications sans actes</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CI-") !== false) {echo '<li><a href="#CI">Communications internationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CN-") !== false) {echo '<li><a href="#CN">Communications nationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CAI-") !== false) {echo '<li><a href="#CAI">Communications avec actes internationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CSAI-") !== false) {echo '<li><a href="#CAI">Communications sans actes internationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CAN-") !== false) {echo '<li><a href="#CSAN">Communications avec actes nationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CSAN-") !== false) {echo '<li><a href="#CSAN">Communications sans actes nationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CINVASANI-") !== false) {echo '<li><a href="#CINVASANI">Communications invitées avec ou sans actes, nationales ou internationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CINVA-") !== false) {echo '<li><a href="#CINVA">Communications invitées avec actes</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CINVSA-") !== false) {echo '<li><a href="#CINVSA">Communications invitées sans actes</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CNONINVA-") !== false) {echo '<li><a href="#CNONINVA">Communications non invitées avec actes</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CNONINVSA-") !== false) {echo '<li><a href="#CNONINVSA">Communications non invitées sans actes</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CINVI-") !== false) {echo '<li><a href="#CINVI">Communications invitées internationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CNONINVI-") !== false) {echo '<li><a href="#CNONINVI">Communications non invitées internationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CINVN-") !== false) {echo '<li><a href="#CINVN">Communications invitées nationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CNONINVN-") !== false) {echo '<li><a href="#CNONINVN">Communications non invitées nationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CPASANI-") !== false) {echo '<li><a href="#CPASANI">Communications par affiches (posters) avec ou sans actes, nationales ou internationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CPA-") !== false) {echo '<li><a href="#CPA">Communications par affiches (posters) avec actes</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CPSA-") !== false) {echo '<li><a href="#CPSA">Communications par affiches (posters) sans actes</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CPI-") !== false) {echo '<li><a href="#CPI">Communications par affiches internationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CPN-") !== false) {echo '<li><a href="#CPN">Communications par affiches nationales</a></li>';}
+if (isset($choix_comm) && strpos($choix_comm, "-CGP-") !== false) {echo '<li><a href="#CGP">Conférences grand public</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDO-") !== false) {echo '<li><a href="#OCDO">Ouvrages ou chapitres ou directions d’ouvrages</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDOI-") !== false) {echo '<li><a href="#OCDOI">Ouvrages ou chapitres ou directions d’ouvrages de portée internationale</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDON-") !== false) {echo '<li><a href="#OCDON">Ouvrages ou chapitres ou directions d’ouvrages de portée internationale</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-TO-") !== false) {echo '<li><a href="#TO">Tous les ouvrages (sauf vulgarisation)</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-OSPI-") !== false) {echo '<li><a href="#OSPI">Ouvrages scientifiques de portée internationale</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-OSPN-") !== false) {echo '<li><a href="#OSPN">Ouvrages scientifiques de portée nationale</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-COS-") !== false) {echo '<li><a href="#COS">Chapitres d’ouvrages scientifiques</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-COSI-") !== false) {echo '<li><a href="#COSI">Chapitres d’ouvrages scientifiques de portée internationale</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-COSN-") !== false) {echo '<li><a href="#COSN">Chapitres d’ouvrages scientifiques de portée nationale</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOS-") !== false) {echo '<li><a href="#DOS">Directions d’ouvrages scientifiques</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOSI-") !== false) {echo '<li><a href="#DOSI">Directions d’ouvrages scientifiques de portée internationale</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOSN-") !== false) {echo '<li><a href="#DOSN">Directions d’ouvrages scientifiques de portée nationale</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCO-") !== false) {echo '<li><a href="#OCO">Ouvrages ou chapitres d’ouvrages</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCOI-") !== false) {echo '<li><a href="#OCOI">Ouvrages ou chapitres d’ouvrages de portée internationale</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCON-") !== false) {echo '<li><a href="#OCON">Ouvrages ou chapitres d’ouvrages de portée nationale</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODO-") !== false) {echo '<li><a href="#ODO">Ouvrages ou directions d’ouvrages</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODOI-") !== false) {echo '<li><a href="#ODOI">Ouvrages ou directions d’ouvrages de portée internationale</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODON-") !== false) {echo '<li><a href="#ODON">Ouvrages ou directions d’ouvrages de portée nationale</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCV-") !== false) {echo '<li><a href="#OCV">Ouvrages ou chapitres de vulgarisation</a></li>';}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-CNR-") !== false) {echo '<li><a href="#CNR">Coordination de numéro de revue</a></li>';}
+if (isset($choix_autr) && strpos($choix_autr, "-BRE-") !== false) {echo '<li><a href="#BRE">Brevets</a></li>';}
+if (isset($choix_autr) && strpos($choix_autr, "-RAP-") !== false) {echo '<li><a href="#RAP">Rapports</a></li>';}
+if (isset($choix_autr) && strpos($choix_autr, "-THE-") !== false) {echo '<li><a href="#THE">Thèses</a></li>';}
+if (isset($choix_autr) && strpos($choix_autr, "-HDR-") !== false) {echo '<li><a href="#HDR">HDR</a></li>';}
+if (isset($choix_autr) && strpos($choix_autr, "-VID-") !== false) {echo '<li><a href="#VID">Vidéos</a></li>';}
+if (isset($choix_autr) && strpos($choix_autr, "-PWM-") !== false) {echo '<li><a href="#PWM">Preprints, working papers, manuscrits non publiés</a></li>';}
+if (isset($choix_autr) && strpos($choix_autr, "-CRO-") !== false) {echo '<li><a href="#CRO">Comptes rendus d\'ouvrage ou notes de lecture</a></li>';}
+if (isset($choix_autr) && strpos($choix_autr, "-BLO-") !== false) {echo '<li><a href="#BLO">Billets de blog</a></li>';}
+if (isset($choix_autr) && strpos($choix_autr, "-NED-") !== false) {echo '<li><a href="#NED">Notices d\'encyclopédie ou dictionnaire</a></li>';}
+if (isset($choix_autr) && strpos($choix_autr, "-TRA-") !== false) {echo '<li><a href="#TRA">Traductions</a></li>';}
+if (isset($choix_autr) && strpos($choix_autr, "-LOG-") !== false) {echo '<li><a href="#LOG">Logiciels</a></li>';}
+if (isset($choix_autr) && strpos($choix_autr, "-AP-") !== false) {echo '<li><a href="#AP">Autres publications</a></li>';}
+echo '<li><a href="#BILAN">Bilan quantitatif</a></li>';
 ?>
 </ul>
 
@@ -3610,7 +3614,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 
 	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s";
 
-   //Cas particulierS pour combinaisons
+   //Cas particuliers pour combinaisons
    if ($docType_s=="COMM+POST"){
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"COMM\"%20OR%20docType_s:\"POSTER\")".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
@@ -3651,7 +3655,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
    //echo "http://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
 	 
 	 //suite avec URL requête API
-	 echo("<a target='_blank' href='".$reqAPI."'>URL requête API HAL</a>");
+	 echo "<a target='_blank' href='".$reqAPI."'>URL requête API HAL</a>";
 	 
    ini_set('memory_limit', '256M');
    $results = json_decode($contents);
@@ -3801,7 +3805,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							$pos = stripos(wd_remove_accents($listenominit), wd_remove_accents($nom." ".$prenom));
 							/*
 							if ($nom == "Roquelaure" || $nom == "Jouan") {
-								echo('<script>console.log("'.$pos." > ".wd_remove_accents($nom." ".$prenom).'");</script>');
+								echo '<script>console.log("'.$pos." > ".wd_remove_accents($nom." ".$prenom).'");</script>';
 							}
 							*/
 							$pos = substr_count(mb_substr($listenominit, 0, $pos, 'UTF-8'), '~');
@@ -3817,17 +3821,17 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							//echo 'titi : '.$dateprod <= $datedepar;
 							/*
 							if ($nom == "Roquelaure" || $nom == "Jouan") {
-								echo('<script>console.log("'.$listenominit.'");</script>');
-								echo('<script>console.log("'.$nom." ".$prenom." > ".$datearriv." - ".$datedepar." > ".$pos.'");</script>');
+								echo '<script>console.log("'.$listenominit.'");</script>';
+								echo '<script>console.log("'.$nom." ".$prenom." > ".$datearriv." - ".$datedepar." > ".$pos.'");</script>';
 							}
 							*/
 							if ($dateprod >= $datearriv && $dateprod <= $datedepar) {
 								$affil = "ok";
 								if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
-								if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
+								if ($typcol == "gras") {$deb = $cstSTRo;$fin = $cstSTRf;}
 								if ($typcol == "aucun") {$deb = "";$fin = "";}
 								//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
-								if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
+								if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = $cstSTRo; $fingras = $cstSTRf;}
 							}
 						}
 						if ($prenomPlus != "") {
@@ -3876,10 +3880,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								if ($dateprod >= $datearriv && $dateprod <= $datedepar) {
 									$affil = "ok";
 									if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
-									if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
+									if ($typcol == "gras") {$deb = $cstSTRo;$fin = $cstSTRf;}
 									if ($typcol == "aucun") {$deb = "";$fin = "";}
 									//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
-									if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
+									if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = $cstSTRo; $fingras = $cstSTRf;}
 								}
 								//echo $nom.' - '.$prenom.' -> '.$nom2.' - '.$prenom2.' / '.$prenomPlus.'<br>';
 							}
@@ -3931,10 +3935,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									if ($dateprod >= $datearriv && $dateprod <= $datedepar) {
 										$affil = "ok";
 										if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
-										if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
+										if ($typcol == "gras") {$deb = $cstSTRo;$fin = $cstSTRf;}
 										if ($typcol == "aucun") {$deb = "";$fin = "";}
 										//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
-										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
+										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = $cstSTRo; $fingras = $cstSTRf;}
 									}
 								}
 								//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
@@ -3986,10 +3990,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									if ($dateprod >= $datearriv && $dateprod <= $datedepar) {
 										$affil = "ok";
 										if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
-										if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
+										if ($typcol == "gras") {$deb = $cstSTRo;$fin = $cstSTRf;}
 										if ($typcol == "aucun") {$deb = "<t>";$fin = "</t>";}//<t> and </t> are factice and just serve to identify the author of the collection for $trpaff
 										//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
-										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
+										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = $cstSTRo; $fingras = $cstSTRf;}
 									}
 								}
 								//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
@@ -4043,11 +4047,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					}
 					if (isset($typcol) && $typcol == "gras") {
 						$authorsBT = $authors;
-						while (strpos($authorsBT, "<strong>") !== false) {
-							$posi = strpos($authorsBT, "<strong>");
-							$posf = strpos($authorsBT, "</strong>", $posi);
+						while (strpos($authorsBT, $cstSTRo) !== false) {
+							$posi = strpos($authorsBT, $cstSTRo);
+							$posf = strpos($authorsBT, $cstSTRf, $posi);
 							$autcol = substr($authorsBT, $posi, ($posf - $posi));
-							$autfin = str_replace(array("<strong>", "</strong>"), "", $autcol);
+							$autfin = str_replace(array($cstSTRo, $cstSTRf), "", $autcol);
 							$tabAF = explode(" ", $autfin);
 							$autfin = "";
 							if (in_array($tabAF[0], $aLN)) {//Nom simple
@@ -4106,7 +4110,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$extractTmp = "";
 					$trp = 0;
 					while(isset($trpTab[$trp])) {
-						if ($trp >= $trpaff && strpos($trpTab[$trp], "<strong>") === false && strpos($trpTab[$trp], "<u>") === false && strpos($trpTab[$trp], "<t>") === false) {
+						if ($trp >= $trpaff && strpos($trpTab[$trp], $cstSTRo) === false && strpos($trpTab[$trp], "<u>") === false && strpos($trpTab[$trp], "<t>") === false) {
 							$extractTmp .= "trolitrp, ";
 						}else{
 							$extractTmp .= $trpTab[$trp].", ";
@@ -4121,7 +4125,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				
 				$extractpur = $extract;
 				if ($typaut == "soul") {$extract = "<u>".$extract."</u>";}
-				if ($typaut == "gras") {$extract = "<strong>".$extract."</strong>";}
+				if ($typaut == "gras") {$extract = $cstSTRo.$extract.$cstSTRf;}
 				if (isset($spa) && $spa == "pvi") {$extract = str_replace(", ", "; ", $extract);}
 				if (isset($spa) && $spa == "esp") {$extract = str_replace(", ", " ", $extract);}
 				if (isset($spa) && $spa == "tir") {$extract = str_replace(", ", " - ", $extract);}
@@ -4205,10 +4209,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				if ($docType_s != "NED") {$deb = "&nbsp;";}
 				if ($docType_s == "CNR") {$deb = ",&nbsp;";}
 				$fin = "";
-				if (strpos($typtit,"gras") !== false) {$deb .= "<strong>";}
+				if (strpos($typtit,"gras") !== false) {$deb .= $cstSTRo;}
 				if (strpos($typtit,"ital") !== false) {$deb .= "<em>";}
 				if (strpos($typtit,"guil") !== false) {$deb .= "«&nbsp;";$fin .= "&nbsp;»";}
-				if (strpos($typtit,"gras") !== false) {$fin .= "</strong>";}
+				if (strpos($typtit,"gras") !== false) {$fin .= $cstSTRf;}
 				if (strpos($typtit,"ital") !== false) {;$fin .= "</em>";}
 				if (strpos($typtit,"reto") !== false) {$fin .= "<br>";}
 				$titrePlus = $entry->title_s[0];
@@ -4245,7 +4249,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 
 				//Adding journalTitle_s:
 				$chaine1 .= $delim."Titre journal";
-				if ($typrvg == "non") {$debrev = "";$finrev = "";}else{$debrev = "<strong>";$finrev = "</strong>";}
+				if ($typrvg == "non") {$debrev = "";$finrev = "";}else{$debrev = $cstSTRo;$finrev = $cstSTRf;}
 				if (isset($entry->journalTitle_s)) {
 					$resArray[$iRA]["revue"] = $entry->journalTitle_s;
 					if ($docType_s == "ART" OR $docType_s == "CRO"){
@@ -4296,10 +4300,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$chaine1 .= $delim."Titre";
 					$deb = "";
 					$fin = "";
-					if (strpos($typtit,"gras") !== false) {$deb .= "<strong>";}
+					if (strpos($typtit,"gras") !== false) {$deb .= $cstSTRo;}
 					if (strpos($typtit,"ital") !== false) {$deb .= "<em>";}
 					if (strpos($typtit,"guil") !== false) {$deb .= "«&nbsp;";$fin .= "&nbsp;»";}
-					if (strpos($typtit,"gras") !== false) {$fin .= "</strong>";}
+					if (strpos($typtit,"gras") !== false) {$fin .= $cstSTRf;}
 					if (strpos($typtit,"ital") !== false) {;$fin .= "</em>";}
 					if (strpos($typtit,"reto") !== false) {$fin .= "<br>";}
 					$titrePlus = $entry->title_s[0];
@@ -5084,7 +5088,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					//Mise en page des groupes
 					$i = 1;
 					while ($i <= 7) {//$i = Nombre de groupes
-						if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~gras~") !== false) {${"deb" .$i . "_1"} = "<strong>";${"fin" . $i ."_1"} = "</strong>";}else{${"deb" .$i . "_1"} = "";${"fin" .$i . "_1"} = "";}
+						if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~gras~") !== false) {${"deb" .$i . "_1"} = $cstSTRo;${"fin" . $i ."_1"} = $cstSTRf;}else{${"deb" .$i . "_1"} = "";${"fin" .$i . "_1"} = "";}
 						if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~soul~") !== false) {${"deb" .$i . "_2"} = "<u>";${"fin" . $i ."_2"} = "</u>";}else{${"deb" .$i . "_2"} = "";${"fin" .$i . "_2"} = "";}
 						if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~ital~") !== false) {${"deb" .$i . "_3"} = "<em>";${"fin" . $i ."_3"} = "</em>";}else{${"deb" .$i . "_3"} = "";${"fin" .$i . "_3"} = "";}
 						if (isset(${"choix_mp" . $i}) && strpos(${"choix_mp" . $i}, "~epar~") !== false) {${"deb" .$i . "_4"} = "(";${"fin" . $i ."_4"} = ")";}else{${"deb" .$i . "_4"} = "";${"fin" .$i . "_4"} = "";}
@@ -5818,7 +5822,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					if ($typbib == "oui") {
 						$auteursBT = str_replace(array(".,", ".}</u>,", ".}</strong>,",".},"), array(". and ", ".} and ", ".} and ", ".} and "), $authorsBT);
 						if (substr($auteursBT, -5) == " and ") {$auteursBT = substr($auteursBT, 0, (strlen($auteursBT) - 5));}
-						$auteursBT = str_replace(array("<u>", "<strong>", "</u>", "</strong>"), "", $auteursBT);
+						$auteursBT = str_replace(array("<u>", $cstSTRo, "</u>", $cstSTRf), "", $auteursBT);
 						$bibLab .= ",".chr(13).chr(10)."	author = {".$auteursBT."}";
 					}else{
 						$bibLab .= ",".chr(13).chr(10)."	author = {".$auteurs."}";
@@ -6019,9 +6023,9 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 		 $indgr[$j] = 1;
 		 $crogr[$j] = 0;
 	 }
-	 var_dump($indgr);
-	 var_dump($crogr);
-	 var_dump($drefl);
+	 //var_dump($indgr);
+	 //var_dump($crogr);
+	 //var_dump($drefl);
 	 
 
    $yearNumbers = array();
@@ -7554,7 +7558,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 			}
 			/* Render the picture (choose the best way) */
 			$myPicture->render("img/mypic1_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team)."_".$typsign.".png");
-			echo('<center><img alt="Type de publication par année" src="img/mypic1_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team)."_".$typsign.'.png"></center><br>');
+			echo '<center><img alt="Type de publication par année" src="img/mypic1_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team)."_".$typsign.'.png"></center><br>';
 
 			// Données année par type de publication
 			if (strpos(phpversion(), "7") !== false) {//PHP7 > pChart2
@@ -7661,7 +7665,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 			}
 			/* Render the picture (choose the best way) */
 			$myPicture->render("img/mypic2_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team)."_".$typsign.".png");
-			echo('<center><img alt="Année par type de publication"src="img/mypic2_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team)."_".$typsign.'.png"></center><br>');
+			echo '<center><img alt="Année par type de publication"src="img/mypic2_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team)."_".$typsign.'.png"></center><br>';
 
 			//Si choix sur tous les articles, camembert avec détails
 			if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {
@@ -7832,7 +7836,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 							$PieChart->drawPieLegend(30,200,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
 						}
 						$myPicture->render('img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png');
-						echo('<center><img alt="Détails" src="img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png"></center><br>');
+						echo '<center><img alt="Détails" src="img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png"></center><br>';
 						$i++;
 					}
 				}
@@ -7963,7 +7967,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 						$PieChart->drawPieLegend(30,200,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
 					}
 					$myPicture->render('img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png');
-					echo('<center><img alt="Détails" src="img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png"></center><br>');
+					echo '<center><img alt="Détails" src="img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png"></center><br>';
 					$i++;
 					
 					//Somme
@@ -8085,7 +8089,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 						$PieChart->drawPieLegend(30,200,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
 					}
 					$myPicture->render('img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png');
-					echo('<center><img alt="Détails" src="img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png"></center><br>');
+					echo '<center><img alt="Détails" src="img/mypic'.$i.'_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$typsign.'.png"></center><br>';
 					$i++;
 				}
 			}
@@ -8093,210 +8097,210 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 			foreach($numbers as $rType => $yearNumbers){
 				switch($rType) {
 					case "TA":
-						echo('&nbsp;&nbsp;&nbsp;TA = Tous les articles (sauf vulgarisation)'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;TA = Tous les articles (sauf vulgarisation)'.$cpmlng.$detail.'<br>';
 						break;
 					case "ACL" :
-						echo('&nbsp;&nbsp;&nbsp;ACL = Articles de revues à comité de lecture'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;ACL = Articles de revues à comité de lecture'.$cpmlng.$detail.'<br>';
 						break;
 					case "ASCL" :
-						echo('&nbsp;&nbsp;&nbsp;ASCL = Articles de revues sans comité de lecture'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;ASCL = Articles de revues sans comité de lecture'.$cpmlng.$detail.'<br>';
 						break;
 					case "ARI" :
-						echo('&nbsp;&nbsp;&nbsp;ARI = Articles de revues internationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;ARI = Articles de revues internationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "ARN" :
-						echo('&nbsp;&nbsp;&nbsp;ARN = Articles de revues nationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;ARN = Articles de revues nationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "ACLRI" :
-						echo('&nbsp;&nbsp;&nbsp;ACLRI = Articles de revues internationales à comité de lecture'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;ACLRI = Articles de revues internationales à comité de lecture'.$cpmlng.$detail.'<br>';
 						break;
 					case "ACLRN" :
-						echo('&nbsp;&nbsp;&nbsp;ACLRN = Articles de revues nationales à comité de lecture'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;ACLRN = Articles de revues nationales à comité de lecture'.$cpmlng.$detail.'<br>';
 						break;
 					case "ASCLRI" :
-						echo('&nbsp;&nbsp;&nbsp;ASCLRI = Articles de revues internationales sans comité de lecture'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;ASCLRI = Articles de revues internationales sans comité de lecture'.$cpmlng.$detail.'<br>';
 						break;
 					case "ASCLRN" :
-						echo('&nbsp;&nbsp;&nbsp;ASCLRN = Articles de revues nationales sans comité de lecture'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;ASCLRN = Articles de revues nationales sans comité de lecture'.$cpmlng.$detail.'<br>';
 						break;
 					case "AV" :
-						echo('&nbsp;&nbsp;&nbsp;AV = Articles de vulgarisation'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;AV = Articles de vulgarisation'.$cpmlng.$detail.'<br>';
 						break;
 					case "TC" :
-						echo('&nbsp;&nbsp;&nbsp;TC = Toutes les communications (sauf grand public)'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;TC = Toutes les communications (sauf grand public)'.$cpmlng.$detail.'<br>';
 						break;
 					case "CA" :
-						echo('&nbsp;&nbsp;&nbsp;CA = Communications avec actes'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CA = Communications avec actes'.$cpmlng.$detail.'<br>';
 						break;
 					case "CSA" :
-						echo('&nbsp;&nbsp;&nbsp;CSA = Communications sans actes'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CSA = Communications sans actes'.$cpmlng.$detail.'<br>';
 						break;
 					case "CI" :
-						echo('&nbsp;&nbsp;&nbsp;CI = Communications internationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CI = Communications internationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CN" :
-						echo('&nbsp;&nbsp;&nbsp;CN = Communications nationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CN = Communications nationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CAI" :
-						echo('&nbsp;&nbsp;&nbsp;CAI = Communications avec actes internationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CAI = Communications avec actes internationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CSAI" :
-						echo('&nbsp;&nbsp;&nbsp;CSAI = Communications sans actes internationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CSAI = Communications sans actes internationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CAN" :
-						echo('&nbsp;&nbsp;&nbsp;CAN = Communications avec actes nationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CAN = Communications avec actes nationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CSAN" :
-						echo('&nbsp;&nbsp;&nbsp;CSAN = Communications sans actes nationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CSAN = Communications sans actes nationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CINVASANI" :
-						echo('&nbsp;&nbsp;&nbsp;CINVASANI = Communications invitées avec ou sans actes, nationales ou internationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CINVASANI = Communications invitées avec ou sans actes, nationales ou internationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CINVA" :
-						echo('&nbsp;&nbsp;&nbsp;CINVA = Communications invitées avec actes'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CINVA = Communications invitées avec actes'.$cpmlng.$detail.'<br>';
 						break;
 					case "CINVSA" :
-						echo('&nbsp;&nbsp;&nbsp;CINVSA = Communications invitées sans actes'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CINVSA = Communications invitées sans actes'.$cpmlng.$detail.'<br>';
 						break;
 					case "CNONINVA" :
-						echo('&nbsp;&nbsp;&nbsp;CNONINVA = Communications non invitées avec actes'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CNONINVA = Communications non invitées avec actes'.$cpmlng.$detail.'<br>';
 						break;
 					case "CNONINVSA" :
-						echo('&nbsp;&nbsp;&nbsp;CNONINVSA = Communications non invitées sans actes'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CNONINVSA = Communications non invitées sans actes'.$cpmlng.$detail.'<br>';
 						break;
 					case "CINVI" :
-						echo('&nbsp;&nbsp;&nbsp;CINVI = Communications invitées internationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CINVI = Communications invitées internationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CNONINVI" :
-						echo('&nbsp;&nbsp;&nbsp;CNONINVI = Communications non invitées internationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CNONINVI = Communications non invitées internationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CINVN" :
-						echo('&nbsp;&nbsp;&nbsp;CINVN = Communications invitées nationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CINVN = Communications invitées nationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CNONINVN" :
-						echo('&nbsp;&nbsp;&nbsp;CNONINVN = Communications non invitées nationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CNONINVN = Communications non invitées nationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CPASANI" :
-						echo('&nbsp;&nbsp;&nbsp;CPASANI = Communications par affiches (posters) avec ou sans actes, nationales ou internationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CPASANI = Communications par affiches (posters) avec ou sans actes, nationales ou internationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CPA" :
-						echo('&nbsp;&nbsp;&nbsp;CPA = Communications par affiches (posters) avec actes'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CPA = Communications par affiches (posters) avec actes'.$cpmlng.$detail.'<br>';
 						break;
 					case "CPSA" :
-						echo('&nbsp;&nbsp;&nbsp;CPSA = Communications par affiches (posters) sans actes'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CPSA = Communications par affiches (posters) sans actes'.$cpmlng.$detail.'<br>';
 						break;
 					case "CPI" :
-						echo('&nbsp;&nbsp;&nbsp;CPI = Communications par affiches internationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CPI = Communications par affiches internationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CPN" :
-						echo('&nbsp;&nbsp;&nbsp;CPN = Communications par affiches nationales'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CPN = Communications par affiches nationales'.$cpmlng.$detail.'<br>';
 						break;
 					case "CGP" :
-						echo('&nbsp;&nbsp;&nbsp;CGP = Conférences grand public'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CGP = Conférences grand public'.$cpmlng.$detail.'<br>';
 						break;
 					case "OCDO" :
-						echo('&nbsp;&nbsp;&nbsp;OCDO = Ouvrages ou chapitres ou directions d’ouvrages'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;OCDO = Ouvrages ou chapitres ou directions d’ouvrages'.$cpmlng.$detail.'<br>';
 						break;
 					case "OCDOI" :
-						echo('&nbsp;&nbsp;&nbsp;OCDOI = Ouvrages ou chapitres ou directions d’ouvrages de portée internationale'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;OCDOI = Ouvrages ou chapitres ou directions d’ouvrages de portée internationale'.$cpmlng.$detail.'<br>';
 						break;
 					case "OCDON" :
-						echo('&nbsp;&nbsp;&nbsp;OCDON = Ouvrages ou chapitres ou directions d’ouvrages de portée nationale'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;OCDON = Ouvrages ou chapitres ou directions d’ouvrages de portée nationale'.$cpmlng.$detail.'<br>';
 						break;
 					case "TO" :
-						echo('&nbsp;&nbsp;&nbsp;TO = Tous les ouvrages (sauf vulgarisation)'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;TO = Tous les ouvrages (sauf vulgarisation)'.$cpmlng.$detail.'<br>';
 						break;
 					case "OSPI" :
-						echo('&nbsp;&nbsp;&nbsp;OSPI = Ouvrages scientifiques de portée internationale'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;OSPI = Ouvrages scientifiques de portée internationale'.$cpmlng.$detail.'<br>';
 						break;
 					case "OSPN" :
-						echo('&nbsp;&nbsp;&nbsp;OSPN = Ouvrages scientifiques de portée nationale'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;OSPN = Ouvrages scientifiques de portée nationale'.$cpmlng.$detail.'<br>';
 						break;
 					case "COS" :
-						echo('&nbsp;&nbsp;&nbsp;COS = Chapitres d’ouvrages scientifiques'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;COS = Chapitres d’ouvrages scientifiques'.$cpmlng.$detail.'<br>';
 						break;
 					case "COSI" :
-						echo('&nbsp;&nbsp;&nbsp;COSI = Chapitres d’ouvrages scientifiques de portée internationale'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;COSI = Chapitres d’ouvrages scientifiques de portée internationale'.$cpmlng.$detail.'<br>';
 						break;
 					case "COSN" :
-						echo('&nbsp;&nbsp;&nbsp;COSN = Chapitres d’ouvrages scientifiques de portée nationale'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;COSN = Chapitres d’ouvrages scientifiques de portée nationale'.$cpmlng.$detail.'<br>';
 						break;
 					case "DOS" :
-						echo('&nbsp;&nbsp;&nbsp;DOS = Directions d’ouvrages scientifiques'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;DOS = Directions d’ouvrages scientifiques'.$cpmlng.$detail.'<br>';
 						break;
 					case "DOSI" :
-						echo('&nbsp;&nbsp;&nbsp;DOSI = Directions d’ouvrages scientifiques de portée internationale'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;DOSI = Directions d’ouvrages scientifiques de portée internationale'.$cpmlng.$detail.'<br>';
 						break;
 					case "DOSN" :
-						echo('&nbsp;&nbsp;&nbsp;DOSN = Directions d’ouvrages scientifiques de portée nationale'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;DOSN = Directions d’ouvrages scientifiques de portée nationale'.$cpmlng.$detail.'<br>';
 						break;
 					case "OCO" :
-						echo('&nbsp;&nbsp;&nbsp;OCO = Ouvrages ou chapitres d’ouvrages'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;OCO = Ouvrages ou chapitres d’ouvrages'.$cpmlng.$detail.'<br>';
 						break;
 					case "OCOI" :
-						echo('&nbsp;&nbsp;&nbsp;OCOI = Ouvrages ou chapitres d’ouvrages de portée internationale'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;OCOI = Ouvrages ou chapitres d’ouvrages de portée internationale'.$cpmlng.$detail.'<br>';
 						break;
 					case "OCON" :
-						echo('&nbsp;&nbsp;&nbsp;OCON = Ouvrages ou chapitres d’ouvrages de portée nationale'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;OCON = Ouvrages ou chapitres d’ouvrages de portée nationale'.$cpmlng.$detail.'<br>';
 						break;
 					case "ODO" :
-						echo('&nbsp;&nbsp;&nbsp;ODO = Ouvrages ou directions d’ouvrages'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;ODO = Ouvrages ou directions d’ouvrages'.$cpmlng.$detail.'<br>';
 						break;
 					case "ODOI" :
-						echo('&nbsp;&nbsp;&nbsp;ODOI = Ouvrages ou directions d’ouvrages de portée internationale'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;ODOI = Ouvrages ou directions d’ouvrages de portée internationale'.$cpmlng.$detail.'<br>';
 						break;
 					case "ODON" :
-						echo('&nbsp;&nbsp;&nbsp;ODON = Ouvrages ou directions d’ouvrages de portée nationale'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;ODON = Ouvrages ou directions d’ouvrages de portée nationale'.$cpmlng.$detail.'<br>';
 						break;
 					case "OCV" :
-						echo('&nbsp;&nbsp;&nbsp;OCV = Ouvrages ou chapitres de vulgarisation'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;OCV = Ouvrages ou chapitres de vulgarisation'.$cpmlng.$detail.'<br>';
 						break;
 					case "CNR" :
-						echo('&nbsp;&nbsp;&nbsp;CNR = Coordination de numéro de revue'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CNR = Coordination de numéro de revue'.$cpmlng.$detail.'<br>';
 						break;
 					case "BRE" :
-						echo('&nbsp;&nbsp;&nbsp;BRE = Brevets'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;BRE = Brevets'.$cpmlng.$detail.'<br>';
 						break;
 					case "RAP" :
-						echo('&nbsp;&nbsp;&nbsp;RAP = Rapports'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;RAP = Rapports'.$cpmlng.$detail.'<br>';
 						break;
 					case "THE" :
-						echo('&nbsp;&nbsp;&nbsp;THE = Thèses'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;THE = Thèses'.$cpmlng.$detail.'<br>';
 						break;
 					case "HDR" :
-						echo('&nbsp;&nbsp;&nbsp;HDR = HDR'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;HDR = HDR'.$cpmlng.$detail.'<br>';
 						break;
 					case "VID" :
-						echo('&nbsp;&nbsp;&nbsp;VID = Vidéos'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;VID = Vidéos'.$cpmlng.$detail.'<br>';
 						break;
 					case "PWM" :
-						echo('&nbsp;&nbsp;&nbsp;PWM = Preprints, working papers, manuscrits non publiés'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;PWM = Preprints, working papers, manuscrits non publiés'.$cpmlng.$detail.'<br>';
 						break;
 					case "CRO" :
-						echo('&nbsp;&nbsp;&nbsp;CRO = Comptes rendus d\'ouvrage ou notes de lecture'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;CRO = Comptes rendus d\'ouvrage ou notes de lecture'.$cpmlng.$detail.'<br>';
 						break;
 					case "BLO" :
-						echo('&nbsp;&nbsp;&nbsp;BLO = Billets de blog'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;BLO = Billets de blog'.$cpmlng.$detail.'<br>';
 						break;
 					case "NED" :
-						echo('&nbsp;&nbsp;&nbsp;NED = Notices d\'encyclopédie ou dictionnaire'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;NED = Notices d\'encyclopédie ou dictionnaire'.$cpmlng.$detail.'<br>';
 						break;
 					case "TRA" :
-						echo('&nbsp;&nbsp;&nbsp;TRA = Traductions'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;TRA = Traductions'.$cpmlng.$detail.'<br>';
 						break;
 					case "LOG" :
-						echo('&nbsp;&nbsp;&nbsp;LOG = Logiciels'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;LOG = Logiciels'.$cpmlng.$detail.'<br>';
 						break;
 					case "AP" :
-						echo('&nbsp;&nbsp;&nbsp;AP = Autres publications'.$cpmlng.$detail.'<br>');
+						echo '&nbsp;&nbsp;&nbsp;AP = Autres publications'.$cpmlng.$detail.'<br>';
 						break;
 				}
 			}
 			if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {
-				echo('&nbsp;&nbsp;&nbsp;ACLRI = Articles de revues internationales à comité de lecture'.$cpmlng.$detail.'<br>');
-				echo('&nbsp;&nbsp;&nbsp;ACLRN = Articles de revues nationales à comité de lecture'.$cpmlng.$detail.'<br>');
-				echo('&nbsp;&nbsp;&nbsp;ASCLRI = Articles de revues internationales sans comité de lecture'.$cpmlng.$detail.'<br>');
-				echo('&nbsp;&nbsp;&nbsp;ASCLRN = Articles de revues nationales sans comité de lecture'.$cpmlng.$detail.'<br>');
+				echo '&nbsp;&nbsp;&nbsp;ACLRI = Articles de revues internationales à comité de lecture'.$cpmlng.$detail.'<br>';
+				echo '&nbsp;&nbsp;&nbsp;ACLRN = Articles de revues nationales à comité de lecture'.$cpmlng.$detail.'<br>';
+				echo '&nbsp;&nbsp;&nbsp;ASCLRI = Articles de revues internationales sans comité de lecture'.$cpmlng.$detail.'<br>';
+				echo '&nbsp;&nbsp;&nbsp;ASCLRN = Articles de revues nationales sans comité de lecture'.$cpmlng.$detail.'<br>';
 			}
 			
 			//si GR, graphes dédiés
@@ -8315,7 +8319,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 						}
 						
 						if ($graphe == "oui") {
-							echo('<br><br>');
+							echo '<br><br>';
 							//Nombre de publications croisées par équipe sur la période
 							$i = 0;
 							for($i=0;$i<count($crores[$rType]);$i++) {
@@ -8373,7 +8377,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 
 							/* Render the picture (choose the best way) */
 							$myPicture->render('img/mypic_crogr_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$rType.'_'.$typsign.'.png');
-							echo('<center><img alt="Publications croisées par équipe sur la période" src="img/mypic_crogr_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$rType.'_'.$typsign.'.png"></center><br>');
+							echo '<center><img alt="Publications croisées par équipe sur la période" src="img/mypic_crogr_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$rType.'_'.$typsign.'.png"></center><br>';
 						}
 					}
 					$iGR++;
@@ -8390,7 +8394,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 						}
 						
 						if ($graphe == "oui") {
-							echo('<br><br>');
+							echo '<br><br>';
 							//Nombre de publications croisées par équipe sur la période
 							$MyData = new pData();
 							$i = 0;
@@ -8445,19 +8449,19 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 							
 							/* Render the picture (choose the best way) */
 							$myPicture->render('img/mypic_crogr_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$rType.'_'.$typsign.'.png');
-							echo('<center><img alt="Publications croisées par équipe sur la période" src="img/mypic_crogr_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$rType.'_'.$typsign.'.png"></center><br>');
+							echo '<center><img alt="Publications croisées par équipe sur la période" src="img/mypic_crogr_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'_'.$rType.'_'.$typsign.'.png"></center><br>';
 						}
 					}
 					$iGR++;
 				}
 			}
 			if (isset($team) && isset($gr) && (strpos($gr, $team) !== false)) {//GR
-				echo('Ce(s) graphe(s) est(sont) généré(s) lors d\'une numérotation/codification par équipe :<br>');
-				echo('. Dans le cas d\'une extraction pour une unité, il représente l\'ensemble des publications croisées identifiées pour chaque équipe.<br>');
-				echo('. Dans le cas d\'une extraction pour une équipe, il représente le nombre de publications croisées de cette équipe et celui des autres équipes concernées en regard. ');
-				echo('Les sommes respectives ne sont pas forcément égales car une même publication croisée peut concerner plus de deux équipes : elle comptera alors pour 1 pour l\'équipe concernée par l\'extraction, ');
-				echo('mais également pour 1 pour chacune des autres équipes associées.<br><br>');
-				echo('<center><table cellpadding="5" width="80%"><tr><td width="45%" valign="top" style="text-align: justify;"><em>Pour illuster ce dernier cas, l\'exemple ci-contre représente l\'extraction des publications de l\'équipe GR2 dans une unité comportant quatre équipes. GR2 compte ainsi un total de 6 publications croisées: précisément, 3 avec GR1 seule, 1 avec GR3 seule, 1 avec GR1 et GR3, et 1 avec GR1 et GR4, d\'où, globalement, 5 avec GR1, 2 avec GR3 et 1 avec GR4.</em></td><td>&nbsp;&nbsp;&nbsp;<img alt="Exemple" src="HAL_exemple.jpg"></td></tr></table></center><br><br>');
+				echo 'Ce(s) graphe(s) est(sont) généré(s) lors d\'une numérotation/codification par équipe :<br>';
+				echo '. Dans le cas d\'une extraction pour une unité, il représente l\'ensemble des publications croisées identifiées pour chaque équipe.<br>';
+				echo '. Dans le cas d\'une extraction pour une équipe, il représente le nombre de publications croisées de cette équipe et celui des autres équipes concernées en regard.';
+				echo 'Les sommes respectives ne sont pas forcément égales car une même publication croisée peut concerner plus de deux équipes : elle comptera alors pour 1 pour l\'équipe concernée par l\'extraction,';
+				echo 'mais également pour 1 pour chacune des autres équipes associées.<br><br>';
+				echo '<center><table cellpadding="5" width="80%"><tr><td width="45%" valign="top" style="text-align: justify;"><em>Pour illuster ce dernier cas, l\'exemple ci-contre représente l\'extraction des publications de l\'équipe GR2 dans une unité comportant quatre équipes. GR2 compte ainsi un total de 6 publications croisées: précisément, 3 avec GR1 seule, 1 avec GR3 seule, 1 avec GR1 et GR3, et 1 avec GR1 et GR4, d\'où, globalement, 5 avec GR1, 2 avec GR3 et 1 avec GR4.</em></td><td>&nbsp;&nbsp;&nbsp;<img alt="Exemple" src="HAL_exemple.jpg"></td></tr></table></center><br><br>';
 			}
 		}
 	}else{
@@ -8601,7 +8605,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
           mp(selmpgpAut, "emin", "listAut", "", "", txtAut2);
           mp(selmpgpAut, "emaj", "listAut", "", "", txtAut2);
           mp(selmpgpAut, "effa", "listAut", "", "", txtAut2);
-          mp(selmpgpAut, "gras", "listAut", "<strong>", "</strong>", txtAut2);
+          mp(selmpgpAut, "gras", "listAut", $cstSTRo, $cstSTRf, txtAut2);
           mp(selmpgpAut, "soul", "listAut", "<u>", "</u>", txtAut2);
           mp(selmpgpAut, "ital", "listAut", "<em>", "</em>", txtAut2);
           mp(selmpgpAut, "epar", "listAut", "(", ")", txtAut2);
@@ -8626,7 +8630,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
           mp(selmpgpTit, "emin", "listTit", "", "", "<?php echo $txtTit;?>");
           mp(selmpgpTit, "emaj", "listTit", "", "", "<?php echo $txtTit;?>");
           mp(selmpgpTit, "effa", "listTit", "", "", "<?php echo $txtTit;?>");
-          mp(selmpgpTit, "gras", "listTit", "<strong>", "</strong>", "<?php echo $txtTit;?>");
+          mp(selmpgpTit, "gras", "listTit", $cstSTRo, $cstSTRf, "<?php echo $txtTit;?>");
           mp(selmpgpTit, "soul", "listTit", "<u>", "</u>", "<?php echo $txtTit;?>");
           mp(selmpgpTit, "ital", "listTit", "<em>", "</em>", "<?php echo $txtTit;?>");
           mp(selmpgpTit, "epar", "listTit", "(", ")", "<?php echo $txtTit;?>");
@@ -8651,7 +8655,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
           mp(selmpgpAnn, "emin", "listAnn", "", "", "<?php echo $txtAnn;?>");
           mp(selmpgpAnn, "emaj", "listAnn", "", "", "<?php echo $txtAnn;?>");
           mp(selmpgpAnn, "effa", "listAnn", "", "", "<?php echo $txtAnn;?>");
-          mp(selmpgpAnn, "gras", "listAnn", "<strong>", "</strong>", "<?php echo $txtAnn;?>");
+          mp(selmpgpAnn, "gras", "listAnn", $cstSTRo, $cstSTRf, "<?php echo $txtAnn;?>");
           mp(selmpgpAnn, "soul", "listAnn", "<u>", "</u>", "<?php echo $txtAnn;?>");
           mp(selmpgpAnn, "ital", "listAnn", "<em>", "</em>", "<?php echo $txtAnn;?>");
           mp(selmpgpAnn, "epar", "listAnn", "(", ")", "<?php echo $txtAnn;?>");
@@ -8676,7 +8680,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
           mp(selmpgpRev, "emin", "listRev", "", "", "<?php echo $txtRev;?>");
           mp(selmpgpRev, "emaj", "listRev", "", "", "<?php echo $txtRev;?>");
           mp(selmpgpRev, "effa", "listRev", "", "", "<?php echo $txtRev;?>");
-          mp(selmpgpRev, "gras", "listRev", "<strong>", "</strong>", "<?php echo $txtRev;?>");
+          mp(selmpgpRev, "gras", "listRev", $cstSTRo, $cstSTRf, "<?php echo $txtRev;?>");
           mp(selmpgpRev, "soul", "listRev", "<u>", "</u>", "<?php echo $txtRev;?>");
           mp(selmpgpRev, "ital", "listRev", "<em>", "</em>", "<?php echo $txtRev;?>");
           mp(selmpgpRev, "epar", "listRev", "(", ")", "<?php echo $txtRev;?>");
@@ -8701,7 +8705,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
           mp(selmpgpVol, "emin", "listVol", "", "", "<?php echo $txtVol;?>");
           mp(selmpgpVol, "emaj", "listVol", "", "", "<?php echo $txtVol;?>");
           mp(selmpgpVol, "effa", "listVol", "", "", "<?php echo $txtVol;?>");
-          mp(selmpgpVol, "gras", "listVol", "<strong>", "</strong>", "<?php echo $txtVol;?>");
+          mp(selmpgpVol, "gras", "listVol", $cstSTRo, $cstSTRf, "<?php echo $txtVol;?>");
           mp(selmpgpVol, "soul", "listVol", "<u>", "</u>", "<?php echo $txtVol;?>");
           mp(selmpgpVol, "ital", "listVol", "<em>", "</em>", "<?php echo $txtVol;?>");
           mp(selmpgpVol, "epar", "listVol", "(", ")", "<?php echo $txtVol;?>");
@@ -8726,7 +8730,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
           mp(selmpgpNum, "emin", "listNum", "", "", "<?php echo $txtNum;?>");
           mp(selmpgpNum, "emaj", "listNum", "", "", "<?php echo $txtNum;?>");
           mp(selmpgpNum, "effa", "listNum", "", "", "<?php echo $txtNum;?>");
-          mp(selmpgpNum, "gras", "listNum", "<strong>", "</strong>", "<?php echo $txtNum;?>");
+          mp(selmpgpNum, "gras", "listNum", $cstSTRo, $cstSTRf, "<?php echo $txtNum;?>");
           mp(selmpgpNum, "soul", "listNum", "<u>", "</u>", "<?php echo $txtNum;?>");
           mp(selmpgpNum, "ital", "listNum", "<em>", "</em>", "<?php echo $txtNum;?>");
           mp(selmpgpNum, "epar", "listNum", "(", ")", "<?php echo $txtNum;?>");
@@ -8751,7 +8755,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
           mp(selmpgpPag, "emin", "listPag", "", "", "<?php echo $txtPag;?>");
           mp(selmpgpPag, "emaj", "listPag", "", "", "<?php echo $txtPag;?>");
           mp(selmpgpPag, "effa", "listPag", "", "", "<?php echo $txtPag;?>");
-          mp(selmpgpPag, "gras", "listPag", "<strong>", "</strong>", "<?php echo $txtPag;?>");
+          mp(selmpgpPag, "gras", "listPag", $cstSTRo, $cstSTRf, "<?php echo $txtPag;?>");
           mp(selmpgpPag, "soul", "listPag", "<u>", "</u>", "<?php echo $txtPag;?>");
           mp(selmpgpPag, "ital", "listPag", "<em>", "</em>", "<?php echo $txtPag;?>");
           mp(selmpgpPag, "epar", "listPag", "(", ")", "<?php echo $txtPag;?>");
@@ -8781,7 +8785,7 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 <!-- End Piwik Code -->
 </body></html>
 <?php
-if ($typidh == "vis") {echo('<script type="text/javascript" charset="UTF-8">document.getElementById("detrac").style.display = "block";</script>');}
+if ($typidh == "vis") {echo '<script type="text/javascript" charset="UTF-8">document.getElementById("detrac").style.display = "block";</script>';}
 ?>
 <br>
 <?php
