@@ -3612,7 +3612,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 $numFound = 0;
 	 if (isset($results->response->numFound)) {$numFound=$results->response->numFound;}
 	 
-	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s";
+	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s,authQuality_s";
 
    //Cas particuliers pour combinaisons
    if ($docType_s=="COMM+POST"){
@@ -3834,6 +3834,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = $cstSTRo; $fingras = $cstSTRf;}
 							}
 						}
+						//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
+						if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
+							if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb = "<u>";$fin = "</u>";}
+						}
 						if ($prenomPlus != "") {
 							$authors .= $nom2."troliesp".$prenom2."troliesp".$prenomPlus;
 							$authors = mise_en_evidence(wd_remove_accents($nom2."troliesp".$prenom2."troliesp".$prenomPlus), $authors, $deb, $fin);
@@ -3886,6 +3890,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = $cstSTRo; $fingras = $cstSTRf;}
 								}
 								//echo $nom.' - '.$prenom.' -> '.$nom2.' - '.$prenom2.' / '.$prenomPlus.'<br>';
+							}
+							//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
+							if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
+								if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb = "<u>";$fin = "</u>";}
 							}
 							if ($prenomPlus != "") {
 								$authors .= $nom2."troliesp".$prenom2."troliesp".$prenomPlus;
@@ -3941,6 +3949,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = $cstSTRo; $fingras = $cstSTRf;}
 									}
 								}
+								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
+								if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
+									if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb = "<u>";$fin = "</u>";}
+								}
 								//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
 								if ($prenomPlus != "") {
 									$authors .= $prenom2."troliesp".$prenomPlus."troliesp".$nom2;
@@ -3995,6 +4007,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 										//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
 										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = $cstSTRo; $fingras = $cstSTRf;}
 									}
+								}
+								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
+								if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
+									if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb = "<u>";$fin = "</u>";}
 								}
 								//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
 								if ($prenomPlus != "") {
