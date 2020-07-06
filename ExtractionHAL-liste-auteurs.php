@@ -39,8 +39,8 @@ if (in_array($ip, $IP_aut)) {
 
   if (isset($_GET["erreur"])) {
     $erreur = $_GET["erreur"];
-    if ($erreur == "extfic") {echo('<script type="text/javascript">alert("Vous ne pouvez importer que des fichiers de type csv ou txt !")</script>');}
-    if ($erreur == "nulfic") {echo('<script type="text/javascript">alert("Le fichier csv ou txt est vide !")</script>');}
+    if ($erreur == "extfic") {echo '<script type="text/javascript">alert("Vous ne pouvez importer que des fichiers de type csv ou txt !")</script>';}
+    if ($erreur == "nulfic") {echo '<script type="text/javascript">alert("Le fichier csv ou txt est vide !")</script>';}
   }
 
 
@@ -265,51 +265,51 @@ if (in_array($ip, $IP_aut)) {
   }
 
   if (isset($_GET["action"]) && $_GET["action"] == "ajout") {//Ajout d'un auteur
-    echo('<form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-liste-auteurs.php">');
-    echo('<b>Ajout d\'un auteur :</b><br><br>');
-    echo('<b>Nom</b> : <input type="text" name="nom"><br>');
-    echo('<b>Prénom</b> : <input type="text" name="prenom"><br>');
-    echo('<b>Secteur</b> : <input type="text" name="secteur"><br>');
-    echo('<b>Titre</b> : <input type="text" name="titre"><br>');
-    echo('<b>Unité</b> : <input type="text" name="unite"><br>');
-    echo('<b>UMR</b> : <input type="text" name="umr"><br>');
-    echo('<b>Grade</b> : <input type="text" name="grade"><br>');
-    echo('<b>Numeq</b> : <input type="text" name="umeq"><br>');
-    echo('<b>Eqrec</b> : <input type="text" name="eqrec"><br>');
-    echo('<b>Collection HAL</b> : <input type="text" name="collhal"><br>');
-    echo('<b>Collection équipe HAL</b> : <input type="text" name="colleqhal"><br>');
-    echo('<b>Arrivée <em>(aaaa)</em></b> : <input type="text" name="arriv"><br>');
-    echo('<b>Départ <em>(aaaa)</em></b> : <input type="text" name="depar"><br><br>');
-    echo('<input type="hidden" value="ajout" name="action">');
+    echo '<form method="POST" accept-charset="utf-8" name="ajout" action="ExtractionHAL-liste-auteurs.php">';
+    echo '<b>Ajout d\'un auteur :</b><br><br>';
+    echo '<b>Nom</b> : <input type="text" name="nom"><br>';
+    echo '<b>Prénom</b> : <input type="text" name="prenom"><br>';
+    echo '<b>Secteur</b> : <input type="text" name="secteur"><br>';
+    echo '<b>Titre</b> : <input type="text" name="titre"><br>';
+    echo '<b>Unité</b> : <input type="text" name="unite"><br>';
+    echo '<b>UMR</b> : <input type="text" name="umr"><br>';
+    echo '<b>Grade</b> : <input type="text" name="grade"><br>';
+    echo '<b>Numeq</b> : <input type="text" name="umeq"><br>';
+    echo '<b>Eqrec</b> : <input type="text" name="eqrec"><br>';
+    echo '<b>Collection HAL</b> : <input type="text" name="collhal"><br>';
+    echo '<b>Collection équipe HAL</b> : <input type="text" name="colleqhal"><br>';
+    echo '<b>Arrivée <em>(aaaa)</em></b> : <input type="text" name="arriv"><br>';
+    echo '<b>Départ <em>(aaaa)</em></b> : <input type="text" name="depar"><br><br>';
+    echo '<input type="hidden" value="ajout" name="action">';
     if (isset($_GET["cehval"]) && $_GET["cehval"] != "") {
-      echo('<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">');
+      echo '<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">';
     }
-    echo('<input type="submit" value="Valider" name="ajout">');
-    echo('</form>');
+    echo '<input type="submit" value="Valider" name="ajout">';
+    echo '</form>';
   }else{
     if (isset($_GET["modif"]) && $_GET["modif"] != "") {//Modification d'une entrée
       $modif = $_GET["modif"];
-      echo('<form method="POST" accept-charset="utf-8" name="modification" action="ExtractionHAL-liste-auteurs.php">');
-      echo('<b>Modification de l\'entrée '.$modif.' :</b><br><br>');
-      echo('<b>Nom</b> : <input type="text" value="'.mb_ucwords($AUTEURS_LISTE[$modif]['nom']).'" name="nom"><br>');
-      echo('<b>Prénom</b> : <input type="text" value="'.mb_ucwords($AUTEURS_LISTE[$modif]['prenom']).'" name="prenom"><br>');
-      echo('<b>Secteur</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['secteur'].'" name="secteur"><br>');
-      echo('<b>Titre</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['titre'].'" name="titre"><br>');
-      echo('<b>Unité</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['unite'].'" name="unite"><br>');
-      echo('<b>UMR</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['umr'].'" name="umr"><br>');
-      echo('<b>Grade</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['grade'].'" name="grade"><br>');
-      echo('<b>Numeq</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['numeq'].'" name="numeq"><br>');
-      echo('<b>Eqrec</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['eqrec'].'" name="eqrec"><br>');
-      echo('<b>Collection HAL</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['collhal'].'" name="collhal"><br>');
-      echo('<b>Collection équipe HAL</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['colleqhal'].'" name="colleqhal"><br>');
-      echo('<b>Arrivée <em>(aaaa)</em></b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['arriv'].'" name="arriv"><br>');
-      echo('<b>Départ <em>(aaaa)</em></b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['depar'].'" name="depar"><br><br>');
-      echo('<input type="hidden" value="'.$modif.'" name="modif">');
+      echo '<form method="POST" accept-charset="utf-8" name="modification" action="ExtractionHAL-liste-auteurs.php">';
+      echo '<b>Modification de l\'entrée '.$modif.' :</b><br><br>';
+      echo '<b>Nom</b> : <input type="text" value="'.mb_ucwords($AUTEURS_LISTE[$modif]['nom']).'" name="nom"><br>';
+      echo '<b>Prénom</b> : <input type="text" value="'.mb_ucwords($AUTEURS_LISTE[$modif]['prenom']).'" name="prenom"><br>';
+      echo '<b>Secteur</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['secteur'].'" name="secteur"><br>';
+      echo '<b>Titre</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['titre'].'" name="titre"><br>';
+      echo '<b>Unité</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['unite'].'" name="unite"><br>';
+      echo '<b>UMR</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['umr'].'" name="umr"><br>';
+      echo '<b>Grade</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['grade'].'" name="grade"><br>';
+      echo '<b>Numeq</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['numeq'].'" name="numeq"><br>';
+      echo '<b>Eqrec</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['eqrec'].'" name="eqrec"><br>';
+      echo '<b>Collection HAL</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['collhal'].'" name="collhal"><br>';
+      echo '<b>Collection équipe HAL</b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['colleqhal'].'" name="colleqhal"><br>';
+      echo '<b>Arrivée <em>(aaaa)</em></b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['arriv'].'" name="arriv"><br>';
+      echo '<b>Départ <em>(aaaa)</em></b> : <input type="text" value="'.$AUTEURS_LISTE[$modif]['depar'].'" name="depar"><br><br>';
+      echo '<input type="hidden" value="'.$modif.'" name="modif">';
       if (isset($_GET["cehval"]) && $_GET["cehval"] != "") {
-        echo('<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">');
+        echo '<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">';
       }
-      echo('<input type="submit" value="Valider" name="modification">');
-      echo('</form>');
+      echo '<input type="submit" value="Valider" name="modification">';
+      echo '</form>';
     }else{
       include $fichier_auteurs;
       array_multisort($AUTEURS_LISTE);
@@ -344,7 +344,7 @@ if (in_array($ip, $IP_aut)) {
       <?php
       for($i=0; $i<$ceh; $i++) {
         if (isset($cehval) && $cehval == $cehal[$i]) {$ta = "selected";}else{$ta = "";}
-        echo('<option value="'.$cehal[$i].'" '.$ta.'>'.$cehal[$i].'</option>');
+        echo '<option value="'.$cehal[$i].'" '.$ta.'>'.$cehal[$i].'</option>';
       }
       ?>
       </select><br>
@@ -437,7 +437,7 @@ if (in_array($ip, $IP_aut)) {
         Sélectionnez le fichier à importer :
         <input type="file" name="importcomplet" size="30" style="font-family: corbel, verdana, sans-serif; font-size: 10pt;"><br>
         <?php if (isset($_GET["cehval"]) && $_GET["cehval"] != "") {
-          echo('<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">');
+          echo '<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">';
         }?>
         <input type="submit" value="Importer">
         </form>
@@ -449,20 +449,20 @@ if (in_array($ip, $IP_aut)) {
         Sélectionnez le fichier à importer :
         <input type="file" name="importpartiel" size="30" style="font-family: corbel, verdana, sans-serif; font-size: 10pt;"><br>
         <?php if (isset($_GET["cehval"]) && $_GET["cehval"] != "") {
-          echo('<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">');
+          echo '<input type="hidden" value="'.$_GET["cehval"].'" name="cehval">';
         }?>
         <input type="submit" value="Importer">
         </form>
         <?php
       }
       //tableau résultat
-      echo('<table width="100%">');
-      echo('<tr><td colspan="14" align="center">');
+      echo '<table width="100%">';
+      echo '<tr><td colspan="14" align="center">';
       $total = count($AUTEURS_LISTE);
       $iaff = 1;
       $iaut = 0;
       $text = '';
-      echo ('<b>Total de '.$total.' auteurs renseignés, toutes collections confondues</b>');
+      echo '<b>Total de '.$total.' auteurs renseignés, toutes collections confondues</b>';
       $text .= '</td></tr>';
       $text .= '<tr><td colspan="14">&nbsp;</td></tr>';
       $text .= '<tr><td>&nbsp;</td>';
