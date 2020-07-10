@@ -2014,6 +2014,8 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 		<option <?php echo $txt;?> value="https://hal-unice.archives-ouvertes.fr/">https://hal-unice.archives-ouvertes.fr/</option>
 		<?php if ($racine == "https://hal-unilim.archives-ouvertes.fr/") {$txt = "selected";}else{$txt = "";}?>
 		<option <?php echo $txt;?> value="https://hal-unilim.archives-ouvertes.fr/">https://hal-unilim.archives-ouvertes.fr/</option>
+		<?php if ($racine == "https://hal.univ-angers.fr/") {$txt = "selected";}else{$txt = "";}?>
+		<option <?php echo $txt;?> value="https://hal.univ-angers.fr/">https://hal.univ-angers.fr/</option>
 		<?php if ($racine == "https://hal-univ-artois.archives-ouvertes.fr/") {$txt = "selected";}else{$txt = "";}?>
 		<option <?php echo $txt;?> value="https://hal-univ-artois.archives-ouvertes.fr/">https://hal-univ-artois.archives-ouvertes.fr/</option>
 		<?php if ($racine == "https://hal-univ-avignon.archives-ouvertes.fr/") {$txt = "selected";}else{$txt = "";}?>
@@ -2388,7 +2390,7 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 		if (isset($typinc) && $typinc == "inv" || !isset($team)) {$inv = "checked=\"\"";}else{$inv = "";}
 		?>
 		<div class="form-group" style="display:block;">
-			<label for="typinc" class="col-sm-3 control-label">InCites Top 1%/10% <em style="font-weight:normal;">(il peut être nécessaire de lancer <a target="_blank" href="./ExtractionHAL-InCitesF.php">la procédure d'extraction</a> à partir de votre liste CSV réalisée selon ce <a href="./modele-InCites.csv">modèle</a>)</em> :</label>
+			<label for="typinc" class="col-sm-3 control-label">InCites Top 1%/10% <em style="font-weight:normal;">(il peut être nécessaire de lancer <a target="_blank" href="./ExtractionHAL-InCites.php">la procédure d'extraction</a> à partir de votre liste CSV réalisée selon ce <a href="./modele-InCites.csv">modèle</a>)</em> :</label>
 			<div class="col-sm-2 radio">
 					<label>
 							<input type="radio" name="typinc" id="typinc1" value="vis" <?php echo $vis;?> style="position:absolute; margin-left:-20px;">visible
