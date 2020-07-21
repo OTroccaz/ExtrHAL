@@ -5649,7 +5649,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				for ($t=1; $t<=20; $t++) {
 					$InCites_LISTE[$t] = array();
 				}
-				$ISSN = $entry->journalIssn_s;
+				if (isset($entry->journalIssn_s)) {$ISSN = $entry->journalIssn_s;}
 				if (isset($typinc) && ($typinc == "vis" || $typinc == "vis1" || $typinc == "vis10")) {
 					if ($ISSN != "") {
 						$Inc = "";
