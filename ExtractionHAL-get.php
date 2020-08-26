@@ -146,6 +146,29 @@ if (isset($_GET["team"])) {
     }
   }
 	
+	//si une restriction de l'affichage à certains auteurs a été demandée
+	if (isset($_GET['rstaff']) && $_GET['rstaff'] != '') {
+		//$restrict = "Menshikov M.~Wade A.~Belitsky V.";
+		//$restrict = "Menshikov Mikhail~Wade Andrew~Belitsky Vladimir";
+		$restrict = $_GET['rstaff'];
+		$listenomcomp1 = "~".$restrict."~";
+		$listenomcomp2 = "~";
+		$listenomcomp3 = "~";
+		$listenominit = "~";
+		$arriv = "~";
+		$depar = "~";
+		$tabRestrict = explode("~", $restrict);
+		foreach($tabRestrict as $tabR) {
+      $listenominit .= nomCompEntier(strstr($tabR, ' ', true))." ".prenomCompInit(trim(strstr($tabR, ' '))).".~";
+			$listenomcomp2 .= prenomCompEntier(trim(strstr($tabR, ' ')))." ".nomCompEntier(strstr($tabR, ' ', true))."~";
+			$listenomcomp3 .= mb_strtoupper(nomCompEntier(strstr($tabR, ' ', true), 'UTF-8'))." (".prenomCompEntier(trim(strstr($tabR, ' '))).")~";
+			$arriv .= "1900~";
+			$moisactuel = date('n', time());
+			if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
+			$depar .= $idepar."~";
+		}
+	}
+	
 	/*
 	$tabN = explode("~", $listenominit);
 	$tabA = explode("~", $arriv);
@@ -277,6 +300,8 @@ if (isset($_GET["team"])) {
 	$urlsauv .= "&typgra=".$typgra;
 	$limgra = $_GET["limgra"];
 	$urlsauv .= "&limgra=".$limgra;
+	$rstaff = $_GET["rstaff"];
+	$urlsauv .= "&rstaff=".$rstaff;
 	$typtri = $_GET["typtri"];
 	$urlsauv .= "&typtri=".$typtri;
   $typfor = $_GET["typfor"];

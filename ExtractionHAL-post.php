@@ -149,6 +149,29 @@ if (isset($_POST["soumis"])) {
     }
   }
   //echo $depar;
+	
+	//si une restriction de l'affichage à certains auteurs a été demandée
+	if (isset($_POST['rstaff']) && $_POST['rstaff'] != '') {
+		//$rstaff = "Menshikov M.~Wade A.~Belitsky V.";
+		//$rstaff = "Menshikov Mikhail~Wade Andrew~Belitsky Vladimir";
+		$restrict = $_POST['rstaff'];
+		$listenomcomp1 = "~".$restrict."~";
+		$listenomcomp2 = "~";
+		$listenomcomp3 = "~";
+		$listenominit = "~";
+		$arriv = "~";
+		$depar = "~";
+		$tabRestrict = explode("~", $restrict);
+		foreach($tabRestrict as $tabR) {
+      $listenominit .= nomCompEntier(strstr($tabR, ' ', true))." ".prenomCompInit(trim(strstr($tabR, ' '))).".~";
+			$listenomcomp2 .= prenomCompEntier(trim(strstr($tabR, ' ')))." ".nomCompEntier(strstr($tabR, ' ', true))."~";
+			$listenomcomp3 .= mb_strtoupper(nomCompEntier(strstr($tabR, ' ', true), 'UTF-8'))." (".prenomCompEntier(trim(strstr($tabR, ' '))).")~";
+			$arriv .= "1900~";
+			$moisactuel = date('n', time());
+			if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
+			$depar .= $idepar."~";
+		}
+	}
 
   //Extraction sur un IdHAL > auteur à mettre en évidence
   if (isset($evhal) && $evhal != "") {
@@ -273,6 +296,8 @@ if (isset($_POST["soumis"])) {
 	$urlsauv .= "&typgra=".$typgra;
 	$limgra = $_POST["limgra"];
 	$urlsauv .= "&limgra=".$limgra;
+	$rstaff = $_POST["rstaff"];
+	$urlsauv .= "&rstaff=".$rstaff;
 	$typtri = $_POST["typtri"];
 	$urlsauv .= "&typtri=".$typtri;
 	$typfor = $_POST["typfor"];

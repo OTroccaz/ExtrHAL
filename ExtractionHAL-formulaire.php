@@ -496,6 +496,15 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 		</div>
 		<br>
 		<br>
+		<?php
+		if (isset($rstaff)) {$rstaffval = $rstaff;}else{$rstaffval = "";}
+		?>
+		<div class="form-group" style="display:block;">
+			<label for="rstaff" class="col-sm-3 control-label">Restreindre l'affichage à certains auteurs de la collection et leur réserver la mise en valeur <a class=info onclick='return false' href="#">(Instructions)<span>Renseigner sous la forme 'Nom Prénom' et séparer les auteurs par un tilde ~. Exemple : <strong>Jonchère Laurent~Troccaz Olivier</strong>.</span></a> :</label>
+				<input id="rstaff" class="col-sm-3 form-control" type="text" name="rstaff" value="<?php echo $rstaffval;?>" style="height: 20px; width: 600px;">
+		</div>
+		<br>
+		<br>
 	</div>
 	<div class="panel-body" style="padding: 3px; border:1px solid #dddddd; border-radius: 3px; margin-bottom: 10px;">
 		<?php
