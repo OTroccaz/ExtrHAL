@@ -278,7 +278,7 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 			<label for="typtri" class="col-sm-3 control-label">Classer par :</label>
 			<div class="col-sm-2 radio">
 					<label>
-							<input type="radio" name="typtri" id="typtri1" value="premierauteur" <?php echo $premierauteur;?> style="position:absolute; margin-left:-20px;">année puis nom du premieur auteur
+							<input type="radio" name="typtri" id="typtri1" value="premierauteur" <?php echo $premierauteur;?> style="position:absolute; margin-left:-20px;">année puis nom du premier auteur
 					</label>
 			</div>
 			<div class="col-sm-2 radio">

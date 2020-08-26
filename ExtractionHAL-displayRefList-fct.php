@@ -87,7 +87,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	//var_dump($infoArray);
 	//var_dump($rtfArray);
 	//var_dump($resArray);
-	array_multisort($sortArray, $infoArray, $rtfArray, $resArray);
+	array_multisort($sortArray, $infoArray, $rtfArray, $bibArray, $resArray);
 
 	$currentYear="99999";
 	$i = 0;
