@@ -150,7 +150,7 @@ if (isset($_POST["soumis"])) {
   }
   //echo $depar;
 	
-	//si une restriction de l'affichage à certains auteurs a été demandée
+	//Si une restriction de l'affichage à certains auteurs a été demandée
 	if (isset($_POST['rstaff']) && $_POST['rstaff'] != '') {
 		//$rstaff = "Menshikov M.~Wade A.~Belitsky V.";
 		//$rstaff = "Menshikov Mikhail~Wade Andrew~Belitsky Vladimir";
@@ -171,6 +171,10 @@ if (isset($_POST["soumis"])) {
 			if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
 			$depar .= $idepar."~";
 		}
+		$listenominit = str_replace('_', ' ', $listenominit);
+		$listenomcomp1 = str_replace('_', ' ', $listenomcomp1);
+		$listenomcomp2 = str_replace('_', ' ', $listenomcomp2);
+		$listenomcomp3 = str_replace('_', ' ', $listenomcomp3);
 	}
 
   //Extraction sur un IdHAL > auteur à mettre en évidence

@@ -146,7 +146,7 @@ if (isset($_GET["team"])) {
     }
   }
 	
-	//si une restriction de l'affichage à certains auteurs a été demandée
+	//Si une restriction de l'affichage à certains auteurs a été demandée
 	if (isset($_GET['rstaff']) && $_GET['rstaff'] != '') {
 		//$restrict = "Menshikov M.~Wade A.~Belitsky V.";
 		//$restrict = "Menshikov Mikhail~Wade Andrew~Belitsky Vladimir";
@@ -167,6 +167,10 @@ if (isset($_GET["team"])) {
 			if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
 			$depar .= $idepar."~";
 		}
+		$listenominit = str_replace('_', ' ', $listenominit);
+		$listenomcomp1 = str_replace('_', ' ', $listenomcomp1);
+		$listenomcomp2 = str_replace('_', ' ', $listenomcomp2);
+		$listenomcomp3 = str_replace('_', ' ', $listenomcomp3);
 	}
 	
 	/*
