@@ -128,8 +128,12 @@ if (isset($_POST["soumis"]) || isset($_GET["team"])) {
   //Si demandée, URL de sauvegarde raccourcie via Bitly
   $bitly = "aucun";
 	if ($UBitly == "oui") {
-		include_once('bitly_extrhal.php');
-		$urlbitly = bitly_v4_shorten($urlsauv);
+		if (strlen($urlsauv) < 1700) {
+			include_once('bitly_extrhal.php');
+			$urlbitly = bitly_v4_shorten($urlsauv);
+		}else{
+			$urlbitly = "Impossible car URL trop longue";
+		}
 		$bitly = "ok";
 	}
 
@@ -139,7 +143,11 @@ if (isset($_POST["soumis"]) || isset($_GET["team"])) {
   echo "<a href='ExtractionHAL.php'>Réinitialiser tous les paramètres</a>";
   echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	if ($UBitly == "oui") {
-		echo "URL raccourcie directe : <a href=".$urlbitly.">".$urlbitly."</a></strong></center>";
+		if ($urlbitly != "Impossible car URL trop longue") {
+			echo "URL raccourcie directe : <a href=".$urlbitly.">".$urlbitly."</a></strong></center>";
+		}else{
+			echo "URL raccourcie directe : ".$urlbitly."</strong></center>";
+		}
 	}else{
 		echo "Pas d'URL raccourcie directe demandée</strong></center>";
 	}
