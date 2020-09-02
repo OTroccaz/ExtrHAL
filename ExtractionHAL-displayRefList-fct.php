@@ -375,6 +375,23 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 					 $inF1 = fopen($Fnm1,"a+");
 					 //fseek($inF1, 0);
 					 fwrite($inF1,$chaine);
+					 
+					 //export bibtex
+					 $bib = explode("¤", $bibArray[$i]);
+					 $tex0 = $bib[0];
+					 //$tex = substr($bib[0], 0, (strlen($bib[0])-2));
+					 $tex1 = "";
+					 if (isset($bib[1])) {$tex1 .= "PEER_REVIEWING = {".$bib[1]."},\r\n";}
+					 if (isset($bib[2])) {$tex1 .= "  AUDIENCE = {".$bib[2]."},\r\n";}
+					 if (isset($bib[3])) {$tex1 .= "  PROCEEDINGS = {".$bib[3]."},\r\n";}
+					 if (isset($bib[4])) {$tex1 .= "  INVITED_COMMUNICATION = {".$bib[4]."},\r\n";}
+					 //$tex .= "}\r\n";
+					 $tex = str_replace("HAL_VERSION", $tex1."  HAL_VERSION", $tex0);
+					 //$Fnm2 = "./HAL/extractionHAL_".$team.".bib";
+					 $inF2 = fopen($Fnm2,"a+");
+					 fseek($inF2, 0);
+					 fwrite($inF2,$tex."\r\n");
+					 fclose($inF2);
 				 }
 			 }else{ //Année différente
 				 $sign = (strpos($entryInfo, $signTxt) !== false) ? "oui" : "ras";
@@ -581,24 +598,25 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 					 $inF1 = fopen($Fnm1,"a+");
 					 //fseek($inF1, 0);
 					 fwrite($inF1,$chaine);
+					 
+					 //export bibtex
+					 $bib = explode("¤", $bibArray[$i]);
+					 $tex0 = $bib[0];
+					 //$tex = substr($bib[0], 0, (strlen($bib[0])-2));
+					 $tex1 = "";
+					 if (isset($bib[1])) {$tex1 .= "PEER_REVIEWING = {".$bib[1]."},\r\n";}
+					 if (isset($bib[2])) {$tex1 .= "  AUDIENCE = {".$bib[2]."},\r\n";}
+					 if (isset($bib[3])) {$tex1 .= "  PROCEEDINGS = {".$bib[3]."},\r\n";}
+					 if (isset($bib[4])) {$tex1 .= "  INVITED_COMMUNICATION = {".$bib[4]."},\r\n";}
+					 //$tex .= "}\r\n";
+					 $tex = str_replace("HAL_VERSION", $tex1."  HAL_VERSION", $tex0);
+					 //$Fnm2 = "./HAL/extractionHAL_".$team.".bib";
+					 $inF2 = fopen($Fnm2,"a+");
+					 fseek($inF2, 0);
+					 fwrite($inF2,$tex."\r\n");
+					 fclose($inF2);
 				 }
 			}
-			//export bibtex
-			$bib = explode("¤", $bibArray[$i]);
-			$tex0 = $bib[0];
-			//$tex = substr($bib[0], 0, (strlen($bib[0])-2));
-			$tex1 = "";
-			if (isset($bib[1])) {$tex1 .= "PEER_REVIEWING = {".$bib[1]."},\r\n";}
-			if (isset($bib[2])) {$tex1 .= "  AUDIENCE = {".$bib[2]."},\r\n";}
-			if (isset($bib[3])) {$tex1 .= "  PROCEEDINGS = {".$bib[3]."},\r\n";}
-			if (isset($bib[4])) {$tex1 .= "  INVITED_COMMUNICATION = {".$bib[4]."},\r\n";}
-			//$tex .= "}\r\n";
-			$tex = str_replace("HAL_VERSION", $tex1."  HAL_VERSION", $tex0);
-			//$Fnm2 = "./HAL/extractionHAL_".$team.".bib";
-			$inF2 = fopen($Fnm2,"a+");
-			fseek($inF2, 0);
-			fwrite($inF2,$tex."\r\n");
-			fclose($inF2);
 		 }
 	 }
 	 $i++;
