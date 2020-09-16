@@ -318,7 +318,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						}
 						//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
 						if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
-							if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb = "<u>";$fin = "</u>";}
+							if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb .= "<u>";$fin .= "</u>";}
 						}
 						if ($prenomPlus != "") {
 							$authors .= $nom2."troliesp".$prenom2."troliesp".$prenomPlus;
@@ -376,7 +376,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							}
 							//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
 							if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
-								if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb = "<u>";$fin = "</u>";}
+								if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb .= "<u>";$fin .= "</u>";}
 							}
 							if ($prenomPlus != "") {
 								$authors .= $nom2."troliesp".$prenom2."troliesp".$prenomPlus;
@@ -435,7 +435,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								}
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
 								if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
-									if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb = "<u>";$fin = "</u>";}
+									if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb .= "<u>";$fin .= "</u>";}
 								}
 								//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
 								if ($prenomPlus != "") {
@@ -494,7 +494,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								}
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
 								if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
-									if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb = "<u>";$fin = "</u>";}
+									if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb .= "<u>";$fin .= "</u>";}
 								}
 								//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
 								if ($prenomPlus != "") {
