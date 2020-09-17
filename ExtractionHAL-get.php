@@ -334,13 +334,13 @@ if (isset($_GET["team"])) {
   /*
 	$typreva = $_GET["typreva"];
 	$urlsauv .= "&typreva=".$typreva;
+	*/
   $typrevh = $_GET["typrevh"];
 	$urlsauv .= "&typrevh=".$typrevh;
   $dscp = $_GET["dscp"];
 	$urlsauv .= "&dscp=".$dscp;
   $typrevc = $_GET["typrevc"];
 	$urlsauv .= "&typrevc=".$typrevc;
-	*/
 	$typcomm = $_GET["typcomm"];
 	$urlsauv .= "&typcomm=".$typcomm;
 	$typisbn = $_GET["typisbn"];

@@ -330,13 +330,13 @@ if (isset($_POST["soumis"])) {
 	/*
 	$typreva = $_POST["typreva"];
 	$urlsauv .= "&typreva=".$typreva;
+	*/
   $typrevh = $_POST["typrevh"];
 	$urlsauv .= "&typrevh=".$typrevh;
   $dscp = $_POST["dscp"];
 	$urlsauv .= "&dscp=".$dscp;
 	$typrevc = $_POST["typrevc"];
 	$urlsauv .= "&typrevc=".$typrevc;
-	*/
 	$typcomm = $_POST["typcomm"];
 	$urlsauv .= "&typcomm=".$typcomm;
 	$typisbn = $_POST["typisbn"];
