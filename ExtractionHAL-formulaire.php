@@ -979,6 +979,7 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 			</div>
 		</div>
 		<br>
+		-->
 		<?php
 		if (isset($typrevh) && $typrevh == "vis") {$vis = "checked=\"\"";}else{$vis = "";}
 		if (isset($typrevh) && $typrevh == "inv" || !isset($team)) {$inv = "checked=\"\"";}else{$inv = "";}
@@ -1042,6 +1043,7 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 		if (isset($typrevc) && $typrevc == "vis") {$vis = "checked=\"\"";}else{$vis = "";}
 		if (isset($typrevc) && $typrevc == "inv" || !isset($team)) {$inv = "checked=\"\"";}else{$inv = "";}
 		?>
+		<!--
 		<div class="form-group" style="display:block;">
 			<label for="typrevc" class="col-sm-3 control-label">Rang revues CNRS (Economie-Gestion) :</label>
 			<div class="col-sm-2 radio">
