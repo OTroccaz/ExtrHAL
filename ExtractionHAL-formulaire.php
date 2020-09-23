@@ -22,8 +22,8 @@ if (isset($idhal) && $idhal != "") {$team1 = ""; $listaut = "";}
 et/ou<br>
 <strong><label for="refint">Référence interne</label></strong> <a class=info onclick='return false' href="#">(qu’est-ce que c’est ?)<span>Champ référence interne des dépôts HAL</span></a> :
 <input type="text" id ="refint" name="refint" class="form-control" style="height: 25px; width:300px" value="<?php echo $refint;?>" onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = '';">
-<p class="form-inline"><label for="listaut">Code collection HAL pour la liste des auteurs à mettre en évidence</label> <a class=info onclick='return false' href="#">(exemple)<span>Indiquez ici le code collection de votre labo ou de votre équipe, selon que vous souhaitez mettre en évidence le nom des auteurs du labo ou de l'équipe.</span></a> :
-<input type="text" id="listaut" name="listaut" class="form-control" style="height: 25px; width:300px" value="<?php echo $listaut;?>">
+<p class="form-inline"><label for="listaut">Acronyme(s), nom(s) complet(s) ou id de la structure à mettre en évidence (séparés par des tildes ~) - <a target="_blank" rel="noopener noreferrer" href="https://aurehal.archives-ouvertes.fr/structure/">Vérifiez le nom dans AuréHAL</a></label> <a class=info onclick='return false' href="#">(exemple)<span>Indiquez ici le code collection de votre labo ou de votre équipe, selon que vous souhaitez mettre en évidence le nom des auteurs du labo ou de l'équipe.</span></a> :
+<input type="text" id="listaut" name="listaut" class="form-control" style="height: 25px; width:300px" value="<?php echo urldecode($listaut);?>">
 <br>
 <?php
 $uniq = "";

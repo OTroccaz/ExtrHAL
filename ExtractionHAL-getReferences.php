@@ -1,5 +1,5 @@
 <?php
-function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$specificRequestCode,$countries,$anneedeb,$anneefin,$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7){
+function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$specificRequestCode,$countries,$anneedeb,$anneefin,$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7){
 	 static $listedoi = "";
    include "ExtractionHAL-rang-AERES-SHS.php";
    include "ExtractionHAL-rang-CNRS.php";
@@ -145,41 +145,48 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 //Recherche des auteurs de la collection grâce aux affiliations > ne pas appliquer si extraction sur un IdHAL
 	 if ($idhal == "") {
 		 $strId = "~";
-		 $reqId = "https://api.archives-ouvertes.fr/ref/structure/?q=(name_t:".$team."%20OR%20code_t:".$team."%20OR%20acronym_t:".$team.")%20AND%20type_s:laboratory%20AND%20valid_s:(VALID%20OR%20OLD)%20AND%20country_s:%22fr%22&fl=docid";
-		 $conId = file_get_contents($reqId);
-		 $resId = json_decode($conId);
-		 $numFound = 0;
-		 if (isset($resId->response->numFound)) {$numFound = $resId->response->numFound;}
-		 if ($numFound != 0) {
-			 foreach($resId->response->docs as $entry){
-				 $strId .= $entry->docid."~";
+		 $tabLA = explode("%7E", $listaut);//%7E <=> ~
+		 foreach($tabLA as $la) {
+			 if (is_numeric($la)) {
+				 $reqId = "https://api.archives-ouvertes.fr/ref/structure/?q=docid:".$la."%20AND%20country_s:%22fr%22&fl=docid";
+			 }else{
+				$reqId = "https://api.archives-ouvertes.fr/ref/structure/?q=(name_t:".$la."%20OR%20acronym_t:".$la.")%20AND%20type_s:laboratory%20AND%20valid_s:(VALID%20OR%20OLD)%20AND%20country_s:%22fr%22&fl=docid";
 			 }
-		 }
-		 
-		 if ($strId != "~") {
-			 $tabId = explode("~", $strId);
-			 foreach($tabId as $Id) {
-				 if ($Id != "") {
-					 foreach($results->response->docs as $entry){
-						 foreach($entry->authIdHasPrimaryStructure_fs as $auth){
-							 $tabAuth = explode("_FacetSep_", $auth);
-							 if (strpos($tabAuth[1], $Id) !== false) {//Auteur de la collection
-								 $tabQ = explode("_JoinSep_", $tabAuth[1]);
-								 $indQ = 0;
-								 foreach($entry->authFullName_s as $funa){
-									 if ($funa == $tabQ[0] && stripos($listenominit, $entry->authFirstName_s[$indQ]) === false) {
-										 $prenom = prenomCompInit($entry->authFirstName_s[$indQ]);
-										 $listenominit .= nomCompEntier($entry->authLastName_s[$indQ])." ".$prenom.".~";
-										 $listenomcomp1 .= nomCompEntier($entry->authLastName_s[$indQ])." ".prenomCompEntier($entry->authFirstName_s[$indQ])."~";
-										 $listenomcomp2 .= prenomCompEntier($entry->authFirstName_s[$indQ])." ".nomCompEntier($entry->authLastName_s[$indQ])."~";
-										 $listenomcomp3 .= mb_strtoupper(nomCompEntier($entry->authLastName_s[$indQ]), 'UTF-8')." (".prenomCompEntier($entry->authFirstName_s[$indQ]).")~";
-										 $arriv .= "1900~";
-										 $moisactuel = date('n', time());
-										 if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
-										 $depar .= $idepar."~";
-										 break;
+			 $conId = file_get_contents($reqId);
+			 $resId = json_decode($conId);
+			 $nF = 0;
+			 if (isset($resId->response->numFound)) {$nF = $resId->response->numFound;}
+			 if ($nF != 0) {
+				 foreach($resId->response->docs as $entry){
+					 $strId .= $entry->docid."~";
+				 }
+			 }
+
+			 if ($strId != "~") {
+				 $tabId = explode("~", $strId);
+				 foreach($tabId as $Id) {
+					 if ($Id != "") {
+						 foreach($results->response->docs as $entry){
+							 foreach($entry->authIdHasPrimaryStructure_fs as $auth){
+								 $tabAuth = explode("_FacetSep_", $auth);
+								 if (strpos($tabAuth[1], $Id) !== false) {//Auteur de la collection
+									 $tabQ = explode("_JoinSep_", $tabAuth[1]);
+									 $indQ = 0;
+									 foreach($entry->authFullName_s as $funa){
+										 if ($funa == $tabQ[0] && stripos($listenominit, $entry->authFirstName_s[$indQ]) === false) {
+											 $prenom = prenomCompInit($entry->authFirstName_s[$indQ]);
+											 $listenominit .= nomCompEntier($entry->authLastName_s[$indQ])." ".$prenom.".~";
+											 $listenomcomp1 .= nomCompEntier($entry->authLastName_s[$indQ])." ".prenomCompEntier($entry->authFirstName_s[$indQ])."~";
+											 $listenomcomp2 .= prenomCompEntier($entry->authFirstName_s[$indQ])." ".nomCompEntier($entry->authLastName_s[$indQ])."~";
+											 $listenomcomp3 .= mb_strtoupper(nomCompEntier($entry->authLastName_s[$indQ]), 'UTF-8')." (".prenomCompEntier($entry->authFirstName_s[$indQ]).")~";
+											 $arriv .= "1900~";
+											 $moisactuel = date('n', time());
+											 if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
+											 $depar .= $idepar."~";
+											 break;
+										 }
+										 $indQ++;
 									 }
-									 $indQ++;
 								 }
 							 }
 						 }

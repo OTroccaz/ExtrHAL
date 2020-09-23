@@ -50,6 +50,7 @@ if (isset($_POST["soumis"])) {
   if ($listaut == "") {$listaut = $team;}
   $urlsauv .= "&listaut=".urlencode($listaut);
   $urlsauv .= "&idhal=".urlencode($idhal);
+	$urlsauv = str_replace("%257E", "~", $urlsauv);
   $evhal = htmlspecialchars($_POST["evhal"]);
   $urlsauv .= "&evhal=".$evhal;
 	$urlsauv .= "&refint=".$refint;
@@ -120,34 +121,37 @@ if (isset($_POST["soumis"])) {
 	$listenomcomp3 = "~";
 	$arriv = "~";
 	$depar = "~";
-  foreach($AUTEURS_LISTE AS $i => $valeur) {
-    $lat = 0;
-    $chalTab = explode(",", $AUTEURS_LISTE[$i]['collhal']);
-    $ehalTab = explode(",", $AUTEURS_LISTE[$i]['colleqhal']);
-    while (isset($chalTab[$lat]) || isset($ehalTab[$lat])) {
-      if ((isset($chalTab[$lat]) && trim($chalTab[$lat]) == $listaut) || (isset($ehalTab[$lat]) && trim($ehalTab[$lat]) == $listaut)) {
-        $listenomcomp1 .= nomCompEntier($AUTEURS_LISTE[$i]['nom'])." ".prenomCompEntier($AUTEURS_LISTE[$i]['prenom'])."~";
-        $listenomcomp2 .= prenomCompEntier($AUTEURS_LISTE[$i]['prenom'])." ".nomCompEntier($AUTEURS_LISTE[$i]['nom'])."~";
-				$listenomcomp3 .= mb_strtoupper(nomCompEntier($AUTEURS_LISTE[$i]['nom']), 'UTF-8')." (".prenomCompEntier($AUTEURS_LISTE[$i]['prenom']).")~";
-        //si prénom composé et juste les ititiales
-        $prenom = prenomCompInit($AUTEURS_LISTE[$i]['prenom']);
-        $listenominit .= nomCompEntier($AUTEURS_LISTE[$i]['nom'])." ".$prenom.".~";
-        if (isset($AUTEURS_LISTE[$i]['arriv']) && $AUTEURS_LISTE[$i]['arriv'] != "" && $AUTEURS_LISTE[$i]['arriv'] != "x") {
-          $arriv .= $AUTEURS_LISTE[$i]['arriv']."~";
-        }else{
-          $arriv .= "1900~";
-        }
-        if (isset($AUTEURS_LISTE[$i]['depar']) && $AUTEURS_LISTE[$i]['depar'] != "" && $AUTEURS_LISTE[$i]['depar'] != "x") {
-          $depar .= $AUTEURS_LISTE[$i]['depar']."~";
-        }else{
-          $moisactuel = date('n', time());
-          if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
-          $depar .= $idepar."~";
-        }
-      }
-      $lat++;
-    }
-  }
+	$tabLA = explode("%7E", $listaut);//%7E <=> ~
+	foreach($tabLA as $la) {
+		foreach($AUTEURS_LISTE AS $i => $valeur) {
+			$lat = 0;
+			$chalTab = explode(",", $AUTEURS_LISTE[$i]['collhal']);
+			$ehalTab = explode(",", $AUTEURS_LISTE[$i]['colleqhal']);
+			while (isset($chalTab[$lat]) || isset($ehalTab[$lat])) {
+				if ((isset($chalTab[$lat]) && trim($chalTab[$lat]) == $la) || (isset($ehalTab[$lat]) && trim($ehalTab[$lat]) == $la)) {
+					$listenomcomp1 .= nomCompEntier($AUTEURS_LISTE[$i]['nom'])." ".prenomCompEntier($AUTEURS_LISTE[$i]['prenom'])."~";
+					$listenomcomp2 .= prenomCompEntier($AUTEURS_LISTE[$i]['prenom'])." ".nomCompEntier($AUTEURS_LISTE[$i]['nom'])."~";
+					$listenomcomp3 .= mb_strtoupper(nomCompEntier($AUTEURS_LISTE[$i]['nom']), 'UTF-8')." (".prenomCompEntier($AUTEURS_LISTE[$i]['prenom']).")~";
+					//si prénom composé et juste les ititiales
+					$prenom = prenomCompInit($AUTEURS_LISTE[$i]['prenom']);
+					$listenominit .= nomCompEntier($AUTEURS_LISTE[$i]['nom'])." ".$prenom.".~";
+					if (isset($AUTEURS_LISTE[$i]['arriv']) && $AUTEURS_LISTE[$i]['arriv'] != "" && $AUTEURS_LISTE[$i]['arriv'] != "x") {
+						$arriv .= $AUTEURS_LISTE[$i]['arriv']."~";
+					}else{
+						$arriv .= "1900~";
+					}
+					if (isset($AUTEURS_LISTE[$i]['depar']) && $AUTEURS_LISTE[$i]['depar'] != "" && $AUTEURS_LISTE[$i]['depar'] != "x") {
+						$depar .= $AUTEURS_LISTE[$i]['depar']."~";
+					}else{
+						$moisactuel = date('n', time());
+						if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
+						$depar .= $idepar."~";
+					}
+				}
+				$lat++;
+			}
+		}
+	}
   //echo $depar;
 	
 	//Si une restriction de l'affichage à certains auteurs a été demandée
