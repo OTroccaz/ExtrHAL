@@ -167,7 +167,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								 $tabQ = explode("_JoinSep_", $tabAuth[1]);
 								 $indQ = 0;
 								 foreach($entry->authFullName_s as $funa){
-									 if ($funa == $tabQ[0] && strpos($listenominit, $entry->authFirstName_s[$indQ]) === false) {
+									 if ($funa == $tabQ[0] && stripos($listenominit, $entry->authFirstName_s[$indQ]) === false) {
 										 $prenom = prenomCompInit($entry->authFirstName_s[$indQ]);
 										 $listenominit .= nomCompEntier($entry->authLastName_s[$indQ])." ".$prenom.".~";
 										 $listenomcomp1 .= nomCompEntier($entry->authLastName_s[$indQ])." ".prenomCompEntier($entry->authFirstName_s[$indQ])."~";
@@ -286,15 +286,15 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$affil = "aucune";
 				foreach($entry->authLastName_s as $nom){
 					//$nom = ucwords(mb_strtolower($nom, 'UTF-8'));
-					$nom = nomCompEntier($nom);
-					$prenom = ucfirst(mb_strtolower($entry->authFirstName_s[$i], 'UTF-8'));
+					$nom = nomCompEntier(str_replace("’", "'", $nom));
+					$prenom = ucfirst(mb_strtolower(str_replace("’", "'", $entry->authFirstName_s[$i]), 'UTF-8'));
 					$prenomPlus = "";
 					//if (isset($entry->authMiddleName_s[$i])) {
 					if (isset($entry->authMiddleName_s[0])) {
 						foreach($entry->authMiddleName_s as $mid){
 							$midTab = explode(" ", $mid);
 							if (stripos($entry->authIdHalFullName_fs[$i], $midTab[0]." ") !== false || stripos($entry->authIdHalFullName_fs[$i], $midTab[0].". ") !== false) {//Pour vérifier qu'authMiddleName s'applique bien à cet auteur
-								$prenomPlus = ucwords(mb_strtolower($mid, 'UTF-8'));//Champ HAL prévu pour complément prénom
+								$prenomPlus = ucwords(mb_strtolower(str_replace("’", "'", $mid), 'UTF-8'));//Champ HAL prévu pour complément prénom
 								//echo 'toto : '.$nom.' '.$prenom.' '.$prenomPlus.'<br>';
 							}
 						}
