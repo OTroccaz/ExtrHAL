@@ -286,7 +286,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$affil = "aucune";
 				foreach($entry->authLastName_s as $nom){
 					//$nom = ucwords(mb_strtolower($nom, 'UTF-8'));
-					$nom = nomCompEntier(str_replace("’", "'", $nom));
+					$nom = ucwords(nomCompEntier(str_replace("’", "'", $nom)), "'");
 					$prenom = ucfirst(mb_strtolower(str_replace("’", "'", $entry->authFirstName_s[$i]), 'UTF-8'));
 					$prenomPlus = "";
 					//if (isset($entry->authMiddleName_s[$i])) {
