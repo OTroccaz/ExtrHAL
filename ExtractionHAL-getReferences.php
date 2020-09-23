@@ -94,7 +94,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 $numFound = 0;
 	 if (isset($results->response->numFound)) {$numFound=$results->response->numFound;}
 	 
-	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s,authQuality_s";
+	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs";
 
    //Cas particuliers pour combinaisons
    if ($docType_s=="COMM+POST"){
@@ -135,12 +135,60 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       //$contents = utf8_encode($contents);
     }
    //echo "http://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
-	 
+	
 	 //suite avec URL requête API
 	 echo "<a target='_blank' href='".$reqAPI."'>URL requête API HAL</a>";
 	 
    ini_set('memory_limit', '256M');
    $results = json_decode($contents);
+	 
+	 //Recherche des auteurs de la collection grâce aux affiliations > ne pas appliquer si extraction sur un IdHAL
+	 if ($idhal == "") {
+		 $strId = "~";
+		 $reqId = "https://api.archives-ouvertes.fr/ref/structure/?q=(name_t:".$team."%20OR%20code_t:".$team."%20OR%20acronym_t:".$team.")%20AND%20type_s:laboratory%20AND%20valid_s:(VALID%20OR%20OLD)%20AND%20country_s:%22fr%22&fl=docid";
+		 $conId = file_get_contents($reqId);
+		 $resId = json_decode($conId);
+		 $numFound = 0;
+		 if (isset($resId->response->numFound)) {$numFound = $resId->response->numFound;}
+		 if ($numFound != 0) {
+			 foreach($resId->response->docs as $entry){
+				 $strId .= $entry->docid."~";
+			 }
+		 }
+		 
+		 if ($strId != "~") {
+			 $tabId = explode("~", $strId);
+			 foreach($tabId as $Id) {
+				 if ($Id != "") {
+					 foreach($results->response->docs as $entry){
+						 foreach($entry->authIdHasPrimaryStructure_fs as $auth){
+							 $tabAuth = explode("_FacetSep_", $auth);
+							 if (strpos($tabAuth[1], $Id) !== false) {//Auteur de la collection
+								 $tabQ = explode("_JoinSep_", $tabAuth[1]);
+								 $indQ = 0;
+								 foreach($entry->authFullName_s as $funa){
+									 if ($funa == $tabQ[0] && strpos($listenominit, $entry->authFirstName_s[$indQ]) === false) {
+										 $prenom = prenomCompInit($entry->authFirstName_s[$indQ]);
+										 $listenominit .= nomCompEntier($entry->authLastName_s[$indQ])." ".$prenom.".~";
+										 $listenomcomp1 .= nomCompEntier($entry->authLastName_s[$indQ])." ".prenomCompEntier($entry->authFirstName_s[$indQ])."~";
+										 $listenomcomp2 .= prenomCompEntier($entry->authFirstName_s[$indQ])." ".nomCompEntier($entry->authLastName_s[$indQ])."~";
+										 $listenomcomp3 .= mb_strtoupper(nomCompEntier($entry->authLastName_s[$indQ]), 'UTF-8')." (".prenomCompEntier($entry->authFirstName_s[$indQ]).")~";
+										 $arriv .= "1900~";
+										 $moisactuel = date('n', time());
+										 if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
+										 $depar .= $idepar."~";
+										 break;
+									 }
+									 $indQ++;
+								 }
+							 }
+						 }
+					 }
+				 }
+			 }
+		 }
+	 }
+	 
    //var_dump($results->response->docs);
 	 //Est-ce que les notices significatives sont à mettre en évidence ?
 	 if (isset($typsign) && $typsign != "ts0") {
