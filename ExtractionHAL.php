@@ -39,17 +39,6 @@ if ($redir == "oui") {header("Location: ".$urlnet);}
 </head>
 
 <?php
-//Liste auteurs externes à Rennes 1 > autosoumission d'un formulaire avec le champ nécessaire pour retrouver le fichier
-if (isset($_GET['extur1']) && $_GET['extur1'] != '' && isset($_GET["import"]) && $_GET["import"] == "ok") {
-  $uniq = $_GET['extur1'];
-  echo '<form name="troli" action="ExtractionHAL.php" method="post">';
-  echo '<input type="hidden" name="extur1" value="'.$uniq.'">';
-  echo '</form>';
-  echo '<script type="text/javascript">';
-  echo 'document.troli.submit();';
-  echo '</script>';
-}
-
 //Institut général
 $institut = "";// -> univ-rennes1/ par exemple, mais est-ce vraiment nécessaire ?
 
