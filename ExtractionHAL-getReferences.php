@@ -150,7 +150,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 			 if (is_numeric($la)) {
 				 $reqId = "https://api.archives-ouvertes.fr/ref/structure/?q=docid:".$la."%20AND%20country_s:%22fr%22&fl=docid";
 			 }else{
-				$reqId = "https://api.archives-ouvertes.fr/ref/structure/?q=(name_t:".$la."%20OR%20acronym_t:".$la.")%20AND%20type_s:laboratory%20AND%20valid_s:(VALID%20OR%20OLD)%20AND%20country_s:%22fr%22&fl=docid";
+				$reqId = "https://api.archives-ouvertes.fr/ref/structure/?q=(name_t:".$la."%20OR%20acronym_t:".$la.")%20AND%20valid_s:(VALID%20OR%20OLD)%20AND%20country_s:%22fr%22&fl=docid";
 			 }
 			 $conId = file_get_contents($reqId);
 			 $resId = json_decode($conId);

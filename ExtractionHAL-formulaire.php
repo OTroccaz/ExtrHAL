@@ -22,20 +22,9 @@ if (isset($idhal) && $idhal != "") {$team1 = ""; $listaut = "";}
 et/ou<br>
 <strong><label for="refint">Référence interne</label></strong> <a class=info onclick='return false' href="#">(qu’est-ce que c’est ?)<span>Champ référence interne des dépôts HAL</span></a> :
 <input type="text" id ="refint" name="refint" class="form-control" style="height: 25px; width:300px" value="<?php echo $refint;?>" onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = '';">
-<p class="form-inline"><label for="listaut">Acronyme(s), nom(s) complet(s) ou id de la structure à mettre en évidence (séparés par des tildes ~) - <a target="_blank" rel="noopener noreferrer" href="https://aurehal.archives-ouvertes.fr/structure/">Vérifiez le nom dans AuréHAL</a></label> <a class=info onclick='return false' href="#">(exemple)<span>Indiquez ici le code collection de votre labo ou de votre équipe, selon que vous souhaitez mettre en évidence le nom des auteurs du labo ou de l'équipe.</span></a> :
+<p class="form-inline"><label for="listaut">Acronyme(s), nom(s) complet(s) ou id de la structure des auteurs à mettre en évidence (séparés par des tildes ~) - <a target="_blank" rel="noopener noreferrer" href="https://aurehal.archives-ouvertes.fr/structure/">Vérifiez le nom dans AuréHAL</a></label> <a class=info onclick='return false' href="#">(exemple)<span>Indiquez ici l'id AuréHAL, le nom ou l'acronyme de votre unité ou de votre équipe, selon que vous souhaitez mettre en évidence le nom des auteurs de l'unité ou de l'équipe.<br>Exemple : 928~ECOBIO~575446</span></a> :
 <input type="text" id="listaut" name="listaut" class="form-control" style="height: 25px; width:300px" value="<?php echo urldecode($listaut);?>">
 <br>
-<?php
-$uniq = "";
-if (isset($_GET['extur1']) && $_GET['extur1'] != '') {$uniq = $_GET['extur1'];}
-if (isset($_POST['extur1']) && $_POST['extur1'] != '') {$uniq = $_POST['extur1'];}
-if ($uniq != '') {
-  echo 'Vous utilisez votre propre fichier de liste d\'auteurs à mettre en évidence';
-  echo '<input type="hidden" value="'.$uniq.'" name="extur1">';
-}else{
-  echo '<p style="margin-left:20px;"<strong><u>Attention ! Ce champ ne fonctionne que pour les unités affiliées à Rennes 1</u></strong>. Extérieurs à Rennes 1, vous avez la possibilité de mettre en évidence les auteurs de votre collection ou de votre référence interne en <a href="ExtractionHAL-liste-auteurs-extur1.php">prétéléchargeant un fichier CSV ou TXT</a> réalisé selon <a href="https://halur1.univ-rennes1.fr/modele.csv">ce modèle</a>.</p>';
-}
-?>
 <h2><strong><u>ou</u></strong></h2>
 <p class="form-inline"><strong><label for="idhal">Identifiant alphabétique auteur HAL</label></strong> <em>(IdHAL > olivier-troccaz, par exemple)</em> <a class=info onclick='return false' href="#">(Pour une requête sur plusieurs IdHAL)<span>Mettre entre parenthèses, et remplacer les guillemets par %22 et les espaces par %20. Exemple : <strong>(%22laurent-jonchere%22%20OR%20%22olivier-troccaz%22)</strong>.</span></a> :
 <input type="text" id="idhal" name="idhal" class="form-control" style="height: 25px; width:300px" value="<?php echo $idhal;?>" onkeydown="document.getElementById('team').value = ''; document.getElementById('listaut').value = ''; document.getElementById('refint').value = '';">
