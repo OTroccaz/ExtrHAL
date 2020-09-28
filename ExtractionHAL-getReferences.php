@@ -1244,22 +1244,22 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 													if (is_numeric(substr($page,0,1))) {
 														$eI .= ", pp. ".$page;
 														//$resArray[$iRA]["page"] = ", pp. ".$page;
-														$chaine2 .= $page;
+														$chaine2 .= $delim.$page;
 													}else{
 														$eI .= $page;
 														//$resArray[$iRA]["page"] = $page;
-														$chaine2 .= $page;
+														$chaine2 .= $delim.$page;
 													}
 												}else{
 													if (is_numeric(substr($page,0,1))) {
 														//$eI .= ", ".$page." p.";
 														$eI .= ":".$page;
 														//$resArray[$iRA]["page"] = ", ".$page." p.";
-														$chaine2 .= $page;
+														$chaine2 .= $delim.$page;
 													}else{
 														$eI .= $page;
 														//$resArray[$iRA]["page"] = $page;
-														$chaine2 .= $page;
+														$chaine2 .= $delim.$page;
 													}
 												}
 											}
