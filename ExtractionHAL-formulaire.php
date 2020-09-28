@@ -494,6 +494,10 @@ if (isset($typnum) && $typnum == "inv") {$inv = "checked=\"\"";}else{$inv = "";}
 		</div>
 		<br>
 		<br>
+		<br>
+		<div class="form-group" style="display:block;">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener noreferrer" href="https://halur1.univ-rennes1.fr/ExtractionHAL-liste-auteurs.php">Gérer ma liste d'auteurs</a>
+		</div>
 	</div>
 	<div class="panel-body" style="padding: 3px; border:1px solid #dddddd; border-radius: 3px; margin-bottom: 10px;">
 		<?php
