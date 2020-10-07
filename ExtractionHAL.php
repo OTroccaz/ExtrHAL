@@ -183,7 +183,8 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 	if (isset($typsign) && $typsign == "ts2080" && $hc == 1) {$detail = " (20%)"; $typsign = "ts20";}
 	if (isset($typsign) && $typsign == "ts20" && $hc == 2) {$detail = " (80%)"; $typsign = "ts2080";}
 	
-	$numbers=array();
+	$numbers = array();
+	$numbersTG = array();
 
 	//$critNat = "%20AND%20language_s:fr";//critère national > seulement les publications en langue française
 	//$critInt = "%20AND%20NOT%20language_s:fr";//critère international > on écarte les publications en langue française
@@ -201,11 +202,12 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 	
 	echo "<br><a name=\"BILAN\"></a><h2>Bilan quantitatif".$detail." <a href=\"#sommaire\">&#8683;</a></h2>";
 	$yearTotal = array();
+	$yearTotalTG = array();
 	//Find all years with publications
 	$availableYears=array();
 	foreach($numbers as $rType => $yearNumbers){
 		 foreach($yearNumbers as $year => $nb){
-				$availableYears[$year]=1;
+				$availableYears[$year] = 1;
 		 }
 	}
 	ksort($availableYears);
@@ -217,12 +219,24 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 		foreach($availableYears as $year => $nb){
 			 echo "<td style='padding: 2px;'>".$year."</td>";
 			 $yearTotal[$year] = 0;
+			 $yearTotalTG[$year] = 0;
 		}
 		echo "<td style='padding: 2px;'>Total</td>";
+		
+		if($typgra == "oui" && $limgra == "non") {
+			echo "<td style='width: 20px;'>&nbsp;</td>";
+			foreach($availableYears as $year => $nb){
+			 echo "<td style='padding: 2px;'><strong>".$year."</strong></td>";
+			}
+			echo "<td style='padding: 2px;'><strong>Total</strong></td>";
+		}
+		
 		echo "</tr>";
+		
 		foreach($numbers as $rType => $yearNumbers){
 			 echo "<tr><td style='padding: 2px;'>".$rType."</td>";
 			 $somme = 0;
+			 $sommeTG = 0;
 			 foreach($availableYears as $year => $nb){
 					if(array_key_exists($year,$yearNumbers)){
 						 echo "<td style='padding: 2px;'>".$yearNumbers[$year]."</td>";
@@ -233,16 +247,44 @@ for ($hc = 1; $hc <= $hcmax; $hc++) {
 					}
 			 }
 			 echo "<td style='padding: 2px;'>".$somme."</td>";
+			 
+			 if($typgra == "oui" && $limgra == "non") {
+				 echo "<td style='width: 20px;'>&nbsp;</td>";
+				 foreach($availableYears as $year => $nb){
+					 if(isset($numbersTG[$rType][$year])){
+						 echo "<td style='padding: 2px;'><strong>".$numbersTG[$rType][$year]."</strong></td>";
+						 $yearTotalTG[$year] += $numbersTG[$rType][$year];
+						 $sommeTG += $numbersTG[$rType][$year];
+					 } else {
+						 echo "<td style='padding: 2px;'><strong>0</strong></td>";
+					 }
+				 }
+				 echo "<td style='padding: 2px;'><strong>".$sommeTG."</strong></td>";
+			 }			 
 			 echo "</tr>";
 		}
+		
 		//Totaux
 		echo "<tr>";
 		echo "<td style='padding: 2px;'>Total</td>";
 		foreach($yearTotal as $year => $nb){
 			 echo "<td style='padding: 2px;'>".$yearTotal[$year]."</td>";
 		}
+		if($typgra == "oui" && $limgra == "non") {
+			echo "<td style='width: 20px;'>&nbsp;</td>";
+			echo "<td style='width: 20px;'>&nbsp;</td>";
+			foreach($yearTotal as $year => $nb){
+				 echo "<td style='padding: 2px;'><strong>".$yearTotalTG[$year]."</strong></td>";
+			}
+		}
 		echo "</tr>";
-		echo "</table><br><br>";
+		echo "</table>";
+		
+		if ($typgra == "oui" && $limgra == "non") {
+			echo('Les valeurs en gras correspondent aux bilans concernant les notices dont un auteur de la collection est en 1<sup>ère</sup> position ou en position finale.<br>');
+		}
+		
+		echo "<br><br>";
 
 		//export en RTF
 		$sect->writeText("<br><br>", $font);

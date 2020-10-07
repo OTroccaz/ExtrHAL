@@ -23,7 +23,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 			 $atesteropt = "";
 		 }
 	 }
-	 
+	
 	 //Langue des documents
 	 if (isset($typlng)) {
 		 if ($typlng == "français") {
@@ -211,6 +211,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
    $iRA = 0;
    $nmoOrd = 0;
 	 $signTxt = "&#8594;&nbsp;";
+	 
 	 if ($numFound != 0) {
 		 foreach($results->response->docs as $entry){
 				//Si notices significatives à mettre en évidence, il faut pouvoir les extraire en tête de liste > ajout d'un paramètre à $sortArray

@@ -114,16 +114,24 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	//var_dump($crogr);
 	//var_dump($drefl);
 
+	//Pour compter les notices où un auteur de la collection est en 1ère position ou en position finale
+	$yearNumbersTG = array();
+	for($iAnn = substr($anneedeb, 6, 4); $iAnn <= substr($anneefin, 6, 4); $iAnn++) {
+		$yearNumbersTG[$iAnn] = 0;
+	}
 
 	$yearNumbers = array();
 	$ngis = "oui";
 	$signTxt = "&#8594;&nbsp;";
-
+	
 	foreach($infoArray as $entryInfo){
+		//Pour compter les notices où un auteur de la collection est en 1ère position ou en position finale
+		if (substr($entryInfo, 0, 8) == "<strong>") {$yearNumbersTG[substr($sortArray[$i],-4)] += 1;}
+
 	 //Affichage de la référence s'il n'a pas été demandé de limiter aux références dont le premier ou le dernier auteur dépend de la collection
 	 $lignAff = "non";
 	 if ($limgra == "oui") {
-		if (substr($entryInfo, 0, 3) == "<strong>") {
+		if (substr($entryInfo, 0, 8) == "<strong>") {
 			$lignAff = "oui";
 		}
 	 }else{
@@ -638,6 +646,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	fwrite($inF1,chr(13).chr(10));
 	$drefl[0] = $yearNumbers;//le nombre de publications
 	$drefl[1] = $crogr;//le nombre de publications croisées
+	$drefl[2] = $yearNumbersTG;//Le nombre de publications où un auteur de la collection est en 1ère position ou en position finale
 	//return $yearNumbers;
 	//var_dump($crogr);
 	return $drefl;
