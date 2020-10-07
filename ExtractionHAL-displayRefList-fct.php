@@ -125,9 +125,6 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	$signTxt = "&#8594;&nbsp;";
 	
 	foreach($infoArray as $entryInfo){
-		//Pour compter les notices où un auteur de la collection est en 1ère position ou en position finale
-		if (substr($entryInfo, 0, 8) == "<strong>") {$yearNumbersTG[substr($sortArray[$i],-4)] += 1;}
-
 	 //Affichage de la référence s'il n'a pas été demandé de limiter aux références dont le premier ou le dernier auteur dépend de la collection
 	 $lignAff = "non";
 	 if ($limgra == "oui") {
@@ -178,6 +175,10 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 			}else{
 				$aff = "oui";
 			}
+			
+			//Pour compter les notices où un auteur de la collection est en 1ère position ou en position finale
+			if (substr($entryInfo, 0, 8) == "<strong>" && $lignAff == "oui" && $aff == "oui") {$yearNumbersTG[substr($sortArray[$i],-4)] += 1;}
+			
 			if (strcmp($currentYear,substr($sortArray[$i],-4))==0){ // Même année
 				 $sign = (strpos($entryInfo, $signTxt) !== false) ? "oui" : "ras";
 				 $rtf = explode("^|^", $rtfArray[$i]);
