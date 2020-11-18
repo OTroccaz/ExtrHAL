@@ -432,7 +432,7 @@
 																																								<label for="typnum" class="font-weight-bold">
 																																								Numérotation
 																																								</label>
-																																								<select class="form-control" id="typnum" name="typnum">
+																																								<select class="custom-select" id="typnum" name="typnum">
 																																									<?php
 																																									if (isset($typnum) && $typnum == "viscon" || !isset($team)) {$txt = "selected";}else{$txt = "";}
 																																									echo '<option value="viscon" '.$txt.'>visible et continue</option>';
@@ -448,7 +448,7 @@
 																																								<label for="typtri" class="font-weight-bold">
 																																								Classer par
 																																								</label>
-																																								<select class="form-control" id="typtri" name="typtri">
+																																								<select class="custom-select" id="typtri" name="typtri">
 																																										<?php
 																																										if (isset($typtri) && $typtri == "premierauteur" || !isset($team)) {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="premierauteur" '.$txt.'>année puis nom du premieur auteur</option>';
@@ -462,7 +462,7 @@
 																																								<label for="typchr" class="font-weight-bold">
 																																								Années
 																																								</label>
-																																								<select class="form-control" id="typchr" name="typchr">
+																																								<select class="custom-select" id="typchr" name="typchr">
 																																										<?php
 																																										if (isset($typchr) && $typchr == "decr" || !isset($team)) {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="decr" '.$txt.'>décroissante</option>';
@@ -480,7 +480,7 @@
 																																								<label for="typaut" class="font-weight-bold">
 																																								Auteurs (tous) 
 																																								</label>
-																																								<select class="form-control" id="typaut" name="typaut">
+																																								<select class="custom-select" id="typaut" name="typaut">
 																																										<?php
 																																										if (isset($typaut) && $typaut == "soul") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="soul" '.$txt.'>soulignés</option>';
@@ -496,7 +496,7 @@
 																																								<label for="typnom" class="font-weight-bold">
 																																								Auteurs (tous) 
 																																								</label>
-																																								<select class="form-control" id="typnom" name="typnom">
+																																								<select class="custom-select" id="typnom" name="typnom">
 																																										<?php
 																																										if (isset($typnom) && $typnom == "nominit" || !isset($team)) {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="nominit" '.$txt.'>Nom, initiale(s) du(des) prénom(s)</option>';
@@ -514,7 +514,7 @@
 																																								<label for="typcol" class="font-weight-bold">
 																																								Auteurs (de la collection) ou auteur IdHAL
 																																								</label>
-																																								<select class="form-control" id="typcol" name="typcol">
+																																								<select class="custom-select" id="typcol" name="typcol">
 																																										<?php
 																																										if (isset($typcol) && $typcol == "soul" || !isset($team)) {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="soul" '.$txt.'>soulignés</option>';
@@ -532,7 +532,7 @@
 																																								<label for="typbib" class="font-weight-bold">
 																																								Mettre en évidence (\labo{xxxxx}) les auteurs de la collection dans l'export Bibtex
 																																								</label>
-																																								<select class="form-control" id="typbib" name="typbib">
+																																								<select class="custom-select" id="typbib" name="typbib">
 																																									<?php
 																																									if (isset($typbib) && $typbib == "oui") {$txt = "selected";}else{$txt = "";}
 																																									echo '<option value="oui" '.$txt.'>oui</option>';
@@ -546,7 +546,7 @@
 																																								<label for="limaff1" class="font-weight-bold">
 																																								Limiter l&apos;affichage aux
 																																								</label>
-																																								<select id="limaff1" class="form-control"  name="limaff">
+																																								<select id="limaff1" class="custom-select"  name="limaff">
 																																										<?php
 																																										if (isset($limaff) && $limaff == 1 || isset($stpdf) && $stpdf == "mla") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value=1 '.$txt.'>1</option>';
@@ -563,7 +563,7 @@
 																																								<span class="font-weight-bold">
 																																								premier(s) auteur(s) (« et al. »)
 																																								</span>
-																																								<select class="form-control" id="typlim" name="typlim">
+																																								<select class="custom-select" id="typlim" name="typlim">
 																																									<?php
 																																									if (isset($typlim) && $typlim == "oui") {$txt = "selected";}else{$txt = "";}
 																																									echo '<option value="oui" '.$txt.'>oui</option>';
@@ -586,7 +586,7 @@
 																																				
 																																						<div class="form-group col-sm-2">
 																																								<label for="typgra" class="font-weight-bold">Mettre la citation en gras si auteurs de la collection en 1<sup>ère</sup> position ou en position finale</label>
-																																								<select class="form-control" id="typgra" name="typgra">
+																																								<select class="custom-select" id="typgra" name="typgra">
 																																									<?php
 																																									if (isset($typgra) && $typgra == "oui") {$txt = "selected";}else{$txt = "";}
 																																									echo '<option value="oui" '.$txt.'>oui</option>';
@@ -598,7 +598,7 @@
 																																				
 																																						<div class="form-group col-sm-2">
 																																								<label for="limgra" class="font-weight-bold">Limiter l'affichage aux seules références en gras</label>
-																																								<select class="form-control" id="limgra" name="limgra">
+																																								<select class="custom-select" id="limgra" name="limgra">
 																																									<?php
 																																									if (isset($limgra) && $limgra == "oui") {$txt = "selected";}else{$txt = "";}
 																																									echo '<option value="oui" '.$txt.'>oui</option>';
@@ -650,7 +650,7 @@
 																																								<label for="typidh" class="font-weight-bold">
 																																								Identifiant HAL 
 																																								</label>
-																																								<select class="form-control" id="typidh" name="typidh">
+																																								<select class="custom-select" id="typidh" name="typidh">
 																																										<?php
 																																										if (isset($typidh) && $typidh == "vis" || !isset($team)) {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="vis" '.$txt.'>visible</option>';
@@ -667,7 +667,7 @@
 																																								<label for="racine" class="font-weight-bold">
 																																								URL racine HAL
 																																								</label>
-																																								<select id="racine" class="form-control" name="racine">
+																																								<select id="racine" class="custom-select" name="racine">
 																																									<?php if ($racine == "http://archivesic.ccsd.cnrs.fr/") {$txt = "selected";}else{$txt = "";}?>
 																																									<option <?php echo $txt;?> value="http://archivesic.ccsd.cnrs.fr/">http://archivesic.ccsd.cnrs.fr/</option>
 																																									<?php if ($racine == "http://artxiker.ccsd.cnrs.fr/") {$txt = "selected";}else{$txt = "";}?>
@@ -917,7 +917,7 @@
 																																								<label for="typurl" class="font-weight-bold">
 																																								Lien URL 
 																																								</label>
-																																								<select class="form-control" id="typurl" name="typurl">
+																																								<select class="custom-select" id="typurl" name="typurl">
 																																										<?php
 																																										if (isset($typurl) && $typurl == "vis" || !isset($team)) {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="vis" '.$txt.'>visible</option>';
@@ -931,7 +931,7 @@
 																																								<label for="typdoi" class="font-weight-bold">
 																																								Lien DOI 
 																																								</label>
-																																								<select class="form-control" id="typdoi" name="typdoi">
+																																								<select class="custom-select" id="typdoi" name="typdoi">
 																																										<?php
 																																										if (isset($typdoi) && $typdoi == "vis" || !isset($team)) {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="vis" '.$txt.'>visible</option>';
@@ -945,7 +945,7 @@
 																																								<label for="typpub" class="font-weight-bold">
 																																								Lien Pubmed 
 																																								</label>
-																																								<select class="form-control" id="typpub" name="typpub">
+																																								<select class="custom-select" id="typpub" name="typpub">
 																																										<?php
 																																										if (isset($typpub) && $typpub == "vis") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="vis" '.$txt.'>visible</option>';
@@ -959,7 +959,7 @@
 																																								<label for="typisbn" class="font-weight-bold">
 																																								ISBN 
 																																								</label>
-																																								<select class="form-control" id="typisbn" name="typisbn">
+																																								<select class="custom-select" id="typisbn" name="typisbn">
 																																										<?php
 																																										if (isset($typisbn) && $typisbn == "vis") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="vis" '.$txt.'>visible</option>';
@@ -975,7 +975,7 @@
 																																								<label for="typcomm" class="font-weight-bold">
 																																								Commentaire 
 																																								</label>
-																																								<select class="form-control" id="typcomm" name="typcomm">
+																																								<select class="custom-select" id="typcomm" name="typcomm">
 																																										<?php
 																																										if (isset($typcomm) && $typcomm == "vis") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="vis" '.$txt.'>visible</option>';
@@ -989,7 +989,7 @@
 																																								<label for="typrefi" class="font-weight-bold">
 																																								Référence interne 
 																																								</label>
-																																								<select class="form-control" id="typrefi" name="typrefi">
+																																								<select class="custom-select" id="typrefi" name="typrefi">
 																																										<?php
 																																										if (isset($typrefi) && $typrefi == "vis") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="vis" '.$txt.'>visible</option>';
@@ -1003,7 +1003,7 @@
 																																								<label for="prefeq" class="font-weight-bold">
 																																								Afficher le préfixe AERES 
 																																								</label>
-																																								<select class="form-control" id="prefeq" name="prefeq">
+																																								<select class="custom-select" id="prefeq" name="prefeq">
 																																										<?php
 																																										if (isset($prefeq) && $prefeq == "oui") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="oui" '.$txt.'>oui</option>';
@@ -1017,7 +1017,7 @@
 																																								<label for="surdoi" class="font-weight-bold">
 																																								Afficher les doublons par surlignage
 																																								</label>
-																																								<select class="form-control" id="surdoi" name="surdoi">
+																																								<select class="custom-select" id="surdoi" name="surdoi">
 																																										<?php
 																																										if (isset($surdoi) && $surdoi == "oui") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="oui" '.$txt.'>oui</option>';
@@ -1031,7 +1031,7 @@
 																																								<label for="sursou" class="font-weight-bold">
 																																								Afficher les absences d'affiliation par surlignage
 																																								</label>
-																																								<select class="form-control" id="sursou" name="sursou">
+																																								<select class="custom-select" id="sursou" name="sursou">
 																																										<?php
 																																										if (isset($sursou) && $sursou == "oui") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="oui" '.$txt.'>oui</option>';
@@ -1045,7 +1045,7 @@
 																																								<label for="finass" class="font-weight-bold">
 																																								Afficher les financements associés (ANR/EU)
 																																								</label>
-																																								<select class="form-control" id="finass" name="finass">
+																																								<select class="custom-select" id="finass" name="finass">
 																																										<?php
 																																										if (isset($finass) && $finass == "oui") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="oui" '.$txt.'>oui</option>';
@@ -1115,7 +1115,7 @@
 																																								<label for="typrvg" class="font-weight-bold">
 																																								Revue en gras 
 																																								</label>
-																																								<select class="form-control" id="typrvg" name="typrvg">
+																																								<select class="custom-select" id="typrvg" name="typrvg">
 																																										<?php
 																																										if (isset($typrvg) && $typrvg == "oui") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="oui" '.$txt.'>oui</option>';
@@ -1129,7 +1129,7 @@
 																																								<label for="typann" class="font-weight-bold">
 																																								Année 
 																																								</label>
-																																								<select class="form-control" id="typann" name="typann">
+																																								<select class="custom-select" id="typann" name="typann">
 																																										<?php
 																																										if (isset($typann) && $typann == "apres" || !isset($team)) {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="apres" '.$txt.'>après les auteurs</option>';
@@ -1145,7 +1145,7 @@
 																																								<label for="typfor" class="font-weight-bold">
 																																								Format métadonnées 
 																																								</label>
-																																								<select class="form-control" id="typfor" name="typfor">
+																																								<select class="custom-select" id="typfor" name="typfor">
 																																										<?php
 																																										if (isset($typfor) && $typfor == "typ1") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="typ1" '.$txt.'>vol 5, n°2, pp. 320</option>';
@@ -1163,7 +1163,7 @@
 																																								<label for="typavsa" class="font-weight-bold">
 																																								Information <span class="font-italic">(acte)/(sans acte)</span> pour les communications et posters 
 																																								</label>
-																																								<select class="form-control" id="typavsa" name="typavsa">
+																																								<select class="custom-select" id="typavsa" name="typavsa">
 																																										<?php
 																																										if (isset($typavsa) && $typavsa == "vis") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="vis1" '.$txt.'>visible</option>';
@@ -1177,7 +1177,7 @@
 																																								<label for="typlng" class="font-weight-bold">
 																																								Langue 
 																																								</label>
-																																								<select class="form-control" id="typlng" name="typlng">
+																																								<select class="custom-select" id="typlng" name="typlng">
 																																										<?php
 																																										if (isset($typlng) && $typlng == "toutes" || !isset($team)) {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="toutes" '.$txt.'>toutes</option>';
@@ -1197,7 +1197,7 @@
 																																								<label for="delim" class="font-weight-bold">
 																																								Délimiteur export CSV
 																																								</label>
-																																								<select class="form-control" id="delim" name="delim">
+																																								<select class="custom-select" id="delim" name="delim">
 																																										<?php
 																																										if (isset($delim) && $delim == ",") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="," '.$txt.'>virgule</option>';
@@ -1215,7 +1215,7 @@
 																																								<label for="UBitly" class="font-weight-bold">
 																																								Disposer d'une URL raccourcie directe
 																																								</label>
-																																								<select class="form-control" id="UBitly" name="UBitly">
+																																								<select class="custom-select" id="UBitly" name="UBitly">
 																																										<?php
 																																										if (isset($UBitly) && $UBitly == "oui") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="oui" '.$txt.'>oui</option>';
@@ -1229,7 +1229,7 @@
 																																								<label for="typeqp" class="font-weight-bold">
 																																								Numérotation/codification par équipe
 																																								</label>
-																																								<select class="form-control" id="typeqp" name="typeqp">
+																																								<select class="custom-select" id="typeqp" name="typeqp">
 																																										<?php
 																																										if (isset($typeqp) && $typeqp == "oui") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="oui" '.$txt.' onClick="affich_form();">oui</option>';
@@ -1331,7 +1331,7 @@
 																																								<!-- <label for="typreva" class="font-weight-bold"> -->
 																																								<!-- Rang revues HCERES (Economie-Gestion) -->
 																																								<!-- </label> -->
-																																								<!-- <select class="form-control" id="typreva" name="typreva"> -->
+																																								<!-- <select class="custom-select" id="typreva" name="typreva"> -->
 																																										<?php
 																																										//if (isset($typreva) && $typreva == "vis") {$txt = "selected";}else{$txt = "";}
 																																										//echo '<option value="vis" '.$txt.'>visible</option>';
@@ -1345,7 +1345,7 @@
 																																								<!-- <label for="typrevh" class="font-weight-bold"> -->
 																																								<!-- Rang revues HCERES (Toutes disciplines) -->
 																																								<!-- </label> -->
-																																								<!-- <select class="form-control" id="typrevh" name="typrevh"> -->
+																																								<!-- <select class="custom-select" id="typrevh" name="typrevh"> -->
 																																										<?php
 																																										//if (isset($typrevh) && $typrevh == "vis") {$txt = "selected";}else{$txt = "";}
 																																										//echo '<option value="vis" '.$txt.'>visible</option>';
@@ -1403,7 +1403,7 @@
 																																								<label for="typrevc" class="font-weight-bold">
 																																								Rang revues CNRS (Economie-Gestion) 
 																																								</label>
-																																								<select class="form-control" id="typrevc" name="typrevh">
+																																								<select class="custom-select" id="typrevc" name="typrevh">
 																																										<?php
 																																										//if (isset($typrevc) && $typrevc == "vis") {$txt = "selected";}else{$txt = "";}
 																																										//echo '<option value="vis" '.$txt.'>visible</option>';
@@ -1421,7 +1421,7 @@
 																																								<label for="typif" class="font-weight-bold">
 																																								IF des revues <span class="font-italic font-weight-normal">(il peut être nécessaire de lancer <a target="_blank" rel="noopener noreferrer" href="./ExtrHAL_IF.php">la procédure d'extraction</a> à partir de votre liste CSV réalisée selon ce <a href="./modele-JCR.csv">modèle</a>)</span> 
 																																								</label>
-																																								<select class="form-control" id="typif" name="typif">
+																																								<select class="custom-select" id="typif" name="typif">
 																																										<?php
 																																										//if (strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false || strpos($_SERVER['HTTP_HOST'], 'ecobio') !== false) {
 																																										if (isset($typif) && $typif == "vis") {$txt = "selected";}else{$txt = "";}
@@ -1436,7 +1436,7 @@
 																																								<label for="typinc" class="font-weight-bold">
 																																								InCites Top 1%/10% <span class="font-italic font-weight-normal">(il peut être nécessaire de lancer <a target="_blank" rel="noopener noreferrer" href="./ExtrHAL_InCites.php">la procédure d'extraction</a> à partir de votre liste CSV réalisée selon ce <a href="./modele-InCites.csv">modèle</a>)</span> 
 																																								</label>
-																																								<select class="form-control" id="typinc" name="typinc">
+																																								<select class="custom-select" id="typinc" name="typinc">
 																																										<?php
 																																										if (isset($typinc) && $typinc == "vis") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="vis" '.$txt.'>visible</option>';
@@ -1454,7 +1454,7 @@
 																																								<label for="typsign" class="font-weight-bold">
 																																								HCERES distinguer les 20% / 80% : <span class="font-weight-normal"><a target="_blank" rel="noopener noreferrer" href="./ExtrHAL_signif.php">chargez votre liste CSV</a> en suivant ce <a href="./modele-signif.csv">modèle</a></span> 
 																																								</label>
-																																								<select class="form-control" id="typsign" name="typsign">
+																																								<select class="custom-select" id="typsign" name="typsign">
 																																										<?php
 																																										if (isset($typsign) && $typsign == "ts100") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="ts100" '.$txt.'>visible (→)</option>';
