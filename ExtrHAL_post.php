@@ -324,6 +324,8 @@ if (isset($_POST["soumis"])) {
 	$urlsauv .= "&typgra=".$typgra;
 	$limgra = $_POST["limgra"];
 	$urlsauv .= "&limgra=".$limgra;
+	$typcrp = $_POST["typcrp"];
+	$urlsauv .= "&typcrp=".$typcrp;
 	$rstaff = $_POST["rstaff"];
 	$urlsauv .= "&rstaff=".$rstaff;
 	$typtri = $_POST["typtri"];

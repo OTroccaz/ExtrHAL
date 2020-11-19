@@ -310,6 +310,8 @@ if (isset($_GET["team"])) {
 	$urlsauv .= "&typgra=".$typgra;
 	$limgra = $_GET["limgra"];
 	$urlsauv .= "&limgra=".$limgra;
+	$typcrp = $_GET["typcrp"];
+	$urlsauv .= "&typcrp=".$typcrp;
 	$rstaff = $_GET["rstaff"];
 	$urlsauv .= "&rstaff=".$rstaff;
 	$typtri = $_GET["typtri"];
