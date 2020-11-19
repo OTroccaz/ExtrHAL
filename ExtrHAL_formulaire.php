@@ -612,9 +612,9 @@
 																																								<label for="typcrp" class="font-weight-bold">Mettre en évidence l'auteur correspondant*</label>
 																																								<select class="custom-select" id="typcrp" name="typcrp">
 																																									<?php
-																																									if (isset($typcrp) && $typcrp == "oui") {$txt = "selected";}else{$txt = "";}
+																																									if (isset($typcrp) && $typcrp == "oui" || !isset($team)) {$txt = "selected";}else{$txt = "";}
 																																									echo '<option value="oui" '.$txt.'>oui</option>';
-																																									if (isset($typcrp) && $typcrp == "non" || !isset($team)) {$txt = "selected";}else{$txt = "";}
+																																									if (isset($typcrp) && $typcrp == "non") {$txt = "selected";}else{$txt = "";}
 																																									echo '<option value="non" '.$txt.'>non</option>';
 																																									?>
 																																								</select>
