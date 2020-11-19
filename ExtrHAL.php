@@ -153,7 +153,7 @@ include "./ExtrHAL_get.php";
                                         </h2>
                                         <h5 class="badge badge-primary badge-pill">Présentation</h5><br>
 
-                                        <img src="./img/hilthart-pedersen-beach-of-list-sylt-unsplash.png" alt="Accueil ExtrHAL" class="img-fluid"><br>
+                                        <img src="./img/hilthart-pedersen-beach-of-list-sylt-unsplash.jpg" alt="Accueil ExtrHAL" class="img-fluid"><br>
 																				<p class="font-italic">Photo : Beach of List Sylt by Hilthart Pedersen on Unsplash (détail)</p>
 
                                         <p class="mb-2 text-justify">
