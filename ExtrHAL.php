@@ -24,10 +24,9 @@ if ($redir == "oui") {header("Location: ".$urlnet);}
 <head>
 	<meta charset="utf-8" />
 	<title>ExtrHAL - HAL - UR1</title>
-	<meta name="Description" content="ExtrHAL : outil d&apos;extraction des publications HAL d&apos;une unité, d'une équipe de recherche ou d'un auteur" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta content="" name="description" />
-	<meta content="Coderthemes + Lizuka" name="author" />
+	<meta content="ExtrHAL permet d'afficher et d'exporter des listes de publications HAL d'une unité de recherche, d'une équipe ou d'un auteur" name="description" />
+	<meta content="Coderthemes + Lizuka + OTroccaz + LJonchere" name="author" />
 	<!-- App favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
