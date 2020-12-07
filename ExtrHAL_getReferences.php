@@ -173,7 +173,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									 $tabQ = explode("_JoinSep_", $tabAuth[1]);
 									 $indQ = 0;
 									 foreach($entry->authFullName_s as $funa){
-										 if ($funa == $tabQ[0] && stripos($listenominit, $entry->authLastName_s[$indQ]) === false) {
+										if ($funa == $tabQ[0] && stripos($listenomcomp1, nomCompEntier($entry->authLastName_s[$indQ])." ".prenomCompEntier($entry->authFirstName_s[$indQ])) === false) {
 											 $prenom = prenomCompInit($entry->authFirstName_s[$indQ]);
 											 $listenominit .= nomCompEntier($entry->authLastName_s[$indQ])." ".$prenom.".~";
 											 $listenomcomp1 .= nomCompEntier($entry->authLastName_s[$indQ])." ".prenomCompEntier($entry->authFirstName_s[$indQ])."~";
@@ -195,7 +195,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 			 }
 		 }
 	 }
-	 
+	 //echo $listenomcomp1;
    //var_dump($results->response->docs);
 	 //Est-ce que les notices significatives sont à mettre en évidence ?
 	 if (isset($typsign) && $typsign != "ts0") {
