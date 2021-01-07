@@ -197,6 +197,26 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 }
 	 //echo $listenomcomp1;
    //var_dump($results->response->docs);
+	 
+	 //Vérification préalable > Si 2 notices ont des liens HAL identiques, n'en afficher qu'une seule (avec priorité pour celle qui a un PDF le cas échéant)
+	 $tabAff = array();
+	 $tabHid = array();
+	 $tabFil = array();
+	 $tab = 0;
+	 foreach($results->response->docs as $entry){
+		 if (!in_array($entry->halId_s, $tabHid)) {
+			 $tabHid[$tab] = $entry->halId_s;
+			 $tabAff[$tab] = "oui";
+			 if (isset($entry->files_s[0]) && $entry->files_s[0] != "") {$tabFil[$tab] = "oui";}else{$tabFil[$tab] = "non";}
+		 }else{
+			 $numFound--;
+			 $key = array_search($entry->halId_s, $tabHid);
+			 if ($tabFil[$key] == "oui") {$tabAff[$tab] = "non";}else{$tabAff[$key] = "non"; $tabAff[$tab] = "oui";}
+		 }
+		 $tab++;
+	 }
+	 $tab = 0;
+	 
 	 //Est-ce que les notices significatives sont à mettre en évidence ?
 	 if (isset($typsign) && $typsign != "ts0") {
 			include "./pvt/signif.php";
@@ -214,6 +234,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 
 	 if ($numFound != 0) {
 		 foreach($results->response->docs as $entry){
+			 if ($tabAff[$tab] == "oui") {
 				//Si notices significatives à mettre en évidence, il faut pouvoir les extraire en tête de liste > ajout d'un paramètre à $sortArray
 				$sign = (isset($entry->signif) && $entry->signif == "oui") ? "oui" : "ras";
 				//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
@@ -243,8 +264,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$listColl = "~";
 				if (isset($collCode_s) && $collCode_s != "" && isset($gr) && (strpos($gr, $collCode_s) !== false)) {
 					foreach($entry->collCode_s as $coll){
-					if (strpos($listColl, "~".$coll."~") === false) {
-						$listColl .= "~".$coll."~";
+						if (strpos($listColl, "~".$coll."~") === false) {
+							$listColl .= "~".$coll."~";
 							for($i = 1; $i <= $nbeqp; $i++) {
 								if (isset($_POST["soumis"])) {
 									if ($coll == strtoupper($_POST['eqp'.$i])) {
@@ -2469,6 +2490,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				array_push($bibArray,$bibLab);
 		 $iRA++;
 		 }
+		 $tab++;
+	  }
 	 }
    $result=array();
    array_push($result,$infoArray);
