@@ -89,13 +89,13 @@
 
                                             <div class="form-group row mb-1">
                                                 <label for="idhal" class="col-12 col-md-3 col-form-label font-weight-bold pt-0">
-                                                Identifiant alphabétique auteur HAL
+                                                Identifiant auteur HAL
                                                 </label>
                                                 
                                                 <div class="col-12 col-md-9">
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
-                                                            <button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="Pour une requête sur plusieurs IdHAL" data-content="Mettre entre parenthèses, et remplacer les guillemets par %22 et les espaces par %20. Exemple <strong>(%22laurent-jonchere%22%20OR%20%22olivier-troccaz%22)" data-original-title="">
+                                                            <button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="Pour une requête sur plusieurs IdHAL" data-content="Mettre entre parenthèses, et remplacer les guillemets par %22 et les espaces par %20. Exemple <strong>(%22laurent-jonchere%22%20OR%20%22olivier-troccaz%22)</strong> - Utilisez le <a target='_blank' href='https://www.textmagic.com/free-tools/url-encoder-decoder'>site textmagic</a> pour encoder votre requête : ce site permet d'encoder facilement une requête 'naturelle'" data-original-title="">
                                                             <i class="mdi mdi-comment-question text-white"></i>
                                                             </button>
                                                         </div>
