@@ -35,6 +35,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 		 }
 	 }
 	 
+	 $atesteropt = str_replace(" ", "%20", $atesteropt);
+	 
 		if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
 			//Période de recherche
 			if (isset($anneedeb) && $anneedeb != "" && isset($anneefin) && $anneefin != "") {
