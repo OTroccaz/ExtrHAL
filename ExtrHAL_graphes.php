@@ -164,18 +164,29 @@
 																										$atesteropt = "";
 																									}else{
 																										if (isset($refint) && $refint != "") {
+																											$tstRefint = "%22".$refint."%22";
+																										  if (strpos($refint, "~") !== false) {
+																											  $tstRefint = "(";
+																											  $tabRefint = explode("~", $refint);
+																											  foreach($tabRefint as $ri) {
+																												  $tstRefint .= "%22".$ri."%22%20OR%20";
+																											  }
+																											  $tstRefint = substr($tstRefint, 0, -8);
+																											  $tstRefint .= ")";
+																										  }
 																											if ($teamInit != "") {
 																												$atester = "collCode_s:".$teamInit;
-																												$atesteropt = "%20AND%20localReference_s:".$refint;
+																												$atesteropt = "%20AND%20localReference_t:".$tstRefint;
 																											}else{
 																												$atester = "";
-																												$atesteropt = "localReference_s:".$refint;
+																												$atesteropt = "localReference_t:".$tstRefint;
 																											}
 																										}else{
 																											 $atester = "collCode_s:".$teamInit;
 																											 $atesteropt = "";
 																										}
 																									}
+																									$atesteropt = str_replace(" ", "%20", $atesteropt);
 																									$contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:ART%20AND%20audience_s:2%20AND%20peerReviewing_s:1%20AND%20producedDateY_i:".$year);
 
 																									$ACLRItot = 0;

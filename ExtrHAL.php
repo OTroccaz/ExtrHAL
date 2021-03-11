@@ -248,12 +248,12 @@ include "./ExtrHAL_get.php";
 																							echo '<a class="btn btn-info" href="ExtrHAL.php">Réinitialiser tous les paramètres</a>&nbsp;';
 																							if ($UBitly == "oui") {
 																							 if ($urlbitly != "Impossible car URL trop longue") {
-																								 echo "<span class='ml-2'>URL raccourcie directe : <a href=".$urlbitly.">".$urlbitly."</span>";
+																								 echo "<br><span class='ml-2'>URL raccourcie directe : <a href=".$urlbitly.">".$urlbitly."</span>";
 																							 }else{
-																								 echo "<span class='ml-2'>URL raccourcie directe : ".$urlbitly."</span>";
+																								 echo "<br><span class='ml-2'>URL raccourcie directe : ".$urlbitly."</span>";
 																							 }
 																							}else{
-																							 echo "<span class='ml-2'>Pas d'URL raccourcie directe demandée</span>";
+																							 echo "<br><span class='ml-2'>Pas d'URL raccourcie directe demandée</span>";
 																							}
 																						}
 																					?>

@@ -44,14 +44,14 @@
                                             </div> <!-- .form-group -->
                                             <div class="form-group row mb-1">
                                                 <label for="refint" class="col-12 col-md-3 col-form-label font-weight-bold">
-                                                Référence interne
+                                                Référence(s) interne(s) (séparés par des tildes ~)
                                                 
                                                 </label>
                                                 
                                                 <div class="col-12 col-md-9">
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
-                                                            <button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="" data-content="Champ référence interne des dépôts HAL" data-original-title="">
+                                                            <button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="" data-content="Champ référence(s) interne(s) des dépôts HAL. Exemple IMoPA hospitalière~activité hospitalière IMoPA~IMOPA - Activité hospitalière" data-original-title="">
                                                             <i class="mdi mdi-comment-question text-white"></i>
                                                             </button>
                                                         </div>

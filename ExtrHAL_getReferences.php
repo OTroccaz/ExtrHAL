@@ -10,13 +10,23 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 		 $atesteropt = "";
 	 }else{
 		 if (isset($refint) && $refint != "") {
+			 $tstRefint = "%22".$refint."%22";
+			 if (strpos($refint, "~") !== false) {
+				 $tstRefint = "(";
+				 $tabRefint = explode("~", $refint);
+				 foreach($tabRefint as $ri) {
+					 $tstRefint .= "%22".$ri."%22%20OR%20";
+				 }
+				 $tstRefint = substr($tstRefint, 0, -8);
+				 $tstRefint .= ")";
+			 }
 			 if (strtolower($collCode_s) == "entrez le code de votre collection") {$collCode_s = "";}
 			 if ($teamInit != "") {
 				 $atester = "collCode_s:".$teamInit;
-				 $atesteropt = "%20AND%20localReference_s:".$refint;
+				 $atesteropt = "%20AND%20localReference_t:".$tstRefint;
 			 }else{
 				 $atester = "";
-				 $atesteropt = "localReference_s:".$refint;
+				 $atesteropt = "localReference_t:".$tstRefint;
 			 }
 		 }else{
 			 $atester = "collCode_s:".$teamInit;
