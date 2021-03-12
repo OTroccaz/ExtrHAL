@@ -24,6 +24,20 @@
 		eqpaff += '		<label class="custom-control-label" for="typcro2">oui</label>';
 		eqpaff += '	</div>';
 		eqpaff += '</div>';
+		eqpaff += '';
+		eqpaff += '<div class="form-group row mb-2">';
+		eqpaff += '	<div class="col-sm-8">';
+    eqpaff += '  <label for="typexc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ne pas afficher les publications&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de cette(ces) équipe(s) : </label>';
+		eqpaff += '	</div>';
+		eqpaff += '	<div class="col-sm-2">';
+		eqpaff += '		<input type="radio" id="typexc1" name="typexc" value="non" <?php echo $excn;?> class="custom-control-input">';
+		eqpaff += '		<label class="custom-control-label" for="typexc1">non</label>';
+		eqpaff += '	</div>';
+		eqpaff += '	<div class="col-sm-2">';
+		eqpaff += '		<input type="radio" id="typexc2" name="typexc" value="oui" <?php echo $exco;?> class="custom-control-input">';
+		eqpaff += '		<label class="custom-control-label" for="typexc2">oui</label>';
+		eqpaff += '	</div>';
+		eqpaff += '</div>';
     document.getElementById("eqp").innerHTML = eqpaff;
     //document.getElementById("panel2").style.maxHeight = document.getElementById("panel2").scrollHeight + "px";
   }

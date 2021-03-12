@@ -1043,6 +1043,8 @@
 																																				<?php
 																																				if (isset($typcro) && $typcro == "non" || !isset($team)) {$cron = "checked=\"\"";}else{$cron = "";}
 																																				if (isset($typcro) && $typcro == "oui") {$croo = "checked=\"\"";}else{$croo = "";}
+																																				if (isset($typexc) && $typexc == "non" || !isset($team)) {$excn = "checked=\"\"";}else{$excn = "";}
+																																				if (isset($typexc) && $typexc == "oui") {$exco = "checked=\"\"";}else{$exco = "";}
 																																				if (isset($typeqp) && $typeqp == "oui") {//Numérotation/codification par équipe
 																																					if (isset($_POST["soumis"])) {
 																																						for($i = 1; $i <= $nbeqp; $i++) {
@@ -1065,7 +1067,21 @@
 																																						echo '		<input type="radio" id="typcro2" name="typcro" value="oui" '.$croo.' class="custom-control-input">';
 																																						echo '		<label class="custom-control-label" for="typcro2">oui</label>';
 																																						echo '	</div>';
-																																						echo '</div>';																																				
+																																						echo '</div>';
+
+																																						echo '<div class="form-group row mb-2">';
+																																						echo '	<div class="col-sm-8">';
+																																						echo '    <label for="typcro" class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ne pas afficher les publications&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de cette(ces) équipe(s) </label>';
+																																						echo '	</div>';
+																																						echo '	<div class="col-sm-2">';
+																																						echo '		<input type="radio" id="typcro1" name="typexc" value="non" '.$excn.' class="custom-control-input">';
+																																						echo '		<label class="custom-control-label" for="typexc1">non</label>';
+																																						echo '	</div>';
+																																						echo '	<div class="col-sm-2">';
+																																						echo '		<input type="radio" id="typcro2" name="typexc" value="oui" '.$exco.' class="custom-control-input">';
+																																						echo '		<label class="custom-control-label" for="typexc2">oui</label>';
+																																						echo '	</div>';
+																																						echo '</div>';																																						
 																																					}
 																																					if (isset($_GET["team"])) {
 																																						for($i = 1; $i <= $nbeqp; $i++) {
@@ -1086,7 +1102,21 @@
 																																						echo '		<input type="radio" id="typcro2" name="typcro" value="oui" '.$croo.' class="custom-control-input">';
 																																						echo '		<label class="custom-control-label" for="typcro2">oui</label>';
 																																						echo '	</div>';
-																																						echo '</div>';				
+																																						echo '</div>';
+
+																																						echo '<div class="form-group row mb-2">';
+																																						echo '	<div class="col-sm-8">';
+																																						echo '    <label for="typcro" class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ne pas afficher les publications&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de cette(ces) équipe(s) </label>';
+																																						echo '	</div>';
+																																						echo '	<div class="col-sm-2">';
+																																						echo '		<input type="radio" id="typcro1" name="typexc" value="non" '.$excn.' class="custom-control-input">';
+																																						echo '		<label class="custom-control-label" for="typexc1">non</label>';
+																																						echo '	</div>';
+																																						echo '	<div class="col-sm-2">';
+																																						echo '		<input type="radio" id="typcro2" name="typexc" value="oui" '.$exco.' class="custom-control-input">';
+																																						echo '		<label class="custom-control-label" for="typexc2">oui</label>';
+																																						echo '	</div>';
+																																						echo '</div>';																																						
 																																					}
 																																				}
 																																				?>

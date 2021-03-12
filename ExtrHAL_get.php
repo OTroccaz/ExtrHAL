@@ -387,6 +387,10 @@ if (isset($_GET["team"])) {
     $typcro = $_GET["typcro"];
     $urlsauv .= "&typcro=".$typcro;
   }
+	if (isset($_GET['typexc'])) {
+    $typexc = $_GET["typexc"];
+    $urlsauv .= "&typexc=".$typexc;
+  }
 	if (isset($_GET['UBitly'])) {
     $UBitly = $_GET["UBitly"];
     $urlsauv .= "&UBitly=".$UBitly;

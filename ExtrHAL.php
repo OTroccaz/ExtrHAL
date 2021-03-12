@@ -83,6 +83,7 @@ $depotdeb = "";
 $depotfin = "";
 $typidh = "";
 $typcro = "";
+$typexc = "";
 $prefeq = "";
 $sortArray = array();
 $rtfArray = array();

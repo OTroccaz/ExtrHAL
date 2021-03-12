@@ -616,6 +616,8 @@
 																											}
 																										}
 																										
+																										if ($typexc == "oui") {$graphe = "non";}//Ne pas afficher les graphes des publications croisées si le but était de ne pas afficher les publications de certaines équipes
+																											
 																										if ($graphe == "oui") {
 																											echo '<br><br>';
 																											$i = 0;

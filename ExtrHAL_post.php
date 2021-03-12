@@ -397,6 +397,10 @@ if (isset($_POST["soumis"])) {
     $typcro = $_POST["typcro"];
     $urlsauv .= "&typcro=".$typcro;
   }
+	if (isset($_POST['typexc'])) {
+    $typexc = $_POST["typexc"];
+    $urlsauv .= "&typexc=".$typexc;
+  }
 	if (isset($_POST['UBitly'])) {
     $UBitly = $_POST["UBitly"];
     $urlsauv .= "&UBitly=".$UBitly;
