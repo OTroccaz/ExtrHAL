@@ -425,6 +425,9 @@
 																										case "AV" :
 																											echo '&nbsp;&nbsp;&nbsp;AV = Articles de vulgarisation'.$cpmlng.$detail.'<br>';
 																											break;
+																										case "APNV" :
+																											echo '&nbsp;&nbsp;&nbsp;APNV = Publications non ventilées (articles)'.$cpmlng.$detail.'<br>';
+																											break;
 																										case "TC" :
 																											echo '&nbsp;&nbsp;&nbsp;TC = Toutes les communications (sauf grand public)'.$cpmlng.$detail.'<br>';
 																											break;
@@ -497,6 +500,9 @@
 																										case "CGP" :
 																											echo '&nbsp;&nbsp;&nbsp;CGP = Conférences grand public'.$cpmlng.$detail.'<br>';
 																											break;
+																										case "CPNV" :
+																											echo '&nbsp;&nbsp;&nbsp;CPNV = Publications non ventilées (conférences)'.$cpmlng.$detail.'<br>';
+																											break;
 																										case "OCDO" :
 																											echo '&nbsp;&nbsp;&nbsp;OCDO = Ouvrages ou chapitres ou directions d&apos;ouvrages'.$cpmlng.$detail.'<br>';
 																											break;
@@ -556,6 +562,9 @@
 																											break;
 																										case "CNR" :
 																											echo '&nbsp;&nbsp;&nbsp;CNR = Coordination de numéro de revue'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "OPNV" :
+																											echo '&nbsp;&nbsp;&nbsp;OPNV = Publications non ventilées (ouvrages)'.$cpmlng.$detail.'<br>';
 																											break;
 																										case "BRE" :
 																											echo '&nbsp;&nbsp;&nbsp;BRE = Brevets'.$cpmlng.$detail.'<br>';

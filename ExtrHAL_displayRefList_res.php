@@ -90,6 +90,15 @@ if (isset($choix_publis) && strpos($choix_publis, "-AV-") !== false) {
 	$sect->writeText("<br><strong>Articles de vulgarisation".$cpmlng.$detail."</strong><br>", $fonth2);
 	list($numbers["AV"],$crores["AV"],$numbersTG["AV"]) = displayRefList("ART",$team,"%20AND%20popularLevel_s:1".$specificRequestCode,$countries,$anneedeb,$anneefin,"AV",$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
+if (isset($choix_publis) && strpos($choix_publis, "-APNV-") !== false) {
+	echo "<br><a name=\"APNV\"></a><h2>Publications non ventilées (articles)".$cpmlng.$detail." <a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";
+	//$Fnm1 = "./HAL/extractionHAL_".$team.".csv";
+	$inF1 = fopen($Fnm1,"a+");
+	//fseek($inF1, 0);
+	fwrite($inF1,"Publications non ventilées (articles)".$cpmlng.$detail.chr(13).chr(10));
+	$sect->writeText("<br><strong>Publications non ventilées (articles)".$cpmlng.$detail."</strong><br>", $fonth2);
+	list($numbers["APNV"],$crores["APNV"],$numbersTG["APNV"]) = displayRefList("ART",$team,"%20AND%20audience_s:1".$specificRequestCode,$countries,$anneedeb,$anneefin,"APNV",$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
+}
 if (isset($choix_comm) && strpos($choix_comm, "-TC-") !== false) {
 	echo "<br><a name=\"TC\"></a><h2>Toutes les communications (sauf grand public)".$cpmlng.$detail." <a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";
 	//$Fnm1 = "./HAL/extractionHAL_".$team.".csv";
@@ -306,6 +315,15 @@ if (isset($choix_comm) && strpos($choix_comm, "-CGP-") !== false) {
 	$sect->writeText("<br><strong>Conférences grand public".$cpmlng.$detail."</strong><br>", $fonth2);
 	list($numbers["CGP"],$crores["CGP"],$numbersTG["CGP"]) = displayRefList("COMM",$team,"%20AND%20popularLevel_s:1".$specificRequestCode,$countries,$anneedeb,$anneefin,"CGP",$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
+if (isset($choix_comm) && strpos($choix_comm, "-CPNV-") !== false) {
+	echo "<br><a name=\"CPNV\"></a><h2>Publications non ventilées (communications)".$cpmlng.$detail." <a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";
+	//$Fnm1 = "./HAL/extractionHAL_".$team.".csv";
+	$inF1 = fopen($Fnm1,"a+");
+	//fseek($inF1, 0);
+	fwrite($inF1,"Publications non ventilées (communications)".$cpmlng.$detail.chr(13).chr(10));
+	$sect->writeText("<br><strong>Publications non ventilées (communications)".$cpmlng.$detail."</strong><br>", $fonth2);
+	list($numbers["CPNV"],$crores["CPNV"],$numbersTG["CPNV"]) = displayRefList("COMM",$team,"%20AND%20audience_s:1".$specificRequestCode,$countries,$anneedeb,$anneefin,"CPNV",$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
+}
 if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDO-") !== false) {
 	echo "<br><a name=\"OCDO\"></a><h2>Ouvrages ou chapitres ou directions d’ouvrages".$cpmlng.$detail." <a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";
 	//$Fnm1 = "./HAL/extractionHAL_".$team.".csv";
@@ -486,6 +504,15 @@ if (isset($choix_ouvr) && strpos($choix_ouvr, "-CNR-") !== false) {
 	fwrite($inF1,"Coordination de numéro de revue".$cpmlng.$detail.chr(13).chr(10));
 	$sect->writeText("<br><strong>Coordination de numéro de revue".$cpmlng.$detail."</strong><br>", $fonth2);
 	list($numbers["CNR"],$crores["CNR"],$numbersTG["CNR"]) = displayRefList("CNR",$team,"%20AND%20journalTitle_s:*".$specificRequestCode,$countries,$anneedeb,$anneefin,"CNR",$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
+}
+if (isset($choix_ouvr) && strpos($choix_ouvr, "-OPNV-") !== false) {
+	echo "<br><a name=\"OPNV\"></a><h2>Publications non ventilées (ouvrages)".$cpmlng.$detail." <a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";
+	//$Fnm1 = "./HAL/extractionHAL_".$team.".csv";
+	$inF1 = fopen($Fnm1,"a+");
+	//fseek($inF1, 0);
+	fwrite($inF1,"Publications non ventilées (ouvrages)".$cpmlng.$detail.chr(13).chr(10));
+	$sect->writeText("<br><strong>Publications non ventilées (ouvrages)".$cpmlng.$detail."</strong><br>", $fonth2);
+	list($numbers["OPNV"],$crores["OPNV"],$numbersTG["OPNV"]) = displayRefList("OUV",$team,"%20AND%20audience_s:1".$specificRequestCode,$countries,$anneedeb,$anneefin,"OPNV",$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_autr) && strpos($choix_autr, "-BRE-") !== false) {
 	echo "<br><a name=\"BRE\"></a><h2>Brevets".$cpmlng.$detail." <a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";

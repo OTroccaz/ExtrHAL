@@ -197,6 +197,7 @@
 																																		if (isset($choix_publis) && strpos($choix_publis, "-ASCLRI-") !== false) {$asclri = "selected";}else{$asclri = "";}
 																																		if (isset($choix_publis) && strpos($choix_publis, "-ASCLRN-") !== false) {$asclrn = "selected";}else{$asclrn = "";}
 																																		if (isset($choix_publis) && strpos($choix_publis, "-AV-") !== false) {$av = "selected";}else{$av = "";}
+																																		if (isset($choix_publis) && strpos($choix_publis, "-APNV-") !== false) {$apnv = "selected";}else{$apnv = "";}
 																																		?>
 
                                                                     <div class="form-group row mb-1">
@@ -222,6 +223,7 @@
                                                                                     <option value="ASCLRI"<?php echo $asclri;?>>Articles de revues internationales sans comité de lecture</option>
                                                                                     <option value="ASCLRN"<?php echo $asclrn;?>>Articles de revues nationales sans comité de lecture</option>
                                                                                     <option value="AV"<?php echo $av;?>>Articles de vulgarisation</option>
+																																										<option value="APNV"<?php echo $apnv;?>>Publications non ventilées (articles)</option>
                                                                                 </select>
                                                                             </div> <!-- .input-group -->
                                                                             
@@ -253,6 +255,7 @@
 																																		if (isset($choix_comm) && strpos($choix_comm, "-CPI-") !== false) {$cpi = "selected";}else{$cpi = "";}
 																																		if (isset($choix_comm) && strpos($choix_comm, "-CPN-") !== false) {$cpn = "selected";}else{$cpn = "";}
 																																		if (isset($choix_comm) && strpos($choix_comm, "-CGP-") !== false) {$cgp = "selected";}else{$cgp = "";}
+																																		if (isset($choix_comm) && strpos($choix_comm, "-CPNV-") !== false) {$cpnv = "selected";}else{$cpnv = "";}
 																																		?>
 
                                                                     <div class="form-group row mb-1">
@@ -293,6 +296,7 @@
                                                                                     <option value="CPI" <?php echo $cpi;?>>Communications par affiches internationales</option>
                                                                                     <option value="CPN" <?php echo $cpn;?>>Communications par affiches nationales</option>
                                                                                     <option value="CGP" <?php echo $cgp;?>>Conférences grand public</option>
+																																										<option value="CPNV" <?php echo $cpnv;?>>Publications non ventilées (conférences)</option>
                                                                                 </select>
                                                                             </div> <!-- .input-group -->
                                                                             
@@ -320,6 +324,7 @@
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDON-") !== false) {$ocdon = "selected";}else{$ocdon = "";}
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCV-") !== false) {$ocv = "selected";}else{$ocv = "";}
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-CNR-") !== false) {$cnr = "selected";}else{$cnr = "";}
+																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-OPNV-") !== false) {$opnv = "selected";}else{$opnv = "";}
 																																		?>
 
                                                                     <div class="form-group row mb-1">
@@ -356,6 +361,7 @@
                                                                                     <option value="ODON" <?php echo $odon;?>>Ouvrages ou directions d&apos;ouvrages de portée nationale</option>
                                                                                     <option value="OCV" <?php echo $ocv;?>>Ouvrages ou chapitres de vulgarisation</option>
                                                                                     <option value="CNR" <?php echo $cnr;?>>Coordination de numéro de revue</option>
+																																										<option value="OPNV" <?php echo $opnv;?>>Publications non ventilées (ouvrages)</option>
                                                                                     </select>
                                                                             </div> <!-- .input-group -->
                                                                             
