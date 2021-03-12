@@ -1071,14 +1071,14 @@
 
 																																						echo '<div class="form-group row mb-2">';
 																																						echo '	<div class="col-sm-8">';
-																																						echo '    <label for="typcro" class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ne pas afficher les publications&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de cette(ces) équipe(s) </label>';
+																																						echo '    <label for="typexc" class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ne pas afficher les publications&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de cette(ces) équipe(s) </label>';
 																																						echo '	</div>';
 																																						echo '	<div class="col-sm-2">';
-																																						echo '		<input type="radio" id="typcro1" name="typexc" value="non" '.$excn.' class="custom-control-input">';
+																																						echo '		<input type="radio" id="typexc1" name="typexc" value="non" '.$excn.' class="custom-control-input">';
 																																						echo '		<label class="custom-control-label" for="typexc1">non</label>';
 																																						echo '	</div>';
 																																						echo '	<div class="col-sm-2">';
-																																						echo '		<input type="radio" id="typcro2" name="typexc" value="oui" '.$exco.' class="custom-control-input">';
+																																						echo '		<input type="radio" id="typexc2" name="typexc" value="oui" '.$exco.' class="custom-control-input">';
 																																						echo '		<label class="custom-control-label" for="typexc2">oui</label>';
 																																						echo '	</div>';
 																																						echo '</div>';																																						
@@ -1109,11 +1109,11 @@
 																																						echo '    <label for="typcro" class="font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ne pas afficher les publications&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de cette(ces) équipe(s) </label>';
 																																						echo '	</div>';
 																																						echo '	<div class="col-sm-2">';
-																																						echo '		<input type="radio" id="typcro1" name="typexc" value="non" '.$excn.' class="custom-control-input">';
+																																						echo '		<input type="radio" id="typexc1" name="typexc" value="non" '.$excn.' class="custom-control-input">';
 																																						echo '		<label class="custom-control-label" for="typexc1">non</label>';
 																																						echo '	</div>';
 																																						echo '	<div class="col-sm-2">';
-																																						echo '		<input type="radio" id="typcro2" name="typexc" value="oui" '.$exco.' class="custom-control-input">';
+																																						echo '		<input type="radio" id="typexc2" name="typexc" value="oui" '.$exco.' class="custom-control-input">';
 																																						echo '		<label class="custom-control-label" for="typexc2">oui</label>';
 																																						echo '	</div>';
 																																						echo '</div>';																																						
