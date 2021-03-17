@@ -176,8 +176,11 @@ include "./ExtrHAL_get.php";
                                         <h5 class="badge badge-primary badge-pill">Mode d'emploi</h5>
                                         <div class="mb-2">
                                             <ul class="list-group">
+																						<li class="list-group-item">
+                                                    <a target="_blank" rel="noopener noreferrer" href="https://halur1.univ-rennes1.fr/ExtrHAL_rapide.pdf"><i class="mdi mdi-file-pdf-box-outline mr-1"></i> Prise en main rapide d'ExtrHAL</a>
+                                                </li>
                                                 <li class="list-group-item">
-                                                    <a target="_blank" rel="noopener noreferrer" href="https://halur1.univ-rennes1.fr/ExtrHAL_manuel_v2.pdf"><i class="mdi mdi-file-pdf-box-outline mr-1"></i> Guide d'utilisation</a>
+                                                    <a target="_blank" rel="noopener noreferrer" href="https://halur1.univ-rennes1.fr/ExtrHAL_tutoriel.pdf"><i class="mdi mdi-file-pdf-box-outline mr-1"></i> Guide d'utilisation</a>
                                                 </li>
 																								<li class="list-group-item">
                                                     <a target="_blank" rel="noopener noreferrer" href="https://halur1.univ-rennes1.fr/installation/ExtrHAL_installation.pdf"><i class="mdi mdi-file-pdf-box-outline mr-1"></i> Installer ExtrHAL</a>
