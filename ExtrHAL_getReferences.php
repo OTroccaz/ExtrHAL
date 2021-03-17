@@ -2317,7 +2317,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						$affprefeq = "PV";
 					}else{
 						if ($docType_s == "ART") {
-							if ($entry->peerReviewing_s == 0) {
+							if (isset($entry->peerReviewing_s) && $entry->peerReviewing_s == 0) {
 								$affprefeq = "ASCL";
 							}else{
 								$affprefeq = "ACL";

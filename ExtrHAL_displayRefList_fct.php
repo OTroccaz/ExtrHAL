@@ -106,9 +106,12 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	 }
 	}
 	*/
+	$bilEqp = array();
 	for ($j = 1; $j <= $nbeqp; $j++) {
 	 $indgr[$j] = 1;
 	 $crogr[$j] = 0;
+	 //Pour le bilan quantitatif par équipes et collection si numérotation/codification demandée
+	 $bilEqp[$j] = array();
 	}
 	//var_dump($indgr);
 	//var_dump($crogr);
@@ -186,6 +189,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 					 $rtfval = $rtf[0];
 					 $rtfcha = $rtf[11];
 					 for ($j = 1; $j <= $nbeqp; $j++) {
+						 if (!isset($bilEqp[$j][$currentYear])) {$bilEqp[$j][$currentYear] = 0;}
 						 if (strpos($entryInfo,"GR".$j." - ¤ -") !== false) {
 							 $entryInfo = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j]." -", $entryInfo);
 							 $rtfval = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j]." -", $rtfval);
@@ -195,7 +199,10 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 								 $aff = "oui";
 							 }
 							 if ($typexc == "oui") {$aff = "non";}//Publication d'une équipe à ne pas afficher
-							 if ($aff == "oui") {$indgr[$j] += 1;}
+							 if ($aff == "oui") {
+								 $indgr[$j] += 1;
+								 $bilEqp[$j][$currentYear] += 1;
+							 }
 						 }
 					 }
 				 }
@@ -415,6 +422,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 					 $rtfval = $rtf[0];
 					 $rtfcha = $rtf[11];
 					 for ($j = 1; $j <= $nbeqp; $j++) {
+						 if (!isset($bilEqp[$j][$currentYear])) {$bilEqp[$j][$currentYear] = 0;}
 						 if (strpos($entryInfo,"GR".$j." - ¤ -") !== false) {
 							 $entryInfo = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j]." -", $entryInfo);
 							 $rtfval = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j]." -", $rtfval);
@@ -424,7 +432,10 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 								 $aff = "oui";
 							 }
 							 if ($typexc == "oui") {$aff = "non";}//Publication d'une équipe à ne pas afficher
-							 if ($aff == "oui") {$indgr[$j] += 1;}
+							 if ($aff == "oui") {
+								 $indgr[$j] += 1;
+								 $bilEqp[$j][$currentYear] += 1;
+							 }
 						 }
 					 }
 				 }
@@ -652,6 +663,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	$drefl[2] = $yearNumbersTG;//Le nombre de publications où un auteur de la collection est en 1ère position ou en position finale
 	//return $yearNumbers;
 	//var_dump($crogr);
+	$drefl[3] = $bilEqp;//Bilan quantitatif par équipes et collection si numérotation/codification demandée
 	return $drefl;
 }
 ?>

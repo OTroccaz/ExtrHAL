@@ -404,6 +404,87 @@ include "./ExtrHAL_get.php";
 																						}
 																						
 																						echo "<br><br>";
+																						
+																						//Bilan quantitatif par équipes et collection si numérotation/codification demandée
+																						if (isset($typeqp) && $typeqp == "oui") {
+																							/*
+																							var_dump($numbers);
+																							if (isset($bilEqp["TA"])) {var_dump($bilEqp["TA"]);}
+																							echo 'toto : '.$nbeqp.'<br>';
+																							var_dump($nomeqp);
+																							*/
+																							
+																							//Display the table of publications by year (column) and by collection and team(s) (line)
+																							echo "<br><a id=\"BILAN QTT\"></a><h2 class=\"font-weight-normal\"><span class=\"badge badge-primary badge-pill\">Bilan quantitatif par collection et équipes".$detail." </span><a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";
+																							$colTotal = array();
+																							$eqpTotal = array();
+																							$ceqTotal = array();
+																							
+																							$ceqTotal[$team] = 0;
+																							foreach($nomeqp as $nqp) {
+																								if ($nqp != $team) {
+																									$ceqTotal[$nqp] = 0;
+																								}
+																							}
+																					
+																							echo "<table>";
+																							echo "<tr><td style='padding: 2px;'></td>";
+																							foreach($availableYears as $year => $nb){
+																								 echo "<td style='padding: 2px;'>".$year."</td>";
+																								 //Total collection tout type confondu
+																								 $colTotal[$year] = 0;
+																								 foreach($numbers as $rType => $yearNumbers){
+																										if(array_key_exists($year,$yearNumbers)){
+																											 $colTotal[$year] += $yearNumbers[$year];
+																											 $ceqTotal[$team] += $yearNumbers[$year];
+																										}
+																								 }
+																								 
+																								 //Total équipe tout type confondu
+																								 $eqp = 0;
+																								 foreach($nomeqp as $nqp) {
+																									 if ($nqp != $team) {
+																										 $eqpTotal[$nqp][$year] = 0;
+																										 foreach($numbers as $rType => $yearNumbers){
+																											 //foreach($availableYears as $year => $nb){
+																												 $eqpTotal[$nqp][$year] += $bilEqp[$rType][$eqp][$year];
+																												 $ceqTotal[$nqp] += $bilEqp[$rType][$eqp][$year];
+																											 //}
+																										 }
+																									 }
+																									 $eqp++;
+																								 }
+																								 
+																							}
+																							echo "<td style='padding: 2px;'>Total</td>";
+																							echo "</tr>";
+																							
+																							//Collection
+																							echo "<tr>";
+																							echo "<td style='padding: 2px;'>".$team."</td>";
+																							foreach($availableYears as $year => $nb){
+																								echo "<td style='padding: 2px;'>".$colTotal[$year]."</td>";
+																							}
+																							echo "<td style='padding: 2px;'>".$ceqTotal[$team]."</td>";
+																							echo "</tr>";
+																							
+																							//Equipes
+																							foreach($nomeqp as $nqp) {
+																								if ($nqp != $team) {
+																									echo "<tr>";
+																									echo "<td style='padding: 2px;'>".$nqp."</td>";
+																									foreach($availableYears as $year => $nb){
+																										echo "<td style='padding: 2px;'>".$eqpTotal[$nqp][$year]."</td>";
+																									}
+																									echo "<td style='padding: 2px;'>".$ceqTotal[$nqp]."</td>";
+																									echo "</tr>";
+																								}
+																							}
+																							
+																							echo "</table>";
+																							
+																							echo "<br><br>";
+																						}
 
 																						//export en RTF
 																						$sect->writeText("<br><br>", $font);
