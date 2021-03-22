@@ -487,7 +487,70 @@ include "./ExtrHAL_get.php";
 																							echo "</table>";
 																							
 																							echo "<br><br>";
+																							
+																							//Display the table of crossed publications by teams
+																							echo "<br><a id=\"BILAN QTTCRO\"></a><h2 class=\"font-weight-normal\"><span class=\"badge badge-primary badge-pill\">Bilan quantitatif du total des publications communes entre chaque équipe".$detail." </span><a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";
+																							
+																							$croTotal = array();
+																							$croEqpTp = array();
+																							
+																							$j = 1;
+																							foreach($nomeqp as $nqp) {
+																								if ($nqp != $team) {
+																									if (!isset($croTotal[$nqp])) {$croTotal[$nqp] = 0;}
+																									foreach($numbers as $rType => $yearNumbers){
+																										for ($k = 1; $k <= $nbeqp; $k++) {
+																											if (!isset($croEqpTp[$j][$k])) {$croEqpTp[$j][$k] = 0;}
+																											$croTotal[$nqp] += $croEqp[$rType][$j][$k];
+																											$croEqpTp[$j][$k] += $croEqp[$rType][$j][$k];
+																										}
+																									}
+																									$j++;
+																								}
+																							}
+																							
+																							echo "<table>";
+																							echo "<tr><td style='padding: 2px;'></td>";
+																							
+																							//Equipes
+																							foreach($nomeqp as $nqp) {
+																								if ($nqp != $team) {
+																									echo "<td style='padding: 2px;'>".$nqp."</td>";
+																								}
+																							}
+																							echo "</tr>";
+																							
+																							$j = 0;//Lignes
+																							$k = 0;//Colonnes
+																							
+																							//Ligne pour chaque équipe
+																							foreach($nomeqp as $nqp) {
+																								$k = 0;
+																								if ($nqp != $team) {
+																									foreach($nomeqp as $nqpk) {
+																										if ($k == 0) {
+																											echo "<tr><td style='padding: 2px;'>".$nqp."</td>";
+																										}else{
+																											if ($k == $j) {
+																												echo "<td style='padding: 2px; background-color: #d9d9d9;'>".$croTotal[$nqpk]."</td>";
+																											}else{
+																												echo "<td style='padding: 2px;'>".$croEqpTp[$j][$k]."</td>";
+																											}
+																										}
+																										$k++;
+																									}
+																									echo "</tr>";
+																								}
+																								$j++;
+																							}
+																							
+																							
+																							echo "</table>";
+																							
+																							echo "<br><br>";
 																						}
+																						
+																						echo "<br><br>";
 
 																						//export en RTF
 																						$sect->writeText("<br><br>", $font);

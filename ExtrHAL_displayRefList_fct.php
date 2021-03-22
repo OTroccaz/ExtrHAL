@@ -107,11 +107,16 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	}
 	*/
 	$bilEqp = array();
+	$croEqp = array();
 	for ($j = 1; $j <= $nbeqp; $j++) {
 	 $indgr[$j] = 1;
 	 $crogr[$j] = 0;
 	 //Pour le bilan quantitatif par équipes et collection si numérotation/codification demandée
 	 $bilEqp[$j] = array();
+	 //Tableau quantitatif indiquant le total des publications communes entre chaque équipe si numérotation/codification demandée
+	 for ($k = 1; $k <= $nbeqp; $k++) {
+		 $croEqp[$j][$k] = 0;
+	 }
 	}
 	//var_dump($indgr);
 	//var_dump($crogr);
@@ -188,16 +193,59 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 				 if (isset($collCode_s) && $collCode_s != "" && isset($gr) && (strpos($gr, $collCode_s) !== false)) {//GR
 					 $rtfval = $rtf[0];
 					 $rtfcha = $rtf[11];
+					 $cptCro = "non";//Compteur de publications croisées
+
 					 for ($j = 1; $j <= $nbeqp; $j++) {
 						 if (!isset($bilEqp[$j][$currentYear])) {$bilEqp[$j][$currentYear] = 0;}
 						 if (strpos($entryInfo,"GR".$j." - ¤ -") !== false) {
+							 //echo $entryInfo.'<br>';
+							 
+							 if ($cptCro == "non") {
+								 $croCpt = "";
+								 for ($k = 1; $k <= $nbeqp; $k++) {
+									 if (strpos($entryInfo,"GR".$k." - ¤ -") !== false) {
+										 $croCpt .= $k."troli";
+									 }
+								 }
+								 $croCpt = substr($croCpt, 0, -5);
+								 $tabCro = explode("troli", $croCpt);
+								 
+								 if (count($tabCro > 1)) {
+									 foreach($tabCro as $cro1) {
+										 foreach($tabCro as $cro2) {
+											 if ($cro1 != $cro2) {
+												 $croEqp[intval($cro1)][intval($cro2)] += 1;
+											 }
+										 }
+									 }
+								 }
+								 $cptCro = "oui";
+							 }
+							 
 							 $entryInfo = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j]." -", $entryInfo);
 							 $rtfval = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j]." -", $rtfval);
 							 $rtfcha = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j], $rtfcha);
 							 if (strpos($entryInfo, " - GR") !== false) {//publication croisée
 								 $crogr[$j] += 1;
 								 $aff = "oui";
+								 
+								 /*
+								 for ($k = 1; $k <= $nbeqp; $k++) {
+									 if (strpos($entryInfo," - GR".$k." - ¤ -") !== false) {
+										 for ($l = 1; $l <= $nbeqp; $l++) {
+											 if ($l != $k && strpos($entryInfo,"GR".$l) !== false && strpos($entryInfo, " - ¤ - ") !== false) {
+												$croEqp[$l][$k] += 1;
+												//var_dump($croEqp);
+												//$entryInfo = str_replace("GR".$l, $nomeqp[$l], $entryInfo);
+												//$rtfval = str_replace("GR".$l, $nomeqp[$l], $rtfval);
+												//$rtfcha = str_replace("GR".$l, $nomeqp[$l], $rtfcha);
+											 }
+										 }
+									 }
+								 }
+								 */
 							 }
+							
 							 if ($typexc == "oui") {$aff = "non";}//Publication d'une équipe à ne pas afficher
 							 if ($aff == "oui") {
 								 $indgr[$j] += 1;
@@ -421,16 +469,55 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 				 if (isset($collCode_s) && $collCode_s != "" && isset($gr) && (strpos($gr, $collCode_s) !== false)) {//GR
 					 $rtfval = $rtf[0];
 					 $rtfcha = $rtf[11];
+					 $cptCro = "non";//Compteur de publications croisées
+					 
 					 for ($j = 1; $j <= $nbeqp; $j++) {
 						 if (!isset($bilEqp[$j][$currentYear])) {$bilEqp[$j][$currentYear] = 0;}
 						 if (strpos($entryInfo,"GR".$j." - ¤ -") !== false) {
+							 //echo $entryInfo.'<br>';
+							 
+							 if ($cptCro == "non") {
+								 $croCpt = "";
+								 for ($k = 1; $k <= $nbeqp; $k++) {
+									 if (strpos($entryInfo,"GR".$k." - ¤ -") !== false) {
+										 $croCpt .= $k."troli";
+									 }
+								 }
+								 $croCpt = substr($croCpt, 0, -5);
+								 $tabCro = explode("troli", $croCpt);
+								 
+								 if (count($tabCro > 1)) {
+									 foreach($tabCro as $cro1) {
+										 foreach($tabCro as $cro2) {
+											 if ($cro1 != $cro2) {
+												 $croEqp[intval($cro1)][intval($cro2)] += 1;
+											 }
+										 }
+									 }
+								 }
+								 $cptCro = "oui";
+							 }
+							 
 							 $entryInfo = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j]." -", $entryInfo);
 							 $rtfval = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j]." -", $rtfval);
 							 $rtfcha = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j], $rtfcha);
 							 if (strpos($entryInfo, " - GR") !== false) {//publication croisée
 								 $crogr[$j] += 1;
 								 $aff = "oui";
+								 
+								 /*
+								 for ($k = 1; $k <= $nbeqp; $k++) {
+									 if (strpos($entryInfo," - GR".$k) !== false) {
+										 for ($l = 1; $l <= $nbeqp; $l++) {
+											 if ($l != $k && strpos($entryInfo,"GR".$l) !== false && strpos($entryInfo, " - ¤ - ") !== false) {
+												$croEqp[$l][$k] += 1;
+											 }
+										 }
+									 }
+								 }
+								 */
 							 }
+							 
 							 if ($typexc == "oui") {$aff = "non";}//Publication d'une équipe à ne pas afficher
 							 if ($aff == "oui") {
 								 $indgr[$j] += 1;
@@ -643,6 +730,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	 }
 	 $i++;
 	}
+	
 	$fontfoot = new PHPRtfLite_Font(9, 'Corbel', '#000000', '#FFFFFF');
 	$fontlienfoot = new PHPRtfLite_Font(9, 'Corbel', '#0000FF', '#FFFFFF');
 	//$fontfoot = new PHPRtfLite_Font(9, 'Corbel', '#AFAFAF', '#FFFFFF');
@@ -664,6 +752,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	//return $yearNumbers;
 	//var_dump($crogr);
 	$drefl[3] = $bilEqp;//Bilan quantitatif par équipes et collection si numérotation/codification demandée
+	$drefl[4] = $croEqp;//Tableau quantitatif indiquant le total des publications communes entre chaque équipe si numérotation/codification demandée
 	return $drefl;
 }
 ?>
