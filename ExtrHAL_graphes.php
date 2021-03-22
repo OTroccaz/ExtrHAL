@@ -631,33 +631,18 @@
 																											//Calcul des totaux
 																											$croTotal = array();
 																											
-																											$j = 1;
-																											foreach($nomeqp as $nqp) {
-																												if ($nqp != $team) {
-																													if (!isset($croTotal[$nqp])) {$croTotal[$nqp] = 0;}
-																													foreach($numbers as $rType => $yearNumbers){
-																														for ($k = 1; $k <= $nbeqp; $k++) {
-																															if (!isset($croEqpTp[$j][$k])) {$croEqpTp[$j][$k] = 0;}
-																															$croTotal[$nqp] += $croEqp[$rType][$j][$k];
-																														}
-																													}
-																													$j++;
-																												}
-																											}
-																											
 																											echo '<br><br>';
 																											
-																											foreach($nomeqp as $nqp) {
-																												if ($nqp != $team) {
-																													array_push($nomeqpArr, $nqp);
-																													if($croTotal[$nqp] != 0){
-																														array_push($croresArr, (int)$croTotal[$nqp]);
-																													} else {
-																														array_push($croresArr, 'VOID');
-																													}
+																											$i = 0;
+																											for($i=0;$i<count($crores[$rType]);$i++) {
+																												$j = $i+1;
+																												array_push($nomeqpArr, $nomeqp[$j]);
+																												if($crores[$rType][$j] != 0){
+																													array_push($croresArr, (int)$crores[$rType][$j]);
+																												} else {
+																													array_push($croresArr, 'VOID');
 																												}
 																											}
-																											
 																											$croresArr = array_map(function($value) {
 																													return intval($value);
 																											}, $croresArr);
@@ -683,7 +668,7 @@
 																																	legend: { display: false },
 																																	title: {
 																																		display: true,
-																																		text: 'Nombre total de publications croisées par équipe',
+																																		text: 'Nombre global de publications croisées de type <?php echo $rType?> par équipe',
 																																		fontStyle: 'bold',
 																																		fontSize: 18
 																																	},
@@ -722,7 +707,6 @@
 																			$iGR++;
 																		}
 
-																		/*
 																		if ($graphe == "oui") {
 																			echo 'Ce(s) graphe(s) est(sont) généré(s) lors d\'une numérotation/codification par équipe :<br>';
 																			echo '. Dans le cas d\'une extraction pour une unité, il représente l\'ensemble des publications croisées identifiées pour chaque équipe.<br>';
@@ -731,5 +715,4 @@
 																			echo 'mais également pour 1 pour chacune des autres équipes associées.<br><br>';
 																			//echo '<center><table cellpadding="5" width="80%"><tr><td width="45%" valign="top" style="text-align: justify;"><em>Pour illuster ce dernier cas, l\'exemple ci-contre représente l\'extraction des publications de l\'équipe GR2 dans une unité comportant quatre équipes. GR2 compte ainsi un total de 6 publications croisées: précisément, 3 avec GR1 seule, 1 avec GR3 seule, 1 avec GR1 et GR3, et 1 avec GR1 et GR4, d\'où, globalement, 5 avec GR1, 2 avec GR3 et 1 avec GR4.</em></td><td>&nbsp;&nbsp;&nbsp;<img alt="Exemple" src="HAL_exemple.jpg"></td></tr></table></center><br><br>';
 																		}
-																		*/
 																		?>

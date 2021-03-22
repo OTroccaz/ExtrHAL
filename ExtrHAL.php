@@ -501,7 +501,7 @@ include "./ExtrHAL_get.php";
 																									foreach($numbers as $rType => $yearNumbers){
 																										for ($k = 1; $k <= $nbeqp; $k++) {
 																											if (!isset($croEqpTp[$j][$k])) {$croEqpTp[$j][$k] = 0;}
-																											$croTotal[$nqp] += $croEqp[$rType][$j][$k];
+																											//$croTotal[$nqp] = $croEqp[$rType][$j][$k];
 																											$croEqpTp[$j][$k] += $croEqp[$rType][$j][$k];
 																										}
 																									}
@@ -509,6 +509,16 @@ include "./ExtrHAL_get.php";
 																								}
 																							}
 																							
+																							$k = 0;
+																							foreach($numbers as $rType => $yearNumbers){
+																								foreach($nomeqp as $nqp) {
+																									if ($nqp != $team) {
+																										$croTotal[$nqp] += $crores[$rType][$k];
+																									}
+																									$k++;
+																								}
+																							}
+																																													
 																							echo "<table>";
 																							echo "<tr><td style='padding: 2px;'></td>";
 																							
