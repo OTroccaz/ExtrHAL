@@ -614,9 +614,9 @@
 																								//Nombre de publications croisées par équipe sur la période
 																								$graphe = "";
 																								$iGR = 0;
-																								$nomeqpArr = array();
-																								$croresArr = array();
 																								foreach($numbers as $rType => $yearNumbers){
+																									$nomeqpArr = array();
+																									$croresArr = array();
 																									if (isset($team) && isset($gr) && (strpos($gr, $team) !== false)) {//GR
 																										$graphe = "non";
 																										for($j=1;$j<count($crores[$rType]);$j++) {
@@ -648,9 +648,9 @@
 																											}, $croresArr);
 																										?>
 																										<div class="col-8 chartjs-chart">
-																												<canvas id="publicroisees" width="500" height="280" class="border border-gray p-1"></canvas>
+																												<canvas id="publicroisees<?php echo $rType;?>" width="500" height="280" class="border border-gray p-1"></canvas>
 																												<script>
-																														new Chart(document.getElementById("publicroisees"), {
+																														new Chart(document.getElementById("publicroisees<?php echo $rType;?>"), {
 																																type: 'bar',
 																																data: {
 																																	labels: <?php echo json_encode($nomeqpArr);?>,
@@ -698,21 +698,22 @@
 																												</script>
 																										</div>
 																										<br><br>
-																							</div>
-                                        </div>
+																							
 
-																				<?php
-																				}
-																			}
-																			$iGR++;
-																		}
+																								<?php
+																								}
+																							}
+																							$iGR++;
+																						}
 
-																		if ($graphe == "oui") {
-																			echo 'Ce(s) graphe(s) est(sont) généré(s) lors d\'une numérotation/codification par équipe :<br>';
-																			echo '. Dans le cas d\'une extraction pour une unité, il représente l\'ensemble des publications croisées identifiées pour chaque équipe.<br>';
-																			echo '. Dans le cas d\'une extraction pour une équipe, il représente le nombre de publications croisées de cette équipe et celui des autres équipes concernées en regard.';
-																			echo 'Les sommes respectives ne sont pas forcément égales car une même publication croisée peut concerner plus de deux équipes : elle comptera alors pour 1 pour l\'équipe concernée par l\'extraction,';
-																			echo 'mais également pour 1 pour chacune des autres équipes associées.<br><br>';
-																			//echo '<center><table cellpadding="5" width="80%"><tr><td width="45%" valign="top" style="text-align: justify;"><em>Pour illuster ce dernier cas, l\'exemple ci-contre représente l\'extraction des publications de l\'équipe GR2 dans une unité comportant quatre équipes. GR2 compte ainsi un total de 6 publications croisées: précisément, 3 avec GR1 seule, 1 avec GR3 seule, 1 avec GR1 et GR3, et 1 avec GR1 et GR4, d\'où, globalement, 5 avec GR1, 2 avec GR3 et 1 avec GR4.</em></td><td>&nbsp;&nbsp;&nbsp;<img alt="Exemple" src="HAL_exemple.jpg"></td></tr></table></center><br><br>';
-																		}
-																		?>
+																						if ($graphe == "oui") {
+																							echo 'Ce(s) graphe(s) est(sont) généré(s) lors d\'une numérotation/codification par équipe :<br>';
+																							echo '. Dans le cas d\'une extraction pour une unité, il représente l\'ensemble des publications croisées identifiées pour chaque équipe.<br>';
+																							echo '. Dans le cas d\'une extraction pour une équipe, il représente le nombre de publications croisées de cette équipe et celui des autres équipes concernées en regard.';
+																							echo 'Les sommes respectives ne sont pas forcément égales car une même publication croisée peut concerner plus de deux équipes : elle comptera alors pour 1 pour l\'équipe concernée par l\'extraction,';
+																							echo 'mais également pour 1 pour chacune des autres équipes associées.<br><br>';
+																							//echo '<center><table cellpadding="5" width="80%"><tr><td width="45%" valign="top" style="text-align: justify;"><em>Pour illuster ce dernier cas, l\'exemple ci-contre représente l\'extraction des publications de l\'équipe GR2 dans une unité comportant quatre équipes. GR2 compte ainsi un total de 6 publications croisées: précisément, 3 avec GR1 seule, 1 avec GR3 seule, 1 avec GR1 et GR3, et 1 avec GR1 et GR4, d\'où, globalement, 5 avec GR1, 2 avec GR3 et 1 avec GR4.</em></td><td>&nbsp;&nbsp;&nbsp;<img alt="Exemple" src="HAL_exemple.jpg"></td></tr></table></center><br><br>';
+																						}
+																						?>
+																						</div>
+																				</div>

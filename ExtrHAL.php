@@ -450,8 +450,10 @@ include "./ExtrHAL_get.php";
 																										 $eqpTotal[$nqp][$year] = 0;
 																										 foreach($numbers as $rType => $yearNumbers){
 																											 //foreach($availableYears as $year => $nb){
-																												 $eqpTotal[$nqp][$year] += $bilEqp[$rType][$eqp][$year];
-																												 $ceqTotal[$nqp] += $bilEqp[$rType][$eqp][$year];
+																												 if (isset($bilEqp[$rType][$eqp][$year])) {
+																													 $eqpTotal[$nqp][$year] += $bilEqp[$rType][$eqp][$year];
+																													 $ceqTotal[$nqp] += $bilEqp[$rType][$eqp][$year];
+																												 }
 																											 //}
 																										 }
 																									 }
@@ -509,8 +511,8 @@ include "./ExtrHAL_get.php";
 																								}
 																							}
 																							
-																							$k = 0;
 																							foreach($numbers as $rType => $yearNumbers){
+																								$k = 0;
 																								foreach($nomeqp as $nqp) {
 																									if ($nqp != $team) {
 																										$croTotal[$nqp] += $crores[$rType][$k];
