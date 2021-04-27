@@ -3,6 +3,7 @@ if (isset($_GET["team"])) {
   $team = strtoupper(htmlspecialchars($_GET["team"]));
 	$teamInit = $team;
 	if ($team == "ENTREZ LE CODE DE VOTRE COLLECTION") {$team = "";}
+	$idst = $_GET["idst"];
   $idhal = $_GET["idhal"];
 	if (isset($_GET["refint"])) {$refint = $_GET["refint"];}
   $quand0 = time();
@@ -54,6 +55,7 @@ if (isset($_GET["team"])) {
   $listaut = strtoupper(urlencode($_GET["listaut"]));
   if ($listaut == "") {$listaut = $team;}
   $urlsauv .= "&listaut=".urlencode($listaut);
+	$urlsauv .= "&idst=".urlencode($idst);
   $urlsauv .= "&idhal=".urlencode($idhal);
 	$urlsauv = str_replace("%257E", "~", $urlsauv);
   $evhal = $_GET["evhal"];

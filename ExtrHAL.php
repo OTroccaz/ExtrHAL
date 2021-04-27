@@ -70,6 +70,7 @@ include "./ExtrHAL_fonctions.php";
 
 //Initialisation des variables
 $teamInit = "";
+$idst = "";
 $idhal = "";
 $evhal = "";
 $refint = "";

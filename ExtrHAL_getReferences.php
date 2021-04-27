@@ -1,5 +1,5 @@
 <?php
-function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$specificRequestCode,$countries,$anneedeb,$anneefin,$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7){
+function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$specificRequestCode,$countries,$anneedeb,$anneefin,$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$idst,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7){
 	 static $listedoi = "";
    include "ExtrHAL_rang_AERES_SHS.php";
    include "ExtrHAL_rang_CNRS.php";
@@ -25,12 +25,22 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				 $atester = "collCode_s:".$teamInit;
 				 $atesteropt = "%20AND%20localReference_t:".$tstRefint;
 			 }else{
-				 $atester = "";
-				 $atesteropt = "localReference_t:".$tstRefint;
+				 if ($idst != "") {
+					 $atester = "structId_i:".$idst;
+					 $atesteropt = "%20AND%20localReference_t:".$tstRefint;
+				 }else{
+					 $atester = "";
+					 $atesteropt = "localReference_t:".$tstRefint;
+				 }
 			 }
 		 }else{
-			 $atester = "collCode_s:".$teamInit;
-			 $atesteropt = "";
+			 if ($idst != "") {
+				 $atester = "structId_i:".$idst;
+				 $atesteropt = "";
+			 }else{
+				 $atester = "collCode_s:".$teamInit;
+				 $atesteropt = "";
+			 }
 		 }
 	 }
 	 
@@ -61,6 +71,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 			$replfini = '%20AND%20((proceedings_s:0%20AND%20conferenceStartDate_tdate:'.$periodeiso.')%20OR%20(proceedings_s:1%20AND%20((NOT%20publicationDate_tdate:*%20AND%20conferenceStartDate_tdate:'.$periodeiso.')%20OR%20(publicationDate_tdate:'.$periodeiso.'))))';
 			$specificRequestCode = str_replace($replinit, $replfini, $specificRequestCode);
 		}
+	 
 	 $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=0";
    $contents = file_get_contents($reqAPI);
 	 //echo $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=0";

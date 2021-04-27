@@ -3,6 +3,7 @@ if (isset($_POST["soumis"])) {
   $team = strtoupper(htmlspecialchars($_POST["team"]));
 	$teamInit = $team;
 	if ($team == "ENTREZ LE CODE DE VOTRE COLLECTION") {$team = "";}
+	$idst = htmlspecialchars($_POST["idst"]);
   $idhal = htmlspecialchars($_POST["idhal"]);
 	$refint = htmlspecialchars($_POST["refint"]);
   if (isset($idhal) && $idhal != "") {$team = $idhal;}
@@ -49,6 +50,7 @@ if (isset($_POST["soumis"])) {
   $listaut = strtoupper(urlencode(htmlspecialchars($_POST["listaut"])));
   if ($listaut == "") {$listaut = $team;}
   $urlsauv .= "&listaut=".urlencode($listaut);
+	$urlsauv .= "&idst=".urlencode($idst);
   $urlsauv .= "&idhal=".urlencode($idhal);
 	$urlsauv = str_replace("%257E", "~", $urlsauv);
   $evhal = htmlspecialchars($_POST["evhal"]);

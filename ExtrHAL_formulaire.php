@@ -1,85 +1,119 @@
                                         <form method="POST" accept-charset="utf-8" name="extrhal" action="ExtrHAL.php#sommaire" class="form-horizontal">
-                                            <div class="form-group row mb-1">
-                                                <label for="team" class="col-12 col-md-3 col-form-label font-weight-bold">
-                                                Code collection HAL
-                                                </label>
-                                                
-                                                <div class="col-12 col-md-9">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="" data-content='Code visible dans l&apos;URL d&apos;une collection.
-                                            Exemple IPR-MOL est le code de la collection http://hal.archives-ouvertes.fr/ <span class="font-weight-bold">IPR-PMOL</span> de l&apos;équipe Physique moléculaire de l&apos;unité IPR UMR CNRS 6251' data-original-title="">
-                                                            <i class="mdi mdi-comment-question text-white"></i>
-                                                            </button>
-                                                        </div>
-																												
-																												<?php
-																												$team1 = "";
-																												$team2 = "";
-																												if (isset($team) && $team != "" && isset($refint) && $refint != $team) {
-																													$team1 = $team;
-																													$team2 = $team;
-																												}else{
-																													if (!isset($refint)) {
-																														$team1 = "Entrez le code de votre collection";
-																														$team2 = "";
-																													}
-																												}
-																												if (!isset($listaut)) {$listaut = "";}
-																												if (isset($idhal) && $idhal != "") {$team1 = ""; $listaut = "";}
-																												//if (isset($refint) && $refint != "") {$team1 = ""; $listaut = "";}
-																												?>
-																												
-                                                        <input type="text" id="team" name="team" class="form-control"  value="<?php echo $team1;?>" onclick="this.value='<?php echo $team2;?>';" onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = '';">
-                                                    <a class="ml-2 small" target="_blank" rel="noopener noreferrer" href="https://hal-univ-rennes1.archives-ouvertes.fr/page/codes-collections">Trouver le code<br>de mon équipe / labo</a>
-                                                    </div>
-
-                                                    
-                                                </div>
-                                            </div> <!-- .form-group -->
-                                            <div class="form-group row mb-1">
-                                                <div class="col-12">
-                                                    et/ou
-                                                </div>
-                                            </div> <!-- .form-group -->
-                                            <div class="form-group row mb-1">
-                                                <label for="refint" class="col-12 col-md-3 col-form-label font-weight-bold">
-                                                Référence(s) interne(s) (séparés par des tildes ~)
-                                                
-                                                </label>
-                                                
-                                                <div class="col-12 col-md-9">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="" data-content="Champ référence(s) interne(s) des dépôts HAL. Exemple IMoPA hospitalière~activité hospitalière IMoPA~IMOPA - Activité hospitalière" data-original-title="">
-                                                            <i class="mdi mdi-comment-question text-white"></i>
-                                                            </button>
-                                                        </div>
-                                                        <input type="text" id="refint" name="refint" class="form-control"  value="<?php echo $refint;?>" onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = '';">
-                                                    </div>
-                                                </div>
-                                            </div><!-- .form-group -->
-
-                                            <div class="form-group row mb-1">
-                                                <label for="listaut" class="col-12 col-md-3 col-form-label font-weight-bold pt-0">
-                                                Acronyme(s), nom(s) complet(s) ou id de la structure des auteurs à mettre en évidence (séparés par des tildes ~) - <a target="_blank" rel="noopener noreferrer" href="https://aurehal.archives-ouvertes.fr/structure/">Vérifiez le nom dans AuréHAL</a>
-                                                
-                                                
-                                                </label>
-                                                
-                                                <div class="col-12 col-md-9">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="Exemple" data-content="Indiquez ici l'id AuréHAL, le nom ou l'acronyme de votre unité, selon que vous souhaitez mettre en évidence le nom des auteurs de l'unité.  Exemple 928~ECOBIO~575446" data-original-title="">
-                                                            <i class="mdi mdi-comment-question text-white"></i>
-                                                        </button>
-                                                    </div>
-                                                    <input type="text" id="listaut" name="listaut" class="form-control"  value="<?php echo urldecode($listaut);?>">
+                                            <div class="border border-gray rounded p-2 mb-2">
+																							<div class="border border-gray rounded p-2 mb-2">
+																								<div class="form-group row mb-1">
+																										<label for="team" class="col-12 col-md-3 col-form-label font-weight-bold">
+																										Code collection HAL
+																										</label>
 																										
-                                                </div>
-                                                    
-                                                </div>
-                                            </div><!-- .form-group -->
+																										<div class="col-12 col-md-9">
+																												<div class="input-group">
+																														<div class="input-group-prepend">
+																																<button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="" data-content='Code visible dans l&apos;URL d&apos;une collection.
+																								Exemple IPR-MOL est le code de la collection http://hal.archives-ouvertes.fr/ <span class="font-weight-bold">IPR-PMOL</span> de l&apos;équipe Physique moléculaire de l&apos;unité IPR UMR CNRS 6251' data-original-title="">
+																																<i class="mdi mdi-comment-question text-white"></i>
+																																</button>
+																														</div>
+																														
+																														<?php
+																														$team1 = "";
+																														$team2 = "";
+																														if (isset($team) && $team != "" && isset($refint) && $refint != $team) {
+																															$team1 = $team;
+																															$team2 = $team;
+																														}else{
+																															if (!isset($refint)) {
+																																$team1 = "Entrez le code de votre collection";
+																																$team2 = "";
+																															}
+																														}
+																														if (!isset($listaut)) {$listaut = "";}
+																														if (isset($idhal) && $idhal != "") {$team1 = ""; $listaut = "";}
+																														//if (isset($refint) && $refint != "") {$team1 = ""; $listaut = "";}
+																														?>
+																														
+																														<input type="text" id="team" name="team" class="form-control"  value="<?php echo $team1;?>" onclick="this.value='<?php echo $team2;?>';" onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = ''; document.getElementById('idst').value = '';">
+																												<a class="ml-2 small" target="_blank" rel="noopener noreferrer" href="https://hal-univ-rennes1.archives-ouvertes.fr/page/codes-collections">Trouver le code<br>de mon équipe / labo</a>
+																												</div>
+
+																												
+																										</div>
+																								</div> <!-- .form-group -->
+																								<div class="form-group row mb-1">
+																									<div class="col-12">
+																											ou
+																									</div>
+																								</div> <!-- .form-group -->
+																								<div class="form-group row mb-1">
+																									<label for="idst" class="col-12 col-md-3 col-form-label font-weight-bold">
+																									Identifiant HAL de la structure
+																									</label>
+																									
+																									<div class="col-12 col-md-9">
+																												<div class="input-group">
+																														<div class="input-group-prepend">
+																																<button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="" data-content='Identifiant HAL de la structure - Exemple 480855' data-original-title="">
+																																<i class="mdi mdi-comment-question text-white"></i>
+																																</button>
+																														</div>
+																														
+																														<?php
+																														if (!isset($listaut)) {$listaut = "";}
+																														?>
+																														
+																														<input type="text" id="idst" name="idst" class="form-control"  value="<?php echo $idst;?>" onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = ''; document.getElementById('team').value = '';">
+																												</div>
+
+																												
+																										</div>
+																								</div> <!-- .form-group -->
+																							</div> <!-- end border grey -->
+																							
+																							<div class="form-group row mb-1">
+																									<div class="col-12">
+																											et/ou
+																									</div>
+																							</div> <!-- .form-group -->
+																							
+																							<div class="border border-gray rounded p-2 mb-2">
+																								<div class="form-group row mb-1">
+																										<label for="refint" class="col-12 col-md-3 col-form-label font-weight-bold">
+																										Référence(s) interne(s) (séparés par des tildes ~)
+																										
+																										</label>
+																										
+																										<div class="col-12 col-md-9">
+																												<div class="input-group">
+																														<div class="input-group-prepend">
+																																<button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="" data-content="Champ référence(s) interne(s) des dépôts HAL. Exemple IMoPA hospitalière~activité hospitalière IMoPA~IMOPA - Activité hospitalière" data-original-title="">
+																																<i class="mdi mdi-comment-question text-white"></i>
+																																</button>
+																														</div>
+																														<input type="text" id="refint" name="refint" class="form-control"  value="<?php echo $refint;?>" onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = ''; document.getElementById('idst').value = '';">
+																												</div>
+																										</div>
+																								</div> <!-- .form-group -->
+																							</div> <!-- end border grey -->
+
+																							<div class="form-group row mb-1">
+																									<label for="listaut" class="col-12 col-md-3 col-form-label font-weight-bold pt-0">
+																									Acronyme(s), nom(s) complet(s) ou id de la structure des auteurs à mettre en évidence (séparés par des tildes ~) - <a target="_blank" rel="noopener noreferrer" href="https://aurehal.archives-ouvertes.fr/structure/">Vérifiez le nom dans AuréHAL</a>
+																									</label>
+																									
+																									<div class="col-12 col-md-9">
+																											<div class="input-group">
+																													<div class="input-group-prepend">
+																															<button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="Exemple" data-content="Indiquez ici l'id AuréHAL, le nom ou l'acronyme de votre unité, selon que vous souhaitez mettre en évidence le nom des auteurs de l'unité.  Exemple 928~ECOBIO~575446" data-original-title="">
+																															<i class="mdi mdi-comment-question text-white"></i>
+																													</button>
+																											</div>
+																											<input type="text" id="listaut" name="listaut" class="form-control"  value="<?php echo urldecode($listaut);?>">
+																											
+																									</div>
+																											
+																									</div>
+																							</div><!-- .form-group -->
+																						</div> <!-- end border grey -->
 
                                             <div class="form-group row mb-1">
                                                 <div class="col-12">
@@ -87,45 +121,47 @@
                                                 </div>
                                             </div> <!-- .form-group -->
 
-                                            <div class="form-group row mb-1">
-                                                <label for="idhal" class="col-12 col-md-3 col-form-label font-weight-bold pt-0">
-                                                Identifiant auteur HAL
-                                                </label>
-                                                
-                                                <div class="col-12 col-md-9">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="Pour une requête sur plusieurs IdHAL" data-content="Mettre entre parenthèses, et remplacer les guillemets par %22 et les espaces par %20. Exemple <strong>(%22laurent-jonchere%22%20OR%20%22olivier-troccaz%22)</strong> - Utilisez le <a target='_blank' href='https://www.textmagic.com/free-tools/url-encoder-decoder'>site textmagic</a> pour encoder votre requête : ce site permet d'encoder facilement une requête 'naturelle'" data-original-title="">
-                                                            <i class="mdi mdi-comment-question text-white"></i>
-                                                            </button>
-                                                        </div>
-                                                    <input type="text" id="idhal" name="idhal" class="form-control" value="<?php echo $idhal;?>" onkeydown="document.getElementById('team').value = ''; document.getElementById('listaut').value = ''; document.getElementById('refint').value = '';">
-                                                    <a class="ml-2 small" target="_blank" rel="noopener noreferrer" href="https://hal.archives-ouvertes.fr/page/mon-idhal">Créer mon IdHAL</a>
-                                                    <p class="small mt-2 w-100">(IdHAL > olivier-troccaz, par exemple)</p>
-                                                   
-                                                </div>
-                                                    
-                                                </div>
-                                            </div><!-- .form-group -->
-																						
-                                            <div class="form-group row mb-4">
-                                                <label for="evhal" class="col-12 col-md-3 col-form-label font-weight-bold pt-0">
-                                                Auteur correspondant à l'IdHAL à mettre en évidence
-                                                </label>
-                                                
-                                                <div class="col-12 col-md-9">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="Instructions" data-content="Pour une requête sur un seul IdHAL, remplacer les espaces du prénom ou du nom par des tirets bas _. Exemple <strong>Jean-Luc Le_Breton</strong>.<br>Pour une requête sur plusieurs IdHAL, séparer en plus les auteurs par un tilde ~. Exemple <strong>Laurent Jonchère~Olivier Troccaz</strong>." data-original-title="">
-                                                            <i class="mdi mdi-comment-question text-white"></i>
-                                                        </button>
-                                                    </div>
-                                                    <input type="text" id="evhal" name="evhal" class="form-control" value="<?php echo $evhal;?>">
-                                                   
-                                                </div>
-                                                    
-                                                </div>
-                                            </div><!-- .form-group -->
+                                            <div class="border border-gray rounded p-2 mb-2">
+																							<div class="form-group row mb-1">
+																									<label for="idhal" class="col-12 col-md-3 col-form-label font-weight-bold pt-0">
+																									Identifiant auteur HAL
+																									</label>
+																									
+																									<div class="col-12 col-md-9">
+																											<div class="input-group">
+																													<div class="input-group-prepend">
+																															<button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="Pour une requête sur plusieurs IdHAL" data-content="Mettre entre parenthèses, et remplacer les guillemets par %22 et les espaces par %20. Exemple <strong>(%22laurent-jonchere%22%20OR%20%22olivier-troccaz%22)</strong> - Utilisez le <a target='_blank' href='https://www.textmagic.com/free-tools/url-encoder-decoder'>site textmagic</a> pour encoder votre requête : ce site permet d'encoder facilement une requête 'naturelle'" data-original-title="">
+																															<i class="mdi mdi-comment-question text-white"></i>
+																															</button>
+																													</div>
+																											<input type="text" id="idhal" name="idhal" class="form-control" value="<?php echo $idhal;?>" onkeydown="document.getElementById('team').value = ''; document.getElementById('listaut').value = ''; document.getElementById('refint').value = ''; document.getElementById('idst').value = '';">
+																											<a class="ml-2 small" target="_blank" rel="noopener noreferrer" href="https://hal.archives-ouvertes.fr/page/mon-idhal">Créer mon IdHAL</a>
+																											<p class="small mt-2 w-100">(IdHAL > olivier-troccaz, par exemple)</p>
+																										 
+																									</div>
+																											
+																									</div>
+																							</div><!-- .form-group -->
+																							
+																							<div class="form-group row mb-4">
+																									<label for="evhal" class="col-12 col-md-3 col-form-label font-weight-bold pt-0">
+																									Auteur correspondant à l'IdHAL à mettre en évidence
+																									</label>
+																									
+																									<div class="col-12 col-md-9">
+																											<div class="input-group">
+																													<div class="input-group-prepend">
+																															<button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="Instructions" data-content="Pour une requête sur un seul IdHAL, remplacer les espaces du prénom ou du nom par des tirets bas _. Exemple <strong>Jean-Luc Le_Breton</strong>.<br>Pour une requête sur plusieurs IdHAL, séparer en plus les auteurs par un tilde ~. Exemple <strong>Laurent Jonchère~Olivier Troccaz</strong>." data-original-title="">
+																															<i class="mdi mdi-comment-question text-white"></i>
+																													</button>
+																											</div>
+																											<input type="text" id="evhal" name="evhal" class="form-control" value="<?php echo $evhal;?>">
+																										 
+																									</div>
+																											
+																									</div>
+																							</div><!-- .form-group -->
+																						</div> <!-- end border grey -->
 
 																						<!-- <div class="col-12"> -->
 																						<!-- 	<span class="aaa"><em>Cliquez sur les titres des menus pour afficher les choix et options</em></span> -->

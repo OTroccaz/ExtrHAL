@@ -159,33 +159,44 @@
 																								//Si choix sur tous les articles, camembert avec détails
 																								if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {
 																									
-																									if (isset($idhal) && $idhal != "") {
-																										$atester = "authIdHal_s:".$team;
-																										$atesteropt = "";
-																									}else{
-																										if (isset($refint) && $refint != "") {
-																											$tstRefint = "%22".$refint."%22";
-																										  if (strpos($refint, "~") !== false) {
-																											  $tstRefint = "(";
-																											  $tabRefint = explode("~", $refint);
-																											  foreach($tabRefint as $ri) {
-																												  $tstRefint .= "%22".$ri."%22%20OR%20";
-																											  }
-																											  $tstRefint = substr($tstRefint, 0, -8);
-																											  $tstRefint .= ")";
-																										  }
-																											if ($teamInit != "") {
-																												$atester = "collCode_s:".$teamInit;
-																												$atesteropt = "%20AND%20localReference_t:".$tstRefint;
-																											}else{
-																												$atester = "";
-																												$atesteropt = "localReference_t:".$tstRefint;
-																											}
-																										}else{
-																											 $atester = "collCode_s:".$teamInit;
-																											 $atesteropt = "";
-																										}
-																									}
+																									 if (isset($idhal) && $idhal != "") {
+																										 $atester = "authIdHal_s:".$collCode_s;
+																										 $atesteropt = "";
+																									 }else{
+																										 if (isset($refint) && $refint != "") {
+																											 $tstRefint = "%22".$refint."%22";
+																											 if (strpos($refint, "~") !== false) {
+																												 $tstRefint = "(";
+																												 $tabRefint = explode("~", $refint);
+																												 foreach($tabRefint as $ri) {
+																													 $tstRefint .= "%22".$ri."%22%20OR%20";
+																												 }
+																												 $tstRefint = substr($tstRefint, 0, -8);
+																												 $tstRefint .= ")";
+																											 }
+																											 if (strtolower($collCode_s) == "entrez le code de votre collection") {$collCode_s = "";}
+																											 if ($teamInit != "") {
+																												 $atester = "collCode_s:".$teamInit;
+																												 $atesteropt = "%20AND%20localReference_t:".$tstRefint;
+																											 }else{
+																												 if ($idst != "") {
+																													 $atester = "structId_i:".$idst;
+																													 $atesteropt = "%20AND%20localReference_t:".$tstRefint;
+																												 }else{
+																													 $atester = "";
+																													 $atesteropt = "localReference_t:".$tstRefint;
+																												 }
+																											 }
+																										 }else{
+																											 if ($idst != "") {
+																												 $atester = "structId_i:".$idst;
+																												 $atesteropt = "";
+																											 }else{
+																												 $atester = "collCode_s:".$teamInit;
+																												 $atesteropt = "";
+																											 }
+																										 }
+																									 }
 																									$atesteropt = str_replace(" ", "%20", $atesteropt);
 																									$contents = file_get_contents($root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:ART%20AND%20audience_s:2%20AND%20peerReviewing_s:1%20AND%20producedDateY_i:".$year);
 
@@ -614,10 +625,18 @@
 																								//Nombre de publications croisées par équipe sur la période
 																								$graphe = "";
 																								$iGR = 0;
+																								$testT = "non";
+																								$testI = "non";
+																								if (isset($team) && $team != "" && isset($gr)) {
+																									if (strpos($gr, $team) !== false) {$$testT = "oui";}
+																								}
+																								if (isset($idst) && $idst != "" && isset($gr)) {
+																									if (strpos($gr, $idst) !== false) {$$testI = "oui";}
+																								}
 																								foreach($numbers as $rType => $yearNumbers){
 																									$nomeqpArr = array();
 																									$croresArr = array();
-																									if (isset($team) && isset($gr) && (strpos($gr, $team) !== false)) {//GR
+																									if ($testT == "oui" || $testI == "oui") {//GR
 																										$graphe = "non";
 																										for($j=1;$j<count($crores[$rType]);$j++) {
 																											if($crores[$rType][$j] != 0){
