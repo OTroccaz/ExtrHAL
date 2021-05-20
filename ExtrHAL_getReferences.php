@@ -117,7 +117,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 $numFound = 0;
 	 if (isset($results->response->numFound)) {$numFound=$results->response->numFound;}
 	 
-	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs";
+	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool";
 
    //Cas particuliers pour combinaisons
    if ($docType_s=="COMM+POST"){
@@ -314,7 +314,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 
 				//Le champ 'producedDateY_i' n'est pas obligatoire pour les communications et posters > on testera alors avec publicationDateY_i ou conferenceStartDateY_i
 				if ($docType_s != "COMM" && $docType_s != "POSTER" && $docType_s != "COMM+POST") {
-					$dateprod = $entry->producedDateY_i;
+					if (isset($entry->inPress_bool)) {//Notice à paraître
+						if ($entry->inPress_bool == false) {$dateprod = $entry->producedDateY_i;}else{$dateprod = "0000";}
+					}else{
+						$dateprod = $entry->producedDateY_i;
+					}
 				}else{
 					if ($entry->proceedings_s == 0) {//Publications SANS actes > année = date de congrès
 						$dateprod = $entry->conferenceStartDateY_i;

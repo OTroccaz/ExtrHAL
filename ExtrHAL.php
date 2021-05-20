@@ -278,7 +278,7 @@ include "./ExtrHAL_get.php";
 																					$anneedebiso = $tabanneedeb[2].'-'.$tabanneedeb[1].'-'.$tabanneedeb[0].'T00:00:00Z';
 																					$tabanneefin = explode('/', $anneefin);
 																					$anneefiniso = $tabanneefin[2].'-'.$tabanneefin[1].'-'.$tabanneefin[0].'T00:00:00Z';
-																					$specificRequestCode .= '%20AND%20(producedDate_tdate:['.$anneedebiso.'%20TO%20'.$anneefiniso.']%20OR%20publicationDate_tdate:['.$anneedebiso.'%20TO%20'.$anneefiniso.'])';
+																					$specificRequestCode .= '%20AND%20(producedDate_tdate:['.$anneedebiso.'%20TO%20'.$anneefiniso.']%20OR%20publicationDate_tdate:['.$anneedebiso.'%20TO%20'.$anneefiniso.']%20OR%20inPress_bool:%22true%22)';
 																				}
 
 																				//Date de dépôt

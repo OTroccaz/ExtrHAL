@@ -190,6 +190,11 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 			if (strcmp($currentYear,substr($sortArray[$i],-4))==0){ // Même année
 				 $sign = (strpos($entryInfo, $signTxt) !== false) ? "oui" : "ras";
 				 $rtf = explode("^|^", $rtfArray[$i]);
+				 if (substr($sortArray[$i],-4) == "0000") {//Notice à paraître)
+					 $entryInfo = str_replace("(0000).", "(A paraître).", $entryInfo);
+					 $rtf[0] = str_replace("(0000).", "(A paraître).", $rtf[0]);
+					 $rtf[11] = str_replace("(0000).", "(A paraître).", $rtf[11]);
+				 }
 				 if (isset($collCode_s) && $collCode_s != "" && isset($gr) && (strpos($gr, $collCode_s) !== false)) {//GR
 					 $rtfval = $rtf[0];
 					 $rtfcha = $rtf[11];
@@ -462,10 +467,21 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 				 $sign = (strpos($entryInfo, $signTxt) !== false) ? "oui" : "ras";
 				 $ngis = $sign;
 				 $rtf = explode("^|^", $rtfArray[$i]);
-				 echo "<h3>".substr($sortArray[$i],-4)."</h3>";
+				 if (substr($sortArray[$i],-4) == "0000") {//Notice à paraître)
+					 echo "<h3>A paraître</h3>";
+					 $entryInfo = str_replace("(0000).", "(A paraître).", $entryInfo);
+					 $rtf[0] = str_replace("(0000).", "(A paraître).", $rtf[0]);
+					 $rtf[11] = str_replace("(0000).", "(A paraître).", $rtf[11]);
+				 }else{
+					echo "<h3>".substr($sortArray[$i],-4)."</h3>";
+				 }
 				 $currentYear=substr($sortArray[$i],-4);
 				 $yearNumbers[$currentYear] = 0;
-				 $sect->writeText("<br><strong>".substr($sortArray[$i],-4)."</strong><br><br>", $fonth3);
+				 if (substr($sortArray[$i],-4) == "0000") {//Notice à paraître)
+					 $sect->writeText("<br><strong>A paraître</strong><br><br>", $fonth3);
+				 }else{
+					 $sect->writeText("<br><strong>".substr($sortArray[$i],-4)."</strong><br><br>", $fonth3);
+				 }
 				 if (isset($collCode_s) && $collCode_s != "" && isset($gr) && (strpos($gr, $collCode_s) !== false)) {//GR
 					 $rtfval = $rtf[0];
 					 $rtfcha = $rtf[11];
