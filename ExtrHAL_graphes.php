@@ -592,6 +592,9 @@
 																										case "VID" :
 																											echo '&nbsp;&nbsp;&nbsp;VID = Vidéos'.$cpmlng.$detail.'<br>';
 																											break;
+																										case "IMG" :
+																											echo '&nbsp;&nbsp;&nbsp;IMG = Images'.$cpmlng.$detail.'<br>';
+																											break;
 																										case "PWM" :
 																											echo '&nbsp;&nbsp;&nbsp;PWM = Preprints, working papers, manuscrits non publiés'.$cpmlng.$detail.'<br>';
 																											break;

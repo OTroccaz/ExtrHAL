@@ -439,6 +439,7 @@
                                                                                         <option value="THE" <?php echo $the;?>>Thèses</option>
                                                                                         <option value="HDR" <?php echo $hdr;?>>HDR</option>
                                                                                         <option value="VID" <?php echo $vid;?>>Vidéos</option>
+																																												<option value="IMG" <?php echo $vid;?>>Images</option>
                                                                                         <option value="PWM" <?php echo $pwm;?>>Preprints, working papers, manuscrits non publiés</option>
                                                                                         <option value="CRO" <?php echo $cro;?>>Comptes rendus d'ouvrage ou notes de lecture</option>
                                                                                         <option value="BLO" <?php echo $blo;?>>Billets de blog</option>

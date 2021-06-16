@@ -61,6 +61,7 @@
 																				if (isset($choix_autr) && strpos($choix_autr, "-THE-") !== false) {echo '<li><a href="#THE">Thèses</a></li>';}
 																				if (isset($choix_autr) && strpos($choix_autr, "-HDR-") !== false) {echo '<li><a href="#HDR">HDR</a></li>';}
 																				if (isset($choix_autr) && strpos($choix_autr, "-VID-") !== false) {echo '<li><a href="#VID">Vidéos</a></li>';}
+																				if (isset($choix_autr) && strpos($choix_autr, "-IMG-") !== false) {echo '<li><a href="#IMG">Images</a></li>';}
 																				if (isset($choix_autr) && strpos($choix_autr, "-PWM-") !== false) {echo '<li><a href="#PWM">Preprints, working papers, manuscrits non publiés</a></li>';}
 																				if (isset($choix_autr) && strpos($choix_autr, "-CRO-") !== false) {echo '<li><a href="#CRO">Comptes rendus d\'ouvrage ou notes de lecture</a></li>';}
 																				if (isset($choix_autr) && strpos($choix_autr, "-BLO-") !== false) {echo '<li><a href="#BLO">Billets de blog</a></li>';}

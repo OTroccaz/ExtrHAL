@@ -2082,7 +2082,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				//Adding ANR associated funding
 				$rtffinANR = "";
 				$chaine1 .= $delim."ANR associated funding";
-				if (isset($entry->anrProjectReference_s) && $finass == "vis") {
+				if (isset($entry->anrProjectReference_s) && $finass == "oui") {
 					$iANR = 0;
 					$entryInfo .= ". ANR: ";
 					while(isset($entry->anrProjectReference_s[$iANR])) {
@@ -2100,7 +2100,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				//Adding EU associated funding
 				$rtffinEU = "";
 				$chaine1 .= $delim."EU associated funding";
-				if (isset($entry->europeanProjectCallId_s) && $finass == "vis") {
+				if (isset($entry->europeanProjectCallId_s) && $finass == "oui") {
 					$iEU = 0;
 					$entryInfo .= ". EU: ";
 					while(isset($entry->europeanProjectCallId_s[$iEU])) {
