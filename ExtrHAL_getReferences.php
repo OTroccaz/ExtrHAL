@@ -1,5 +1,5 @@
 <?php
-function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$specificRequestCode,$countries,$anneedeb,$anneefin,$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$idst,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7){
+function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$specificRequestCode,$countries,$anneedeb,$anneefin,$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$idst,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$FnmH,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7){
 	 static $listedoi = "";
    include "ExtrHAL_rang_AERES_SHS.php";
    include "ExtrHAL_rang_CNRS.php";
@@ -117,7 +117,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 $numFound = 0;
 	 if (isset($results->response->numFound)) {$numFound=$results->response->numFound;}
 	 
-	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool";
+	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool,submitType_s,linkExtId_s";
 
    //Cas particuliers pour combinaisons
    if ($docType_s=="COMM+POST"){
@@ -263,9 +263,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
 				$debgras = "";
 				$fingras = "";
+				$CA = "N"; //HCERES > Publication en premier, dernier ou corresponding auteur
 				$img = "";
 				$chaine1 = "";
 				$chaine2 = "";
+				$chaineH = "";
 				$listTit = "";
 				if(isset($entry->files_s)){
 					 $img="<a href=\"".$entry->files_s[0]."\"><img alt=\"Haltools PDF\" src=\"http://haltools-new.inria.fr/images/Haltools_pdf.png\"/></a>";
@@ -274,6 +276,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				src=\"http://haltools-new.inria.fr/images/Haltools_bibtex3.png\"/></a>";
 
 				$entryInfo0 = "";//Début avec auteurs + titre + année + revue
+				$entryInfo0H = "";//Idemn mais réduit à la mise en évidence des sous équipes pour l'export HCERES
 				$entryInfo = "";//Suite avec doi + pubmed + ...
 
 				//Est-ce une notice significative à mettre en évidence et, si oui, faut-il l'afficher ?
@@ -293,6 +296,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								if (isset($_POST["soumis"])) {
 									if ($coll == strtoupper($_POST['eqp'.$i])) {
 										$entryInfo0 .= "GR".$i." - ¤ - ";
+										$entryInfo0H .= "GR".$i." - ¤ - ";
 										$eqpgr = strtoupper($_POST['eqp'.$i]);
 										break;
 									}
@@ -300,6 +304,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								if (isset($_GET["team"])) {
 									if ($coll == $_GET['eqp'.$i]) {
 										$entryInfo0 .= "GR".$i." - ¤ - ";
+										$entryInfo0H .= "GR".$i." - ¤ - ";
 										$eqpgr = $_GET['eqp'.$i];
 										break;
 									}
@@ -340,6 +345,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$initial = 1;
 				$i = 0;
 				$affil = "aucune";
+				
 				foreach($entry->authLastName_s as $nom){
 					//$nom = ucwords(mb_strtolower($nom, 'UTF-8'));
 					$nom = ucwords(nomCompEntier(str_replace("&apos;", "'", $nom)), "'");
@@ -355,6 +361,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							}
 						}
 					}
+					//Auteurs pour HCERES
+					(!empty($prenomPlus)) ? ($chaineH .= mb_strtoupper($nom, 'UTF-8')." ".$prenom." ".$prenomPlus.", ") : ($chaineH .= mb_strtoupper($nom, 'UTF-8')." ".$prenom.", ");
+					
 					//Si, Nom, initiale du prénom
 					if ($typnom == "nominit") {
 						//$prenominit = $prenom;
@@ -417,7 +426,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
 								if ($typcol == "aucun") {$deb = "";$fin = "";}
 								//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
-								if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
+								if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>"; $CA = "O";}
 							}
 						}
 						//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
@@ -426,7 +435,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						}
 						//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
 						if ($typcrp == "oui") {
-							if ($entry->authQuality_s[$i] == "crp") {$fin .= "*";}
+							if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
 						}
 						if ($prenomPlus != "") {
 							$authors .= $nom2."troliesp".$prenom2."troliesp".$prenomPlus;
@@ -478,7 +487,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
 									if ($typcol == "aucun") {$deb = "";$fin = "";}
 									//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
-									if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
+									if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>"; $CA = "O";}
 								}
 								//echo $nom.' - '.$prenom.' -> '.$nom2.' - '.$prenom2.' / '.$prenomPlus.'<br>';
 							}
@@ -538,7 +547,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 										if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
 										if ($typcol == "aucun") {$deb = "";$fin = "";}
 										//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
-										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
+										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>"; $CA = "O";}
 									}
 								}
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
@@ -597,7 +606,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 										if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
 										if ($typcol == "aucun") {$deb = "<t>";$fin = "</t>";}//<t> and </t> are factice and just serve to identify the author of the collection for $trpaff
 										//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
-										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
+										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>"; $CA = "O";}
 									}
 								}
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
@@ -710,6 +719,25 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}else{
 					$extract = $authors;
 				}
+				
+				//exprt HCERES > limiter aux 5 premiers auteurs
+				$chaineH = substr($chaineH, 0, -2);
+				$cpt = 1;
+					$pospv = 0;
+					$lim_aut_ok = 1;
+					while ($cpt <= 5) {
+						if (strpos($chaineH, ",", $pospv+1) !== false) {
+							$pospv = strpos($chaineH, ",", $pospv+1);
+							$cpt ++;
+						}else{
+							$lim_aut_ok = 0;
+							break;
+						}
+					}
+					if ($lim_aut_ok != 0) {
+						$chaineH = substr($chaineH, 0, $pospv);
+						$chaineH .= ", et al.";
+					}
 				
 				//Replace authors outside the collection by '...'' beyond x authors
 				if (isset($trpaff) && $trpaff != "") {
@@ -841,6 +869,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 				$deb2 = "";
 				$fin2 = "";
+				
+				//Export HCERES
+				$chaineH .= $delim.$titre;
 
 				//Est-ce un doublon et, si oui, faut-il l'afficher ?
 				if (stripos($listetitre, $titre) === false) {//non
@@ -854,7 +885,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$entryInfo0 .= $point.$deb.$deb2.$titre.$fin2.$fin;
 				$resArray[$iRA]["titre"] = $titre;
 				$chaine2 .= $delim.$titre;
-
+				
 				//Adding journalTitle_s:
 				$chaine1 .= $delim."Titre journal";
 				if ($typrvg == "non") {$debrev = "";$finrev = "";}else{$debrev = "<strong>";$finrev = "</strong>";}
@@ -874,6 +905,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}else{
 					$chaine2 .= $delim;
 				}
+				
+				//Export HCERES
+				$chaineH .= $delim.$entry->journalTitle_s;
 
 				//Cas spécifiques "OTHER" > BLO + CRO + NED + TRA
 				if ($docType_s == "BLO") {
@@ -1100,6 +1134,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							$chaine2 .= $delim;
 						}
 					}
+				}
+				
+				//Export HCERES
+				if(isset($entry->volume_s) && !is_array($entry->volume_s)){
+					(isset($entry->issue_s[0]) && !is_array($entry->issue_s[0])) ? $chaineH .= $delim.$entry->volume_s."(".$entry->issue_s[0].")" : $chaineH .= $delim.$entry->volume_s;
+				}else{
+					$chaineH .= $delim;
 				}
 
 				//Adding scientificEditor_s:
@@ -1330,6 +1371,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						$chaine2 .= $delim;
 					}
 				}
+				
+				//Export HCERES
+				(isset($entry->page_s)) ? $chaineH .= $delim.$entry->page_s : $chaineH .= $delim;
+				$chaineH .= $delim.$dateprod;
 
 				//Adding isbn_s:
 				if ($typisbn == "vis") {
@@ -1981,12 +2026,31 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}else{
 					$chaine2 .= $delim;
 				}
-				//Export DOIpour VOSviewerDOI
+
+				//Export DOI pour VOSviewerDOI
 				if (isset($entry->doiId_s)) {
 					$chaine3 = $entry->doiId_s.chr(13).chr(10);
 					$inF3 = fopen($Fnm3,"a+");
 					fwrite($inF3,$chaine3);
 				}
+				
+				//Export HCERES
+				(isset($entry->doiId_s)) ? $chaineH .= $delim.$entry->doiId_s : $chaineH .= $delim;
+				//Equipe
+				$eqpH = '';
+				for($i = 1; $i <= $nbeqp; $i++) {
+					if (strpos($entryInfo0H, 'GR'.$i) !== false) {
+						$eqpH .= $i.', ';
+					}
+				}
+				if (strlen($eqpH) > 0) {$eqpH = substr($eqpH, 0, -2);}
+				$chaineH .= $delim.$eqpH;
+				//Doctorant
+				$chaineH .= $delim;
+				//CA
+				$chaineH .= $delim.$CA;
+				//OA
+				if ((!empty($entry->submitType_s) && $entry->submitType_s == "file") || (!empty($entry->linkExtId_s) && ($entry->linkExtId_s == "openaccess" || $entry->linkExtId_s == "arxiv" || $entry->linkExtId_s == "pubmedcentral"))) {$chaineH .= $delim.'O';}else{$chaineH .= $delim.'N';}
 				
 				//Adding Pubmed ID
 				$rtfpubmed = "";
@@ -2358,7 +2422,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					if ($affprefeq == "") {$affprefeq = "AP";}
 				}
 				
-				array_push($rtfArray,$rtfInfo."^|^".$rtfdoi."^|^".$rtfpubmed."^|^".$rtflocref."^|^".$rtfarxiv."^|^".$rtfdescrip."^|^".$rtfalso."^|^".$rtfrefhal."^|^".$rtfaeres."^|^".$rtfcnrs."^|^".$chaine1."^|^".$chaine2."^|^".$rtfnnt."^|^".$affprefeq."^|^".$racine."^|^".$rtfhceres."^|^".$rtfif."^|^".$rtfurl."^|^".$rtfcomm."^|^".$rtfrefi."^|^".$rtffinANR."^|^".$rtffinEU."^|^".$rtfrefswh."^|^".$rtfrelation."^|^".$rtfinc);
+				array_push($rtfArray,$rtfInfo."^|^".$rtfdoi."^|^".$rtfpubmed."^|^".$rtflocref."^|^".$rtfarxiv."^|^".$rtfdescrip."^|^".$rtfalso."^|^".$rtfrefhal."^|^".$rtfaeres."^|^".$rtfcnrs."^|^".$chaine1."^|^".$chaine2."^|^".$rtfnnt."^|^".$affprefeq."^|^".$racine."^|^".$rtfhceres."^|^".$rtfif."^|^".$rtfurl."^|^".$rtfcomm."^|^".$rtfrefi."^|^".$rtffinANR."^|^".$rtffinEU."^|^".$rtfrefswh."^|^".$rtfrelation."^|^".$rtfinc."^|^".$chaineH);
 				
 				//bibtex
 				$bibLab = "";

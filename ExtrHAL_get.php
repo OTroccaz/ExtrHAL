@@ -32,6 +32,13 @@ if (isset($_GET["team"])) {
 	fseek($inF1, 0);
 	$chaine1 = "\xEF\xBB\xBF";
 	fwrite($inF1,$chaine1);
+	//export HCERES
+	$FnmH = "./HAL/HCERES_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team)."_".$quand.".csv";
+	//$FnmH = "./HAL/HCERES_".$team.".csv";
+	$inFH = fopen($FnmH,"w");
+	fseek($inFH, 0);
+	$chaineH = "\xEF\xBB\xBF";
+	fwrite($inFH,$chaineH);
 	//export en RTF
 	$Fnm = "./HAL/extractionHAL_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team)."_".$quand.".rtf";
 	require_once ("./lib/phprtflite-1.2.0/lib/PHPRtfLite.php");

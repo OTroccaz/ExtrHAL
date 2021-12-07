@@ -248,6 +248,7 @@ include "./ExtrHAL_get.php";
 																							echo '<span class="mr-2">Exporter les données affichées </span>';
 																							echo '<a class="btn btn-primary" target="_blank" href="./HAL/extractionHAL_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'.rtf">en RTF</a>&nbsp;';
 																							echo '<a class="btn btn-primary" target="_blank" href="./HAL/extractionHAL_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'.csv">en CSV</a>&nbsp;';
+																							echo '<a class="btn btn-primary" target="_blank" href="./HAL/HCERES_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'.csv">HCERES</a>&nbsp;';
 																							echo '<a class="btn btn-primary" target="_blank" href="./HAL/extractionHAL_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'.bib">en Bibtex</a>&nbsp;';
 																							echo '<a class="btn btn-primary" target="_blank" href="./HAL/VOSviewerDOI_'.str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).'.txt">VOSviewerDOI</a>&nbsp;';
 																							echo '<a class="btn btn-info" href="ExtrHAL.php">Réinitialiser tous les paramètres</a>&nbsp;';

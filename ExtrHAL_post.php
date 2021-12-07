@@ -28,6 +28,12 @@ if (isset($_POST["soumis"])) {
 	fseek($inF, 0);
 	$chaine = "\xEF\xBB\xBF";
 	fwrite($inF,$chaine);
+	//export HCERES
+	$FnmH = "./HAL/HCERES_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".csv";
+	$inFH = fopen($FnmH,"w+");
+	fseek($inFH, 0);
+	$chaineH = "\xEF\xBB\xBF";
+	fwrite($inFH,$chaineH);
 	//export en RTF
 	$Fnm = "./HAL/extractionHAL_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".rtf";
 	require_once ("./lib/phprtflite-1.2.0/lib/PHPRtfLite.php");
