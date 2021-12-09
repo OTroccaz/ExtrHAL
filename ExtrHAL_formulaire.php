@@ -1353,6 +1353,10 @@
                                                         </div>
 																												
 																												<?php
+																													}else{
+																														echo '<input type="hidden" name="typif" value="inv">';
+																														echo '<input type="hidden" name="typinc" value="inv">';
+																														echo '<input type="hidden" name="typsign" value="ts0">';
 																													}
 																												?>
 
