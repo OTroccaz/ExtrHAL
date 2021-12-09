@@ -1,4 +1,14 @@
-                                        <form method="POST" accept-charset="utf-8" name="extrhal" action="ExtrHAL.php#sommaire" class="form-horizontal">
+                                        <?php
+																				// récupération de l'adresse IP du client (on cherche d'abord à savoir s'il est derrière un proxy)
+																				if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+																					$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+																				}elseif(isset($_SERVER['HTTP_CLIENT_IP'])) {
+																					$ip = $_SERVER['HTTP_CLIENT_IP'];
+																				}else {
+																					$ip = $_SERVER['REMOTE_ADDR'];
+																				}
+																				?>
+																				<form method="POST" accept-charset="utf-8" name="extrhal" action="ExtrHAL.php#sommaire" class="form-horizontal">
                                             <div class="border border-gray rounded p-2 mb-2">
 																							<div class="border border-gray rounded p-2 mb-2">
 																								<div class="form-group row mb-1">
@@ -690,6 +700,7 @@
 																																						</div> <!-- .form-group -->
 																																				</div>
 																																				
+																																				<!--
 																																				<div class="form row mb-2">
 																																						<div class="form-group col-12">
 																																								<a target="_blank" rel="noopener noreferrer" href="./ExtrHAL_liste_auteurs.php">Gérer ma liste d'auteurs</a>
@@ -698,6 +709,7 @@
 																																								</button>
 																																						</div>
 																																				</div>
+																																				-->
 																																		</div>
 																																	
 																																		<div class="border border-dark rounded p-2 mb-2">
@@ -1172,6 +1184,11 @@
 																														</div>
                                                         </div>
 																												
+																												<?php
+																													include("./Glob_IP_list.php");
+																													if (in_array($ip, $IP_aut)) {
+																												?>
+																												
 																												<div class="card mb-0">
                                                             <div class="card-header" id="headingThree">
                                                                 <h5 class="m-0">
@@ -1334,6 +1351,10 @@
 																																</div>
 																														</div>
                                                         </div>
+																												
+																												<?php
+																													}
+																												?>
 
                                                         <div class="card mb-0">
                                                             <div class="card-header" id="headingFour">

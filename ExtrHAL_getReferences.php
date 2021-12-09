@@ -2263,6 +2263,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					}
 				}
 				
+				$rtfinc = "";
+				/*
 				//Adding JCR Top
 				ini_set('max_execution_time', 300);
 				$rtfinc = "";
@@ -2302,6 +2304,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						}
 					}
 				}
+				*/
 				
 				//Adding comment:
 				//if (isset($entry->comment_s)) {echo 'toto : '.$entry->comment_s.'<br>';}
