@@ -2415,13 +2415,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$rtfOAURL = "";
 				//PDF dans HAL
 				if (!empty($entry->submitType_s) && $entry->submitType_s == "file") {
-					$entryInfo .= " <a href='".$entry->files_s[0]."'><img style='width: 50px;' src='./img/pdf_grand.png'></a>";
+					$entryInfo .= " <a target='_blank' href='".$entry->files_s[0]."'><img style='width: 50px;' src='./img/pdf_grand.png'></a>";
 					$rtfOA = "OA HAL";
 					$rtfOAURL = $entry->files_s[0];
 				}else{
 					//Fichier hors HAL
 					if (!empty($entry->linkExtId_s) && ($entry->linkExtId_s == "openaccess" || $entry->linkExtId_s == "arxiv" || $entry->linkExtId_s == "pubmedcentral")) {
-						$entryInfo .= " <a href='".$entry->linkExtUrl_s."'><img style='width: 50px;' src='./img/oa_grand.png'></a>";
+						$entryInfo .= " <a target='_blank' href='".$entry->linkExtUrl_s."'><img style='width: 50px;' src='./img/oa_grand.png'></a>";
 						$rtfOA = "OA hors HAL";
 						$rtfOAURL = $entry->linkExtUrl_s;
 					}
