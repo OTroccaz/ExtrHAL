@@ -492,6 +492,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
 								if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb .= "<u>";$fin .= "</u>";}
 							}
+							//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
+							if ($typcrp == "oui") {
+								if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
+							}
 							if ($prenomPlus != "") {
 								$authors .= $nom2."troliesp".$prenom2."troliesp".$prenomPlus;
 								$authors = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $authors);
@@ -550,6 +554,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
 								if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
 									if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb .= "<u>";$fin .= "</u>";}
+								}
+								//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
+								if ($typcrp == "oui") {
+									if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
 								}
 								//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
 								if ($prenomPlus != "") {
@@ -610,6 +618,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
 									if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb .= "<u>";$fin .= "</u>";}
 								}
+								//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
+								if ($typcrp == "oui") {
+									if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
+								}
 								//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
 								if ($prenomPlus != "") {
 									$authors .= mb_strtoupper($nom2, 'UTF-8')."troliesp(".$prenom2."troliesp".$prenomPlus.")";
@@ -667,6 +679,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							$debH = "_";
 							$finH = "_";
 						}
+					}
+					//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
+					if ($typcrp == "oui") {
+						if ($entry->authQuality_s[$i] == "crp") {$finH = "*_"; $CA = "O";}
 					}
 					//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
 					if ($prenomPlus != "") {
@@ -2393,7 +2409,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}else{
 					$chaine2 .= $delim;
 				}
-
+				
 				//Corrections diverses
 				$entryInfo =str_replace("..", ".", $entryInfo);
 				$entryInfo =str_replace(", .", ".", $entryInfo);
