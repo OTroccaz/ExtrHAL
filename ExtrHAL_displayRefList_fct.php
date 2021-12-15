@@ -424,6 +424,10 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 								$sect->writeText(" - ".$rtf[19], $font);
 						 }
 					 }
+					 if ($rtf[27] != "") {
+						 $sect->writeText(" - ", $font);
+						 $sect->writeHyperLink($rtf[27], "<u>".$rtf[26]."</u>", $fontlien);
+					 }
 					 $sect->writeText("<br><br>", $font);
 					 $yearNumbers[substr($sortArray[$i],-4)]+=1;
 					 //export CSV
@@ -709,6 +713,10 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 						 if ($rtf[19] != "") {
 								$sect->writeText(" - ".$rtf[19], $font);
 						 }
+					 }
+					 if ($rtf[27] != "") {
+						 $sect->writeText(" - ", $font);
+						 $sect->writeHyperLink($rtf[27], "<u>".$rtf[26]."</u>", $fontlien);
 					 }
 					 $sect->writeText("<br><br>", $font);
 					 //export CSV

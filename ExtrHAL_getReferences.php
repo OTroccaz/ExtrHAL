@@ -976,7 +976,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 				
 				//Export HCERES
-				$chaineH .= $delim.$entry->journalTitle_s;
+				if (isset($entry->journalTitle_s)) {$chaineH .= $delim.$entry->journalTitle_s;}else{$chaineH .= $delim;}
 
 				//Cas spécifiques "OTHER" > BLO + CRO + NED + TRA
 				if ($docType_s == "BLO") {
@@ -2410,6 +2410,23 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$chaine2 .= $delim;
 				}
 				
+				//Adding OA
+				$rtfOA = "";
+				$rtfOAURL = "";
+				//PDF dans HAL
+				if (!empty($entry->submitType_s) && $entry->submitType_s == "file") {
+					$entryInfo .= " <a href='".$entry->files_s[0]."'><img style='width: 50px;' src='./img/pdf_grand.png'></a>";
+					$rtfOA = "OA HAL";
+					$rtfOAURL = $entry->files_s[0];
+				}else{
+					//Fichier hors HAL
+					if (!empty($entry->linkExtId_s) && ($entry->linkExtId_s == "openaccess" || $entry->linkExtId_s == "arxiv" || $entry->linkExtId_s == "pubmedcentral")) {
+						$entryInfo .= " <a href='".$entry->linkExtUrl_s."'><img style='width: 50px;' src='./img/oa_grand.png'></a>";
+						$rtfOA = "OA hors HAL";
+						$rtfOAURL = $entry->linkExtUrl_s;
+					}
+				}
+				
 				//Corrections diverses
 				$entryInfo =str_replace("..", ".", $entryInfo);
 				$entryInfo =str_replace(", .", ".", $entryInfo);
@@ -2495,7 +2512,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					if ($affprefeq == "") {$affprefeq = "AP";}
 				}
 				
-				array_push($rtfArray,$rtfInfo."^|^".$rtfdoi."^|^".$rtfpubmed."^|^".$rtflocref."^|^".$rtfarxiv."^|^".$rtfdescrip."^|^".$rtfalso."^|^".$rtfrefhal."^|^".$rtfaeres."^|^".$rtfcnrs."^|^".$chaine1."^|^".$chaine2."^|^".$rtfnnt."^|^".$affprefeq."^|^".$racine."^|^".$rtfhceres."^|^".$rtfif."^|^".$rtfurl."^|^".$rtfcomm."^|^".$rtfrefi."^|^".$rtffinANR."^|^".$rtffinEU."^|^".$rtfrefswh."^|^".$rtfrelation."^|^".$rtfinc."^|^".$chaineH);
+				array_push($rtfArray,$rtfInfo."^|^".$rtfdoi."^|^".$rtfpubmed."^|^".$rtflocref."^|^".$rtfarxiv."^|^".$rtfdescrip."^|^".$rtfalso."^|^".$rtfrefhal."^|^".$rtfaeres."^|^".$rtfcnrs."^|^".$chaine1."^|^".$chaine2."^|^".$rtfnnt."^|^".$affprefeq."^|^".$racine."^|^".$rtfhceres."^|^".$rtfif."^|^".$rtfurl."^|^".$rtfcomm."^|^".$rtfrefi."^|^".$rtffinANR."^|^".$rtffinEU."^|^".$rtfrefswh."^|^".$rtfrelation."^|^".$rtfinc."^|^".$chaineH."^|^".$rtfOA."^|^".$rtfOAURL);
 				
 				//bibtex
 				$bibLab = "";
