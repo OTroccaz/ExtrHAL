@@ -433,7 +433,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 						 }else{
 							 $chaine = $rtf[10].chr(13).chr(10).$rtf[10].chr(13).chr(10);
 						 }
-						 $chaineH = "Auteurs;Titre;Revue;Volume et N°;N° des pages;Année;DOI;Equipe;Doctorant;CA;OA".chr(13).chr(10).$rtf[25].chr(13).chr(10);
+						 $chaineH = "Auteurs;Titre;Revue;Volume et N°;N° des pages;Année;DOI;Equipe;Doctorant;CA;OA;UT".chr(13).chr(10).$rtf[25].chr(13).chr(10);
 					 }else{
 						 if (isset($collCode_s) && $collCode_s != "" && isset($gr) && (strpos($gr, $collCode_s) !== false)) {//GR
 							 $chaine = $rtfcha.chr(13).chr(10);
@@ -718,7 +718,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 						 }else{
 							 $chaine = $rtf[10].chr(13).chr(10).$rtf[11].chr(13).chr(10);
 						 }
-						 $chaineH = "Auteurs;Titre;Revue;Volume et N°;N° des pages;Année;DOI;Equipe;Doctorant;CA;OA".chr(13).chr(10).$rtf[25].chr(13).chr(10);
+						 $chaineH = "Auteurs;Titre;Revue;Volume et N°;N° des pages;Année;DOI;Equipe;Doctorant;CA;OA;UT".chr(13).chr(10).$rtf[25].chr(13).chr(10);
 					 }else{
 						 if (isset($collCode_s) && $collCode_s != "" && isset($gr) && (strpos($gr, $collCode_s) !== false)){
 							 $chaine = $rtfcha.chr(13).chr(10);

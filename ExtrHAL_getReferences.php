@@ -117,7 +117,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 $numFound = 0;
 	 if (isset($results->response->numFound)) {$numFound=$results->response->numFound;}
 	 
-	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool,submitType_s,linkExtId_s";
+	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool,submitType_s,linkExtId_s,wosId_s";
 
    //Cas particuliers pour combinaisons
    if ($docType_s=="COMM+POST"){
@@ -343,13 +343,16 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 
 				//Adding authors
 				$initial = 1;
+				$initialH = 1;
 				$i = 0;
 				$affil = "aucune";
 				
 				foreach($entry->authLastName_s as $nom){
 					//$nom = ucwords(mb_strtolower($nom, 'UTF-8'));
 					$nom = ucwords(nomCompEntier(str_replace("&apos;", "'", $nom)), "'");
+					$nomH = ucwords(nomCompEntier(str_replace("&apos;", "'", $nom)), "'");
 					$prenom = ucfirst(mb_strtolower(str_replace("&apos;", "'", $entry->authFirstName_s[$i]), 'UTF-8'));
+					$prenomH = ucfirst(mb_strtolower(str_replace("&apos;", "'", $entry->authFirstName_s[$i]), 'UTF-8'));
 					$prenomPlus = "";
 					//if (isset($entry->authMiddleName_s[$i])) {
 					if (isset($entry->authMiddleName_s[0])) {
@@ -361,8 +364,6 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							}
 						}
 					}
-					//Auteurs pour HCERES
-					(!empty($prenomPlus)) ? ($chaineH .= mb_strtoupper($nom, 'UTF-8')." ".$prenom." ".$prenomPlus.", ") : ($chaineH .= mb_strtoupper($nom, 'UTF-8')." ".$prenom.", ");
 					
 					//Si, Nom, initiale du prénom
 					if ($typnom == "nominit") {
@@ -382,6 +383,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						}
 						$prenom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $prenominit);
 						$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
+						$deb = "";
+						$fin = "";
 						if ($initial == 1){
 							$initial = 0;
 							$authors = "";
@@ -391,12 +394,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						//if (stripos(wd_remove_accents($listenominit), wd_remove_accents($nom." ".$prenom)) === false) {
 						//Pour éviter les faux homonymes avec les initiales > J. Crassous (pour Jérôme Crassous) et J. Crassous (Jeanne Crassous)
 						if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nom." ".str_replace(".", "", $prenomentier))) === false) {
-							$deb = "";
-							$fin = "";
 						}else{
 							//On vérifie que l'auteur est bien dans la collection pour l'année de la publication
-							$deb = "";
-							$fin = "";
 							$pos = stripos(wd_remove_accents($listenominit), wd_remove_accents($nom." ".$prenom));
 							/*
 							if ($nom == "Roquelaure" || $nom == "Jouan") {
@@ -420,7 +419,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								echo '<script>console.log("'.$nom." ".$prenom." > ".$datearriv." - ".$datedepar." > ".$pos.'");</script>';
 							}
 							*/
-							if ($dateprod >= $datearriv && $dateprod <= $datedepar) {
+							if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 								$affil = "ok";
 								if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
 								if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
@@ -450,6 +449,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						$authors = str_ireplace(array("troliesp", "trolipoint", "trolitiret", "troliapos", "troliparo", "troliparf"), array(" ", ".", "-", "'", "(", ")") , $authors);
 					}else{//Si nom/prénom complets
 						if ($typnom == "nomcomp1") {//Nom Prénom
+							$deb = "";
+							$fin = "";
 							if ($initial == 1){
 								$initial = 0;
 								$authors = "";
@@ -467,12 +468,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							$prenom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $prenominit);
 							$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
 							if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nom." ".str_replace(".", "", $prenomentier))) === false) {
-								$deb = "";
-								$fin = "";
 							}else{
 								//On vérifie que l'auteur est bien dans la collection pour l'année de la publication
-								$deb = "";
-								$fin = "";
 								$pos = stripos(wd_remove_accents($listenomcomp1), wd_remove_accents($nom." ".$prenom));
 								$pos = substr_count(mb_substr($listenomcomp1, 0, $pos, 'UTF-8'), '~');
 								$crit = 0;
@@ -481,7 +478,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								}
 								$datearriv = substr($arriv, $crit-4, 4);
 								$datedepar = substr($depar, $crit-4, 4);
-								if ($dateprod >= $datearriv && $dateprod <= $datedepar) {
+								if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 									$affil = "ok";
 									if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
 									if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
@@ -512,6 +509,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							$authors = str_ireplace(array("troliesp", "trolipoint", "trolitiret", "troliapos", "troliparo", "troliparf"), array(" ", ".", "-", "'", "(", ")") , $authors);
 						}else{
 							if ($typnom == "nomcomp2") {//Prénom Nom
+								$deb = "";
+								$fin = "";
 								if ($initial == 1){
 									$initial = 0;
 									$authors = "";
@@ -529,8 +528,6 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								$prenom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $prenominit);
 								$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
 								if (stripos(wd_remove_accents($listenomcomp2), wd_remove_accents("~".str_replace(".", "", $prenomentier)." ".$nom)) === false) {
-									$deb = "";
-									$fin = "";
 								}else{
 									//On vérifie que l'auteur est bien dans la collection pour l'année de la publication
 									$pos = stripos(wd_remove_accents($listenomcomp2), wd_remove_accents($prenom." ".$nom));
@@ -541,7 +538,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									}
 									$datearriv = substr($arriv, $crit-4, 4);
 									$datedepar = substr($depar, $crit-4, 4);
-									if ($dateprod >= $datearriv && $dateprod <= $datedepar) {
+									if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 										$affil = "ok";
 										if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
 										if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
@@ -571,6 +568,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								$authors = str_replace($deb."troliesp", "troliesp".$deb, $authors);
 								$authors = str_ireplace(array("troliesp", "trolipoint", "trolitiret", "troliapos", "troliparo", "troliparf"), array(" ", ".", "-", "'", "(", ")") , $authors);
 							}else{//NOM (Prénom(s))
+								$deb = "";
+								$fin = "";
 								if ($initial == 1){
 									$initial = 0;
 									$authors = "";
@@ -588,8 +587,6 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								$prenom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $prenominit);
 								$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
 								if (stripos(wd_remove_accents($listenomcomp3), wd_remove_accents("~".mb_strtoupper($nom, 'UTF-8')." (".str_replace(".", "", $prenom).")")) === false) {
-									$deb = "";
-									$fin = "";
 								}else{
 									//On vérifie que l'auteur est bien dans la collection pour l'année de la publication
 									$pos = stripos(wd_remove_accents($listenomcomp3), wd_remove_accents(mb_strtoupper($nom, 'UTF-8')." (".$prenom.")"));
@@ -600,7 +597,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									}
 									$datearriv = substr($arriv, $crit-4, 4);
 									$datedepar = substr($depar, $crit-4, 4);
-									if ($dateprod >= $datearriv && $dateprod <= $datedepar) {
+									if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 										$affil = "ok";
 										if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
 										if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
@@ -632,9 +629,66 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							}
 						}
 					}
+					
+					//Auteurs pour HCERES > NOM Prénom(s)
+					//(!empty($prenomPlus)) ? ($chaineH .= mb_strtoupper($nom, 'UTF-8')." ".$prenom." ".$prenomPlus.", ") : ($chaineH .= mb_strtoupper($nom, 'UTF-8')." ".$prenom.", ");
+					$debH = "";
+					$finH = "";
+					if ($initialH == 1){
+						$initialH = 0;
+						$authorsH = "";
+					}else{
+						$authorsH .= ", ";
+					}
+					$prenomentier = $prenomH;
+					$prenom = prenomCompEntier($prenomH);
+					$prenominit = $prenom;
+					//si prénom décliné "à l'américaine"
+					if (strpos($prenom, " ") !== false) {
+						$tabpren = explode(" ", $prenom);
+						$prenom = $tabpren[0];
+					}
+
+					$prenom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $prenominit);
+					$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nomH);
+					if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nomH." ".str_replace(".", "", $prenomentier))) === false) {
+					}else{
+						//On vérifie que l'auteur est bien dans la collection pour l'année de la publication
+						$pos = stripos(wd_remove_accents($listenomcomp1), wd_remove_accents($nomH." ".$prenom));
+						$pos = substr_count(mb_substr($listenomcomp1, 0, $pos, 'UTF-8'), '~');
+						$crit = 0;
+						for ($k = 1; $k <= $pos; $k++) {
+							$crit = strpos($arriv, '~', $crit+1);
+						}
+						$datearriv = substr($arriv, $crit-4, 4);
+						$datedepar = substr($depar, $crit-4, 4);
+						if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
+							$affil = "ok";
+							$debH = "_";
+							$finH = "_";
+						}
+					}
+					//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
+					if ($prenomPlus != "") {
+						$authorsH .= mb_strtoupper($nom2, 'UTF-8')."troliesp".$prenom2."troliesp".$prenomPlus;
+						$authorsH = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $authorsH);
+						$authorsH = str_ireplace("troliesptroliesp", "troliesp", $authorsH);
+						$authorsH = mise_en_evidence(wd_remove_accents(mb_strtoupper($nom2, 'UTF-8')."troliesp".$prenom2."troliesp".$prenomPlus), $authorsH, $debH, $finH);
+						$authorsH = mise_en_evidence(wd_remove_accents("troliesp".mb_strtoupper($nom2, 'UTF-8')."troliesp".$prenom2."troliesp".$prenomPlus), $authorsH, $debH, $finH);
+					}else{
+						$authorsH .= mb_strtoupper($nom2, 'UTF-8')."troliesp".$prenom2;
+						$authorsH = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $authorsH);
+						$authorsH = str_ireplace("troliesptroliesp", "troliesp", $authorsH);
+						$authorsH = mise_en_evidence(wd_remove_accents(mb_strtoupper($nom2, 'UTF-8')."troliesp".$prenom2), $authorsH, $debH, $finH);
+						$authorsH = mise_en_evidence(wd_remove_accents("troliesp".mb_strtoupper($nom2, 'UTF-8')."troliesp".$prenom2), $authorsH, $debH, $finH);
+					}
+					$authorsH = str_replace($debH."troliesp", "troliesp".$debH, $authorsH);
+					$authorsH = str_ireplace(array("troliesp", "trolipoint", "trolitiret", "troliapos", "troliparo", "troliparf"), array(" ", ".", "-", "'", "(", ")") , $authorsH);
+					
 					$i++;
 				}
 				
+				$chaineH = $authorsH;
 				$authorsBT = $authors;
 				if (isset($typbib) && $typbib == "oui") {		
 					$iTA = 0;
@@ -721,7 +775,6 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 				
 				//exprt HCERES > limiter aux 5 premiers auteurs
-				$chaineH = substr($chaineH, 0, -2);
 				$cpt = 1;
 					$pospv = 0;
 					$lim_aut_ok = 1;
@@ -2051,6 +2104,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$chaineH .= $delim.$CA;
 				//OA
 				if ((!empty($entry->submitType_s) && $entry->submitType_s == "file") || (!empty($entry->linkExtId_s) && ($entry->linkExtId_s == "openaccess" || $entry->linkExtId_s == "arxiv" || $entry->linkExtId_s == "pubmedcentral"))) {$chaineH .= $delim.'O';}else{$chaineH .= $delim.'N';}
+				if (!empty($entry->wosId_s)) {$chaineH .= $delim.$entry->wosId_s[0];}else{$chaineH .= $delim;}
 				
 				//Adding Pubmed ID
 				$rtfpubmed = "";
