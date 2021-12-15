@@ -117,7 +117,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 $numFound = 0;
 	 if (isset($results->response->numFound)) {$numFound=$results->response->numFound;}
 	 
-	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool,submitType_s,linkExtId_s,wosId_s";
+	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool,submitType_s,linkExtId_s,wosId_s,linkExtUrl_s,files_s";
 
    //Cas particuliers pour combinaisons
    if ($docType_s=="COMM+POST"){
@@ -393,6 +393,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						}
 						//if (stripos(wd_remove_accents($listenominit), wd_remove_accents($nom." ".$prenom)) === false) {
 						//Pour éviter les faux homonymes avec les initiales > J. Crassous (pour Jérôme Crassous) et J. Crassous (Jeanne Crassous)
+						//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
+						if ($typcrp == "oui") {
+							if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
+						}
 						if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nom." ".str_replace(".", "", $prenomentier))) === false) {
 						}else{
 							//On vérifie que l'auteur est bien dans la collection pour l'année de la publication
@@ -421,9 +425,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							*/
 							if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 								$affil = "ok";
-								if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
-								if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
-								if ($typcol == "aucun") {$deb = "";$fin = "";}
+								if ($typcol == "soul") {$deb .= "<u>";$fin .= "</u>";}
+								if ($typcol == "gras") {$deb .= "<strong>";$fin .= "</strong>";}
+								if ($typcol == "aucun") {$deb .= "";$fin .= "";}
 								//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
 								if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>"; $CA = "O";}
 							}
@@ -431,10 +435,6 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
 						if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
 							if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb .= "<u>";$fin .= "</u>";}
-						}
-						//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
-						if ($typcrp == "oui") {
-							if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
 						}
 						if ($prenomPlus != "") {
 							$authors .= $nom2."troliesp".$prenom2."troliesp".$prenomPlus;
@@ -467,6 +467,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							}
 							$prenom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $prenominit);
 							$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
+							//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
+							if ($typcrp == "oui") {
+								if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
+							}
 							if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nom." ".str_replace(".", "", $prenomentier))) === false) {
 							}else{
 								//On vérifie que l'auteur est bien dans la collection pour l'année de la publication
@@ -480,9 +484,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								$datedepar = substr($depar, $crit-4, 4);
 								if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 									$affil = "ok";
-									if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
-									if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
-									if ($typcol == "aucun") {$deb = "";$fin = "";}
+									if ($typcol == "soul") {$deb .= "<u>";$fin .= "</u>";}
+									if ($typcol == "gras") {$deb .= "<strong>";$fin .= "</strong>";}
+									if ($typcol == "aucun") {$deb .= "";$fin .= "";}
 									//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
 									if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>"; $CA = "O";}
 								}
@@ -491,10 +495,6 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
 							if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
 								if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb .= "<u>";$fin .= "</u>";}
-							}
-							//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
-							if ($typcrp == "oui") {
-								if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
 							}
 							if ($prenomPlus != "") {
 								$authors .= $nom2."troliesp".$prenom2."troliesp".$prenomPlus;
@@ -531,6 +531,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								}
 								$prenom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $prenominit);
 								$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
+								//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
+								if ($typcrp == "oui") {
+									if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
+								}
 								if (stripos(wd_remove_accents($listenomcomp2), wd_remove_accents("~".str_replace(".", "", $prenomentier)." ".$nom)) === false) {
 								}else{
 									//On vérifie que l'auteur est bien dans la collection pour l'année de la publication
@@ -544,9 +548,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									$datedepar = substr($depar, $crit-4, 4);
 									if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 										$affil = "ok";
-										if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
-										if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
-										if ($typcol == "aucun") {$deb = "";$fin = "";}
+										if ($typcol == "soul") {$deb .= "<u>";$fin .= "</u>";}
+										if ($typcol == "gras") {$deb .= "<strong>";$fin .= "</strong>";}
+										if ($typcol == "aucun") {$deb .= "";$fin .= "";}
 										//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
 										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>"; $CA = "O";}
 									}
@@ -554,10 +558,6 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
 								if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
 									if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb .= "<u>";$fin .= "</u>";}
-								}
-								//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
-								if ($typcrp == "oui") {
-									if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
 								}
 								//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
 								if ($prenomPlus != "") {
@@ -594,6 +594,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 
 								$prenom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $prenominit);
 								$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
+								//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
+								if ($typcrp == "oui") {
+									if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
+								}
 								if (stripos(wd_remove_accents($listenomcomp3), wd_remove_accents("~".mb_strtoupper($nom, 'UTF-8')." (".str_replace(".", "", $prenom).")")) === false) {
 								}else{
 									//On vérifie que l'auteur est bien dans la collection pour l'année de la publication
@@ -607,9 +611,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									$datedepar = substr($depar, $crit-4, 4);
 									if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 										$affil = "ok";
-										if ($typcol == "soul") {$deb = "<u>";$fin = "</u>";}
-										if ($typcol == "gras") {$deb = "<strong>";$fin = "</strong>";}
-										if ($typcol == "aucun") {$deb = "<t>";$fin = "</t>";}//<t> and </t> are factice and just serve to identify the author of the collection for $trpaff
+										if ($typcol == "soul") {$deb .= "<u>";$fin .= "</u>";}
+										if ($typcol == "gras") {$deb .= "<strong>";$fin .= "</strong>";}
+										if ($typcol == "aucun") {$deb .= "<t>";$fin .= "</t>";}//<t> and </t> are factice and just serve to identify the author of the collection for $trpaff
 										//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
 										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>"; $CA = "O";}
 									}
@@ -617,10 +621,6 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
 								if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
 									if ($entry->authQuality_s[$i] == "spk" || $entry->authQuality_s[$i] == "presenter") {$deb .= "<u>";$fin .= "</u>";}
-								}
-								//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
-								if ($typcrp == "oui") {
-									if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
 								}
 								//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
 								if ($prenomPlus != "") {
@@ -663,6 +663,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 
 					$prenom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $prenominit);
 					$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nomH);
+					//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
+					if ($typcrp == "oui") {
+						if ($entry->authQuality_s[$i] == "crp") {$finH .= "*"; $CA = "O";}
+					}
 					if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nomH." ".str_replace(".", "", $prenomentier))) === false) {
 					}else{
 						//On vérifie que l'auteur est bien dans la collection pour l'année de la publication
@@ -676,13 +680,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						$datedepar = substr($depar, $crit-4, 4);
 						if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 							$affil = "ok";
-							$debH = "_";
-							$finH = "_";
+							$debH .= "_";
+							$finH .= "_";
 						}
-					}
-					//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
-					if ($typcrp == "oui") {
-						if ($entry->authQuality_s[$i] == "crp") {$finH = "*_"; $CA = "O";}
 					}
 					//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
 					if ($prenomPlus != "") {
