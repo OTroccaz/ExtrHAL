@@ -2120,6 +2120,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$chaineH .= $delim.$CA;
 				//OA
 				if ((!empty($entry->submitType_s) && $entry->submitType_s == "file") || (!empty($entry->linkExtId_s) && ($entry->linkExtId_s == "openaccess" || $entry->linkExtId_s == "arxiv" || $entry->linkExtId_s == "pubmedcentral"))) {$chaineH .= $delim.'O';}else{$chaineH .= $delim.'N';}
+				//HAL id
+				if (!empty($entry->halId_s)) {$chaineH .= $delim.$entry->halId_s;}else{$chaineH .= $delim;}
+				//UT
 				if (!empty($entry->wosId_s)) {$chaineH .= $delim.$entry->wosId_s[0];}else{$chaineH .= $delim;}
 				
 				//Adding Pubmed ID
