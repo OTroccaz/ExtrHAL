@@ -33,7 +33,7 @@ if (isset($_GET["team"])) {
 	$chaine1 = "\xEF\xBB\xBF";
 	fwrite($inF1,$chaine1);
 	//export HCERES
-	$FnmH = "./HAL/HCERES_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team)."_".$quand.".csv";
+	$FnmH = "./HAL/HCERES_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".csv";
 	//$FnmH = "./HAL/HCERES_".$team.".csv";
 	$inFH = fopen($FnmH,"w");
 	fseek($inFH, 0);

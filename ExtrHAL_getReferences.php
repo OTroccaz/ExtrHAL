@@ -395,7 +395,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						//Pour éviter les faux homonymes avec les initiales > J. Crassous (pour Jérôme Crassous) et J. Crassous (Jeanne Crassous)
 						//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
 						if ($typcrp == "oui") {
-							if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
+							if ($entry->authQuality_s[$i] == "crp") {$fin .= "*";}
 						}
 						if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nom." ".str_replace(".", "", $prenomentier))) === false) {
 						}else{
@@ -429,7 +429,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								if ($typcol == "gras") {$deb .= "<strong>";$fin .= "</strong>";}
 								if ($typcol == "aucun") {$deb .= "";$fin .= "";}
 								//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
-								if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>"; $CA = "O";}
+								if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
+								if ($i == 0 || $i == count($entry->authLastName_s) - 1) {$CA = "O";}
 							}
 						}
 						//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
@@ -469,7 +470,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
 							//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
 							if ($typcrp == "oui") {
-								if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
+								if ($entry->authQuality_s[$i] == "crp") {$fin .= "*";}
 							}
 							if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nom." ".str_replace(".", "", $prenomentier))) === false) {
 							}else{
@@ -488,7 +489,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									if ($typcol == "gras") {$deb .= "<strong>";$fin .= "</strong>";}
 									if ($typcol == "aucun") {$deb .= "";$fin .= "";}
 									//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
-									if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>"; $CA = "O";}
+									if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
+									if ($i == 0 || $i == count($entry->authLastName_s) - 1) {$CA = "O";}
 								}
 								//echo $nom.' - '.$prenom.' -> '.$nom2.' - '.$prenom2.' / '.$prenomPlus.'<br>';
 							}
@@ -533,7 +535,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
 								//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
 								if ($typcrp == "oui") {
-									if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
+									if ($entry->authQuality_s[$i] == "crp") {$fin .= "*";}
 								}
 								if (stripos(wd_remove_accents($listenomcomp2), wd_remove_accents("~".str_replace(".", "", $prenomentier)." ".$nom)) === false) {
 								}else{
@@ -552,7 +554,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 										if ($typcol == "gras") {$deb .= "<strong>";$fin .= "</strong>";}
 										if ($typcol == "aucun") {$deb .= "";$fin .= "";}
 										//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
-										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>"; $CA = "O";}
+										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
+										if ($i == 0 || $i == count($entry->authLastName_s) - 1) {$CA = "O";}
 									}
 								}
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
@@ -596,7 +599,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nom);
 								//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
 								if ($typcrp == "oui") {
-									if ($entry->authQuality_s[$i] == "crp") {$fin .= "*"; $CA = "O";}
+									if ($entry->authQuality_s[$i] == "crp") {$fin .= "*";}
 								}
 								if (stripos(wd_remove_accents($listenomcomp3), wd_remove_accents("~".mb_strtoupper($nom, 'UTF-8')." (".str_replace(".", "", $prenom).")")) === false) {
 								}else{
@@ -615,7 +618,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 										if ($typcol == "gras") {$deb .= "<strong>";$fin .= "</strong>";}
 										if ($typcol == "aucun") {$deb .= "<t>";$fin .= "</t>";}//<t> and </t> are factice and just serve to identify the author of the collection for $trpaff
 										//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
-										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>"; $CA = "O";}
+										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
+										if ($i == 0 || $i == count($entry->authLastName_s) - 1) {$CA = "O";}
 									}
 								}
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
@@ -665,7 +669,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$nom2 = str_replace(array(".", "-", "'", " ", "(", ")"), array("trolipoint", "trolitiret", "troliapos", "troliesp", "troliparo", "troliparf") , $nomH);
 					//Si demandé et si authQuality_s renseigné, mettre en évidence l'auteur correspondant
 					if ($typcrp == "oui") {
-						if ($entry->authQuality_s[$i] == "crp") {$finH .= "*"; $CA = "O";}
+						if ($entry->authQuality_s[$i] == "crp") {$finH .= "*";}
 					}
 					if (stripos(wd_remove_accents($listenomcomp1), wd_remove_accents("~".$nomH." ".str_replace(".", "", $prenomentier))) === false) {
 					}else{
