@@ -430,7 +430,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								if ($typcol == "aucun") {$deb .= "";$fin .= "";}
 								//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
 								if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
-								if ($i == 0 || $i == count($entry->authLastName_s) - 1) {$CA = "O";}
+								//HCERES > Test pour savoir si un auteur de la collection est premier auteur OU dernier auteur OU auteur correspond 
+								if ($i == 0 || $i == count($entry->authLastName_s) - 1 || $entry->authQuality_s[$i] == "crp") {$CA = "O";}
 							}
 						}
 						//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
@@ -490,7 +491,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									if ($typcol == "aucun") {$deb .= "";$fin .= "";}
 									//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
 									if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
-									if ($i == 0 || $i == count($entry->authLastName_s) - 1) {$CA = "O";}
+									//HCERES > Test pour savoir si un auteur de la collection est premier auteur OU dernier auteur OU auteur correspond 
+								if ($i == 0 || $i == count($entry->authLastName_s) - 1 || $entry->authQuality_s[$i] == "crp") {$CA = "O";}
 								}
 								//echo $nom.' - '.$prenom.' -> '.$nom2.' - '.$prenom2.' / '.$prenomPlus.'<br>';
 							}
@@ -555,7 +557,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 										if ($typcol == "aucun") {$deb .= "";$fin .= "";}
 										//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
 										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
-										if ($i == 0 || $i == count($entry->authLastName_s) - 1) {$CA = "O";}
+										//HCERES > Test pour savoir si un auteur de la collection est premier auteur OU dernier auteur OU auteur correspond 
+										if ($i == 0 || $i == count($entry->authLastName_s) - 1 || $entry->authQuality_s[$i] == "crp") {$CA = "O";}
 									}
 								}
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
@@ -619,7 +622,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 										if ($typcol == "aucun") {$deb .= "<t>";$fin .= "</t>";}//<t> and </t> are factice and just serve to identify the author of the collection for $trpaff
 										//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
 										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
-										if ($i == 0 || $i == count($entry->authLastName_s) - 1) {$CA = "O";}
+										//HCERES > Test pour savoir si un auteur de la collection est premier auteur OU dernier auteur OU auteur correspond 
+										if ($i == 0 || $i == count($entry->authLastName_s) - 1 || $entry->authQuality_s[$i] == "crp") {$CA = "O";}
 									}
 								}
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
