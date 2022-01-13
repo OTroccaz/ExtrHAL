@@ -46,10 +46,10 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 
 	 //Langue des documents
 	 if (isset($typlng)) {
-		 if ($typlng == "français") {
+		 if ($typlng == "lngf") {
 			 $atesteropt .= "%20AND%20language_s:\"fr\"";
 		 }else{
-			 if ($typlng == "autres") {
+			 if ($typlng == "lnga") {
 				 $atesteropt .= "%20AND%20NOT%20language_s:\"fr\"";
 			 }
 		 }
