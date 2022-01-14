@@ -117,7 +117,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 $numFound = 0;
 	 if (isset($results->response->numFound)) {$numFound=$results->response->numFound;}
 	 
-	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,subTitle_s,swhId_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool,submitType_s,linkExtId_s,wosId_s,linkExtUrl_s,files_s";
+	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,*_subTitle_s,subTitle_s,swhId_s,*_title_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool,submitType_s,linkExtId_s,wosId_s,linkExtUrl_s,files_s";
 
    //Cas particuliers pour combinaisons
    if ($docType_s=="COMM+POST"){
@@ -928,10 +928,29 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				if (strpos($typtit,"gras") !== false) {$fin .= "</strong>";}
 				if (strpos($typtit,"ital") !== false) {;$fin .= "</em>";}
 				if (strpos($typtit,"reto") !== false) {$fin .= "<br>";}
-				$titrePlus = $entry->title_s[0];
-				if (isset($entry->subTitle_s[0])) {//existence d'un sous-titre
-					$titrePlus .= " : ".$entry->subTitle_s[0];
-				}
+				//Titre et sous titre peuvent être dans des langues différentes
+				if (count($entry->title_s) > 1) {//Il y a au moins 2 langues
+					if (isset($entry->en_title_s[0])) {//Recherche d'abord en anglais
+						$titrePlus = $entry->en_title_s[0];
+						if (isset($entry->en_subTitle_s[0])) {//Existence d'un sous-titre en anglais
+							$titrePlus .= " : ".$entry->en_subTitle_s[0];
+						}
+					}else{
+						if (isset($entry->fr_title_s[0])) {//Recherche d'abord en anglais
+							$titrePlus = $entry->fr_title_s[0];
+							if (isset($entry->fr_subTitle_s[0])) {//Existence d'un sous-titre en anglais
+								$titrePlus .= " : ".$entry->fr_subTitle_s[0];
+							}
+						}
+					}
+				}else{
+					if (isset($entry->title_s[0])) {
+						$titrePlus = $entry->title_s[0];
+						if (isset($entry->subTitle_s[0])) {//existence d'un sous-titre
+							$titrePlus .= " : ".$entry->subTitle_s[0];
+						}
+					}
+				}				
 				$titre = nettoy1(cleanup_title($titrePlus));
 				if ($docType_s == "NED" && isset($entry->bookTitle_s)) {
 					$entryInfo0 = substr($entryInfo0, 0, strlen($entryInfo0)-2).". ";
@@ -1025,9 +1044,28 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					if (strpos($typtit,"gras") !== false) {$fin .= "</strong>";}
 					if (strpos($typtit,"ital") !== false) {;$fin .= "</em>";}
 					if (strpos($typtit,"reto") !== false) {$fin .= "<br>";}
-					$titrePlus = $entry->title_s[0];
-					if (isset($entry->subTitle_s[0])) {//existence d'un sous-titre
-						$titrePlus .= " : ".$entry->subTitle_s[0];
+					//Titre et sous titre peuvent être dans des langues différentes
+					if (count($entry->title_s) > 1) {//Il y a au moins 2 langues
+						if (isset($entry->en_title_s[0])) {//Recherche d'abord en anglais
+							$titrePlus = $entry->en_title_s[0];
+							if (isset($entry->en_subTitle_s[0])) {//Existence d'un sous-titre en anglais
+								$titrePlus .= " : ".$entry->en_subTitle_s[0];
+							}
+						}else{
+							if (isset($entry->fr_title_s[0])) {//Recherche d'abord en anglais
+								$titrePlus = $entry->fr_title_s[0];
+								if (isset($entry->fr_subTitle_s[0])) {//Existence d'un sous-titre en anglais
+									$titrePlus .= " : ".$entry->fr_subTitle_s[0];
+								}
+							}
+						}
+					}else{
+						if (isset($entry->title_s[0])) {
+							$titrePlus = $entry->title_s[0];
+							if (isset($entry->subTitle_s[0])) {//existence d'un sous-titre
+								$titrePlus .= " : ".$entry->subTitle_s[0];
+							}
+						}
 					}
 					$titre = nettoy1(cleanup_title($titrePlus));
 					$deb2 = "";
@@ -2601,9 +2639,32 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 				if (isset($entry->producedDateY_i)) {$bibLab .= "_".mb_strtolower($entry->producedDateY_i, 'UTF-8');}
 				if (isset($entry->halId_s)) {$bibLab .= "_".$entry->halId_s;}
-				if (isset($entry->title_s[0])) {$bibLab .= ",".chr(13).chr(10)."	title = {".$entry->title_s[0];}
-				if (isset($entry->subTitle_s[0])) {$bibLab .= " : ".$entry->subTitle_s[0];}
-				if (isset($entry->title_s[0])) {$bibLab .= "}";}
+				//Titre et sous titre peuvent être dans des langues différentes
+				if (count($entry->title_s) > 1) {//Il y a au moins 2 langues
+					if (isset($entry->en_title_s[0])) {//Recherche d'abord en anglais
+						$bibLab .= ",".chr(13).chr(10)."	title = {".$entry->en_title_s[0];
+						if (isset($entry->en_subTitle_s[0])) {//Existence d'un sous-titre en anglais
+							$bibLab .= " : ".$entry->en_subTitle_s[0];
+						}
+						$bibLab .= "}";
+					}else{
+						if (isset($entry->fr_title_s[0])) {//Recherche d'abord en anglais
+							$bibLab .= ",".chr(13).chr(10)."	title = {".$entry->fr_title_s[0];
+							if (isset($entry->fr_subTitle_s[0])) {//Existence d'un sous-titre en anglais
+								$bibLab .= " : ".$entry->fr_subTitle_s[0];
+							}
+							$bibLab .= "}";
+						}
+					}
+				}else{
+					if (isset($entry->title_s[0])) {
+						$bibLab .= ",".chr(13).chr(10)."	title = {".$entry->title_s[0];
+						if (isset($entry->subTitle_s[0])) {//existence d'un sous-titre
+							$bibLab .= " : ".$entry->subTitle_s[0];
+						}
+						$bibLab .= "}";
+					}
+				}				
 				if (isset($entry->volume_s)) {$bibLab .= ",".chr(13).chr(10)."	volume = {".$entry->volume_s."}";}
 				if (isset($entry->bookTitle_s)) {$bibLab .= ",".chr(13).chr(10)."	booktitle= {".$entry->bookTitle_s."}";}
 				if (isset($entry->scientificEditor_s)) {
