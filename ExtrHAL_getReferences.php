@@ -276,7 +276,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				src=\"http://haltools-new.inria.fr/images/Haltools_bibtex3.png\"/></a>";
 
 				$entryInfo0 = "";//Début avec auteurs + titre + année + revue
-				$entryInfo0H = "";//Idemn mais réduit à la mise en évidence des sous équipes pour l'export HCERES
+				$entryInfo0H = "";//Idem mais réduit à la mise en évidence des sous équipes pour l'export HCERES
 				$entryInfo = "";//Suite avec doi + pubmed + ...
 
 				//Est-ce une notice significative à mettre en évidence et, si oui, faut-il l'afficher ?
@@ -1003,7 +1003,18 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 				
 				//Export HCERES
-				if (isset($entry->journalTitle_s)) {$chaineH .= $delim.$entry->journalTitle_s;}else{$chaineH .= $delim;}
+					//Ajout du titre de la revue
+					if ($docType_s == "ART") {
+						if (isset($entry->journalTitle_s)) {$chaineH .= $delim.$entry->journalTitle_s;}else{$chaineH .= $delim;}
+					}
+					//Ajout du titre de la conférence
+					if (($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST")) {
+						if (isset($entry->conferenceTitle_s)) {$chaineH .= $delim.$entry->conferenceTitle_s;}else{$chaineH .= $delim;}
+					}
+					//Ajout du titre de l'ouvrage
+					if ($docType_s == "OUV" or $docType_s == "DOUV" || $docType_s=="COUV" or $docType_s=="OUV+COUV" or $docType_s=="OUV+COUV+DOUV"){
+						if (isset($entry->bookTitle_s)) {$chaineH .= $delim.$entry->bookTitle_s;}else{$chaineH .= $delim;}
+					}
 
 				//Cas spécifiques "OTHER" > BLO + CRO + NED + TRA
 				if ($docType_s == "BLO") {

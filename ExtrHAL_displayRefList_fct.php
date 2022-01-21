@@ -438,6 +438,9 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 							 $chaine = $rtf[10].chr(13).chr(10).$rtf[10].chr(13).chr(10);
 						 }
 						 $chaineH = "Auteurs;Titre;Revue;Volume et N°;N° des pages;Année;DOI;Equipe;Doctorant;CA;OA;HAL id;UT".chr(13).chr(10).$rtf[25].chr(13).chr(10);
+						 if ($docType_s == "ART") {$chaineH = "Auteurs;Titre;Revue;Volume et N°;N° des pages;Année;DOI;Equipe;Doctorant;CA;OA;HAL id;UT".chr(13).chr(10).$rtf[25].chr(13).chr(10);}
+						 if (($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST")) {$chaineH = "Auteurs;Titre;Conférence;Volume et N°;N° des pages;Année;DOI;Equipe;Doctorant;CA;OA;HAL id;UT".chr(13).chr(10).$rtf[25].chr(13).chr(10);}
+						 if ($docType_s == "OUV" or $docType_s == "DOUV" || $docType_s=="COUV" or $docType_s=="OUV+COUV" or $docType_s=="OUV+COUV+DOUV") {$chaineH = "Auteurs;Titre;Ouvrage;Volume et N°;N° des pages;Année;DOI;Equipe;Doctorant;CA;OA;HAL id;UT".chr(13).chr(10).$rtf[25].chr(13).chr(10);}
 					 }else{
 						 if (isset($collCode_s) && $collCode_s != "" && isset($gr) && (strpos($gr, $collCode_s) !== false)) {//GR
 							 $chaine = $rtfcha.chr(13).chr(10);
@@ -727,6 +730,9 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 							 $chaine = $rtf[10].chr(13).chr(10).$rtf[11].chr(13).chr(10);
 						 }
 						 $chaineH = "Auteurs;Titre;Revue;Volume et N°;N° des pages;Année;DOI;Equipe;Doctorant;CA;OA;HAL id;UT".chr(13).chr(10).$rtf[25].chr(13).chr(10);
+						 if ($docType_s == "ART") {$chaineH = "Auteurs;Titre;Revue;Volume et N°;N° des pages;Année;DOI;Equipe;Doctorant;CA;OA;HAL id;UT".chr(13).chr(10).$rtf[25].chr(13).chr(10);}
+						 if (($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST")) {$chaineH = "Auteurs;Titre;Conférence;Volume et N°;N° des pages;Année;DOI;Equipe;Doctorant;CA;OA;HAL id;UT".chr(13).chr(10).$rtf[25].chr(13).chr(10);}
+						 if ($docType_s == "OUV" or $docType_s == "DOUV" || $docType_s=="COUV" or $docType_s=="OUV+COUV" or $docType_s=="OUV+COUV+DOUV") {$chaineH = "Auteurs;Titre;Ouvrage;Volume et N°;N° des pages;Année;DOI;Equipe;Doctorant;CA;OA;HAL id;UT".chr(13).chr(10).$rtf[25].chr(13).chr(10);}
 					 }else{
 						 if (isset($collCode_s) && $collCode_s != "" && isset($gr) && (strpos($gr, $collCode_s) !== false)){
 							 $chaine = $rtfcha.chr(13).chr(10);
