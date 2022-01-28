@@ -1072,12 +1072,12 @@
 																																								<label for="typeqp" class="font-weight-bold">
 																																								Numérotation/codification par équipe
 																																								</label>
-																																								<select class="custom-select" id="typeqp" name="typeqp">
+																																								<select class="custom-select" id="typeqp" name="typeqp" onchange="afficache_form();">
 																																										<?php
 																																										if (isset($typeqp) && $typeqp == "oui") {$txt = "selected";}else{$txt = "";}
-																																										echo '<option value="oui" '.$txt.' onClick="affich_form();">oui</option>';
+																																										echo '<option value="oui" '.$txt.'>oui</option>';
 																																										if (isset($typeqp) && $typeqp == "non" || !isset($team)) {$txt = "selected";}else{$txt = "";}
-																																										echo '<option value="non" '.$txt.' onClick="cacher_form();">non</option>';
+																																										echo '<option value="non" '.$txt.'>non</option>';
 																																										?>
 																																								</select>
 																																						</div><!-- .form-group -->

@@ -1,14 +1,12 @@
 document.getElementById("deteqp").style.display = "none";
 
-function affich_form() {
-  document.getElementById("deteqp").style.display = "block";
-  //document.getElementById("panel2").style.maxHeight = document.getElementById("panel2").scrollHeight + "px";
-}
-
-function cacher_form() {
-  document.getElementById("deteqp").style.display = "none";
-  document.getElementById("eqp").style.display = "none";
-  //document.getElementById("panel2").style.maxHeight = document.getElementById("panel2").scrollHeight + "px";
+function afficache_form() {
+	if (document.getElementById("typeqp").value == "oui") {
+		document.getElementById("deteqp").style.display = "block";
+	}else{
+		document.getElementById("deteqp").style.display = "none";
+		document.getElementById("eqp").style.display = "none";
+	}
 }
 
 function affich_form2() {
