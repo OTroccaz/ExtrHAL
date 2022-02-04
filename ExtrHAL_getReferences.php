@@ -798,23 +798,25 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$extract = $authors;
 				}
 				
-				//exprt HCERES > limiter aux 5 premiers auteurs
+				//export HCERES > limiter aux 5 premiers auteurs
+				/*
 				$cpt = 1;
-					$pospv = 0;
-					$lim_aut_ok = 1;
-					while ($cpt <= 5) {
-						if (strpos($chaineH, ",", $pospv+1) !== false) {
-							$pospv = strpos($chaineH, ",", $pospv+1);
-							$cpt ++;
-						}else{
-							$lim_aut_ok = 0;
-							break;
-						}
+				$pospv = 0;
+				$lim_aut_ok = 1;
+				while ($cpt <= 5) {
+					if (strpos($chaineH, ",", $pospv+1) !== false) {
+						$pospv = strpos($chaineH, ",", $pospv+1);
+						$cpt ++;
+					}else{
+						$lim_aut_ok = 0;
+						break;
 					}
-					if ($lim_aut_ok != 0) {
-						$chaineH = substr($chaineH, 0, $pospv);
-						$chaineH .= ", et al.";
-					}
+				}
+				if ($lim_aut_ok != 0) {
+					$chaineH = substr($chaineH, 0, $pospv);
+					$chaineH .= ", et al.";
+				}
+				*/
 				
 				//Replace authors outside the collection by '...'' beyond x authors
 				if (isset($trpaff) && $trpaff != "") {
