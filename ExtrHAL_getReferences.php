@@ -218,7 +218,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 			 }
 		 }
 	 }
-	 //echo $listenomcomp1;
+	 //echo $listenominit;
    //var_dump($results->response->docs);
 	 
 	 //Vérification préalable > Si 2 notices ont des liens HAL identiques, n'en afficher qu'une seule (avec priorité pour celle qui a un PDF le cas échéant)
@@ -1017,6 +1017,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					if ($docType_s == "OUV" or $docType_s == "DOUV" || $docType_s=="COUV" or $docType_s=="OUV+COUV" or $docType_s=="OUV+COUV+DOUV"){
 						if (isset($entry->bookTitle_s)) {$chaineH .= $delim.$entry->bookTitle_s;}else{$chaineH .= $delim;}
 					}
+					
+					if ($docType_s == "OTHER") {$chaineH .= $delim;}//Car pas de titre pour autres publications
 
 				//Cas spécifiques "OTHER" > BLO + CRO + NED + TRA
 				if ($docType_s == "BLO") {
