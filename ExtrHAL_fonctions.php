@@ -81,7 +81,11 @@ function prenomCompInit($prenom) {
         if ($p == 0) {
           $prenom .= mb_ucwords(mb_substr($tabprenom[$p], 0, 1, 'UTF-8')).".";
         }else{
-          $prenom .= " ".mb_ucwords(mb_substr($tabprenom[$p], 0, 1, 'UTF-8')).".";
+					if (substr_count($tabprenom[$p], ".") >= 2) {//Cas Kahn Cyril J.F.
+						$prenom .= " ".mb_strtoupper($tabprenom[$p], 'UTF-8');
+					}else{
+						$prenom .= " ".mb_ucwords(mb_substr($tabprenom[$p], 0, 1, 'UTF-8')).".";
+					}
         }
         $p++;
       }
