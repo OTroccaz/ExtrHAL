@@ -108,10 +108,14 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"SOFTWARE\"".$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
    }
-   if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST" && $docType_s!="CRO" && $docType_s!="BLO" && $docType_s!="NED" && $docType_s!="TRA" && $docType_s!="CNR"){
+   if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST" && $docType_s!="CRO" && $docType_s!="BLO" && $docType_s!="NED" && $docType_s!="TRA" && $docType_s!="CNR" && $docType_s!="LOG"){
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
-    }
+   }
+	 if ($docType_s=="OTHER"){
+      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OTHER\"%20OR%20docType_s:\"OTHERREPORT\")".$specificRequestCode."&rows=0";
+			$contents = file_get_contents($reqAPI);
+   }
    $contents = utf8_encode($contents);
    $results = json_decode($contents);
 	 $numFound = 0;
@@ -152,11 +156,15 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"DOUV\"".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
 	 }
-   if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST"  && $docType_s!="CRO" && $docType_s!="BLO" && $docType_s!="NED" && $docType_s!="TRA" && $docType_s!="CNR"){
+	 if ($docType_s=="OTHER"){
+      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OTHER\"%20OR%20docType_s:\"OTHERREPORT\")".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+			$contents = file_get_contents($reqAPI);
+   }
+   if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST"  && $docType_s!="CRO" && $docType_s!="BLO" && $docType_s!="NED" && $docType_s!="TRA" && $docType_s!="CNR" && $docType_s!="OTHER"){
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
       //$contents = utf8_encode($contents);
-    }
+   }
    //echo "http://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
 	 
 	 //suite avec URL requête API
@@ -225,6 +233,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 $tabHid = array();
 	 $tabFil = array();
 	 $tab = 0;
+	 
 	 foreach($results->response->docs as $entry){
 		 if (!in_array($entry->halId_s, $tabHid)) {
 			 $tabHid[$tab] = $entry->halId_s;
@@ -2480,9 +2489,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$rtfOAURL = "";
 				//PDF dans HAL
 				if (!empty($entry->submitType_s) && $entry->submitType_s == "file") {
-					$entryInfo .= " <a target='_blank' href='".$entry->files_s[0]."'><img style='width: 50px;' src='./img/pdf_grand.png'></a>";
-					$rtfOA = "OA HAL";
-					$rtfOAURL = $entry->files_s[0];
+					if (isset($entry->files_s[0]) && !empty($entry->files_s[0])) {
+						$entryInfo .= " <a target='_blank' href='".$entry->files_s[0]."'><img style='width: 50px;' src='./img/pdf_grand.png'></a>";
+						$rtfOA = "OA HAL";
+						$rtfOAURL = $entry->files_s[0];
+					}
 				}else{
 					//Fichier hors HAL
 					if (!empty($entry->linkExtId_s) && ($entry->linkExtId_s == "openaccess" || $entry->linkExtId_s == "arxiv" || $entry->linkExtId_s == "pubmedcentral")) {
@@ -2757,6 +2768,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				//array_push($bibArray,$bibLab."¤".$bibPR."¤".$bibAud."¤".$bibPro."¤".$bibInv);
 				$bibLab .= ",".chr(13).chr(10)."}";
 				array_push($bibArray,$bibLab);
+				
+				//var_dump($infoArray);
+				//var_dump($resArray);
+				//echo $iRA;
+	
 		 $iRA++;
 		 }
 		 $tab++;
