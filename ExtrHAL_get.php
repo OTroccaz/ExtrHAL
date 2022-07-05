@@ -233,10 +233,14 @@ if (isset($_GET["team"])) {
 	$listenomcomp3 = str_replace(array("\xC2\xA0"." ", "\xC2\xA0"), " ", $listenomcomp3);
   $listenominit = str_replace(array("\xC2\xA0"." ", "\xC2\xA0"), " ", $listenominit);
 	
-	if (isset($_GET['periode'])) {$periode = $_GET['periode'];}
-	$tabPer = explode(" - ", $periode);
-	$anneedeb = $tabPer[0];
-  $anneefin = $tabPer[1];
+	$anneedeb = '';
+	$anneefin = '';
+	if (isset($_GET['periode'])) {
+		$periode = $_GET['periode'];
+		$tabPer = explode(" - ", $periode);
+		$anneedeb = $tabPer[0];
+		$anneefin = $tabPer[1];
+	}
   // si anneedeb et anneefin non définies, on force anneedeb au 01/01/anneeencours et anneefin au 31/12/anneeencours
   if ($anneedeb == '' && $anneefin == '') {
     //$anneeforce = "oui";
@@ -263,10 +267,14 @@ if (isset($_GET["team"])) {
   $urlsauv .= "&anneedeb=".$anneedeb;
   $urlsauv .= "&anneefin=".$anneefin;
 
-  if (isset($_GET['depot'])) {$depot = $_GET['depot'];}
-	$tabDep = explode(" - ", $depot);
-	$depotdeb = $tabDep[0];
-  $depotfin = $tabDep[1];
+	$depotdeb = '';
+	$depotfin = '';
+  if (isset($_GET['depot'])) {
+		$depot = $_GET['depot'];
+		$tabDep = explode(" - ", $depot);
+		$depotdeb = $tabDep[0];
+		$depotfin = $tabDep[1];
+	}
 	// si depotdeb et depotfin non définis, on force depotdeb au 01/01/anneedeb et depotfin au 31/12/anneefin
   if ($depotdeb == '' && $depotfin == '') {
     $depotforce = "oui";
