@@ -940,17 +940,19 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				if (strpos($typtit,"gras") !== false) {$fin .= "</strong>";}
 				if (strpos($typtit,"ital") !== false) {;$fin .= "</em>";}
 				if (strpos($typtit,"reto") !== false) {$fin .= "<br>";}
+				//Langage principal du document
+				$langue = ($entry->language_s[0] == 'fr') ? 'fr':'';
 				//Titre et sous titre peuvent être dans des langues différentes
 				if (count($entry->title_s) > 1) {//Il y a au moins 2 langues
-					if (isset($entry->en_title_s[0])) {//Recherche d'abord en anglais
+					if (isset($entry->en_title_s[0]) && empty($langue)) {//Recherche d'abord en anglais
 						$titrePlus = $entry->en_title_s[0];
 						if (isset($entry->en_subTitle_s[0])) {//Existence d'un sous-titre en anglais
 							$titrePlus .= " : ".$entry->en_subTitle_s[0];
 						}
 					}else{
-						if (isset($entry->fr_title_s[0])) {//Recherche d'abord en anglais
+						if (isset($entry->fr_title_s[0])) {//Recherche en français
 							$titrePlus = $entry->fr_title_s[0];
-							if (isset($entry->fr_subTitle_s[0])) {//Existence d'un sous-titre en anglais
+							if (isset($entry->fr_subTitle_s[0])) {//Existence d'un sous-titre en français
 								$titrePlus .= " : ".$entry->fr_subTitle_s[0];
 							}
 						}
@@ -1069,17 +1071,19 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					if (strpos($typtit,"gras") !== false) {$fin .= "</strong>";}
 					if (strpos($typtit,"ital") !== false) {;$fin .= "</em>";}
 					if (strpos($typtit,"reto") !== false) {$fin .= "<br>";}
+					//Langage principal du document
+					$langue = ($entry->language_s[0] == 'fr') ? 'fr':'';
 					//Titre et sous titre peuvent être dans des langues différentes
 					if (count($entry->title_s) > 1) {//Il y a au moins 2 langues
-						if (isset($entry->en_title_s[0])) {//Recherche d'abord en anglais
+						if (isset($entry->en_title_s[0]) && empty($langue)) {//Recherche d'abord en anglais
 							$titrePlus = $entry->en_title_s[0];
 							if (isset($entry->en_subTitle_s[0])) {//Existence d'un sous-titre en anglais
 								$titrePlus .= " : ".$entry->en_subTitle_s[0];
 							}
 						}else{
-							if (isset($entry->fr_title_s[0])) {//Recherche d'abord en anglais
+							if (isset($entry->fr_title_s[0])) {//Recherche en français
 								$titrePlus = $entry->fr_title_s[0];
-								if (isset($entry->fr_subTitle_s[0])) {//Existence d'un sous-titre en anglais
+								if (isset($entry->fr_subTitle_s[0])) {//Existence d'un sous-titre en français
 									$titrePlus .= " : ".$entry->fr_subTitle_s[0];
 								}
 							}
@@ -2666,18 +2670,20 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 				if (isset($entry->producedDateY_i)) {$bibLab .= "_".mb_strtolower($entry->producedDateY_i, 'UTF-8');}
 				if (isset($entry->halId_s)) {$bibLab .= "_".$entry->halId_s;}
+				//Langage principal du document
+				$langue = ($entry->language_s[0] == 'fr') ? 'fr':'';
 				//Titre et sous titre peuvent être dans des langues différentes
 				if (count($entry->title_s) > 1) {//Il y a au moins 2 langues
-					if (isset($entry->en_title_s[0])) {//Recherche d'abord en anglais
+					if (isset($entry->en_title_s[0]) && empty($langue)) {//Recherche d'abord en anglais
 						$bibLab .= ",".chr(13).chr(10)."	title = {".$entry->en_title_s[0];
 						if (isset($entry->en_subTitle_s[0])) {//Existence d'un sous-titre en anglais
 							$bibLab .= " : ".$entry->en_subTitle_s[0];
 						}
 						$bibLab .= "}";
 					}else{
-						if (isset($entry->fr_title_s[0])) {//Recherche d'abord en anglais
+						if (isset($entry->fr_title_s[0])) {//Recherche en français
 							$bibLab .= ",".chr(13).chr(10)."	title = {".$entry->fr_title_s[0];
-							if (isset($entry->fr_subTitle_s[0])) {//Existence d'un sous-titre en anglais
+							if (isset($entry->fr_subTitle_s[0])) {//Existence d'un sous-titre en français
 								$bibLab .= " : ".$entry->fr_subTitle_s[0];
 							}
 							$bibLab .= "}";
