@@ -717,7 +717,7 @@ if (isset($choix_autr) && strpos($choix_autr, "-CRO-") !== false) {
 	list($numbers["CRO"],$crores["CRO"],$numbersTG["CRO"],$bilEqp["CRO"],$croEqp["CRO"]) = displayRefList("CRO",$team,"%20AND%20otherType_s:2".$specificRequestCode,$countries,$anneedeb,$anneefin,"CRO",$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$idst,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$FnmH,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_autr) && strpos($choix_autr, "-BLO-") !== false) {
-	echo "<br><a name=\"CRO\"></a><h2>Billets de blog".$cpmlng.$detail." <a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";
+	echo "<br><a name=\"BLO\"></a><h2>Billets de blog".$cpmlng.$detail." <a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";
 	//$Fnm1 = "./HAL/extractionHAL_".$team.".csv";
 	$inF1 = fopen($Fnm1,"a+");
 	//fseek($inF1, 0);
@@ -728,7 +728,7 @@ if (isset($choix_autr) && strpos($choix_autr, "-BLO-") !== false) {
 	list($numbers["BLO"],$crores["BLO"],$numbersTG["BLO"],$bilEqp["BLO"],$croEqp["BLO"]) = displayRefList("BLO",$team,"%20AND%20otherType_s:1".$specificRequestCode,$countries,$anneedeb,$anneefin,"BLO",$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$idst,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$FnmH,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7);
 }
 if (isset($choix_autr) && strpos($choix_autr, "-NED-") !== false) {
-	echo "<br><a name=\"CRO\"></a><h2>Notices d'encyclopédie ou dictionnaire".$cpmlng.$detail." <a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";
+	echo "<br><a name=\"NED\"></a><h2>Notices d'encyclopédie ou dictionnaire".$cpmlng.$detail." <a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";
 	//$Fnm1 = "./HAL/extractionHAL_".$team.".csv";
 	$inF1 = fopen($Fnm1,"a+");
 	//fseek($inF1, 0);

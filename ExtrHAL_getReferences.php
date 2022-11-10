@@ -101,7 +101,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 			$contents = file_get_contents($reqAPI);
    }
 	 if ($docType_s=="CRO" || $docType_s=="BLO" || $docType_s=="NED" || $docType_s=="TRA"){
-      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"OTHER\"".$specificRequestCode."&rows=0";
+      //$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"OTHER\"".$specificRequestCode."&rows=0";
+			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt.$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
    }
 	 if ($docType_s=="LOG"){
