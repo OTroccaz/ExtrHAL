@@ -244,6 +244,9 @@
 																																		if (isset($choix_publis) && strpos($choix_publis, "-ASCLRI-") !== false) {$asclri = "selected";}else{$asclri = "";}
 																																		if (isset($choix_publis) && strpos($choix_publis, "-ASCLRN-") !== false) {$asclrn = "selected";}else{$asclrn = "";}
 																																		if (isset($choix_publis) && strpos($choix_publis, "-AV-") !== false) {$av = "selected";}else{$av = "";}
+																																		if (isset($choix_publis) && strpos($choix_publis, "-ASYN-") !== false) {$asyn = "selected";}else{$asyn = "";}
+																																		if (isset($choix_publis) && strpos($choix_publis, "-DPAP-") !== false) {$dpap = "selected";}else{$dpap = "";}
+																																		if (isset($choix_publis) && strpos($choix_publis, "-CRDL-") !== false) {$crdl = "selected";}else{$crdl = "";}
 																																		if (isset($choix_publis) && strpos($choix_publis, "-APNV-") !== false) {$apnv = "selected";}else{$apnv = "";}
 																																		?>
 
@@ -270,6 +273,9 @@
                                                                                     <option value="ASCLRI"<?php echo $asclri;?>>Articles de revues internationales sans comité de lecture</option>
                                                                                     <option value="ASCLRN"<?php echo $asclrn;?>>Articles de revues nationales sans comité de lecture</option>
                                                                                     <option value="AV"<?php echo $av;?>>Articles de vulgarisation</option>
+																																										<option value="ASYN"<?php echo $asyn;?>>Articles de synthèse</option>
+																																										<option value="DPAP"<?php echo $dpap;?>>Data papers</option>
+																																										<option value="CRDL"<?php echo $crdl;?>>Comptes rendus de lecture</option>
 																																										<option value="APNV"<?php echo $apnv;?>>Publications non ventilées (articles)</option>
                                                                                 </select>
                                                                             </div> <!-- .input-group -->
@@ -370,7 +376,13 @@
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDOI-") !== false) {$ocdoi = "selected";}else{$ocdoi = "";}
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCDON-") !== false) {$ocdon = "selected";}else{$ocdon = "";}
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCV-") !== false) {$ocv = "selected";}else{$ocv = "";}
-																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-CNR-") !== false) {$cnr = "selected";}else{$cnr = "";}
+																																		//if (isset($choix_ouvr) && strpos($choix_ouvr, "-CNR-") !== false) {$cnr = "selected";}else{$cnr = "";}
+																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-OSYN-") !== false) {$osyn = "selected";}else{$osyn = "";}
+																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-MANU-") !== false) {$manu = "selected";}else{$manu = "";}
+																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-DICO-") !== false) {$dico = "selected";}else{$dico = "";}
+																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-ECRI-") !== false) {$ecri = "selected";}else{$ecri = "";}
+																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-ACTC-") !== false) {$actc = "selected";}else{$actc = "";}
+																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-NUMR-") !== false) {$numr = "selected";}else{$numr = "";}
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-OPNV-") !== false) {$opnv = "selected";}else{$opnv = "";}
 																																		?>
 
@@ -407,8 +419,83 @@
                                                                                     <option value="ODOI" <?php echo $odoi;?>>Ouvrages ou directions d&apos;ouvrages de portée internationale</option>
                                                                                     <option value="ODON" <?php echo $odon;?>>Ouvrages ou directions d&apos;ouvrages de portée nationale</option>
                                                                                     <option value="OCV" <?php echo $ocv;?>>Ouvrages ou chapitres de vulgarisation</option>
-                                                                                    <option value="CNR" <?php echo $cnr;?>>Coordination de numéro de revue</option>
+																																										<option value="OSYN" <?php echo $osyn;?>>Ouvrages de synthèse</option>
+																																										<option value="MANU" <?php echo $manu;?>>Manuels</option>
+																																										<option value="DICO" <?php echo $dico;?>>Dictionnaires ou encyclopédies</option>
+																																										<option value="ECRI" <?php echo $ecri;?>>Éditions critiques</option>
+																																										<option value="ACTC" <?php echo $actc;?>>Actes de congrès / Proceedings / Recueil de communications</option>
+																																										<option value="NUMR" <?php echo $numr;?>>N° spécial de revue / N° thématique de revue / Dossier</option>
 																																										<option value="OPNV" <?php echo $opnv;?>>Publications non ventilées (ouvrages)</option>
+                                                                                    </select>
+                                                                            </div> <!-- .input-group -->
+                                                                            
+                                                                        </div>
+                                                                    </div><!-- .form-group -->
+																																		
+																																		<?php
+																																		if (isset($choix_rapp) && strpos($choix_rapp, "-RAP-") !== false) {$rap = "selected";}else{$rap = "";}
+																																		if (isset($choix_rapp) && strpos($choix_rapp, "-RAPR-") !== false) {$rapr = "selected";}else{$rapr = "";}
+																																		if (isset($choix_rapp) && strpos($choix_rapp, "-RAPT-") !== false) {$rapt = "selected";}else{$rapt = "";}
+																																		if (isset($choix_rapp) && strpos($choix_rapp, "-RAPC-") !== false) {$rapc = "selected";}else{$rapc = "";}
+																																		if (isset($choix_rapp) && strpos($choix_rapp, "-RAPE-") !== false) {$rape = "selected";}else{$rape = "";}
+																																		if (isset($choix_rapp) && strpos($choix_rapp, "-PGED-") !== false) {$pged = "selected";}else{$pged = "";}
+																																		?>
+
+                                                                    <div class="form-group row mb-1">
+                                                                        <label for="rapp" class="col-12 col-md-3 col-form-label font-weight-bold pt-0">
+                                                                        Rapports
+                                                                        </label>
+                                                                        
+                                                                        <div class="col-12 col-md-9">
+                                                                            <div class="input-group select-help">
+                                                                                <div class="input-group-prepend">
+                                                                                    <button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="" data-content="<a target='_blank' href='./ExtrHAL_criteres_types_publis.pdf'>Quels champs compléter dans HAL ?</a>" data-original-title="">
+                                                                                    <i class="mdi mdi-help text-white"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                                
+                                                                                <select id="rapp"  class="select2 form-control select2-multiple" size="10" data-toggle="select2" multiple="multiple" data-placeholder="Choix multiple possible..." name="rapp[]">
+                                                                                        <option value="RAP" <?php echo $rap;?>>Rapports</option>
+																																												<option value="RAPR" <?php echo $rapr;?>>Rapports de recherche</option>
+																																												<option value="RAPT" <?php echo $rapt;?>>Rapports techniques</option>
+																																												<option value="RAPC" <?php echo $rapc;?>>Rapports contrat/projet</option>
+																																												<option value="RAPE" <?php echo $rape;?>>Rapports d'expertise</option>
+																																												<option value="PGED" <?php echo $pged;?>>Plans de gestion de données (PGD)</option>
+                                                                                    </select>
+                                                                            </div> <!-- .input-group -->
+                                                                            
+                                                                        </div>
+                                                                    </div><!-- .form-group -->
+																																		
+																																		<?php
+																																		if (isset($choix_imag) && strpos($choix_imag, "-IMG-") !== false) {$img = "selected";}else{$img = "";}
+																																		if (isset($choix_imag) && strpos($choix_imag, "-PHOT-") !== false) {$phot = "selected";}else{$phot = "";}
+																																		if (isset($choix_imag) && strpos($choix_imag, "-DESS-") !== false) {$dess = "selected";}else{$dess = "";}
+																																		if (isset($choix_imag) && strpos($choix_imag, "-ILLU-") !== false) {$illu = "selected";}else{$illu = "";}
+																																		if (isset($choix_imag) && strpos($choix_imag, "-GRAV-") !== false) {$grav = "selected";}else{$grav = "";}
+																																		if (isset($choix_imag) && strpos($choix_imag, "-ISYN-") !== false) {$isyn = "selected";}else{$isyn = "";}
+																																		?>
+
+                                                                    <div class="form-group row mb-1">
+                                                                        <label for="imag" class="col-12 col-md-3 col-form-label font-weight-bold pt-0">
+                                                                        Images
+                                                                        </label>
+                                                                        
+                                                                        <div class="col-12 col-md-9">
+                                                                            <div class="input-group select-help">
+                                                                                <div class="input-group-prepend">
+                                                                                    <button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="" data-content="<a target='_blank' href='./ExtrHAL_criteres_types_publis.pdf'>Quels champs compléter dans HAL ?</a>" data-original-title="">
+                                                                                    <i class="mdi mdi-help text-white"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                                
+                                                                                <select id="imag"  class="select2 form-control select2-multiple" size="10" data-toggle="select2" multiple="multiple" data-placeholder="Choix multiple possible..." name="imag[]">
+                                                                                        <option value="IMG" <?php echo $img;?>>Images</option>
+																																												<option value="PHOT" <?php echo $phot;?>>Photographies</option>
+																																												<option value="DESS" <?php echo $dess;?>>Dessins</option>
+																																												<option value="ILLU" <?php echo $illu;?>>Illustrations</option>
+																																												<option value="GRAV" <?php echo $grav;?>>Gravures</option>
+																																												<option value="ISYN" <?php echo $isyn;?>>Images de synthèse</option>
                                                                                     </select>
                                                                             </div> <!-- .input-group -->
                                                                             
@@ -417,12 +504,14 @@
 
 																																		<?php
 																																		if (isset($choix_autr) && strpos($choix_autr, "-BRE-") !== false) {$bre = "selected";}else{$bre = "";}
-																																		if (isset($choix_autr) && strpos($choix_autr, "-RAP-") !== false) {$rap = "selected";}else{$rap = "";}
+																																		//if (isset($choix_autr) && strpos($choix_autr, "-RAP-") !== false) {$rap = "selected";}else{$rap = "";}
 																																		if (isset($choix_autr) && strpos($choix_autr, "-THE-") !== false) {$the = "selected";}else{$the = "";}
 																																		if (isset($choix_autr) && strpos($choix_autr, "-HDR-") !== false) {$hdr = "selected";}else{$hdr = "";}
 																																		if (isset($choix_autr) && strpos($choix_autr, "-VID-") !== false) {$vid = "selected";}else{$vid = "";}
+																																		//if (isset($choix_autr) && strpos($choix_autr, "-IMG-") !== false) {$img = "selected";}else{$img = "";}
 																																		if (isset($choix_autr) && strpos($choix_autr, "-PWM-") !== false) {$pwm = "selected";}else{$pwm = "";}
-																																		if (isset($choix_autr) && strpos($choix_autr, "-CRO-") !== false) {$cro = "selected";}else{$cro = "";}
+																																		if (isset($choix_autr) && strpos($choix_autr, "-PREP-") !== false) {$prep = "selected";}else{$prep = "";}
+																																		if (isset($choix_autr) && strpos($choix_autr, "-WORK-") !== false) {$work = "selected";}else{$work = "";}
 																																		if (isset($choix_autr) && strpos($choix_autr, "-BLO-") !== false) {$blo = "selected";}else{$blo = "";}
 																																		if (isset($choix_autr) && strpos($choix_autr, "-NED-") !== false) {$ned = "selected";}else{$ned = "";}
 																																		if (isset($choix_autr) && strpos($choix_autr, "-TRA-") !== false) {$tra = "selected";}else{$tra = "";}
@@ -446,15 +535,16 @@
                                                                                 <select id="autr"  class="select2 form-control select2-multiple" size="10" data-toggle="select2" multiple="multiple" data-placeholder="Choix multiple possible..." name="autr[]">
                                                                                    
                                                                                         <option value="BRE" <?php echo $bre;?>>Brevets</option>
-                                                                                        <option value="RAP" <?php echo $rap;?>>Rapports</option>
+                                                                                        <!-- <option value="RAP" <?php echo $rap;?>>Rapports</option> -->
                                                                                         <option value="THE" <?php echo $the;?>>Thèses</option>
                                                                                         <option value="HDR" <?php echo $hdr;?>>HDR</option>
                                                                                         <option value="VID" <?php echo $vid;?>>Vidéos</option>
-																																												<option value="IMG" <?php echo $vid;?>>Images</option>
+																																												<!-- <option value="IMG" <?php echo $img;?>>Images</option> -->
                                                                                         <option value="PWM" <?php echo $pwm;?>>Preprints, working papers, manuscrits non publiés</option>
-                                                                                        <option value="CRO" <?php echo $cro;?>>Comptes rendus d'ouvrage ou notes de lecture</option>
-                                                                                        <option value="BLO" <?php echo $blo;?>>Billets de blog</option>
-                                                                                        <option value="NED" <?php echo $ned;?>>Notices d'encyclopédie ou dictionnaire</option>
+																																												<option value="PREP" <?php echo $prep;?>>Preprints</option>
+																																												<option value="WORK" <?php echo $work;?>>Working papers</option>
+																																												<option value="BLO" <?php echo $blo;?>>Articles de blog scientifique</option>
+																																												<option value="NED" <?php echo $ned;?>>Notices d'encyclopédie / Articles d'encyclopédie</option>
                                                                                         <option value="TRA" <?php echo $tra;?>>Traductions</option>
                                                                                         <option value="LOG" <?php echo $log;?>>Logiciels</option>
                                                                                         <option value="AP" <?php echo $ap;?>>Autres publications</option>

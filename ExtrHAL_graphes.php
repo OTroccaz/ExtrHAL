@@ -436,6 +436,15 @@
 																										case "AV" :
 																											echo '&nbsp;&nbsp;&nbsp;AV = Articles de vulgarisation'.$cpmlng.$detail.'<br>';
 																											break;
+																										case "ASYN" :
+																											echo '&nbsp;&nbsp;&nbsp;ASYN = Articles de synthèse'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "DPAP" :
+																											echo '&nbsp;&nbsp;&nbsp;DPAP = Data papers'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "CRDL" :
+																											echo '&nbsp;&nbsp;&nbsp;CRDL = Comptes rendus de lecture'.$cpmlng.$detail.'<br>';
+																											break;
 																										case "APNV" :
 																											echo '&nbsp;&nbsp;&nbsp;APNV = Publications non ventilées (articles)'.$cpmlng.$detail.'<br>';
 																											break;
@@ -571,17 +580,70 @@
 																										case "OCV" :
 																											echo '&nbsp;&nbsp;&nbsp;OCV = Ouvrages ou chapitres de vulgarisation'.$cpmlng.$detail.'<br>';
 																											break;
+																										/*
 																										case "CNR" :
 																											echo '&nbsp;&nbsp;&nbsp;CNR = Coordination de numéro de revue'.$cpmlng.$detail.'<br>';
+																											break;
+																										*/
+																										case "OSYN" :
+																											echo '&nbsp;&nbsp;&nbsp;OSYN = Ouvrages de synthèse'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "MANU" :
+																											echo '&nbsp;&nbsp;&nbsp;MANU = Manuels'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "DICO" :
+																											echo '&nbsp;&nbsp;&nbsp;DICO = Dictionnaires ou encyclopédies'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "ECRI" :
+																											echo '&nbsp;&nbsp;&nbsp;ECRI = Éditions critiques'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "ACTC" :
+																											echo '&nbsp;&nbsp;&nbsp;ACTC = Actes de congrès / Proceedings / Recueil de communications'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "NUMR" :
+																											echo '&nbsp;&nbsp;&nbsp;NUMR = N° spécial de revue / N° thématique de revue / Dossier'.$cpmlng.$detail.'<br>';
 																											break;
 																										case "OPNV" :
 																											echo '&nbsp;&nbsp;&nbsp;OPNV = Publications non ventilées (ouvrages)'.$cpmlng.$detail.'<br>';
 																											break;
-																										case "BRE" :
-																											echo '&nbsp;&nbsp;&nbsp;BRE = Brevets'.$cpmlng.$detail.'<br>';
-																											break;
 																										case "RAP" :
 																											echo '&nbsp;&nbsp;&nbsp;RAP = Rapports'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "RAPR" :
+																											echo '&nbsp;&nbsp;&nbsp;RAPR = Rapports de recherche'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "RAPT" :
+																											echo '&nbsp;&nbsp;&nbsp;RAPT = Rapports techniques'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "RAPC" :
+																											echo '&nbsp;&nbsp;&nbsp;RAPC = Rapports contrat/projet'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "RAPE" :
+																											echo '&nbsp;&nbsp;&nbsp;RAPE = Rapports d&apos;expertise'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "PGED" :
+																											echo '&nbsp;&nbsp;&nbsp;PGED = Plans de gestion de données (PGD)'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "IMG" :
+																											echo '&nbsp;&nbsp;&nbsp;IMG = Images'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "PHOT" :
+																											echo '&nbsp;&nbsp;&nbsp;PHOT = Photographies'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "DESS" :
+																											echo '&nbsp;&nbsp;&nbsp;DESS = Dessins'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "ILLU" :
+																											echo '&nbsp;&nbsp;&nbsp;ILLU = Illustrations'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "GRAV" :
+																											echo '&nbsp;&nbsp;&nbsp;GRAV = Gravures'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "ISYN" :
+																											echo '&nbsp;&nbsp;&nbsp;ISYN = Images de synthèse'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "BRE" :
+																											echo '&nbsp;&nbsp;&nbsp;BRE = Brevets'.$cpmlng.$detail.'<br>';
 																											break;
 																										case "THE" :
 																											echo '&nbsp;&nbsp;&nbsp;THE = Thèses'.$cpmlng.$detail.'<br>';
@@ -592,20 +654,20 @@
 																										case "VID" :
 																											echo '&nbsp;&nbsp;&nbsp;VID = Vidéos'.$cpmlng.$detail.'<br>';
 																											break;
-																										case "IMG" :
-																											echo '&nbsp;&nbsp;&nbsp;IMG = Images'.$cpmlng.$detail.'<br>';
-																											break;
 																										case "PWM" :
 																											echo '&nbsp;&nbsp;&nbsp;PWM = Preprints, working papers, manuscrits non publiés'.$cpmlng.$detail.'<br>';
 																											break;
-																										case "CRO" :
-																											echo '&nbsp;&nbsp;&nbsp;CRO = Comptes rendus d\'ouvrage ou notes de lecture'.$cpmlng.$detail.'<br>';
+																										case "PREP" :
+																											echo '&nbsp;&nbsp;&nbsp;PREP = Preprints'.$cpmlng.$detail.'<br>';
+																											break;
+																										case "WORK" :
+																											echo '&nbsp;&nbsp;&nbsp;WORK = Working papers'.$cpmlng.$detail.'<br>';
 																											break;
 																										case "BLO" :
-																											echo '&nbsp;&nbsp;&nbsp;BLO = Billets de blog'.$cpmlng.$detail.'<br>';
+																											echo '&nbsp;&nbsp;&nbsp;BLO = Articles de blog scientifique'.$cpmlng.$detail.'<br>';
 																											break;
 																										case "NED" :
-																											echo '&nbsp;&nbsp;&nbsp;NED = Notices d\'encyclopédie ou dictionnaire'.$cpmlng.$detail.'<br>';
+																											echo '&nbsp;&nbsp;&nbsp;NED = Notices d\'encyclopédie / Articles d\'encyclopédie'.$cpmlng.$detail.'<br>';
 																											break;
 																										case "TRA" :
 																											echo '&nbsp;&nbsp;&nbsp;TRA = Traductions'.$cpmlng.$detail.'<br>';

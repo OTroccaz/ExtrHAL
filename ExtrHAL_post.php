@@ -101,6 +101,32 @@ if (isset($_POST["soumis"])) {
     }
     $urlsauv .= "&ouvr=".$liste_ouvr;
   }
+	
+	if (isset($_POST['rapp'])) {
+    $choix_rapp = "-";
+    $liste_rapp = "~";
+    $rapp_array = $_POST['rapp'];
+    if (!empty($rapp_array)) {
+      foreach($rapp_array as $selectValue){
+        $choix_rapp .= $selectValue."-";
+        $liste_rapp .= $selectValue."~";
+      }
+    }
+    $urlsauv .= "&rapp=".$liste_rapp;
+  }
+	
+	if (isset($_POST['imag'])) {
+    $choix_imag = "-";
+    $liste_imag = "~";
+    $imag_array = $_POST['imag'];
+    if (!empty($imag_array)) {
+      foreach($imag_array as $selectValue){
+        $choix_imag .= $selectValue."-";
+        $liste_imag .= $selectValue."~";
+      }
+    }
+    $urlsauv .= "&imag=".$liste_imag;
+  }
 
   if (isset($_POST['autr'])) {
     $choix_autr = "-";
@@ -116,7 +142,7 @@ if (isset($_POST["soumis"])) {
   }
 	
 	//Si aucun type de publications choisi > choix par défaut de tous les articles
-	if ((isset($_POST["soumis"]) || isset($_GET["team"])) && (!isset($choix_publis) && !isset($choix_comm) && !isset($choix_ouvr) && !isset($choix_autr))) {
+	if ((isset($_POST["soumis"]) || isset($_GET["team"])) && (!isset($choix_publis) && !isset($choix_comm) && !isset($choix_ouvr) && !isset($choix_rapp) && !isset($choix_imag) && !isset($choix_autr))) {
 		$choix_publis = "-TA-";
     $liste_publis = "~TA~";
 		$urlsauv .= "&publis=".$liste_publis;

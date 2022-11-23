@@ -350,7 +350,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 						 }
 					 }
 					 if ($rtf[17] != "") {
-						 if ($docType_s == "BLO") {
+						 if ($docType_s == "BLOG") {
 							 $sect->writeText(", [En ligne] URL: ", $font);
 						 }else{
 							 $sect->writeText(". URL: ", $font);
@@ -643,7 +643,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 						 }
 					 }
 					 if ($rtf[17] != "") {
-						 if ($docType_s == "BLO") {
+						 if ($docType_s == "BLOG") {
 							 $sect->writeText(", [En ligne] URL: ", $font);
 						 }else{
 							 $sect->writeText(". url: ", $font);

@@ -101,6 +101,28 @@ if (isset($_GET["team"])) {
       $i++;
     }
   }
+	if (isset($_GET['rapp'])) {//rapports
+    $rapp = $_GET["rapp"];
+    $urlsauv .= "&rapp=".$rapp;
+    $tabrapp = explode("~", $rapp);
+    $i = 0;
+    $choix_rapp = "-";
+    while (isset($tabrapp[$i])) {
+      $choix_rapp .= $tabrapp[$i]."-";
+      $i++;
+    }
+  }
+	if (isset($_GET['imag'])) {//images
+    $imag = $_GET["imag"];
+    $urlsauv .= "&imag=".$imag;
+    $tabimag = explode("~", $imag);
+    $i = 0;
+    $choix_imag = "-";
+    while (isset($tabimag[$i])) {
+      $choix_imag .= $tabimag[$i]."-";
+      $i++;
+    }
+  }
   if (isset($_GET['autr'])) {//Autres
     $autr = $_GET["autr"];
     $urlsauv .= "&autr=".$autr;

@@ -100,7 +100,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"UNDEFINED\"".$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
    }
-	 if ($docType_s=="CRO" || $docType_s=="BLO" || $docType_s=="NED" || $docType_s=="TRA"){
+	 if ($docType_s=="CRDL" || $docType_s=="BLOG" || $docType_s=="NOTE" || $docType_s=="TRAD"){
       //$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"OTHER\"".$specificRequestCode."&rows=0";
 			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt.$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
@@ -109,7 +109,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"SOFTWARE\"".$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
    }
-   if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST" && $docType_s!="CRO" && $docType_s!="BLO" && $docType_s!="NED" && $docType_s!="TRA" && $docType_s!="CNR" && $docType_s!="LOG"){
+   if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST" && $docType_s!="CRDL" && $docType_s!="BLOG" && $docType_s!="NOTE" && $docType_s!="TRAD" && $docType_s!="CNR" && $docType_s!="LOG"){
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
    }
@@ -145,7 +145,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"UNDEFINED\"".$specificRequestCode."&rows=10000&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
    }
-	 if ($docType_s=="CRO" || $docType_s=="BLO" || $docType_s=="NED" || $docType_s=="TRA"){
+	 if ($docType_s=="CRDL" || $docType_s=="BLOG" || $docType_s=="NOTE" || $docType_s=="TRAD"){
 			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt.$specificRequestCode."&rows=10000&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
 	 }
@@ -161,7 +161,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OTHER\"%20OR%20docType_s:\"OTHERREPORT\")".$specificRequestCode."&rows=10000&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
    }
-   if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST"  && $docType_s!="CRO" && $docType_s!="BLO" && $docType_s!="NED" && $docType_s!="TRA" && $docType_s!="CNR" && $docType_s!="OTHER"){
+   if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST"  && $docType_s!="CRDL" && $docType_s!="BLOG" && $docType_s!="NOTE" && $docType_s!="TRAD" && $docType_s!="CNR" && $docType_s!="OTHER"){
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
       //$contents = utf8_encode($contents);
@@ -880,7 +880,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					}
 				}
 				
-				if ($docType_s == "NED") {
+				if ($docType_s == "NOTE") {
 					//Adding scientificEditor_s
 					$sedCnt = "";
 					$sed = 0;
@@ -908,7 +908,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$chaine1 .= $delim."Année";
 				$resArray[$iRA]["annee"] = $dateprod;
 				if ($typann == "apres") {//Année après les auteurs
-					if ($docType_s=="ART" || $docType_s=="UNDEF" || $docType_s=="COMM" || $docType_s == "OUV" or $docType_s == "DOUV" || $docType_s=="COUV" or $docType_s=="OUV+COUV" or $docType_s=="OUV+COUV+DOUV" or $docType_s=="OTHER" or $docType_s=="OTHERREPORT" or $docType_s=="REPORT" or $docType_s=="COMM+POST" or $docType_s=="VIDEO" or $docType_s=="CRO" or $docType_s=="SOFTWARE"){
+					if ($docType_s=="ART" || $docType_s=="UNDEF" || $docType_s=="COMM" || $docType_s == "OUV" or $docType_s == "DOUV" || $docType_s=="COUV" or $docType_s=="OUV+COUV" or $docType_s=="OUV+COUV+DOUV" or $docType_s=="OTHER" or $docType_s=="OTHERREPORT" or $docType_s=="REPORT" or $docType_s=="COMM+POST" or $docType_s=="VIDEO" or $docType_s=="CRDL" or $docType_s=="SOFTWARE"){
 						 $entryInfo0 .= " (".$dateprod.")";
 						 $chaine2 .= $delim.$dateprod;
 					}else{
@@ -931,8 +931,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 
 				//Adding title:
 				$chaine1 .= $delim."Titre";
-				if ($typann == "apres" || $typann == "alafin" && $docType_s != "NED") {$point = ".";}else{$point = "";}
-				if ($docType_s != "NED") {$deb = "&nbsp;";}
+				if ($typann == "apres" || $typann == "alafin" && $docType_s != "NOTE") {$point = ".";}else{$point = "";}
+				if ($docType_s != "NOTE") {$deb = "&nbsp;";}
 				if ($docType_s == "CNR") {$deb = ",&nbsp;";}
 				$fin = "";
 				if (strpos($typtit,"gras") !== false) {$deb .= "<strong>";}
@@ -967,7 +967,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					}
 				}				
 				$titre = nettoy1(cleanup_title($titrePlus));
-				if ($docType_s == "NED" && isset($entry->bookTitle_s)) {
+				if ($docType_s == "NOTE" && isset($entry->bookTitle_s)) {
 					$entryInfo0 = substr($entryInfo0, 0, strlen($entryInfo0)-2).". ";
 					$titre = nettoy1(cleanup_title("<em>".$entry->bookTitle_s."</em>"));
 					if (isset($entry->title_s[0])) {
@@ -1002,7 +1002,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				if ($typrvg == "non") {$debrev = "";$finrev = "";}else{$debrev = "<strong>";$finrev = "</strong>";}
 				if (isset($entry->journalTitle_s)) {
 					$resArray[$iRA]["revue"] = $entry->journalTitle_s;
-					if ($docType_s == "ART" OR $docType_s == "CRO"){
+					if ($docType_s == "ART" OR $docType_s == "CRDL"){
 						$entryInfo0 .= ". <em>".$debrev.$entry->journalTitle_s.$finrev."</em>";
 						$chaine2 .= $delim.$entry->journalTitle_s;
 						$JT = $entry->journalTitle_s;//for IF
@@ -1033,8 +1033,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					
 					if ($docType_s == "OTHER") {$chaineH .= $delim;}//Car pas de titre pour autres publications
 
-				//Cas spécifiques "OTHER" > BLO + CRO + NED + TRA
-				if ($docType_s == "BLO") {
+				//Cas spécifiques "OTHER" > BLOG + CRDL + NOTE + TRAD
+				if ($docType_s == "BLOG") {
 					//Adding description_s
 					if (isset($entry->description_s)) {
 						$chaine1 .= $delim."Description";
@@ -1046,7 +1046,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$entryInfo0 .= ", ".$dateprod;
 					$chaine2 .= $delim.$dateprod;
 				}
-				if ($docType_s == "NED") {
+				if ($docType_s == "NOTE") {
 					//Adding publisher_s
 					if (isset($entry->publisher_s[0])) {
 						$pubS = $entry->publisher_s[0];
@@ -1056,7 +1056,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						$chaine2 .= $delim.$pubS;
 					}
 				}
-				if ($docType_s == "TRA") {
+				if ($docType_s == "TRAD") {
 					$entryInfo0 = "";
 					//Est-ce une notice significative à mettre en évidence et, si oui, faut-il l'afficher ?
 					$chaine1 = (isset($entry->signif) && $entry->signif == "oui") ?"Sélection HCERES" : "";
@@ -1169,7 +1169,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}else{
 					if ($typann == "apres") {
 						$chaine1 .= $delim."Année";
-						if ($docType_s != "THESE" && $docType_s != "HDR" && $docType_s != "CRO") {
+						if ($docType_s != "THESE" && $docType_s != "HDR" && $docType_s != "CRDL") {
 							if (strpos($typtit,"reto") !== false) {
 							}else{
 								$entryInfo0 .= ", ";
@@ -1219,7 +1219,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							 $chaine2 .= $delim;
 						 }
 					}else{
-						if ($docType_s=="OUV" OR $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s == "NED"){
+						if ($docType_s=="OUV" OR $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s == "NOTE"){
 							if(isset($entry->volume_s) && !is_array($entry->volume_s)){
 								if($entry->volume_s!="" and $entry->volume_s!=" " and $entry->volume_s!="-" and $entry->volume_s!="()"){
 									$resArray[$iRA]["volume"] = $entry->volume_s;
@@ -1267,7 +1267,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							 $chaine2 .= $delim;
 						 }
 					}else{
-						if ($docType_s=="OUV" OR $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s == "NED"){
+						if ($docType_s=="OUV" OR $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s == "NOTE"){
 							if(isset($entry->issue_s[0]) && !is_array($entry->issue_s[0])){
 								if($entry->issue_s[0]!="" and $entry->issue_s[0]!=" " and $entry->issue_s[0]!="-" and $entry->issue_s[0]!="()"){
 									$resArray[$iRA]["issue"] = $entry->issue_s[0];
@@ -1403,9 +1403,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 				
 				//Adding $dateprod
-				if ($typann == "alafin" && $docType_s != "BLO") {
+				if ($typann == "alafin" && $docType_s != "BLOG") {
 					$chaine1 .= $delim."Année";
-					if ($docType_s == "TRA") {
+					if ($docType_s == "TRAD") {
 						$entryInfo .= " ".$dateprod.".";
 					}else{
 						$entryInfo .= ", ".$dateprod;
@@ -1415,7 +1415,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				
 				//Vol et num pour xOUV+y
 				if ($typfor != "typ4") {
-					if ($docType_s=="OUV" OR $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s == "NED"){
+					if ($docType_s=="OUV" OR $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s == "NOTE"){
 						$chaine1 .= $delim."Volume";
 						if ($vol != "") {
 							if ($typfor == "typ2" || $typfor == "typ1") {$entryInfo .= ", vol ".$vol;}else{$entryInfo .= ", ".$vol;}
@@ -1437,7 +1437,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					//Adding page_s:
 					//$chaine1 .= $delim."Volume, Issue, Pages";
 					$chaine1 .= $delim."Pages";
-					if ($docType_s=="ART" OR $docType_s=="OUV" OR $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s == "NED"){
+					if ($docType_s=="ART" OR $docType_s=="OUV" OR $docType_s=="DOUV" OR $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV" OR $docType_s == "NOTE"){
 						 if ($docType_s=="ART") {$eI = $entryInfo0;}else{$eI = $entryInfo;}
 						 if (isset($entry->page_s)) {
 							 $page = $entry->page_s;
@@ -2140,7 +2140,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$rtfurl = $entry->publisherLink_s[0];
 					$chaine2 .= $delim.$entry->publisherLink_s[0];
 				}else{
-					if ($docType_s == "BLO" && isset($entry->page_s)) {
+					if ($docType_s == "BLOG" && isset($entry->page_s)) {
 						$entryInfo .= ", [En ligne] URL : <a target='_blank' href='".$entry->page_s."'>".$entry->page_s."</a>";
 						$rtfurl = $entry->page_s;
 						$chaine2 .= $delim.$entry->page_s;

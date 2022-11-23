@@ -210,7 +210,7 @@ include "./ExtrHAL_get.php";
 																				include "./ExtrHAL_formulaire.php";
 
 																				//Si aucun type de publications choisi > choix par défaut de tous les articles
-																				if ((isset($_POST["soumis"]) || isset($_GET["team"])) && (!isset($choix_publis) && !isset($choix_comm) && !isset($choix_ouvr) && !isset($choix_autr))) {
+																				if ((isset($_POST["soumis"]) || isset($_GET["team"])) && (!isset($choix_publis) && !isset($choix_comm) && !isset($choix_ouvr) && !isset($choix_rapp) && !isset($choix_imag) && !isset($choix_autr))) {
 																					//die('<br><br><font color=red><strong>Veuillez renseigner le(les) type(s) de publications dans le menu !</strong></font><br><br>');
 																				}
 																				?>
