@@ -100,11 +100,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"UNDEFINED\"".$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
    }
+	 /*
 	 if ($docType_s=="CRDL" || $docType_s=="BLOG" || $docType_s=="NOTE" || $docType_s=="TRAD"){
       //$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"OTHER\"".$specificRequestCode."&rows=0";
 			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt.$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
    }
+	 */
 	 if ($docType_s=="LOG"){
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"SOFTWARE\"".$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
@@ -145,10 +147,12 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"UNDEFINED\"".$specificRequestCode."&rows=10000&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
    }
+	 /*
 	 if ($docType_s=="CRDL" || $docType_s=="BLOG" || $docType_s=="NOTE" || $docType_s=="TRAD"){
 			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt.$specificRequestCode."&rows=10000&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
 	 }
+	 */
 	 if ($docType_s=="SOFTWARE"){
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"UNDEFINED\"".$specificRequestCode."&rows=10000&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
