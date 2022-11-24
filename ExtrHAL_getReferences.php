@@ -111,7 +111,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:\"SOFTWARE\"".$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
    }
-   if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST" && $docType_s!="CRDL" && $docType_s!="BLOG" && $docType_s!="NOTE" && $docType_s!="TRAD" && $docType_s!="CNR" && $docType_s!="LOG"){
+   if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST" && $docType_s!="CNR" && $docType_s!="LOG"){
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
    }
@@ -165,7 +165,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OTHER\"%20OR%20docType_s:\"OTHERREPORT\")".$specificRequestCode."&rows=10000&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
    }
-   if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST"  && $docType_s!="CRDL" && $docType_s!="BLOG" && $docType_s!="NOTE" && $docType_s!="TRAD" && $docType_s!="CNR" && $docType_s!="OTHER"){
+   if ($docType_s!="OUV+COUV" && $docType_s!="OUV+DOUV" && $docType_s!="OUV+COUV+DOUV" && $docType_s!="UNDEF" && $docType_s!="COMM+POST"  && $docType_s!="CNR" && $docType_s!="OTHER"){
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20docType_s:".$docType_s.$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
       //$contents = utf8_encode($contents);
