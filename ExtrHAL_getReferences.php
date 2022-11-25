@@ -1315,7 +1315,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								$initial = 1;
 								foreach($entry->scientificEditor_s as $editor){
 									 if ($initial==1){
-											//$entryInfo .= ", <em>in</em> ".$editor;
+											$entryInfo .= ", <em>in</em> ".$editor;
 											$resArray[$iRA]["editor"] = $editor;
 											$chaine2 .= $delim.$editor;
 											$initial=0;
