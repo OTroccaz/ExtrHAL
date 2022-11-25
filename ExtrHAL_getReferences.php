@@ -124,7 +124,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 $numFound = 0;
 	 if (isset($results->response->numFound)) {$numFound=$results->response->numFound;}
 	 
-	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,*_subTitle_s,subTitle_s,swhId_s,*_title_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool,submitType_s,linkExtId_s,wosId_s,linkExtUrl_s,files_s";
+	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,*_subTitle_s,subTitle_s,swhId_s,*_title_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool,submitType_s,linkExtId_s,wosId_s,linkExtUrl_s,files_s,docSubType_s";
 
    //Cas particuliers pour combinaisons
    if ($docType_s=="COMM+POST"){
@@ -912,7 +912,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$chaine1 .= $delim."Année";
 				$resArray[$iRA]["annee"] = $dateprod;
 				if ($typann == "apres") {//Année après les auteurs
-					if ($docType_s=="ART" || $docType_s=="UNDEF" || $docType_s=="COMM" || $docType_s == "OUV" or $docType_s == "DOUV" || $docType_s=="COUV" or $docType_s=="OUV+COUV" or $docType_s=="OUV+COUV+DOUV" or $docType_s=="OTHER" or $docType_s=="OTHERREPORT" or $docType_s=="REPORT" or $docType_s=="COMM+POST" or $docType_s=="VIDEO" or $docType_s=="CRDL" or $docType_s=="SOFTWARE"){
+					if ($docType_s=="ART" || $docType_s=="UNDEF" || $docType_s=="COMM" || $docType_s == "OUV" or $docType_s == "DOUV" || $docType_s=="COUV" or $docType_s=="OUV+COUV" or $docType_s=="OUV+COUV+DOUV" or $docType_s=="OTHER" or $docType_s=="OTHERREPORT" or $docType_s=="REPORT" or $docType_s=="COMM+POST" or $docType_s=="VIDEO" or $docType_s=="CRDL" or $docType_s=="SOFTWARE" or $docType_s=="PROCEEDINGS" or $docType_s=="ISSUE" or $docType_s=="BLOG" or $docType_s=="NOTICE" or $docType_s=="IMG"){
 						 $entryInfo0 .= " (".$dateprod.")";
 						 $chaine2 .= $delim.$dateprod;
 					}else{
@@ -970,6 +970,18 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						}
 					}
 				}				
+				
+				//OUV > ajout collection
+				if ($docType_s=="OUV"){
+					$chaine1 .= $delim."Collection";
+					if(isset($entry->serie_s[0]) && !empty($entry->serie_s[0])){
+						$entryInfo .= ", collection ".$entry->serie_s[0];
+						$chaine2 .= $delim.$entry->serie_s[0];
+					}else{
+						$chaine2 .= $delim;
+					}
+				}
+				
 				$titre = nettoy1(cleanup_title($titrePlus));
 				if ($docType_s == "NOTE" && isset($entry->bookTitle_s)) {
 					$entryInfo0 = substr($entryInfo0, 0, strlen($entryInfo0)-2).". ";
@@ -1027,7 +1039,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						if (isset($entry->journalTitle_s)) {$chaineH .= $delim.$entry->journalTitle_s;}else{$chaineH .= $delim;}
 					}
 					//Ajout du titre de la conférence
-					if (($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST")) {
+					if (($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST" || $docType_s == "PROCEEDINGS")) {
 						if (isset($entry->conferenceTitle_s)) {$chaineH .= $delim.$entry->conferenceTitle_s;}else{$chaineH .= $delim;}
 					}
 					//Ajout du titre de l'ouvrage
@@ -1038,6 +1050,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					if ($docType_s == "OTHER") {$chaineH .= $delim;}//Car pas de titre pour autres publications
 
 				//Cas spécifiques "OTHER" > BLOG + CRDL + NOTE + TRAD
+				/*
 				if ($docType_s == "BLOG") {
 					//Adding description_s
 					if (isset($entry->description_s)) {
@@ -1050,6 +1063,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$entryInfo0 .= ", ".$dateprod;
 					$chaine2 .= $delim.$dateprod;
 				}
+				*/
 				if ($docType_s == "NOTE") {
 					//Adding publisher_s
 					if (isset($entry->publisher_s[0])) {
@@ -1293,9 +1307,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 
 				//Adding scientificEditor_s:
-				$chaine1 .= $delim."Editeur scientifique";
 				//if ($docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV"){
-					if (($docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV") && $entry->docType_s != "DOUV" && $entry->docType_s != "COUV"){
+				if (($docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV") && $entry->docType_s != "DOUV" && $entry->docType_s != "COUV" && ($entry->authQuality_s[0] != "dir" && $entry->authQuality_s[0] != "scientific_editor")){
+						$chaine1 .= $delim."Editeur scientifique";
 					 if (isset($entry->scientificEditor_s)) {
 						 if(count($entry->scientificEditor_s)>0){
 								$initial = 1;
@@ -1496,7 +1510,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 												}else{
 													if (is_numeric(substr($page,0,1))) {
 														//$eI .= ", ".$page." p.";
-														$eI .= ":".$page;
+														if (empty($vol) && empty($iss)) {$eI .= " ";}else{$eI .= ":".$page;}
 														//$resArray[$iRA]["page"] = ", ".$page." p.";
 														$chaine2 .= $delim.$page;
 													}else{
@@ -1543,12 +1557,12 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 
 				//Adding conferenceTitle_s:
 				$chaine1 .= $delim."Titre conférence";
-				if ($docType_s=="COMM" || $docType_s=="POSTER" || $docType_s == "COMM+POST"){
+				if ($docType_s=="COMM" || $docType_s=="POSTER" || $docType_s == "COMM+POST" || $docType_s == "PROCEEDINGS"){
 					 $resArray[$iRA]["conferenceTitle"] = $entry->conferenceTitle_s;
 					 if (strpos($typtit,"reto") !== false) {
-						 $entryInfo .= " ".$entry->conferenceTitle_s;
+						 $entryInfo .= " <i>".$entry->conferenceTitle_s."</i>";
 					 }else{
-						 $entryInfo .= ", ".$entry->conferenceTitle_s;
+						 $entryInfo .= ", <i>".$entry->conferenceTitle_s."</i>";
 					 }
 					 $chaine2 .= $delim.$entry->conferenceTitle_s;
 				}else{
@@ -1708,10 +1722,292 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$entryInfo .= ".";
 				}
 
-				//Adding conferenceStartDate_s:
+				//PROCEEDINGS > Adding conferenceStartDate_s + ville + pays + éditeur + volume + pages + série
 				//if ($docType_s=="COMM" || $docType_s=="POSTER" || $docType_s == "COMM+POST"){
-					 //$entryInfo .= ", ".$entry->conferenceStartDate_s;
-				//}
+				$moisTab = array("", "Jan", "Fév", "Mars", "Avril", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc");
+				if ($docType_s=="PROCEEDINGS"){
+					//Date conférence
+					$chaine1 .= $delim."Date";
+					if(isset($entry->conferenceStartDateM_i) && !empty($entry->conferenceStartDateM_i)) {
+						$entryInfo .= ", ".$moisTab[$entry->conferenceStartDateM_i].' '.$entry->conferenceStartDateY_i;
+						$chaine2 .= $delim.$moisTab[$entry->conferenceStartDateM_i].' '.$entry->conferenceStartDateY_i;
+					}else{
+						$entryInfo .= ", ".$entry->conferenceStartDateY_i;
+						$chaine2 .= $delim.$entry->conferenceStartDateY_i;
+					}
+					//Ville
+					$chaine1 .= $delim."Ville";
+					if(isset($entry->city_s)){
+						$entryInfo .= ", ".$entry->city_s;
+						$resArray[$iRA]["city"] = $entry->city_s;
+						$chaine2 .= $delim.$entry->city_s;
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Pays
+					$chaine1 .= $delim."Pays";
+					if(isset($entry->country_s)){
+						$entryInfo .= ", ".$countries[$entry->country_s];
+						$resArray[$iRA]["countries"] = $countries[$entry->country_s];
+						$chaine2 .= $delim.$countries[$entry->country_s];
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Editeur scientifique
+					$chaine1 .= $delim."Editeur revue";
+					if(isset($entry->scientificEditor_s[0]) && $entry->scientificEditor_s[0] != ""){
+						$entryInfo .= ". ".$entry->scientificEditor_s[0];
+						$resArray[$iRA]["publisher"] = $entry->scientificEditor_s[0];
+						$chaine2 .= $delim.$entry->scientificEditor_s[0];
+					}else{
+						if(isset($entry->publisher_s[0]) && $entry->publisher_s[0] != ""){
+							$pubS = $entry->publisher_s[0];
+							if (isset($entry->publisher_s[1]) && $entry->publisher_s[1] != "") {$pubS .= ", ".$entry->publisher_s[1];}//2 valeurs pour le champ "Editeur commercial"
+							$entryInfo .= ". ".$pubS;
+							$resArray[$iRA]["publisher"] = $pubS;
+							$chaine2 .= $delim.$pubS;
+						}else{
+							$chaine2 .= $delim;
+						}
+					}
+					
+					//Volume
+					$chaine1 .= $delim."Volume";
+					if(isset($entry->volume_s) && !empty($entry->volume_s)){
+						$entryInfo .= ", ".$entry->volume_s;
+						$chaine2 .= $delim.$entry->volume_s;
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Pages
+					$chaine1 .= $delim."Pages";
+					if(isset($entry->page_s) && !empty($entry->page_s)){
+						$entryInfo .= ", ".$entry->page_s;
+						$chaine2 .= $delim.$entry->page_s;
+					}else{
+						$entryInfo .= ", in press";
+						$chaine2 .= $delim;
+					}
+					$entryInfo .= ".";
+					//Série
+					$chaine1 .= $delim."Série";
+					if (isset($entry->serie_s[0]) && !empty($entry->serie_s[0])){
+						$entryInfo .= ", ".$entry->serie_s[0];
+						$chaine2 .= $delim.$entry->serie_s[0];
+					}else{
+						$chaine2 .= $delim;
+					}
+				}
+				
+				//ISSUE > Adding titre journal + volume + numéro + pages + série + éditeur scientifique
+				if ($docType_s=="ISSUE"){
+					//Journal
+					$chaine1 .= $delim."Journal";
+					if(isset($entry->journalTitle_s) && !empty($entry->journalTitle_s)) {
+						$entryInfo .= ". <i>".$entry->journalTitle_s."</i>";
+						$chaine2 .= $delim.$entry->journalTitle_s;
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Volume
+					$chaine1 .= $delim."Volume";
+					if(isset($entry->volume_s) && !empty($entry->volume_s)){
+						$entryInfo .= ", ".$entry->volume_s;
+						$chaine2 .= $delim.$entry->volume_s;
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Numéro
+					$chaine1 .= $delim."Numéro";
+					if(isset($entry->issue_s[0]) && !empty($entry->issue_s[0])){
+						$entryInfo .= ", ".$entry->issue_s[0];
+						$chaine2 .= $delim.$entry->issue_s[0];
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Pages
+					$chaine1 .= $delim."Pages";
+					if(isset($entry->page_s) && !empty($entry->page_s)){
+						$entryInfo .= ", pp. ".$entry->page_s;
+						$chaine2 .= $delim.$entry->page_s;
+					}else{
+						$entryInfo .= ", in press";
+						$chaine2 .= $delim;
+					}
+					//Série
+					$chaine1 .= $delim."Série";
+					if (isset($entry->serie_s[0]) && !empty($entry->serie_s[0])){
+						$entryInfo .= ", ".$entry->serie_s[0];
+						$chaine2 .= $delim.$entry->serie_s[0];
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Editeur scientifique
+					$chaine1 .= $delim."Editeur revue";
+					if(isset($entry->scientificEditor_s[0]) && $entry->scientificEditor_s[0] != ""){
+						$entryInfo .= ", ".$entry->scientificEditor_s[0];
+						$resArray[$iRA]["publisher"] = $entry->scientificEditor_s[0];
+						$chaine2 .= $delim.$entry->scientificEditor_s[0];
+					}else{
+						if(isset($entry->publisher_s[0]) && $entry->publisher_s[0] != ""){
+							$pubS = $entry->publisher_s[0];
+							if (isset($entry->publisher_s[1]) && $entry->publisher_s[1] != "") {$pubS .= ", ".$entry->publisher_s[1];}//2 valeurs pour le champ "Editeur commercial"
+							$entryInfo .= ", ".$pubS;
+							$resArray[$iRA]["publisher"] = $pubS;
+							$chaine2 .= $delim.$pubS;
+						}else{
+							$chaine2 .= $delim;
+						}
+					}
+				}
+				
+				//BLOG > ajout URL
+				if ($docType_s=="BLOG"){
+					$rtfalso = "";
+					$chaine1 .= $delim."Voir aussi";
+					if (isset($entry->seeAlso_s)) {
+						$entryInfo .= ", <a target='_blank' href='".$entry->seeAlso_s[0]."'>".$entry->seeAlso_s[0]."</a>";
+						$rtfalso = $entry->seeAlso_s[0];
+						$chaine2 .= $delim.$entry->seeAlso_s[0];
+					}else{
+						$chaine2 .= $delim;
+					}
+				}
+				
+				//NOTICE > ajout titre livre + éditeur scientifique + éditeur + pages
+				if ($docType_s=="NOTICE"){
+					//Titre livre
+					$chaine1 .= $delim."Titre livre";
+					if (isset($entry->bookTitle_s)) {
+						$entryInfo .= ". <i>".$entry->bookTitle_s."</i>";
+						$chaine2 .= $delim.$entry->bookTitle_s;
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Editeur scientifique
+					$chaine1 .= $delim."Editeur revue";
+					if(isset($entry->scientificEditor_s[0]) && $entry->scientificEditor_s[0] != ""){
+						$entryInfo .= ", dir. ".$entry->scientificEditor_s[0];
+						$resArray[$iRA]["publisher"] = $entry->scientificEditor_s[0];
+						$chaine2 .= $delim.$entry->scientificEditor_s[0];
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Editeur
+					if(isset($entry->publisher_s[0]) && $entry->publisher_s[0] != ""){
+						$pubS = $entry->publisher_s[0];
+						if (isset($entry->publisher_s[1]) && $entry->publisher_s[1] != "") {$pubS .= ", ".$entry->publisher_s[1];}//2 valeurs pour le champ "Editeur commercial"
+						$entryInfo .= ", ".$pubS;
+						$resArray[$iRA]["publisher"] = $pubS;
+						$chaine2 .= $delim.$pubS;
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Pages
+					$chaine1 .= $delim."Pages";
+					if(isset($entry->page_s) && !empty($entry->page_s)){
+						$entryInfo .= ", pp. ".$entry->page_s;
+						$chaine2 .= $delim.$entry->page_s;
+					}else{
+						$entryInfo .= ", in press";
+						$chaine2 .= $delim;
+					}
+				}
+				
+				//OUV > ajout pages
+				if ($docType_s=="OUV"){
+					$chaine1 .= $delim."Pages";
+					if(isset($entry->page_s) && !empty($entry->page_s)){
+						$entryInfo .= ", ".$entry->page_s;
+						$chaine2 .= $delim.$entry->page_s;
+					}else{
+						$entryInfo .= ", in press";
+						$chaine2 .= $delim;
+					}
+				}
+				
+				//TRAD > description + titre journal + titre livre + pages + année de production + URL
+				if ($docType_s=="TRAD"){
+					//Description
+					$chaine1 .= $delim."Description";
+					if(isset($entry->description_s) && !empty($entry->description_s)){
+						$entryInfo .= $entry->description_s;
+						$chaine2 .= $delim.$entry->description_s;
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Titre journal
+					$chaine1 .= $delim."Titre journal";
+					if(isset($entry->journalTitle_s) && !empty($entry->journalTitle_s)){
+						$entryInfo .= ", ".$entry->journalTitle_s;
+						$chaine2 .= $delim.$entry->journalTitle_s;
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Titre livre
+					$chaine1 .= $delim."Titre livre";
+					if(isset($entry->bookTitle_s) && !empty($entry->bookTitle_s)){
+						$entryInfo .= ", ".$entry->bookTitle_s;
+						$chaine2 .= $delim.$entry->bookTitle_s;
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Pages
+					$chaine1 .= $delim."Pages";
+					if(isset($entry->page_s) && !empty($entry->page_s)){
+						$entryInfo .= $entry->page_s;
+						$chaine2 .= $delim.$entry->page_s;
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Année de production
+					$chaine1 .= $delim."Année de production";
+					if(isset($entry->producedDateY_i) && !empty($entry->producedDateY_i)){
+						$entryInfo .= ", ".$entry->producedDateY_i;
+						$chaine2 .= $delim.$entry->producedDateY_i;
+					}else{
+						$chaine2 .= $delim;
+					}
+					//URL
+					$rtfalso = "";
+					$chaine1 .= $delim."Voir aussi";
+					if (isset($entry->seeAlso_s)) {
+						$entryInfo .= ". URL : <a target='_blank' href='".$entry->seeAlso_s[0]."'>".$entry->seeAlso_s[0]."</a>";
+						$rtfalso = $entry->seeAlso_s[0];
+						$chaine2 .= $delim.$entry->seeAlso_s[0];
+					}else{
+						$chaine2 .= $delim;
+					}
+				}
+				//IMG > sous-type + ville + pays
+				if ($docType_s=="IMG"){
+					//Sous-type
+					$chaine1 .= $delim."Sous-type";
+					if(isset($entry->docSubType_s) && !empty($entry->docSubType_s)){
+						$entryInfo .= ". ".ucfirst(strtolower($entry->docSubType_s));
+						$chaine2 .= $delim.ucfirst(strtolower($entry->docSubType_s));
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Ville
+					$chaine1 .= $delim."Ville";
+					if(isset($entry->city_s)){
+						$entryInfo .= ". ".$entry->city_s;
+						$resArray[$iRA]["city"] = $entry->city_s;
+						$chaine2 .= $delim.$entry->city_s;
+					}else{
+						$chaine2 .= $delim;
+					}
+					//Pays
+					$chaine1 .= $delim."Pays";
+					if(isset($entry->country_s)){
+						$entryInfo .= ", ".$countries[$entry->country_s];
+						$resArray[$iRA]["countries"] = $countries[$entry->country_s];
+						$chaine2 .= $delim.$countries[$entry->country_s];
+					}else{
+						$chaine2 .= $delim;
+					}
+				}
 
 				//Ajout de l'identifiant et des actes pour les posters avec actes
 				if ($docType_s == "POSTER") {
