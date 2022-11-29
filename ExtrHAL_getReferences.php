@@ -1558,13 +1558,17 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				//Adding conferenceTitle_s:
 				$chaine1 .= $delim."Titre conférence";
 				if ($docType_s=="COMM" || $docType_s=="POSTER" || $docType_s == "COMM+POST" || $docType_s == "PROCEEDINGS"){
-					 $resArray[$iRA]["conferenceTitle"] = $entry->conferenceTitle_s;
-					 if (strpos($typtit,"reto") !== false) {
-						 $entryInfo .= " <i>".$entry->conferenceTitle_s."</i>";
-					 }else{
-						 $entryInfo .= ", <i>".$entry->conferenceTitle_s."</i>";
-					 }
-					 $chaine2 .= $delim.$entry->conferenceTitle_s;
+					if (isset($entry->conferenceTitle_s) && !empty($entry->conferenceTitle_s)) {
+						$resArray[$iRA]["conferenceTitle"] = $entry->conferenceTitle_s;
+						if (strpos($typtit,"reto") !== false) {
+							$entryInfo .= " <i>".$entry->conferenceTitle_s."</i>";
+						}else{
+							$entryInfo .= ", <i>".$entry->conferenceTitle_s."</i>";
+						}
+						 $chaine2 .= $delim.$entry->conferenceTitle_s;
+					}else{
+						$chaine2 .= $delim;
+					}
 				}else{
 					 $chaine2 .= $delim;
 				}
@@ -1732,12 +1736,16 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						$entryInfo .= ", ".$moisTab[$entry->conferenceStartDateM_i].' '.$entry->conferenceStartDateY_i;
 						$chaine2 .= $delim.$moisTab[$entry->conferenceStartDateM_i].' '.$entry->conferenceStartDateY_i;
 					}else{
-						$entryInfo .= ", ".$entry->conferenceStartDateY_i;
-						$chaine2 .= $delim.$entry->conferenceStartDateY_i;
+						if(isset($entry->conferenceStartDateY_i) && !empty($entry->conferenceStartDateY_i)) {
+							$entryInfo .= ", ".$entry->conferenceStartDateY_i;
+							$chaine2 .= $delim.$entry->conferenceStartDateY_i;
+						}else{
+							$chaine2 .= $delim;
+						}
 					}
 					//Ville
 					$chaine1 .= $delim."Ville";
-					if(isset($entry->city_s)){
+					if(isset($entry->city_s) && !empty($entry->city_s)){
 						$entryInfo .= ", ".$entry->city_s;
 						$resArray[$iRA]["city"] = $entry->city_s;
 						$chaine2 .= $delim.$entry->city_s;
@@ -1746,7 +1754,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					}
 					//Pays
 					$chaine1 .= $delim."Pays";
-					if(isset($entry->country_s)){
+					if(isset($entry->country_s) && !empty($entry->country_s)){
 						$entryInfo .= ", ".$countries[$entry->country_s];
 						$resArray[$iRA]["countries"] = $countries[$entry->country_s];
 						$chaine2 .= $delim.$countries[$entry->country_s];
@@ -2810,6 +2818,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				
 				//Corrections diverses
 				$entryInfo =str_replace("..", ".", $entryInfo);
+				$entryInfo =str_replace("., ", ". ", $entryInfo);
 				$entryInfo =str_replace(", .", ".", $entryInfo);
 				$entryInfo =str_replace(",,", ",", $entryInfo);
 				$entryInfo =str_replace(", , ", ", ", $entryInfo);
@@ -2818,6 +2827,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$entryInfo =str_replace(", no.,", ",", $entryInfo);
 				$entryInfo =str_replace("trolitrp", "...", $entryInfo);
 				$rtfInfo =str_replace("..", ".", $rtfInfo);
+				$rtfInfo =str_replace("., ", ". ", $rtfInfo);
 				$rtfInfo =str_replace(",,", ",", $rtfInfo);
 				$rtfInfo =str_replace(", .", ".", $rtfInfo);
 				$rtfInfo =str_replace("trolitrp", "...", $rtfInfo);
