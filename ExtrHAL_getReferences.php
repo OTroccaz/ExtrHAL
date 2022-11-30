@@ -1307,9 +1307,9 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 
 				//Adding scientificEditor_s:
+				$chaine1 .= $delim."Editeur scientifique";
 				//if ($docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV"){
 				if (($docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV") && $entry->docType_s != "DOUV" && $entry->docType_s != "COUV" && ($entry->authQuality_s[0] != "dir" && $entry->authQuality_s[0] != "scientific_editor")){
-						$chaine1 .= $delim."Editeur scientifique";
 					 if (isset($entry->scientificEditor_s)) {
 						 if(count($entry->scientificEditor_s)>0){
 								$initial = 1;
