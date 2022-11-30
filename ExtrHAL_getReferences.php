@@ -1800,7 +1800,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					//Série
 					$chaine1 .= $delim."Série";
 					if (isset($entry->serie_s[0]) && !empty($entry->serie_s[0])){
-						$entryInfo .= ", ".$entry->serie_s[0];
+						if (isset($entry->conferenceTitle_s) && !empty($entry->conferenceTitle_s)) {
+							$entryInfo .= ", ".$entry->serie_s[0];
+						}else{
+							$entryInfo .= " ".$entry->serie_s[0];
+						}
 						$chaine2 .= $delim.$entry->serie_s[0];
 					}else{
 						$chaine2 .= $delim;
@@ -2818,7 +2822,6 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				
 				//Corrections diverses
 				$entryInfo =str_replace("..", ".", $entryInfo);
-				$entryInfo =str_replace("., ", ". ", $entryInfo);
 				$entryInfo =str_replace(", .", ".", $entryInfo);
 				$entryInfo =str_replace(",,", ",", $entryInfo);
 				$entryInfo =str_replace(", , ", ", ", $entryInfo);
@@ -2827,7 +2830,6 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$entryInfo =str_replace(", no.,", ",", $entryInfo);
 				$entryInfo =str_replace("trolitrp", "...", $entryInfo);
 				$rtfInfo =str_replace("..", ".", $rtfInfo);
-				$rtfInfo =str_replace("., ", ". ", $rtfInfo);
 				$rtfInfo =str_replace(",,", ",", $rtfInfo);
 				$rtfInfo =str_replace(", .", ".", $rtfInfo);
 				$rtfInfo =str_replace("trolitrp", "...", $rtfInfo);

@@ -50,7 +50,7 @@ function cleanup_title($titre) {
 }
 
 function nettoy1($quoiAvt) {
-  $quoiApr = str_replace(array(". : ",",, ",", , ","..","?.","?,","<br>.","--"," p. p.",", .",",  ","(dir. ."," - .., ",", , ", ", . ","., "), array(" : ",", ",", ",".","?","?","<br>","-"," p.",",",", ","(dir.). ",", ",", ",". ", ". "), $quoiAvt);
+  $quoiApr = str_replace(array(". : ",",, ",", , ","..","?.","?,","<br>.","--"," p. p.",", .",",  ","(dir. ."," - .., ",", , ", ", . "), array(" : ",", ",", ",".","?","?","<br>","-"," p.",",",", ","(dir.). ",", ",", ",". "), $quoiAvt);
   return($quoiApr);
 }
 
