@@ -559,6 +559,9 @@
 																										case "DOSN" :
 																											echo '&nbsp;&nbsp;&nbsp;DOSN = Directions d&apos;ouvrages scientifiques de portée nationale'.$cpmlng.$detail.'<br>';
 																											break;
+																										case "EOS" :
+																											echo '&nbsp;&nbsp;&nbsp;EOS = Editions d&apos;ouvrages scientifiques'.$cpmlng.$detail.'<br>';
+																											break;
 																										case "OCO" :
 																											echo '&nbsp;&nbsp;&nbsp;OCO = Ouvrages ou chapitres d&apos;ouvrages'.$cpmlng.$detail.'<br>';
 																											break;

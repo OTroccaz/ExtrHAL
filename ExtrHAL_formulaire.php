@@ -366,6 +366,7 @@
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOS-") !== false) {$dos = "selected";}else{$dos = "";}
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOSI-") !== false) {$dosi = "selected";}else{$dosi = "";}
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOSN-") !== false) {$dosn = "selected";}else{$dosn = "";}
+																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-EOS-") !== false) {$eos = "selected";}else{$eos = "";}
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCO-") !== false) {$oco = "selected";}else{$oco = "";}
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCOI-") !== false) {$ocoi = "selected";}else{$ocoi = "";}
 																																		if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCON-") !== false) {$ocon = "selected";}else{$ocon = "";}
@@ -412,6 +413,7 @@
                                                                                     <option value="DOS" <?php echo $dos;?>>Directions d&apos;ouvrages scientifiques</option>
                                                                                     <option value="DOSI" <?php echo $dosi;?>>Directions d&apos;ouvrages scientifiques de portée internationale</option>
                                                                                     <option value="DOSN" <?php echo $dosn;?>>Directions d&apos;ouvrages scientifiques de portée nationale</option>
+																																										<option value="EOS" <?php echo $eos;?>>Editions d&apos;ouvrages scientifiques</option>
                                                                                     <option value="OCO" <?php echo $oco;?>>Ouvrages ou chapitres d&apos;ouvrages</option>
                                                                                     <option value="OCOI" <?php echo $ocoi;?>>Ouvrages ou chapitres d&apos;ouvrages de portée internationale</option>
                                                                                     <option value="OCON" <?php echo $ocon;?>>Ouvrages ou chapitres d&apos;ouvrages de portée nationale</option>
