@@ -85,11 +85,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $contents = file_get_contents($reqAPI);
    }
    if ($docType_s=="OUV+DOUV"){
-			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20(docType_s:\"OUV\"%20AND%20authQuality_s:(dir%20OR%20scientific_editor)))".$specificRequestCode."&rows=0";
+			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20(docType_s:\"OUV\"%20AND%20authQuality_s:edt))".$specificRequestCode."&rows=0";
       $contents = file_get_contents($reqAPI);
    }
    if ($docType_s=="OUV+COUV+DOUV"){
-      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"COUV\"%20OR%20(docType_s:\"OUV\"%20AND%20authQuality_s:(dir%20OR%20scientific_editor)))".$specificRequestCode."&rows=0";
+      $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"COUV\"%20OR%20(docType_s:\"OUV\"%20AND%20authQuality_s:edt))".$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
    }
 	 if ($docType_s=="CNR"){
@@ -136,11 +136,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 			$contents = file_get_contents($reqAPI);
    }
    if ($docType_s=="OUV+DOUV"){
-			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20(docType_s:\"OUV\"%20AND%20authQuality_s:(dir%20OR%20scientific_editor)))".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20(docType_s:\"OUV\"%20AND%20authQuality_s:edt))".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
    }
    if ($docType_s=="OUV+COUV+DOUV"){
-			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"COUV\"%20OR%20(docType_s:\"OUV\"%20AND%20authQuality_s:(dir%20OR%20scientific_editor)))".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
+			$reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OUV\"%20OR%20docType_s:\"COUV\"%20OR%20(docType_s:\"OUV\"%20AND%20authQuality_s:edt))".$specificRequestCode."&rows=".$numFound."&fl=".$fields."&sort=auth_sort%20asc";
 			$contents = file_get_contents($reqAPI);
    }
    if ($docType_s=="UNDEF"){
@@ -1309,7 +1309,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				//Adding scientificEditor_s:
 				$chaine1 .= $delim."Editeur scientifique";
 				//if ($docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV"){
-				if (($docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV") && $entry->docType_s != "DOUV" && $entry->docType_s != "COUV" && ($entry->authQuality_s[0] != "dir" && $entry->authQuality_s[0] != "scientific_editor")){
+				if (($docType_s=="OUV" or $docType_s=="DOUV" or $docType_s=="COUV" OR $docType_s=="OUV+COUV" OR $docType_s=="OUV+DOUV" OR $docType_s=="OUV+COUV+DOUV") && $entry->docType_s != "DOUV" && $entry->docType_s != "COUV" && $entry->authQuality_s[0] != "edt")){
 					 if (isset($entry->scientificEditor_s)) {
 						 if(count($entry->scientificEditor_s)>0){
 								$initial = 1;
