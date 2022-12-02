@@ -413,10 +413,10 @@
                                                                                     <option value="DOS" <?php echo $dos;?>>Directions d&apos;ouvrages scientifiques</option>
                                                                                     <option value="DOSI" <?php echo $dosi;?>>Directions d&apos;ouvrages scientifiques de portée internationale</option>
                                                                                     <option value="DOSN" <?php echo $dosn;?>>Directions d&apos;ouvrages scientifiques de portée nationale</option>
-																																										<option value="EOS" <?php echo $eos;?>>Editions d&apos;ouvrages scientifiques</option>
-                                                                                    <option value="OCO" <?php echo $oco;?>>Ouvrages ou chapitres d&apos;ouvrages</option>
-                                                                                    <option value="OCOI" <?php echo $ocoi;?>>Ouvrages ou chapitres d&apos;ouvrages de portée internationale</option>
-                                                                                    <option value="OCON" <?php echo $ocon;?>>Ouvrages ou chapitres d&apos;ouvrages de portée nationale</option>
+																																										<option value="EOS" <?php echo $eos;?>>Editions d&apos;ouvrages</option>
+                                                                                    <option value="OCO" <?php echo $oco;?>>Ouvrages (tout type) ou chapitres d&apos;ouvrages</option>
+                                                                                    <option value="OCOI" <?php echo $ocoi;?>>Ouvrages (tout type) ou chapitres d&apos;ouvrages de portée internationale</option>
+                                                                                    <option value="OCON" <?php echo $ocon;?>>Ouvrages (tout type) ou chapitres d&apos;ouvrages de portée nationale</option>
                                                                                     <option value="ODO" <?php echo $odo;?>>Ouvrages ou directions d&apos;ouvrages</option>
                                                                                     <option value="ODOI" <?php echo $odoi;?>>Ouvrages ou directions d&apos;ouvrages de portée internationale</option>
                                                                                     <option value="ODON" <?php echo $odon;?>>Ouvrages ou directions d&apos;ouvrages de portée nationale</option>

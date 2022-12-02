@@ -55,9 +55,9 @@
 																				if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOSI-") !== false) {echo '<li><a href="#DOSI">Directions d&apos;ouvrages scientifiques de portée internationale</a></li>';}
 																				if (isset($choix_ouvr) && strpos($choix_ouvr, "-DOSN-") !== false) {echo '<li><a href="#DOSN">Directions d&apos;ouvrages scientifiques de portée nationale</a></li>';}
 																				if (isset($choix_ouvr) && strpos($choix_ouvr, "-EOS-") !== false) {echo '<li><a href="#EOS">Editions d&apos;ouvrages scientifiques</a></li>';}
-																				if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCO-") !== false) {echo '<li><a href="#OCO">Ouvrages ou chapitres d&apos;ouvrages</a></li>';}
-																				if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCOI-") !== false) {echo '<li><a href="#OCOI">Ouvrages ou chapitres d&apos;ouvrages de portée internationale</a></li>';}
-																				if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCON-") !== false) {echo '<li><a href="#OCON">Ouvrages ou chapitres d&apos;ouvrages de portée nationale</a></li>';}
+																				if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCO-") !== false) {echo '<li><a href="#OCO">Ouvrages (tout type) ou chapitres d&apos;ouvrages</a></li>';}
+																				if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCOI-") !== false) {echo '<li><a href="#OCOI">Ouvrages (tout type) ou chapitres d&apos;ouvrages de portée internationale</a></li>';}
+																				if (isset($choix_ouvr) && strpos($choix_ouvr, "-OCON-") !== false) {echo '<li><a href="#OCON">Ouvrages (tout type) ou chapitres d&apos;ouvrages de portée nationale</a></li>';}
 																				if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODO-") !== false) {echo '<li><a href="#ODO">Ouvrages ou directions d&apos;ouvrages</a></li>';}
 																				if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODOI-") !== false) {echo '<li><a href="#ODOI">Ouvrages ou directions d&apos;ouvrages de portée internationale</a></li>';}
 																				if (isset($choix_ouvr) && strpos($choix_ouvr, "-ODON-") !== false) {echo '<li><a href="#ODON">Ouvrages ou directions d&apos;ouvrages de portée nationale</a></li>';}

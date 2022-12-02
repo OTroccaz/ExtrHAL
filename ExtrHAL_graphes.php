@@ -560,16 +560,16 @@
 																											echo '&nbsp;&nbsp;&nbsp;DOSN = Directions d&apos;ouvrages scientifiques de portée nationale'.$cpmlng.$detail.'<br>';
 																											break;
 																										case "EOS" :
-																											echo '&nbsp;&nbsp;&nbsp;EOS = Editions d&apos;ouvrages scientifiques'.$cpmlng.$detail.'<br>';
+																											echo '&nbsp;&nbsp;&nbsp;EOS = Editions d&apos;ouvrages'.$cpmlng.$detail.'<br>';
 																											break;
 																										case "OCO" :
-																											echo '&nbsp;&nbsp;&nbsp;OCO = Ouvrages ou chapitres d&apos;ouvrages'.$cpmlng.$detail.'<br>';
+																											echo '&nbsp;&nbsp;&nbsp;OCO = Ouvrages (tout type) ou chapitres d&apos;ouvrages'.$cpmlng.$detail.'<br>';
 																											break;
 																										case "OCOI" :
-																											echo '&nbsp;&nbsp;&nbsp;OCOI = Ouvrages ou chapitres d&apos;ouvrages de portée internationale'.$cpmlng.$detail.'<br>';
+																											echo '&nbsp;&nbsp;&nbsp;OCOI = Ouvrages (tout type) ou chapitres d&apos;ouvrages de portée internationale'.$cpmlng.$detail.'<br>';
 																											break;
 																										case "OCON" :
-																											echo '&nbsp;&nbsp;&nbsp;OCON = Ouvrages ou chapitres d&apos;ouvrages de portée nationale'.$cpmlng.$detail.'<br>';
+																											echo '&nbsp;&nbsp;&nbsp;OCON = Ouvrages (tout type) ou chapitres d&apos;ouvrages de portée nationale'.$cpmlng.$detail.'<br>';
 																											break;
 																										case "ODO" :
 																											echo '&nbsp;&nbsp;&nbsp;ODO = Ouvrages ou directions d&apos;ouvrages'.$cpmlng.$detail.'<br>';
