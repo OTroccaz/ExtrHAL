@@ -27,6 +27,7 @@
  * @package     PHPRtfLite
  * @subpackage  PHPRtfLite_Element
  */
+#[AllowDynamicProperties]
 class PHPRtfLite_Element
 {
 

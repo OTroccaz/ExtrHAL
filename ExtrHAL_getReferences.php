@@ -119,7 +119,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
       $reqAPI = $root."://api.archives-ouvertes.fr/search/".$institut."?q=".$atester.$atesteropt."%20AND%20(docType_s:\"OTHER\"%20OR%20docType_s:\"OTHERREPORT\")".$specificRequestCode."&rows=0";
 			$contents = file_get_contents($reqAPI);
    }
-   $contents = utf8_encode($contents);
+	 $contents = mb_convert_encoding($contents, 'UTF-8', 'ISO-8859-1');
    $results = json_decode($contents);
 	 $numFound = 0;
 	 if (isset($results->response->numFound)) {$numFound=$results->response->numFound;}
