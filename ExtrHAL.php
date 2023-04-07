@@ -158,7 +158,7 @@ include "./ExtrHAL_get.php";
 																				<p class="font-italic">Photo : Beach of List Sylt by Hilthart Pedersen on Unsplash (détail)</p>
 
                                         <p class="mb-2 text-justify">
-                                            ExtrHAL permet d&apos;afficher et d&apos;exporter des listes de publications HAL d&apos;une unité de recherche, d'une équipe ou d'un auteur. Conçu à partir d'un script de Philippe Gambette (ExtractionHAL), il a été créé par Olivier Troccaz (conception-développement) et Laurent Jonchère (conception). 
+                                            ExtrHAL permet d&apos;afficher et d&apos;exporter des listes de publications HAL d&apos;une unité de recherche, d'une équipe ou d'un auteur. Conçu à partir d'un script de Philippe Gambette (ExtractionHAL), il a été créé par Olivier Troccaz (conception-développement) et Laurent Jonchère (conception). Son code est disponible <a target='_blank' rel='noopener noreferrer' href="https://github.com/OTroccaz/ExtrHAL">sur GitHub</a> sous licence <a target='_blank' rel='noopener noreferrer' href="https://www.gnu.org/licenses/gpl-3.0.fr.html">GPLv3</a>.
                                         </p>
 
                                         <p class="mb-4">
