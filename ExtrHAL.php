@@ -130,7 +130,7 @@ include "./ExtrHAL_get.php";
                                     <div class="page-title-right">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb bg-light-lighten p-2">
-                                                <li class="breadcrumb-item"><a href="index.php"><i class="uil-home-alt"></i> Accueil HALUR1</a></li>
+                                                <li class="breadcrumb-item"><a href="index.php"><i class="uil-home-alt"></i> Accueil HALUR</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page">Extr<span class="font-weight-bold">HAL</span></li>
                                             </ol>
                                         </nav>
