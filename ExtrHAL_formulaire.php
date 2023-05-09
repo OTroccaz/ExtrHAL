@@ -822,7 +822,7 @@
 																																				
 																																						<div class="form-group col-sm-2">
 																																								<?php
-																																								if (!isset($racine)) {$racine = "https://hal-univ-rennes1.archives-ouvertes.fr/";}
+																																								if (!isset($racine)) {$racine = "https://univ-rennes.hal.science/";}
 																																								?>
 																																								<label for="racine" class="font-weight-bold">
 																																								URL racine HAL
