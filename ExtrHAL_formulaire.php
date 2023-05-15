@@ -43,7 +43,7 @@
 																														?>
 																														
 																														<input type="text" id="team" name="team" class="form-control"  value="<?php echo $team1;?>" onclick="this.value='<?php echo $team2;?>';" onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = ''; document.getElementById('idst').value = '';">
-																												<a class="ml-2 small" target="_blank" rel="noopener noreferrer" href="https://hal-univ-rennes1.archives-ouvertes.fr/page/codes-collections">Trouvez le code<br>de mon équipe / labo</a>
+																												<a class="ml-2 small" target="_blank" rel="noopener noreferrer" href="https://univ-rennes.hal.science/page/codes-collections">Trouver le code<br>de mon équipe / labo</a>
 																												</div>
 
 																												
@@ -72,7 +72,7 @@
 																														?>
 																														
 																														<input type="text" id="idst" name="idst" class="form-control"  value="<?php echo $idst;?>" onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = ''; document.getElementById('team').value = '';">
-																														<a class="ml-2 small" target="_blank" rel="noopener noreferrer" href="https://aurehal.archives-ouvertes.fr/structure/">Trouvez l'identifiant<br>de votre équipe / labo</a>
+																														<a class="ml-2 small" target="_blank" rel="noopener noreferrer" href="https://aurehal.archives-ouvertes.fr/structure/">Trouver l'identifiant<br>de votre équipe / labo</a>
 																												</div>
 
 																												
