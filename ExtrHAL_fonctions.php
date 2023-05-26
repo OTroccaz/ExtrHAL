@@ -1,4 +1,13 @@
 <?php
+/*
+ * ExtrHAL - Votre bilan en un clic ! - Your assessment in one click!
+ *
+ * Copyright (C) 2023 Olivier Troccaz (olivier.troccaz@cnrs.fr) and Laurent Jonchère (laurent.jonchere@univ-rennes.fr)
+ * Released under the terms and conditions of the GNU General Public License (https://www.gnu.org/licenses/gpl-3.0.txt)
+ *
+ * Regroupement des fonctions définies - Grouping of defined functions
+ */
+ 
 function suppression($dossier, $age, $comp) {
   $repertoire = opendir($dossier);
     while(false !== ($fichier = readdir($repertoire)))

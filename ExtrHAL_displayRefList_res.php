@@ -1,4 +1,13 @@
 <?php
+/*
+ * ExtrHAL - Votre bilan en un clic ! - Your assessment in one click!
+ *
+ * Copyright (C) 2023 Olivier Troccaz (olivier.troccaz@cnrs.fr) and Laurent Jonchère (laurent.jonchere@univ-rennes.fr)
+ * Released under the terms and conditions of the GNU General Public License (https://www.gnu.org/licenses/gpl-3.0.txt)
+ *
+ * Choix des types de publications - Choice of publication types
+ */
+ 
 if (isset($choix_publis) && strpos($choix_publis, "-TA-") !== false) {
 	//$sect->writeText(substr($sortArray[$i],-4)."<br><br>", $font);
 	echo "<br><a name=\"TA\"></a><h2>Tous les articles (sauf vulgarisation)".$cpmlng.$detail." <a href=\"#sommaire\"><i class=\"mdi mdi-arrow-up-bold\"></i></a></h2>";

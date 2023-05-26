@@ -1,4 +1,13 @@
 <?php
+/*
+ * ExtrHAL - Votre bilan en un clic ! - Your assessment in one click!
+ *
+ * Copyright (C) 2023 Olivier Troccaz (olivier.troccaz@cnrs.fr) and Laurent Jonchère (laurent.jonchere@univ-rennes.fr)
+ * Released under the terms and conditions of the GNU General Public License (https://www.gnu.org/licenses/gpl-3.0.txt)
+ *
+ * Récupération des paramètres d'extraction transmis via le formulaire - Retrieval of extraction parameters transmitted via the form
+ */
+ 
 if (isset($_POST["soumis"])) {
   $team = strtoupper(htmlspecialchars($_POST["team"]));
 	$teamInit = $team;

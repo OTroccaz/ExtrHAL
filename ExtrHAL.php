@@ -1,4 +1,13 @@
 <?php
+/*
+ * ExtrHAL - Votre bilan en un clic ! - Your assessment in one click!
+ *
+ * Copyright (C) 2023 Olivier Troccaz (olivier.troccaz@cnrs.fr) and Laurent Jonchère (laurent.jonchere@univ-rennes.fr)
+ * Released under the terms and conditions of the GNU General Public License (https://www.gnu.org/licenses/gpl-3.0.txt)
+ *
+ * Page d'accueil - Home page
+ */
+ 
 //Nettoyage URL
 $redir = "non";
 $root = 'http';
@@ -23,7 +32,7 @@ if ($redir == "oui") {header("Location: ".$urlnet);}
 
 <head>
 	<meta charset="utf-8" />
-	<title>ExtrHAL - HAL - UR1</title>
+	<title>ExtrHAL - HAL - UR</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta content="ExtrHAL permet d'afficher et d'exporter des listes de publications HAL d'une unité de recherche, d'une équipe ou d'un auteur" name="description" />
 	<meta content="Coderthemes + Lizuka + OTroccaz + LJonchere" name="author" />

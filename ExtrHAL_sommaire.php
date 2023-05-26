@@ -1,4 +1,14 @@
-                                        <h5 class="badge badge-primary badge-pill"><a id="sommaire"></a>Sommaire</h5>
+																				<?php
+																				/*
+																				 * ExtrHAL - Votre bilan en un clic ! - Your assessment in one click!
+																				 *
+																				 * Copyright (C) 2023 Olivier Troccaz (olivier.troccaz@cnrs.fr) and Laurent Jonchère (laurent.jonchere@univ-rennes.fr)
+																				 * Released under the terms and conditions of the GNU General Public License (https://www.gnu.org/licenses/gpl-3.0.txt)
+																				 *
+																				 * Affichage du sommaire des types de publications choisis - Display summary of selected publication types
+																				 */
+																				?>
+																				<h5 class="badge badge-primary badge-pill"><a id="sommaire"></a>Sommaire</h5>
 
 																				<ul>
 																				<?php

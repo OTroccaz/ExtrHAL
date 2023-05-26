@@ -1,4 +1,13 @@
-                                        <?php
+																				<?php
+																				/*
+																				 * ExtrHAL - Votre bilan en un clic ! - Your assessment in one click!
+																				 *
+																				 * Copyright (C) 2023 Olivier Troccaz (olivier.troccaz@cnrs.fr) and Laurent Jonchère (laurent.jonchere@univ-rennes.fr)
+																				 * Released under the terms and conditions of the GNU General Public License (https://www.gnu.org/licenses/gpl-3.0.txt)
+																				 *
+																				 * Formulaire de la page d'accueil - Home page form
+																				 */
+ 
 																				// récupération de l'adresse IP du client (on cherche d'abord à savoir s'il est derrière un proxy)
 																				if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 																					$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
