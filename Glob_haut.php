@@ -13,7 +13,7 @@
                         <div class="container-fluid d-flex justify-content-between  ">
                             <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
                                 <div class="brand-name mr-4">
-                                    <h1 class="h2"><a href="https://halur1.univ-rennes1.fr/" class=" text-gray-700"><span class="text-primary">HAL</span><span class="font-weight-light">UR1</span></a></h1>
+                                    <h1 class="h2"><a href="https://halur1.univ-rennes1.fr/" class=" text-gray-700"><span class="text-primary">HAL</span><span class="font-weight-light">UR</span></a></h1>
                                 </div>
                                 <a class="navbar-toggle"  data-toggle="collapse" data-target="#topnav-menu-content">
                                     <div class="lines">
