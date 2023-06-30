@@ -32,7 +32,7 @@ if ($redir == "oui") {header("Location: ".$urlnet);}
 
 <head>
 	<meta charset="utf-8" />
-	<title>ExtrHAL - HAL - UR</title>
+	<title>ExtrHAL - HALUR</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta content="ExtrHAL permet d'afficher et d'exporter des listes de publications HAL d'une unité de recherche, d'une équipe ou d'un auteur" name="description" />
 	<meta content="Coderthemes + Lizuka + OTroccaz + LJonchere" name="author" />
@@ -171,7 +171,7 @@ include "./ExtrHAL_get.php";
                                         </p>
 
                                         <p class="mb-4">
-                                            Contacts : <a target='_blank' rel='noopener noreferrer' href="https://openaccess.univ-rennes1.fr/interlocuteurs/laurent-jonchere">Laurent Jonchère</a> (Université de Rennes 1) / <a target='_blank' rel='noopener noreferrer' href="https://openaccess.univ-rennes1.fr/interlocuteurs/olivier-troccaz">Olivier Troccaz</a> (CNRS CReAAH/OSUR).
+                                            Contacts : <a target='_blank' rel='noopener noreferrer' href="https://scienceouverte.univ-rennes.fr/interlocuteurs/laurent-jonchere">Laurent Jonchère</a> (Université de Rennes 1) / <a target='_blank' rel='noopener noreferrer' href="https://scienceouverte.univ-rennes.fr/interlocuteurs/olivier-troccaz">Olivier Troccaz</a> (CNRS CReAAH/OSUR).
                                         </p>
 
 
