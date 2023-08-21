@@ -459,6 +459,9 @@
 																										case "TC" :
 																											echo '&nbsp;&nbsp;&nbsp;TC = Toutes les communications (sauf grand public)'.$cpmlng.$detail.'<br>';
 																											break;
+																										case "COASANI" :
+																											echo '&nbsp;&nbsp;&nbsp;COASANI = Communications orales (sans les posters) avec ou sans actes, nationales ou internationales'.$cpmlng.$detail.'<br>';
+																											break;
 																										case "CA" :
 																											echo '&nbsp;&nbsp;&nbsp;CA = Communications avec actes'.$cpmlng.$detail.'<br>';
 																											break;

@@ -294,6 +294,7 @@
 
 																																		<?php
 																																		if (isset($choix_comm) && strpos($choix_comm, "-TC-") !== false) {$tc = "selected";}else{$tc = "";}
+																																		if (isset($choix_comm) && strpos($choix_comm, "-COASANI-") !== false) {$coasani = "selected";}else{$coasani = "";}
 																																		if (isset($choix_comm) && strpos($choix_comm, "-CA-") !== false) {$ca = "selected";}else{$ca = "";}
 																																		if (isset($choix_comm) && strpos($choix_comm, "-CSA-") !== false) {$csa = "selected";}else{$csa = "";}
 																																		if (isset($choix_comm) && strpos($choix_comm, "-CI-") !== false) {$ci = "selected";}else{$ci = "";}
@@ -335,6 +336,7 @@
                                                                                 
                                                                                 <select id="comm"  class="select2 form-control select2-multiple" size="10" data-toggle="select2" multiple="multiple" data-placeholder="Choix multiple possible..." name="comm[]">
                                                                                     <option value="TC" <?php echo $tc;?>>Toutes les communications (sauf grand public)</option>
+																																										<option value="COASANI" <?php echo $coasani;?>>Communications orales (sans les posters) avec ou sans actes, nationales ou internationales</option>
                                                                                     <option value="CA" <?php echo $ca;?>>Communications avec actes</option>
                                                                                     <option value="CSA" <?php echo $csa;?>>Communications sans actes</option>
                                                                                     <option value="CI" <?php echo $ci;?>>Communications internationales</option>

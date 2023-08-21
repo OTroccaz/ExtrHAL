@@ -27,6 +27,7 @@
 																				if (isset($choix_publis) && strpos($choix_publis, "-CRDL-") !== false) {echo '<li><a href="#CRDL">Comptes rendus de lecture</a></li>';}
 																				
 																				if (isset($choix_comm) && strpos($choix_comm, "-TC-") !== false) {echo '<li><a href="#TC">Toutes les communications (sauf grand public)</a></li>';}
+																				if (isset($choix_comm) && strpos($choix_comm, "-COASANI-") !== false) {echo '<li><a href="#COASANI">Communications orales (sans les posters) avec ou sans actes, nationales ou internationales</a></li>';}
 																				if (isset($choix_comm) && strpos($choix_comm, "-CA-") !== false) {echo '<li><a href="#CA">Communications avec actes</a></li>';}
 																				if (isset($choix_comm) && strpos($choix_comm, "-CSA-") !== false) {echo '<li><a href="#CSA">Communications sans actes</a></li>';}
 																				if (isset($choix_comm) && strpos($choix_comm, "-CI-") !== false) {echo '<li><a href="#CI">Communications internationales</a></li>';}
