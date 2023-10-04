@@ -194,7 +194,7 @@ if (isset($_GET["team"])) {
 	if (isset($_GET['rstaff']) && $_GET['rstaff'] != '') {
 		//$restrict = "Menshikov M.~Wade A.~Belitsky V.";
 		//$restrict = "Menshikov Mikhail~Wade Andrew~Belitsky Vladimir";
-		$restrict = $_GET['rstaff'];
+		$restrict = str_replace(array(' ~ ','~ ',' ~'), '~', trim($_GET['rstaff']));
 		$listenomcomp1 = "~".$restrict."~";
 		$listenomcomp2 = "~";
 		$listenomcomp3 = "~";

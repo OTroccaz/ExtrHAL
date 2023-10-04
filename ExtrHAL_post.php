@@ -217,7 +217,7 @@ if (isset($_POST["soumis"])) {
 	if (isset($_POST['rstaff']) && $_POST['rstaff'] != '') {
 		//$rstaff = "Menshikov M.~Wade A.~Belitsky V.";
 		//$rstaff = "Menshikov Mikhail~Wade Andrew~Belitsky Vladimir";
-		$restrict = $_POST['rstaff'];
+		$restrict = str_replace(array(' ~ ','~ ',' ~'), '~', trim($_POST['rstaff']));
 		$listenomcomp1 = "~".$restrict."~";
 		$listenomcomp2 = "~";
 		$listenomcomp3 = "~";

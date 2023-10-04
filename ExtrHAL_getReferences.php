@@ -211,25 +211,27 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				 foreach($tabId as $Id) {
 					 if ($Id != "") {
 						 foreach($results->response->docs as $entry){
-							 foreach($entry->authIdHasPrimaryStructure_fs as $auth){
-								 $tabAuth = explode("_FacetSep_", $auth);
-								 if (strpos($tabAuth[1], $Id) !== false) {//Auteur de la collection
-									 $tabQ = explode("_JoinSep_", $tabAuth[1]);
-									 $indQ = 0;
-									 foreach($entry->authFullName_s as $funa){
-										if ($funa == $tabQ[0] && stripos($listenomcomp1, "~".nomCompEntier($entry->authLastName_s[$indQ])." ".prenomCompEntier($entry->authFirstName_s[$indQ])."~") === false) {
-											 $prenom = prenomCompInit($entry->authFirstName_s[$indQ]);
-											 $listenominit .= nomCompEntier($entry->authLastName_s[$indQ])." ".$prenom.".~";
-											 $listenomcomp1 .= nomCompEntier($entry->authLastName_s[$indQ])." ".prenomCompEntier($entry->authFirstName_s[$indQ])."~";
-											 $listenomcomp2 .= prenomCompEntier($entry->authFirstName_s[$indQ])." ".nomCompEntier($entry->authLastName_s[$indQ])."~";
-											 $listenomcomp3 .= mb_strtoupper(nomCompEntier($entry->authLastName_s[$indQ]), 'UTF-8')." (".prenomCompEntier($entry->authFirstName_s[$indQ]).")~";
-											 $arriv .= "1900~";
-											 $moisactuel = date('n', time());
-											 if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
-											 $depar .= $idepar."~";
-											 break;
+							 if (isset($entry->authIdHasPrimaryStructure_fs)) {
+								 foreach($entry->authIdHasPrimaryStructure_fs as $auth){
+									 $tabAuth = explode("_FacetSep_", $auth);
+									 if (strpos($tabAuth[1], $Id) !== false) {//Auteur de la collection
+										 $tabQ = explode("_JoinSep_", $tabAuth[1]);
+										 $indQ = 0;
+										 foreach($entry->authFullName_s as $funa){
+											if ($funa == $tabQ[0] && stripos($listenomcomp1, "~".nomCompEntier($entry->authLastName_s[$indQ])." ".prenomCompEntier($entry->authFirstName_s[$indQ])."~") === false) {
+												 $prenom = prenomCompInit($entry->authFirstName_s[$indQ]);
+												 $listenominit .= nomCompEntier($entry->authLastName_s[$indQ])." ".$prenom.".~";
+												 $listenomcomp1 .= nomCompEntier($entry->authLastName_s[$indQ])." ".prenomCompEntier($entry->authFirstName_s[$indQ])."~";
+												 $listenomcomp2 .= prenomCompEntier($entry->authFirstName_s[$indQ])." ".nomCompEntier($entry->authLastName_s[$indQ])."~";
+												 $listenomcomp3 .= mb_strtoupper(nomCompEntier($entry->authLastName_s[$indQ]), 'UTF-8')." (".prenomCompEntier($entry->authFirstName_s[$indQ]).")~";
+												 $arriv .= "1900~";
+												 $moisactuel = date('n', time());
+												 if ($moisactuel >= 10) {$idepar = date('Y', time())+1;}else{$idepar = date('Y', time());}
+												 $depar .= $idepar."~";
+												 break;
+											 }
+											 $indQ++;
 										 }
-										 $indQ++;
 									 }
 								 }
 							 }
