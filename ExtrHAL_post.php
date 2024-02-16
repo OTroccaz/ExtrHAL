@@ -468,8 +468,8 @@ if (isset($_POST["soumis"])) {
     $gr = "¤".$team."¤";
     for($i = 1; $i <= $nbeqp; $i++) {
       //$gr = "¤GR¤GR1¤GR2¤GR3¤GR4¤GR5¤GR6¤GR7¤GR8¤GR9¤";
-      $gr .= strtoupper($_POST['eqp'.$i])."¤";
-      $nomeqp[$i] = strtoupper($_POST['eqp'.$i]);
+      $gr .= mb_strtoupper($_POST['eqp'.$i], 'UTF-8')."¤";
+      $nomeqp[$i] = mb_strtoupper($_POST['eqp'.$i], 'UTF-8');
       $urlsauv .= "&eqp".$i."=".$nomeqp[$i];
     }
   }

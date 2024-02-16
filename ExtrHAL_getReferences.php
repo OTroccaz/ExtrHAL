@@ -318,18 +318,18 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 							$listColl .= "~".$coll."~";
 							for($i = 1; $i <= $nbeqp; $i++) {
 								if (isset($_POST["soumis"])) {
-									if ($coll == strtoupper($_POST['eqp'.$i])) {
+									if (mb_strtoupper($coll, 'UTF-8') == mb_strtoupper($_POST['eqp'.$i], 'UTF-8')) {
 										$entryInfo0 .= "GR".$i." - ¤ - ";
 										$entryInfo0H .= "GR".$i." - ¤ - ";
-										$eqpgr = strtoupper($_POST['eqp'.$i]);
+										$eqpgr = mb_strtoupper($_POST['eqp'.$i], 'UTF-8');
 										break;
 									}
 								}
 								if (isset($_GET["team"])) {
-									if ($coll == $_GET['eqp'.$i]) {
+									if (mb_strtoupper($coll, 'UTF-8') == mb_strtoupper($_GET['eqp'.$i], 'UTF-8')) {
 										$entryInfo0 .= "GR".$i." - ¤ - ";
 										$entryInfo0H .= "GR".$i." - ¤ - ";
-										$eqpgr = $_GET['eqp'.$i];
+										$eqpgr = mb_strtoupper($_GET['eqp'.$i], 'UTF-8');
 										break;
 									}
 								}
@@ -340,7 +340,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$chaine2 .= $entryInfo0;
 					$resArray[$iRA]["GR"] = $entryInfo0;
 				}
-
+				
 				//Le champ 'producedDateY_i' n'est pas obligatoire pour les communications et posters > on testera alors avec publicationDateY_i ou conferenceStartDateY_i
 				if ($docType_s != "COMM" && $docType_s != "POSTER" && $docType_s != "COMM+POST") {
 					if (isset($entry->inPress_bool)) {//Notice à paraître

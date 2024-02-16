@@ -1210,7 +1210,7 @@
 																																							echo '<div class="col-12">';
 																																							echo '	<div class="col-sm-8 d-inline-block">';
 																																							echo '		<label for="eqp'.$i.'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Nom HAL équipe '.$i.'</label>';
-																																							echo '		<input type="text" class="form-control" id="eqp'.$i.'" name="eqp'.$i.'" value = "'.strtoupper($_POST['eqp'.$i]).'"><br>';
+																																							echo '		<input type="text" class="form-control" id="eqp'.$i.'" name="eqp'.$i.'" value = "'.mb_strtoupper($_POST['eqp'.$i], 'UTF-8').'"><br>';
 																																							echo '	</div>';
 																																							echo '</div>';
 																																						}
@@ -1247,7 +1247,7 @@
 																																							echo '<div class="col-12">';
 																																							echo '	<div class="col-sm-8 d-inline-block">';
 																																							echo '		<label for="eqp'.$i.'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. Nom HAL équipe '.$i.'</label>';
-																																							echo '		<input type="text" class="form-control" id="eqp'.$i.'" name="eqp'.$i.'" value = "'.$_GET['eqp'.$i].'"><br>';
+																																							echo '		<input type="text" class="form-control" id="eqp'.$i.'" name="eqp'.$i.'" value = "'.mb_strtoupper($_GET['eqp'.$i], 'UTF-8').'"><br>';
 																																							echo '	</div>';
 																																							echo '</div>';
 																																						}

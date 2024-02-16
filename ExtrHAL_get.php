@@ -458,8 +458,8 @@ if (isset($_GET["team"])) {
   if (isset($typeqp) && $typeqp == "oui") {//Numérotation/codification par équipe
     $gr = "¤".$team."¤";
     for($i = 1; $i <= $nbeqp; $i++) {
-      $gr .= $_GET['eqp'.$i]."¤";
-      $nomeqp[$i] = $_GET['eqp'.$i];
+      $gr .= mb_strtoupper($_GET['eqp'.$i], 'UTF-8')."¤";
+      $nomeqp[$i] = mb_strtoupper($_GET['eqp'.$i], 'UTF-8');
 			$urlsauv .= "&eqp".$i."=".$nomeqp[$i];
     }
   }
