@@ -230,7 +230,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 								 $croCpt = substr($croCpt, 0, -5);
 								 $tabCro = explode("troli", $croCpt);
 								 
-								 if (count($tabCro > 1)) {
+								 if (count($tabCro) > 1) {
 									 foreach($tabCro as $cro1) {
 										 foreach($tabCro as $cro2) {
 											 if ($cro1 != $cro2) {
@@ -531,7 +531,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 								 $croCpt = substr($croCpt, 0, -5);
 								 $tabCro = explode("troli", $croCpt);
 								 
-								 if (count($tabCro > 1)) {
+								 if (count($tabCro) > 1) {
 									 foreach($tabCro as $cro1) {
 										 foreach($tabCro as $cro2) {
 											 if ($cro1 != $cro2) {
@@ -796,8 +796,8 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	$footer = $sect->addFooter();
 	$footer->writeText('<em>Liste générée via ExtrHAL. </em>', $fontfoot);
 	$footer->writeHyperLink('https://halur1.univ-rennes1.fr/ExtrHAL.php', '<em><u>ExtrHAL</u></em>', $fontlienfoot);
-	$footer->writeText('<em> (https://halur1.univ-rennes1.fr/ExtrHAL.php) est un outil conçu et développé par Olivier Troccaz et Laurent Jonchère / CNRS et Université de Rennes 1.</em>', $fontfoot);
-	//$footer->writeText('<em> est un outil conçu et développé par Olivier Troccaz et Laurent Jonchère / CNRS et Université de Rennes 1.</em>', $fontfoot);
+	$footer->writeText('<em> (https://halur1.univ-rennes1.fr/ExtrHAL.php) est un outil conçu et développé par Olivier Troccaz (CNRS CReAAH/OSUR) et Laurent Jonchère (Université de Rennes).</em>', $fontfoot);
+	//$footer->writeText('<em> est un outil conçu et développé par Olivier Troccaz (CNRS CReAAH/OSUR) et Laurent Jonchère (Université de Rennes).</em>', $fontfoot);
 	//$sect->addFootnote('This is the endnote text');
 	if (isset($idhal) && $idhal != "") {$team = $idhal;}
 	//$Fnm1 = "./HAL/extractionHAL_".$team.".csv";

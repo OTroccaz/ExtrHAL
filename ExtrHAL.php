@@ -72,6 +72,13 @@ if ($redir == "oui") {header("Location: ".$urlnet);}
 </head>
 
 <?php
+//Stats Google
+if (strpos($_SERVER['HTTP_HOST'], '127.0.0.1') === false) {
+	include("./Glob_gstats.php");
+}
+?>
+
+<?php
 //Institut général
 $institut = "";// -> univ-rennes1/ par exemple, mais est-ce vraiment nécessaire ?
 
