@@ -875,7 +875,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$fin3 = "";
 				//Y-a-t-il absence d'affiliation, et, si oui, faut-il l'afficher ?
 				if ($sursou == "oui" && $affil == "aucune") {
-					$deb3 = "<span style='background:#FF0000'>";
+					$deb3 = "<span style='background:#C5FF4A'>";
 					$fin3 = "</span>";
 				}
 
