@@ -186,6 +186,9 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	 //Affichage de la référence s'il n'a pas été demandé de limiter aux références Top 1% ou Top 10%
 	 if ($typinc == "vis1" && strpos($entryInfo, "JCR Top 1 %") === false) {$lignAff = "non";}
 	 if ($typinc == "vis10" && strpos($entryInfo, "JCR Top 10 %") === false) {$lignAff = "non";}
+	 
+		//Doit-on afficher la publication ? > Cas d'un auteur non affilié pour cette année
+		if (strpos($entryInfo, '<nepasafficher>') !== false) {$lignAff = "non";}
 					
 	 if ($lignAff == "oui") {
 		 if ($typsign == "ts2080") {$tst = (strpos($entryInfo, $signTxt) === false); $entryInfo = str_replace($signTxt, "", $entryInfo); $rtfArray[$i] = str_replace($signTxt, "", $rtfArray[$i]);}

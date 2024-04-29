@@ -341,6 +341,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$resArray[$iRA]["GR"] = $entryInfo0;
 				}
 				
+				//Extraction Luc
+				if ($collCode_s == 'CREAAH' && isset($gr)) {
+					include './CReAAH3.php';
+				}
+				
 				//Le champ 'producedDateY_i' n'est pas obligatoire pour les communications et posters > on testera alors avec publicationDateY_i ou conferenceStartDateY_i
 				if ($docType_s != "COMM" && $docType_s != "POSTER" && $docType_s != "COMM+POST") {
 					if (isset($entry->inPress_bool)) {//Notice à paraître
@@ -877,6 +882,12 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				if ($sursou == "oui" && $affil == "aucune") {
 					$deb3 = "<span style='background:#C5FF4A'>";
 					$fin3 = "</span>";
+				}
+
+				//Doit-on afficher la publication ? > Cas d'un auteur non affilié pour cette année
+				if ($affil == "aucune") {
+					$deb3 .= "<nepasafficher>";
+					$fin3 .= "</nepasafficher>";
 				}
 
 				$entryInfo0 .= $deb3.$extract.$fin3;
