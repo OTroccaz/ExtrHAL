@@ -343,7 +343,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				
 				//Extraction Luc
 				if ($collCode_s == 'CREAAH' && isset($gr)) {
-					include './CReAAH3.php';
+					include './CReAAH4.php';
 				}
 				
 				//Le champ 'producedDateY_i' n'est pas obligatoire pour les communications et posters > on testera alors avec publicationDateY_i ou conferenceStartDateY_i
@@ -885,10 +885,12 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 
 				//Doit-on afficher la publication ? > Cas d'un auteur non affilié pour cette année
+				/*
 				if ($affil == "aucune") {
 					$deb3 .= "<nepasafficher>";
 					$fin3 .= "</nepasafficher>";
 				}
+				*/
 
 				$entryInfo0 .= $deb3.$extract.$fin3;
 				
@@ -1532,7 +1534,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 												}else{
 													if (is_numeric(substr($page,0,1))) {
 														//$eI .= ", ".$page." p.";
-														if (empty($vol) && empty($iss)) {$eI .= " ";}else{$eI .= ":".$page;}
+														//if (empty($vol) && empty($iss)) {$eI .= " ";}else{$eI .= ":".$page;}
+														 if ($hasVolumeOrNumber != 1) {$eI .= " ";}else{$eI .= ":".$page;}
 														//$resArray[$iRA]["page"] = ", ".$page." p.";
 														$chaine2 .= $delim.$page;
 													}else{
