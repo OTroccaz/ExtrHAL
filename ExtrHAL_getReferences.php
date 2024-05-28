@@ -1018,22 +1018,20 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						}
 					}
 				}
-				$deb2 = "";
-				$fin2 = "";
 				
 				//Export HCERES
 				$chaineH .= $delim.$titre;
 
+				$doublon = 'non';
 				//Est-ce un doublon et, si oui, faut-il l'afficher ?
 				if (stripos($listetitre, $titre) === false) {//non
 					$listetitre .= "¤".$titre;
 				}else{
-					if ($surdoi == "vis") {
-						$deb2 = "<span style='background:#00FF00'><strong>";
-						$fin2 = "</strong></span>";
+					if ($surdoi == "oui") {
+						$doublon = 'oui';
 					}
 				}
-				$entryInfo0 .= $point.$deb.$deb2.$titre.$fin2.$fin;
+				$entryInfo0 .= $point.$deb.$titre.$fin;
 				$resArray[$iRA]["titre"] = $titre;
 				$chaine2 .= $delim.$titre;
 				
@@ -1140,19 +1138,16 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						}
 					}
 					$titre = nettoy1(cleanup_title($titrePlus));
-					$deb2 = "";
-					$fin2 = "";
 
 					//Est-ce un doublon et, si oui, faut-il l'afficher ?
 					if (stripos($listetitre, $titre) === false) {//non
 						$listetitre .= "¤".$titre;
 					}else{
-						if ($surdoi == "vis") {
-							$deb2 = "<span style='background:#00FF00'><strong>";
-							$fin2 = "</strong></span>";
+						if ($surdoi == "oui") {
+							$doublon = 'oui';
 						}
 					}
-					$entryInfo0 .= $deb.$deb2.$titre.$fin2.$fin;
+					$entryInfo0 .= $deb.$titre.$fin;
 					$resArray[$iRA]["titre"] = $titre;
 					$chaine2 .= $delim.$titre;
 					//Adding authors
@@ -2491,17 +2486,14 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				$chaine1 .= $delim."DOI";
 				if (isset($entry->doiId_s) && $typdoi == "vis") {
 					//Est-ce un doublon et, si oui, faut-il l'afficher?
-					$deb = "";
-					$fin = "";
 					if (stripos($listedoi, $entry->doiId_s) === false) {//non
 						$listedoi .= "~".$entry->doiId_s;
 					}else{
-						if ($surdoi == "vis") {
-							$deb = "<span style='background:#00FF00'><strong>";
-							$fin = "</strong></span>";
+						if ($surdoi == "oui") {
+							$doublon = 'oui';
 						}
 					}
-					$entryInfo .= ". DOI: <a target='_blank' href='https://doi.org/".$entry->doiId_s."'>".$deb."https://doi.org/".$entry->doiId_s.$fin."</a>";
+					$entryInfo .= ". DOI: <a target='_blank' href='https://doi.org/".$entry->doiId_s."'>"."https://doi.org/".$entry->doiId_s."</a>";
 					$entryInfo = str_replace(array(" . DOI", " , "), array(". DOI", ", "), $entryInfo);
 					$rtfdoi = $entry->doiId_s;
 					$chaine2 .= $delim.$entry->doiId_s;
@@ -2842,6 +2834,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						$entryInfo .= " <a target='_blank' href='".$entry->linkExtUrl_s."'><img style='width: 50px;' src='./img/oa_grand.png'></a>";
 						$rtfOA = "OA hors HAL";
 						$rtfOAURL = $entry->linkExtUrl_s;
+					}else{
+						//Aucun Fichier
+						if ($docType_s == "ART") {
+							$entryInfo .= " <a target='_blank' href='".$racine.$entry->halId_s."'><img style='width: 50px;' src='./img/add_grand.png'></a>";
+							$rtfOA = "Aucun fichier";
+							$rtfOAURL = $racine.$entry->halId_s;
+						}
 					}
 				}
 				
@@ -2867,7 +2866,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$rtfInfo = str_replace(array(",  in press", ", in press", " in press.", " in press", "; in press"), "", $rtfInfo);
 				}
 				
-				$entryInfo = $debgras.$entryInfo.$fingras;
+				//Doublon ?
+				$deb = ($doublon == 'oui') ? "<span style='background:#00FF00'><strong>" : "";
+				$fin = ($doublon == 'oui') ? "</strong></span>" : "";
+				
+				$entryInfo = $debgras.$deb.$entryInfo.$fin.$fingras;
 				$rtfInfo = $debgras.$rtfInfo.$fingras;
 
 				//Ajout de la référence au tableau final s'il n'a pas été demandé de limiter aux références dont le premier ou le dernier auteur dépend de la collection

@@ -608,7 +608,7 @@
 																																								<select class="custom-select" id="typtri" name="typtri">
 																																										<?php
 																																										if (isset($typtri) && $typtri == "premierauteur" || !isset($team)) {$txt = "selected";}else{$txt = "";}
-																																										echo '<option value="premierauteur" '.$txt.'>année puis nom du premieur auteur</option>';
+																																										echo '<option value="premierauteur" '.$txt.'>année puis nom du premier auteur</option>';
 																																										if (isset($typtri) && $typtri == "journal") {$txt = "selected";}else{$txt = "";}
 																																										echo '<option value="journal" '.$txt.'>année puis journal</option>';
 																																										?>
