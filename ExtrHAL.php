@@ -68,15 +68,15 @@ if ($redir == "oui") {header("Location: ".$urlnet);}
 	<!-- <script src="./assets/js/vendor/Chart.bundle.min.js"></script> -->
 	<!-- third party js ends -->
 	<script src="./assets/js/pages/hal-ur1.chartjs.js"></script>
+	
+	<?php
+	//Stats Google
+	if (strpos($_SERVER['HTTP_HOST'], '127.0.0.1') === false) {
+		include("./Glob_gstats.php");
+	}
+	?>
 
 </head>
-
-<?php
-//Stats Google
-if (strpos($_SERVER['HTTP_HOST'], '127.0.0.1') === false) {
-	include("./Glob_gstats.php");
-}
-?>
 
 <?php
 //Institut général
@@ -178,7 +178,7 @@ include "./ExtrHAL_get.php";
                                         </p>
 
                                         <p class="mb-4">
-                                            Contacts : <a target='_blank' rel='noopener noreferrer' href="https://scienceouverte.univ-rennes.fr/interlocuteurs/laurent-jonchere">Laurent Jonchère</a> (Université de Rennes 1) / <a target='_blank' rel='noopener noreferrer' href="https://scienceouverte.univ-rennes.fr/interlocuteurs/olivier-troccaz">Olivier Troccaz</a> (CNRS CReAAH/OSUR).
+                                            Contacts : <a target='_blank' rel='noopener noreferrer' href="https://scienceouverte.univ-rennes.fr/interlocuteurs/laurent-jonchere">Laurent Jonchère</a> (Université de Rennes) / <a target='_blank' rel='noopener noreferrer' href="https://scienceouverte.univ-rennes.fr/interlocuteurs/olivier-troccaz">Olivier Troccaz</a> (CNRS CReAAH/OSUR).
                                         </p>
 
 
