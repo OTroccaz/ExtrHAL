@@ -194,16 +194,16 @@ include "./ExtrHAL_get.php";
                                         <div class="mb-2">
                                             <ul class="list-group">
 																						<li class="list-group-item">
-                                                    <a target="_blank" rel="noopener noreferrer" href="https://halur1.univ-rennes1.fr/ExtrHAL_rapide.pdf"><i class="mdi mdi-file-pdf-box-outline mr-1"></i> Prise en main rapide d'ExtrHAL</a>
+                                                    <a target="_blank" rel="noopener noreferrer" href="./ExtrHAL_rapide.pdf"><i class="mdi mdi-file-pdf-box-outline mr-1"></i> Prise en main rapide d'ExtrHAL</a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <a target="_blank" rel="noopener noreferrer" href="https://halur1.univ-rennes1.fr/ExtrHAL_tutoriel.pdf"><i class="mdi mdi-file-pdf-box-outline mr-1"></i> Guide d'utilisation</a>
+                                                    <a target="_blank" rel="noopener noreferrer" href="./ExtrHAL_tutoriel.pdf"><i class="mdi mdi-file-pdf-box-outline mr-1"></i> Guide d'utilisation</a>
                                                 </li>
 																								<li class="list-group-item">
-                                                    <a target="_blank" rel="noopener noreferrer" href="https://halur1.univ-rennes1.fr/installation/ExtrHAL_installation.pdf"><i class="mdi mdi-file-pdf-box-outline mr-1"></i> Installer ExtrHAL</a>
+                                                    <a target="_blank" rel="noopener noreferrer" href="./ExtrHAL_installation.pdf"><i class="mdi mdi-file-pdf-box-outline mr-1"></i> Installer ExtrHAL</a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <a target="_blank" rel="noopener noreferrer" href="https://halur1.univ-rennes1.fr/ExtrHAL_criteres_types_publis.pdf"><i class="mdi mdi-file-pdf-box-outline mr-1"></i> Quels champs compléter dans HAL ?</a>
+                                                    <a target="_blank" rel="noopener noreferrer" href="./ExtrHAL_criteres_types_publis.pdf"><i class="mdi mdi-file-pdf-box-outline mr-1"></i> Quels champs compléter dans HAL ?</a>
                                                 </li>
                                             </ul> 
                                         </div>
