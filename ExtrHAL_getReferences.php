@@ -30,7 +30,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				 $tstRefint = substr($tstRefint, 0, -8);
 				 $tstRefint .= ")";
 			 }
-			 $tstRefint = urlencode($tstRefint);
+			 $tstRefint = urlencode(str_replace(' ', '%20', $tstRefint));
 			 if (strtolower($collCode_s) == "entrez le code de votre collection") {$collCode_s = "";}
 			 if ($teamInit != "") {
 				 $atester = "collCode_s:".$teamInit;
@@ -56,7 +56,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					 $tstFinanc = substr($tstFinanc, 0, -8);
 					 $tstFinanc .= ")";
 				 }
-				 $tstFinanc = urlencode($tstFinanc);
+				 $tstFinanc = urlencode(str_replace(' ', '%20', $tstFinanc));
 				 if (strtolower($collCode_s) == "entrez le code de votre collection") {$collCode_s = "";}
 				 if ($teamInit != "") {
 					 $atester = "collCode_s:".$teamInit;
