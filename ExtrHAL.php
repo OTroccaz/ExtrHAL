@@ -90,6 +90,7 @@ $idst = "";
 $idhal = "";
 $evhal = "";
 $refint = "";
+$financ = "";
 //$anneeforce = "";
 $periode = "";
 $anneedeb = "";

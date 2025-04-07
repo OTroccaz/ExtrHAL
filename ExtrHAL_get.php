@@ -13,12 +13,14 @@ if (isset($_GET["team"])) {
 	$teamInit = $team;
 	if ($team == "ENTREZ LE CODE DE VOTRE COLLECTION") {$team = "";}
 	$idst = $_GET["idst"];
-  $idhal = $_GET["idhal"];
+	$idhal = $_GET["idhal"];
 	if (isset($_GET["refint"])) {$refint = $_GET["refint"];}
-  $quand0 = time();
+	if (isset($_GET["financ"])) {$financ = $_GET["financ"];}
+	$quand0 = time();
 	$quand = substr($quand0, 0, 9);
-  if (isset($idhal) && $idhal != "") {$team = str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $idhal);}
+	if (isset($idhal) && $idhal != "") {$team = str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $idhal);}
 	if (isset($refint) && $refint != "" && $team == "") {$team = $refint;}
+	//if (isset($financ) && $financ != "" && $team == "") {$team = $financ;}
 	//export VOSviewerDOI
 	$Fnm3 = "./HAL/VOSviewerDOI_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".txt";
 	$inF3 = fopen($Fnm3,"w+");
@@ -68,16 +70,17 @@ if (isset($_GET["team"])) {
 	}
 	$urlsauv = $root."://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 	$urlsauv .= "?team=".urlencode($teamInit);
-  $listaut = strtoupper(urlencode($_GET["listaut"]));
-  if ($listaut == "") {$listaut = $team;}
-  $urlsauv .= "&listaut=".urlencode($listaut);
+	$listaut = strtoupper(urlencode($_GET["listaut"]));
+	if ($listaut == "") {$listaut = $team;}
+	$urlsauv .= "&listaut=".urlencode($listaut);
 	$urlsauv .= "&idst=".urlencode($idst);
-  $urlsauv .= "&idhal=".urlencode($idhal);
+	$urlsauv .= "&idhal=".urlencode($idhal);
 	$urlsauv = str_replace("%257E", "~", $urlsauv);
-  $evhal = $_GET["evhal"];
-  $urlsauv .= "&evhal=".$evhal;
+	$evhal = $_GET["evhal"];
+	$urlsauv .= "&evhal=".$evhal;
 	$urlsauv .= "&refint=".$refint;
-  if (isset($_GET['publis'])) {//Articles de revue
+	$urlsauv .= "&financ=".$financ;
+	if (isset($_GET['publis'])) {//Articles de revue
     $publis = $_GET["publis"];
     $urlsauv .= "&publis=".$publis;
     $tabpublis = explode("~", $publis);
@@ -405,6 +408,8 @@ if (isset($_GET["team"])) {
 	$urlsauv .= "&typisbn=".$typisbn;
 	$typrefi = $_GET["typrefi"];
 	$urlsauv .= "&typrefi=".$typrefi;
+	$typfina = $_GET["typfina"];
+	$urlsauv .= "&typfina=".$typfina;
 	$typsign = $_GET["typsign"];
 	$urlsauv .= "&typsign=".$typsign;
   $typif = $_GET["typif"];

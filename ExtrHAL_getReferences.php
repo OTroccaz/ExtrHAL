@@ -8,7 +8,7 @@
  * Fonction pour récupérer les références - Function to retrieve references
  */
  
-function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$specificRequestCode,$countries,$anneedeb,$anneefin,$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$idst,$listaut,$idhal,$refint,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$FnmH,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7){
+function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$specificRequestCode,$countries,$anneedeb,$anneefin,$institut,$typnum,$typaut,$typnom,$typcol,$typbib,$typlim,$limaff,$trpaff,$typtit,$team,$teamInit,$idst,$listaut,$idhal,$refint,$financ,$typann,$typrvg,$typchr,$typgra,$limgra,$typcrp,$rstaff,$typtri,$typfor,$typdoi,$typurl,$typpub,$surdoi,$sursou,$finass,$typidh,$racine,$typreva,$typif,$typinc,$typrevh,$dscp,$typrevc,$typcomm,$typisbn,$typrefi,$typfina,$typsign,$typavsa,$typlng,$typcro,$typexc,$listenominit,$listenomcomp1,$listenomcomp2,$listenomcomp3,$arriv,$depar,$sect,$Fnm,$Fnm1,$Fnm2,$Fnm3,$FnmH,$delim,$prefeq,$rtfArray,$bibArray,$font,$fontlien,$fonth2,$fonth3,$root,$gr,$nbeqp,$nomeqp,$listedoi,$listetitre,$stpdf,$spa,$nmo,$gp1,$gp2,$gp3,$gp4,$gp5,$gp6,$gp7,$sep1,$sep2,$sep3,$sep4,$sep5,$sep6,$sep7,$choix_mp1,$choix_mp2,$choix_mp3,$choix_mp4,$choix_mp5,$choix_mp6,$choix_mp7,$choix_cg1,$choix_cg2,$choix_cg3,$choix_cg4,$choix_cg5,$choix_cg6,$choix_cg7){
 	 static $listedoi = "";
 	 include "ExtrHAL_rang_AERES_SHS.php";
    include "ExtrHAL_rang_CNRS.php";
@@ -18,6 +18,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 		 $atester = "authIdHal_s:".$collCode_s;
 		 $atesteropt = "";
 	 }else{
+		 $atesteropt = "";
 		 if (isset($refint) && $refint != "") {
 			 $tstRefint = "%22".$refint."%22";
 			 if (strpos($refint, "~") !== false) {
@@ -29,26 +30,54 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				 $tstRefint = substr($tstRefint, 0, -8);
 				 $tstRefint .= ")";
 			 }
+			 $tstRefint = urlencode($tstRefint);
 			 if (strtolower($collCode_s) == "entrez le code de votre collection") {$collCode_s = "";}
 			 if ($teamInit != "") {
 				 $atester = "collCode_s:".$teamInit;
-				 $atesteropt = "%20AND%20localReference_t:".$tstRefint;
+				 $atesteropt .= "%20AND%20localReference_t:".$tstRefint;
 			 }else{
 				 if ($idst != "") {
 					 $atester = "structId_i:".$idst;
-					 $atesteropt = "%20AND%20localReference_t:".$tstRefint;
+					 $atesteropt .= "%20AND%20localReference_t:".$tstRefint;
 				 }else{
 					 $atester = "";
-					 $atesteropt = "localReference_t:".$tstRefint;
+					 $atesteropt .= "localReference_t:".$tstRefint;
 				 }
 			 }
 		 }else{
-			 if ($idst != "") {
-				 $atester = "structId_i:".$idst;
-				 $atesteropt = "";
+			 if (isset($financ) && $financ != "") {
+				$tstFinanc = "%22".$financ."%22";
+				 if (strpos($financ, "~") !== false) {
+					 $tstFinanc = "(";
+					 $tabFinanc = explode("~", $financ);
+					 foreach($tabFinanc as $fi) {
+						 $tstFinanc .= "%22".$fi."%22%20OR%20";
+					 }
+					 $tstFinanc = substr($tstFinanc, 0, -8);
+					 $tstFinanc .= ")";
+				 }
+				 $tstFinanc = urlencode($tstFinanc);
+				 if (strtolower($collCode_s) == "entrez le code de votre collection") {$collCode_s = "";}
+				 if ($teamInit != "") {
+					 $atester = "collCode_s:".$teamInit;
+					 $atesteropt .= "%20AND%20funding_t:".$tstFinanc;
+				 }else{
+					 if ($idst != "") {
+						 $atester = "structId_i:".$idst;
+						 $atesteropt .= "%20AND%20funding_t:".$tstFinanc;
+					 }else{
+						 $atester = "";
+						 $atesteropt .= "funding_t:".$tstFinanc;
+					 }
+				 }
 			 }else{
-				 $atester = "collCode_s:".$teamInit;
-				 $atesteropt = "";
+				 if ($idst != "") {
+					 $atester = "structId_i:".$idst;
+					 $atesteropt = "";
+				 }else{
+					 $atester = "collCode_s:".$teamInit;
+					 $atesteropt = "";
+				 }
 			 }
 		 }
 	 }
@@ -133,7 +162,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 	 $numFound = 0;
 	 if (isset($results->response->numFound)) {$numFound=$results->response->numFound;}
 	 
-	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,*_subTitle_s,subTitle_s,swhId_s,*_title_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool,submitType_s,linkExtId_s,wosId_s,linkExtUrl_s,files_s,docSubType_s";
+	 $fields = "abstract_s,anrProjectReference_s,arxivId_s,audience_s,authAlphaLastNameFirstNameId_fs,authFirstName_s,authFullName_s,authIdHalFullName_fs,authLastName_s,authMiddleName_s,authorityInstitution_s,bookCollection_s,bookTitle_s,city_s,collCode_s,comment_s,conferenceEndDateD_i,conferenceEndDateM_i,conferenceEndDateY_i,conferenceStartDate_s,conferenceStartDateD_i,conferenceStartDateM_i,conferenceStartDateY_i,conferenceTitle_s,country_s,defenseDateY_i,description_s,director_s,docid,docType_s,doiId_s,europeanProjectCallId_s,files_s,halId_s,invitedCommunication_s,isbn_s,issue_s,journalIssn_s,journalTitle_s,label_bibtex,label_s,language_s,localReference_s,funding_s,nntId_id,nntId_s,number_s,page_s,peerReviewing_s,popularLevel_s,proceedings_s,producedDateY_i,publicationDateY_i,publicationLocation_s,publisher_s,publisherLink_s,pubmedId_s,related_s,reportType_s,scientificEditor_s,seeAlso_s,serie_s,source_s,*_subTitle_s,subTitle_s,swhId_s,*_title_s,title_s,version_i,volume_s,authQuality_s,authIdHasPrimaryStructure_fs,inPress_bool,submitType_s,linkExtId_s,wosId_s,linkExtUrl_s,files_s,docSubType_s";
 
    //Cas particuliers pour combinaisons
    if ($docType_s=="COMM+POST"){
@@ -195,7 +224,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 			 if (is_numeric($la)) {
 				 $reqId = "https://api.archives-ouvertes.fr/ref/structure/?q=docid:".$la."%20AND%20country_s:%22fr%22&fl=docid";
 			 }else{
-				$reqId = "https://api.archives-ouvertes.fr/ref/structure/?q=(name_t:".$la."%20OR%20acronym_t:".$la.")%20AND%20valid_s:(VALID%20OR%20OLD)%20AND%20country_s:%22fr%22&fl=docid";
+				$reqId = "https://api.archives-ouvertes.fr/ref/structure/?q=(name_t:".str_replace(' ', '%20', $la)."%20OR%20acronym_t:".str_replace(' ', '%20', $la).")%20AND%20valid_s:(VALID%20OR%20OLD)%20AND%20country_s:%22fr%22&fl=docid";
 			 }
 			 $conId = file_get_contents($reqId);
 			 $resId = json_decode($conId);
@@ -2551,6 +2580,17 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}else{
 					$chaine2 .= $delim;
 				}
+				
+				//Adding funding_s
+				$rtffinanc = "";
+				$chaine1 .= $delim."Financement";
+				if ($docType_s=="UNDEF" && isset($entry->funding_s[0])) {
+					$entryInfo .= ". Financement: ".$entry->funding_s[0];
+					$rtffinanc = $entry->funding_s[0];
+					$chaine2 .= $delim.$entry->funding_s[0];
+				}else{
+					$chaine2 .= $delim;
+				}
 
 				//Adding ArXiv ID
 				$rtfarxiv = "";
@@ -2818,6 +2858,22 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$chaine2 .= $delim;
 				}
 				
+				//Adding funding:
+				$rtffina = "";
+				$chaine1 .= $delim."Financement";
+				if (isset($typfina) && $typfina == "vis") {
+					 if (isset($entry->funding_s[0]) && $entry->funding_s[0]!="" and $entry->funding_s[0]!=" " and $entry->funding_s[0]!="-" and $entry->funding_s[0]!="?"){
+						 $entryInfo .= " - ".$entry->funding_s[0];
+						 $rtffina = $entry->funding_s[0];
+						 $resArray[$iRA]["financement"] = $entry->funding_s[0];
+						 $chaine2 .= $delim.$entry->funding_s[0];
+					 }else{
+						 $chaine2 .= $delim;
+					 }
+				}else{
+					$chaine2 .= $delim;
+				}
+				
 				//Adding OA
 				$rtfOA = "";
 				$rtfOAURL = "";
@@ -2933,7 +2989,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					if ($affprefeq == "") {$affprefeq = "AP";}
 				}
 				
-				array_push($rtfArray,$rtfInfo."^|^".$rtfdoi."^|^".$rtfpubmed."^|^".$rtflocref."^|^".$rtfarxiv."^|^".$rtfdescrip."^|^".$rtfalso."^|^".$rtfrefhal."^|^".$rtfaeres."^|^".$rtfcnrs."^|^".$chaine1."^|^".$chaine2."^|^".$rtfnnt."^|^".$affprefeq."^|^".$racine."^|^".$rtfhceres."^|^".$rtfif."^|^".$rtfurl."^|^".$rtfcomm."^|^".$rtfrefi."^|^".$rtffinANR."^|^".$rtffinEU."^|^".$rtfrefswh."^|^".$rtfrelation."^|^".$rtfinc."^|^".$chaineH."^|^".$rtfOA."^|^".$rtfOAURL);
+				array_push($rtfArray,$rtfInfo."^|^".$rtfdoi."^|^".$rtfpubmed."^|^".$rtflocref."^|^".$rtfarxiv."^|^".$rtfdescrip."^|^".$rtfalso."^|^".$rtfrefhal."^|^".$rtfaeres."^|^".$rtfcnrs."^|^".$chaine1."^|^".$chaine2."^|^".$rtfnnt."^|^".$affprefeq."^|^".$racine."^|^".$rtfhceres."^|^".$rtfif."^|^".$rtfurl."^|^".$rtfcomm."^|^".$rtfrefi."^|^".$rtffinANR."^|^".$rtffinEU."^|^".$rtfrefswh."^|^".$rtfrelation."^|^".$rtfinc."^|^".$chaineH."^|^".$rtfOA."^|^".$rtfOAURL."^|^".$rtffina);
 				
 				//bibtex
 				$bibLab = "";

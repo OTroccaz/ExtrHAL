@@ -114,6 +114,32 @@
 																										</div>
 																								</div> <!-- .form-group -->
 																							</div> <!-- end border grey -->
+																							
+																							<div class="form-group row mb-1">
+																									<div class="col-12">
+																											et/ou
+																									</div>
+																							</div> <!-- .form-group -->
+																							
+																							<div class="border border-gray rounded p-2 mb-2">
+																								<div class="form-group row mb-1">
+																										<label for="refint" class="col-12 col-md-3 col-form-label font-weight-bold">
+																										Champ HAL "financements" (mots séparés par des tildes ~)
+																										
+																										</label>
+																										
+																										<div class="col-12 col-md-9">
+																												<div class="input-group">
+																														<div class="input-group-prepend">
+																																<button type="button" tabindex="0" class="btn btn-info" data-html="true" data-toggle="popover" data-trigger="focus" title="" data-content="Champ financement(s) des dépôts HAL. Exemple ANR~Agence Nationale de la Recherche" data-original-title="">
+																																<i class="mdi mdi-help text-white"></i>
+																																</button>
+																														</div>
+																														<input type="text" id="financ" name="financ" class="form-control"  value="<?php echo $financ;?>" onkeydown="document.getElementById('idhal').value = ''; document.getElementById('evhal').value = ''; document.getElementById('idst').value = '';">
+																												</div>
+																										</div>
+																								</div> <!-- .form-group -->
+																							</div> <!-- end border grey -->
 
 																							<div class="form-group row mb-1">
 																									<label for="listaut" class="col-12 col-md-3 col-form-label font-weight-bold pt-0">
@@ -1000,6 +1026,24 @@
 																																										?>
 																																								</select>
 																																						</div><!-- .form-group -->
+																																				</div>
+																																				
+																																				<div class="form-group row mb-2">
+																																						
+																																						<div class="form-group col-sm-2">
+																																								<label for="typrefi" class="font-weight-bold">
+																																								Financement 
+																																								</label>
+																																								<select class="custom-select" id="typfina" name="typfina">
+																																										<?php
+																																										if (isset($typfina) && $typfina == "vis") {$txt = "selected";}else{$txt = "";}
+																																										echo '<option value="vis" '.$txt.'>visible</option>';
+																																										if (isset($typfina) && $typfina == "inv" || !isset($team)) {$txt = "selected";}else{$txt = "";}
+																																										echo '<option value="inv" '.$txt.'>invisible</option>';
+																																										?>
+																																								</select>
+																																						</div><!-- .form-group -->
+																																						
 																																				</div>
 																																			
 																																		</div>

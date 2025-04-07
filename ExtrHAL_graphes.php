@@ -171,6 +171,7 @@
 																										 $atester = "authIdHal_s:".$collCode_s;
 																										 $atesteropt = "";
 																									 }else{
+																										 $atesteropt = "";
 																										 if (isset($refint) && $refint != "") {
 																											 $tstRefint = "%22".$refint."%22";
 																											 if (strpos($refint, "~") !== false) {
@@ -196,12 +197,38 @@
 																												 }
 																											 }
 																										 }else{
-																											 if ($idst != "") {
-																												 $atester = "structId_i:".$idst;
-																												 $atesteropt = "";
+																											 if (isset($financ) && $financ != "") {
+																												$tstFinanc = "%22".$financ."%22";
+																												 if (strpos($financ, "~") !== false) {
+																													 $tstFinanc = "(";
+																													 $tabFinanc = explode("~", $financ);
+																													 foreach($tabFinanc as $fi) {
+																														 $tstFinanc .= "%22".$fi."%22%20OR%20";
+																													 }
+																													 $tstFinanc = substr($tstFinanc, 0, -8);
+																													 $tstFinanc .= ")";
+																												 }
+																												 if (isset($collCode_s) && strtolower($collCode_s) == "entrez le code de votre collection") {$collCode_s = "";}
+																												 if ($teamInit != "") {
+																													 $atester = "collCode_s:".$teamInit;
+																													 $atesteropt .= "%20AND%20funding_t:".$tstFinanc;
+																												 }else{
+																													 if ($idst != "") {
+																														 $atester = "structId_i:".$idst;
+																														 $atesteropt .= "%20AND%20funding_t:".$tstFinanc;
+																													 }else{
+																														 $atester = "";
+																														 $atesteropt .= "funding_t:".$tstFinanc;
+																													 }
+																												 }
 																											 }else{
-																												 $atester = "collCode_s:".$teamInit;
-																												 $atesteropt = "";
+																												 if ($idst != "") {
+																													 $atester = "structId_i:".$idst;
+																													 $atesteropt = "";
+																												 }else{
+																													 $atester = "collCode_s:".$teamInit;
+																													 $atesteropt = "";
+																												 }
 																											 }
 																										 }
 																									 }

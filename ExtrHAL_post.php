@@ -13,10 +13,12 @@ if (isset($_POST["soumis"])) {
 	$teamInit = $team;
 	if ($team == "ENTREZ LE CODE DE VOTRE COLLECTION") {$team = "";}
 	$idst = htmlspecialchars($_POST["idst"]);
-  $idhal = htmlspecialchars($_POST["idhal"]);
+	$idhal = htmlspecialchars($_POST["idhal"]);
 	$refint = htmlspecialchars($_POST["refint"]);
-  if (isset($idhal) && $idhal != "") {$team = $idhal;}
+	$financ = htmlspecialchars($_POST["financ"]);
+	if (isset($idhal) && $idhal != "") {$team = $idhal;}
 	if (isset($refint) && $refint != "" && $team == "") {$team = $refint;}
+	//if (isset($financ) && $financ != "" && $team == "") {$team = $financ;}
 	//export VOSviewerDOI
 	$Fnm3 = "./HAL/VOSviewerDOI_".str_replace(array("(", ")", "%22", "%20OR%20"), array("", "", "", "_"), $team).".txt";
 	$inF3 = fopen($Fnm3,"w+");
@@ -61,16 +63,17 @@ if (isset($_POST["soumis"])) {
 		$root.= "s";
 	}
 	$urlsauv = $root."://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
-  $urlsauv .= "?team=".urlencode($teamInit);
-  $listaut = strtoupper(urlencode(htmlspecialchars($_POST["listaut"])));
-  if ($listaut == "") {$listaut = $team;}
-  $urlsauv .= "&listaut=".urlencode($listaut);
+	$urlsauv .= "?team=".urlencode($teamInit);
+	$listaut = strtoupper(urlencode(htmlspecialchars($_POST["listaut"])));
+	if ($listaut == "") {$listaut = $team;}
+	$urlsauv .= "&listaut=".urlencode($listaut);
 	$urlsauv .= "&idst=".urlencode($idst);
-  $urlsauv .= "&idhal=".urlencode($idhal);
+	$urlsauv .= "&idhal=".urlencode($idhal);
 	$urlsauv = str_replace("%257E", "~", $urlsauv);
-  $evhal = htmlspecialchars($_POST["evhal"]);
-  $urlsauv .= "&evhal=".$evhal;
+	$evhal = htmlspecialchars($_POST["evhal"]);
+	$urlsauv .= "&evhal=".$evhal;
 	$urlsauv .= "&refint=".$refint;
+	$urlsauv .= "&financ=".$financ;
 
   if (isset($_POST['publis'])) {
     $choix_publis = "-";
@@ -414,12 +417,14 @@ if (isset($_POST["soumis"])) {
 	$urlsauv .= "&typisbn=".$typisbn;
 	$typrefi = $_POST["typrefi"];
 	$urlsauv .= "&typrefi=".$typrefi;
+	$typfina = $_POST["typfina"];
+	$urlsauv .= "&typfina=".$typfina;
 	$typsign = $_POST["typsign"];
 	$urlsauv .= "&typsign=".$typsign;
-  $typif = $_POST["typif"];
-  $urlsauv .= "&typif=".$typif;
+	$typif = $_POST["typif"];
+	$urlsauv .= "&typif=".$typif;
 	$typinc = $_POST["typinc"];
-  $urlsauv .= "&typinc=".$typinc;
+	$urlsauv .= "&typinc=".$typinc;
 	$typavsa = $_POST["typavsa"];
 	$urlsauv .= "&typavsa=".$typavsa;
 	$typlng = $_POST["typlng"];
