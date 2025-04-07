@@ -25,13 +25,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				 $tstRefint = "(";
 				 $tabRefint = explode("~", $refint);
 				 foreach($tabRefint as $ri) {
-					 $tstRefint .= "%22".$ri."%22%20OR%20";
+					 $tstRefint .= "%22".urlencode(str_replace(' ', '%20', $ri))."%22%20OR%20";
 				 }
 				 $tstRefint = substr($tstRefint, 0, -8);
 				 $tstRefint .= ")";
 			 }
-			 $tstRefint = urlencode(str_replace(' ', '%20', $tstRefint));
 			 if (strtolower($collCode_s) == "entrez le code de votre collection") {$collCode_s = "";}
+			 $tstRefint = str_replace(' ', '%20', $tstRefint);
 			 if ($teamInit != "") {
 				 $atester = "collCode_s:".$teamInit;
 				 $atesteropt .= "%20AND%20localReference_t:".$tstRefint;
@@ -51,13 +51,13 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					 $tstFinanc = "(";
 					 $tabFinanc = explode("~", $financ);
 					 foreach($tabFinanc as $fi) {
-						 $tstFinanc .= "%22".$fi."%22%20OR%20";
+						 $tstFinanc .= "%22".urlencode(str_replace(' ', '%20', $fi))."%22%20OR%20";
 					 }
 					 $tstFinanc = substr($tstFinanc, 0, -8);
 					 $tstFinanc .= ")";
 				 }
-				 $tstFinanc = urlencode(str_replace(' ', '%20', $tstFinanc));
 				 if (strtolower($collCode_s) == "entrez le code de votre collection") {$collCode_s = "";}
+				 $tstFinanc = str_replace(' ', '%20', $tstFinanc);
 				 if ($teamInit != "") {
 					 $atester = "collCode_s:".$teamInit;
 					 $atesteropt .= "%20AND%20funding_t:".$tstFinanc;
