@@ -413,7 +413,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 					$prenomH = ucfirst(mb_strtolower(str_replace("&apos;", "'", $entry->authFirstName_s[$i]), 'UTF-8'));
 					$prenomPlus = "";
 					//if (isset($entry->authMiddleName_s[$i])) {
-					if (isset($entry->authMiddleName_s[0])) {
+					if (isset($entry->authMiddleName_s[$i])) {
 						foreach($entry->authMiddleName_s as $mid){
 							$midTab = explode(" ", $mid);
 							if (stripos($entry->authIdHalFullName_fs[$i], $midTab[0]." ") !== false || stripos($entry->authIdHalFullName_fs[$i], $midTab[0].". ") !== false) {//Pour vérifier qu'authMiddleName s'applique bien à cet auteur
