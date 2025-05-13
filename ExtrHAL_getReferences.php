@@ -483,7 +483,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								echo '<script>console.log("'.$nom." ".$prenom." > ".$datearriv." - ".$datedepar." > ".$pos.'");</script>';
 							}
 							*/
-							if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
+							//if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 								$affil = "ok";
 								if ($typcol == "soul") {$deb .= "<u>";$fin .= "</u>";}
 								if ($typcol == "gras") {$deb .= "<strong>";$fin .= "</strong>";}
@@ -492,7 +492,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
 								//HCERES > Test pour savoir si un auteur de la collection est premier auteur OU dernier auteur OU auteur correspond 
 								if ($i == 0 || $i == count($entry->authLastName_s) - 1 || $entry->authQuality_s[$i] == "crp") {$CA = "O";}
-							}
+							//}
 						}
 						//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
 						if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
@@ -544,7 +544,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 								}
 								$datearriv = substr($arriv, $crit-4, 4);
 								$datedepar = substr($depar, $crit-4, 4);
-								if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
+								//if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 									$affil = "ok";
 									if ($typcol == "soul") {$deb .= "<u>";$fin .= "</u>";}
 									if ($typcol == "gras") {$deb .= "<strong>";$fin .= "</strong>";}
@@ -552,8 +552,8 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									//Si demandé > si auteurs de la collection interrogée apparaissent soit en 1ère position, soit en position finale, mettre toute la citation en gras
 									if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
 									//HCERES > Test pour savoir si un auteur de la collection est premier auteur OU dernier auteur OU auteur correspond 
-								if ($i == 0 || $i == count($entry->authLastName_s) - 1 || $entry->authQuality_s[$i] == "crp") {$CA = "O";}
-								}
+									if ($i == 0 || $i == count($entry->authLastName_s) - 1 || $entry->authQuality_s[$i] == "crp") {$CA = "O";}
+								//}
 								//echo $nom.' - '.$prenom.' -> '.$nom2.' - '.$prenom2.' / '.$prenomPlus.'<br>';
 							}
 							//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
@@ -610,7 +610,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									}
 									$datearriv = substr($arriv, $crit-4, 4);
 									$datedepar = substr($depar, $crit-4, 4);
-									if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
+									//if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 										$affil = "ok";
 										if ($typcol == "soul") {$deb .= "<u>";$fin .= "</u>";}
 										if ($typcol == "gras") {$deb .= "<strong>";$fin .= "</strong>";}
@@ -619,7 +619,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
 										//HCERES > Test pour savoir si un auteur de la collection est premier auteur OU dernier auteur OU auteur correspond 
 										if ($i == 0 || $i == count($entry->authLastName_s) - 1 || $entry->authQuality_s[$i] == "crp") {$CA = "O";}
-									}
+									//}
 								}
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
 								if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
@@ -675,7 +675,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 									}
 									$datearriv = substr($arriv, $crit-4, 4);
 									$datedepar = substr($depar, $crit-4, 4);
-									if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
+									//if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 										$affil = "ok";
 										if ($typcol == "soul") {$deb .= "<u>";$fin .= "</u>";}
 										if ($typcol == "gras") {$deb .= "<strong>";$fin .= "</strong>";}
@@ -684,7 +684,7 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 										if ($typgra == "oui" && ($i == 0 || $i == count($entry->authLastName_s) - 1)) {$debgras = "<strong>"; $fingras = "</strong>";}
 										//HCERES > Test pour savoir si un auteur de la collection est premier auteur OU dernier auteur OU auteur correspond 
 										if ($i == 0 || $i == count($entry->authLastName_s) - 1 || $entry->authQuality_s[$i] == "crp") {$CA = "O";}
-									}
+									//}
 								}
 								//Pour COMM et POSTER, si authQuality_s renseigné, souligner automatiquement les orateurs ou présentateurs
 								if ($docType_s == "COMM" || $docType_s == "POSTER" || $docType_s == "COMM+POST") {
@@ -746,11 +746,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 						}
 						$datearriv = substr($arriv, $crit-4, 4);
 						$datedepar = substr($depar, $crit-4, 4);
-						if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
+						//if (($dateprod >= $datearriv && $dateprod <= $datedepar) || $dateprod == "0000") {
 							$affil = "ok";
 							$debH .= "_";
 							$finH .= "_";
-						}
+						//}
 					}
 					//echo $prenom2."troliesp".$prenomPlus."troliesp".$nom2."<br>";
 					if ($prenomPlus != "") {
