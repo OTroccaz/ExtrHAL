@@ -41,7 +41,7 @@ abstract class PHPRtfLite_Container extends PHPRtfLite_Container_Base
      *
      * @return PHPRtfLite_Footnote
      */
-    public function addFootnote($noteText, PHPRtfLite_Font $font = null, PHPRtfLite_ParFormat $parFormat = null)
+    public function addFootnote($noteText, ?PHPRtfLite_Font $font = null, ?PHPRtfLite_ParFormat $parFormat = null)
     {
         $footnote = new PHPRtfLite_Footnote($this->_rtf, $noteText, $font, $parFormat);
         $this->_elements[] = $footnote;
@@ -58,7 +58,7 @@ abstract class PHPRtfLite_Container extends PHPRtfLite_Container_Base
      *
      * @return PHPRtfLite_Endnote
      */
-    public function addEndnote($noteText, PHPRtfLite_Font $font = null, PHPRtfLite_ParFormat $parFormat = null)
+    public function addEndnote($noteText, ?PHPRtfLite_Font $font = null, ?PHPRtfLite_ParFormat $parFormat = null)
     {
         $endnote = new PHPRtfLite_Endnote($this->_rtf, $noteText, $font, $parFormat);
         $this->_elements[] = $endnote;
@@ -106,7 +106,7 @@ abstract class PHPRtfLite_Container extends PHPRtfLite_Container_Base
      * @param   PHPRtfLite_ParFormat    $parFormat
      * @return  PHPRtfLite_FormField_Checkbox
      */
-    public function addCheckbox(PHPRtfLite_Font $font = null, PHPRtfLite_ParFormat $parFormat = null)
+    public function addCheckbox(?PHPRtfLite_Font $font = null, ?PHPRtfLite_ParFormat $parFormat = null)
     {
         $checkBox = new PHPRtfLite_FormField_Checkbox($this->_rtf, $font, $parFormat);
         $this->_elements[] = $checkBox;
@@ -121,7 +121,7 @@ abstract class PHPRtfLite_Container extends PHPRtfLite_Container_Base
      * @param   PHPRtfLite_ParFormat    $parFormat
      * @return  PHPRtfLite_FormField_Dropdown
      */
-    public function addDropdown(PHPRtfLite_Font $font = null, PHPRtfLite_ParFormat $parFormat = null)
+    public function addDropdown(?PHPRtfLite_Font $font = null, ?PHPRtfLite_ParFormat $parFormat = null)
     {
         $dropdown = new PHPRtfLite_FormField_Dropdown($this->_rtf, $font, $parFormat);
         $this->_elements[] = $dropdown;
@@ -136,7 +136,7 @@ abstract class PHPRtfLite_Container extends PHPRtfLite_Container_Base
      * @param   PHPRtfLite_ParFormat    $parFormat
      * @return  PHPRtfLite_FormField_Text
      */
-    public function addTextField(PHPRtfLite_Font $font = null, PHPRtfLite_ParFormat $parFormat = null)
+    public function addTextField(?PHPRtfLite_Font $font = null, ?PHPRtfLite_ParFormat $parFormat = null)
     {
         $textField = new PHPRtfLite_FormField_Text($this->_rtf, $font, $parFormat);
         $this->_elements[] = $textField;

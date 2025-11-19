@@ -128,8 +128,8 @@ class PHPRtfLite_Footnote
      */
     public function __construct(PHPRtfLite $rtf,
                                 $text,
-                                PHPRtfLite_Font $font = null,
-                                PHPRtfLite_ParFormat $parFormat = null)
+                                ?PHPRtfLite_Font $font = null,
+                                ?PHPRtfLite_ParFormat $parFormat = null)
     {
         $this->_rtf         = $rtf;
         $this->_text        = $text;

@@ -63,8 +63,8 @@ class PHPRtfLite_Element
      */
     public function __construct(PHPRtfLite $rtf,
                                 $text,
-                                PHPRtfLite_Font $font = null,
-                                PHPRtfLite_ParFormat $parFormat = null)
+                                ?PHPRtfLite_Font $font = null,
+                                ?PHPRtfLite_ParFormat $parFormat = null)
     {
         if ($font) {
             $rtf->registerFont($font);
