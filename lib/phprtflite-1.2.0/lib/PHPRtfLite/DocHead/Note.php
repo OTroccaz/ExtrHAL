@@ -217,7 +217,7 @@ class PHPRtfLite_DocHead_Note
                 return $prefix . 'rlc';
             case PHPRtfLite_Footnote::NUMTYPE_ROMAN_UC:
                 return $prefix . 'ruc';
-            case PHPRtfLite_Footnote::NUMTYPE_CHICAGO;
+            case PHPRtfLite_Footnote::NUMTYPE_CHICAGO:
                 return $prefix . 'chi';
             case PHPRtfLite_Footnote::NUMTYPE_KOREAN_1:
                 return $prefix . 'chosung';
