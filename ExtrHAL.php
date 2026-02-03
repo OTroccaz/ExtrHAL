@@ -317,7 +317,9 @@ include "./ExtrHAL_get.php";
 
 																				//collCode_s sert aussi bien pour une collection que pour un idhal
 																				include "./ExtrHAL_getReferences.php";
+																				//include "./ExtrHAL_getReferences_Luc.php";
 																				include "./ExtrHAL_displayRefList_fct.php";
+																				//include "./ExtrHAL_displayRefList_fct_Luc.php";
 																				include "./ExtrHAL_countries.php";
 
 																				$detail = "";
@@ -554,6 +556,7 @@ include "./ExtrHAL_get.php";
 																									echo "<td style='padding: 2px;'>".$nqp."</td>";
 																								}
 																							}
+																							echo "<td>TUR <a href='#' data-toggle='tooltip' title='' data-original-title='TUR = Total Unique Réel de publications croisées par équipe'><i class='uil uil-question-circle text-first'></i></a></td>";
 																							echo "</tr>";
 																							
 																							$j = 0;//Lignes
@@ -575,11 +578,23 @@ include "./ExtrHAL_get.php";
 																										}
 																										$k++;
 																									}
+																									echo "<td>";
+																									if (isset($crogrtot[$j])) {echo (count($crogrtot[$j]));}else{echo "0";}
+																									echo "</td>";
 																									echo "</tr>";
 																								}
 																								$j++;
 																							}
 																							
+																							echo "<tr>";
+																							echo "<td>TUR <a href='#' data-toggle='tooltip' title='' data-original-title='TUR = Total Unique Réel de publications croisées par équipe'><i class='uil uil-question-circle text-first'></i></a>&nbsp;&nbsp;&nbsp;</td>";
+																							for ($j = 1; $j <= $nbeqp; $j++) {
+																								echo "<td>";
+																									if (isset($crogrtot[$j])) {echo (count($crogrtot[$j]));}else{echo "0";}
+																								echo "</td>";
+																							}
+																							echo "<td>-</td>";
+																							echo "</tr>";
 																							
 																							echo "</table>";
 																							

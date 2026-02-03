@@ -109,6 +109,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	$ind = 0;
 	static $indgr = array();
 	static $crogr = array();
+	static $crogrtot = array();
 	static $drefl = array();
 	/*A quoi servait le test initial ci-dessous qui est faussé (cf. http://localhost:9000/coding_rules?open=php%3AS3923&rule_key=php%3AS3923) ???
 	for ($j = 1; $j <= $nbeqp; $j++) {
@@ -126,6 +127,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	for ($j = 1; $j <= $nbeqp; $j++) {
 	 $indgr[$j] = 1;
 	 $crogr[$j] = 0;
+	 //$crogrtot[$j] = 0;
 	 //Pour le bilan quantitatif par équipes et collection si numérotation/codification demandée
 	 $bilEqp[$j] = array();
 	 //Tableau quantitatif indiquant le total des publications communes entre chaque équipe si numérotation/codification demandée
@@ -249,9 +251,16 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 							 $rtfval = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j]." -", $rtfval);
 							 $rtfcha = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j], $rtfcha);
 							 if (strpos($entryInfo, " - GR") !== false) {//publication croisée
-								 $crogr[$j] += 1;
+								//echo $entryInfo.'<br>';
 								 $aff = "oui";
-								 
+								 $pubcrgr = 'oui';
+								 for ($k = 1; $k <= $nbeqp; $k++) {
+									 if (strpos($entryInfo,"GR".$k) !== false && $j != $k) {
+										$pubcrgr = 'non';
+										break;
+									 }
+								 }
+								 if ($pubcrgr == 'oui') {$crogr[$j] += 1;}
 								 /*
 								 for ($k = 1; $k <= $nbeqp; $k++) {
 									 if (strpos($entryInfo," - GR".$k." - ¤ -") !== false) {
@@ -267,8 +276,9 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 									 }
 								 }
 								 */
+								 $crogrtot[$j][$rtf[7]] = 1;
 							 }
-							
+							//if (isset($crogrtot[1])) {var_dump(count($crogrtot[1]));}
 							 if ($typexc == "oui") {$aff = "non";}//Publication d'une équipe à ne pas afficher
 							 if ($aff == "oui") {
 								 $indgr[$j] += 1;
@@ -555,8 +565,16 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 							 $rtfval = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j]." -", $rtfval);
 							 $rtfcha = str_replace("GR".$j." - ¤ -", "GR".$j." - ".$indgr[$j], $rtfcha);
 							 if (strpos($entryInfo, " - GR") !== false) {//publication croisée
-								 $crogr[$j] += 1;
+								//echo $entryInfo.'<br>';
 								 $aff = "oui";
+								 $pubcrgr = 'oui';
+								 for ($k = 1; $k <= $nbeqp; $k++) {
+									 if (strpos($entryInfo,"GR".$k) !== false && $j != $k) {
+										$pubcrgr = 'non';
+										break;
+									 }
+								 }
+								 if ($pubcrgr == 'oui') {$crogr[$j] += 1;}
 								 
 								 /*
 								 for ($k = 1; $k <= $nbeqp; $k++) {
@@ -569,8 +587,9 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 									 }
 								 }
 								 */
+								 $crogrtot[$j][$rtf[7]] = 1;
 							 }
-							 
+							 //if (isset($crogrtot[1])) {var_dump(count($crogrtot[1]));}
 							 if ($typexc == "oui") {$aff = "non";}//Publication d'une équipe à ne pas afficher
 							 if ($aff == "oui") {
 								 $indgr[$j] += 1;
@@ -824,6 +843,7 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	//var_dump($crogr);
 	$drefl[3] = $bilEqp;//Bilan quantitatif par équipes et collection si numérotation/codification demandée
 	$drefl[4] = $croEqp;//Tableau quantitatif indiquant le total des publications communes entre chaque équipe si numérotation/codification demandée
+	$drefl[5] = $crogrtot;//Tableau quantitatif indiquant le total des publications croisées uniques réelles pour chaque équipe
 	return $drefl;
 }
 ?>

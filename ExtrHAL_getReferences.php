@@ -371,9 +371,11 @@ function getReferences($infoArray,$resArray,$sortArray,$docType,$collCode_s,$spe
 				}
 				
 				//Extraction Luc
+				/*
 				if ($collCode_s == 'CREAAH' && isset($gr)) {
 					include './CReAAH4.php';
 				}
+				*/
 				
 				//Le champ 'producedDateY_i' n'est pas obligatoire pour les communications et posters > on testera alors avec publicationDateY_i ou conferenceStartDateY_i
 				if ($docType_s != "COMM" && $docType_s != "POSTER" && $docType_s != "COMM+POST") {
