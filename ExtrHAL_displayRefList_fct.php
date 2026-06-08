@@ -827,8 +827,8 @@ function displayRefList($docType_s,$collCode_s,$specificRequestCode,$countries,$
 	//$fontlienfoot = new PHPRtfLite_Font(9, 'Corbel', '#8989FF', '#FFFFFF');
 	$footer = $sect->addFooter();
 	$footer->writeText('<em>Liste générée via ExtrHAL. </em>', $fontfoot);
-	$footer->writeHyperLink('https://halur.univ-rennes.fr/ExtrHAL.php', '<em><u>ExtrHAL</u></em>', $fontlienfoot);
-	$footer->writeText('<em> (https://halur.univ-rennes.fr/ExtrHAL.php) est un outil conçu et développé par Olivier Troccaz (CNRS CReAAH/OSUR) et Laurent Jonchère (Université de Rennes).</em>', $fontfoot);
+	$footer->writeHyperLink('https://halur.ccsd.cnrs.fr/ExtrHAL.php', '<em><u>ExtrHAL</u></em>', $fontlienfoot);
+	$footer->writeText('<em> (https://halur.ccsd.cnrs.fr/ExtrHAL.php) est un outil conçu et développé par Olivier Troccaz (CNRS CReAAH/OSUR) et Laurent Jonchère (Université de Rennes).</em>', $fontfoot);
 	//$footer->writeText('<em> est un outil conçu et développé par Olivier Troccaz (CNRS CReAAH/OSUR) et Laurent Jonchère (Université de Rennes).</em>', $fontfoot);
 	//$sect->addFootnote('This is the endnote text');
 	if (isset($idhal) && $idhal != "") {$team = $idhal;}
